@@ -22,6 +22,10 @@
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		FC6C7E2820FD1E8600034CC4 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2720FD1E8600034CC4 /* LocationViewController.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
+		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
+		FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */; };
+		FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */; };
+		FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */; };
 		FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE7DD420FD08EC00692A48 /* LoginViewController.m */; };
 		FCEE7DD820FD096700692A48 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE7DD720FD096700692A48 /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +81,14 @@
 		FC6C7E2720FD1E8600034CC4 /* LocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostingsViewController.h; sourceTree = "<group>"; };
+		FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostingsViewController.m; sourceTree = "<group>"; };
+		FC6C7E3020FD47DF00034CC4 /* YourPostingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YourPostingsViewController.h; sourceTree = "<group>"; };
+		FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YourPostingsViewController.m; sourceTree = "<group>"; };
+		FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeNewPostViewController.h; sourceTree = "<group>"; };
+		FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeNewPostViewController.m; sourceTree = "<group>"; };
+		FC6C7E3620FD51B600034CC4 /* PostDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailsViewController.h; sourceTree = "<group>"; };
+		FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailsViewController.m; sourceTree = "<group>"; };
 		FCEE7DD320FD08EC00692A48 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FCEE7DD420FD08EC00692A48 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FCEE7DD620FD096700692A48 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -206,6 +218,8 @@
 		FC6C7E2C20FD271400034CC4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
+				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
 				FC6C7E2620FD1E8600034CC4 /* LocationViewController.h */,
 				FC6C7E2720FD1E8600034CC4 /* LocationViewController.m */,
 				FCEE7DD320FD08EC00692A48 /* LoginViewController.h */,
@@ -214,6 +228,12 @@
 				FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */,
 				FCEE7DD620FD096700692A48 /* SignUpViewController.h */,
 				FCEE7DD720FD096700692A48 /* SignUpViewController.m */,
+				FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */,
+				FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */,
+				FC6C7E3020FD47DF00034CC4 /* YourPostingsViewController.h */,
+				FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */,
+				FC6C7E3620FD51B600034CC4 /* PostDetailsViewController.h */,
+				FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -431,10 +451,14 @@
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				FC6C7E2820FD1E8600034CC4 /* LocationViewController.m in Sources */,
+				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
+				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				FCEE7DD820FD096700692A48 /* SignUpViewController.m in Sources */,
 				FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
+				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
+				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

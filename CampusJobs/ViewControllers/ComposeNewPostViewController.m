@@ -1,36 +1,18 @@
 //
-//  FeedViewController.m
+//  ComposeNewPostViewController.m
 //  CampusJobs
 //
 //  Created by Sophia Khezri on 7/16/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "FeedViewController.h"
+#import "ComposeNewPostViewController.h"
 
-@interface FeedViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UIView *yourPostingsContainer;
-@property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
+@interface ComposeNewPostViewController ()
 
 @end
 
-@implementation FeedViewController
-
-- (IBAction)segmentedControlIndexChanged:(id)sender {
-    UISegmentedControl * segment= sender;
-    switch(segment.selectedSegmentIndex) {
-        case 0:
-            self.nearbyPostingsContainer.hidden=NO;
-            break;
-        case 1:
-            self.nearbyPostingsContainer.hidden=YES;
-            break;
-        default:
-            break;
-    }
-    
-}
+@implementation ComposeNewPostViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
