@@ -13,6 +13,7 @@
 		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
+		D3E5A15C20FD5B2D00891964 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E5A15B20FD5B2D00891964 /* Storyboard.storyboard */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
 		F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F420EFE12900381BE7 /* Main.storyboard */; };
 		F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */; };
@@ -57,6 +58,7 @@
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D3E5A15B20FD5B2D00891964 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E66EB20EFE12800381BE7 /* CampusJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +169,7 @@
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
+				D3E5A15B20FD5B2D00891964 /* Storyboard.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
+				D3E5A15C20FD5B2D00891964 /* Storyboard.storyboard in Resources */,
 				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
