@@ -1,18 +1,21 @@
 //
-//  SignUpViewController.m
+//  FeedViewController.m
 //  CampusJobs
 //
 //  Created by Sophia Khezri on 7/16/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "SignUpViewController.h"
+#import "FeedViewController.h"
 
-@interface SignUpViewController ()
+@interface FeedViewController ()
 
 @end
 
-@implementation SignUpViewController
+@implementation FeedViewController
+
+- (IBAction)segmentedControlIndexChanged:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

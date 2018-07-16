@@ -1,5 +1,5 @@
 //
-//  SignUpViewController.h
+//  FeedViewController.h
 //  CampusJobs
 //
 //  Created by Sophia Khezri on 7/16/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpViewController : UIViewController
+@interface FeedViewController : UIViewController
 
 @end
