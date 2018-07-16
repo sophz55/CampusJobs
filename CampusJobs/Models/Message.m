@@ -15,9 +15,4 @@
 @dynamic sender;
 @dynamic receiver;
 
-// Conforming to Subclassing protocol
-+ (nonnull NSString *)parseClassName {
-    return @"Post";
-}
-
 @end

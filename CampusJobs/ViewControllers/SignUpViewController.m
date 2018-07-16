@@ -7,8 +7,11 @@
 //
 
 #import "SignUpViewController.h"
+#import "Helper.h"
 
 @interface SignUpViewController ()
+
+@property(strong, nonatomic) Helper *helper;
 
 @end
 
@@ -25,11 +28,16 @@
     newUser.username = @"username";
     newUser.email = @"email";
     newUser.password = @"password";
-    newUser[@"address"] = @"address";
     newUser[@"name"] = @"full name";
-    newUser[@"rating"] = @5;
-    newUser[@"profileImageFile"] = [self getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
-    newUser[@"creditCardNumber"] = @00000000000;
+    newUser[@"address"] = @"";
+    newUser[@"profileImageFile"] = [self.helper getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
+    newUser[@"creditCardNumber"] = @"";
+    newUser[@"creditCardExpDate"] = @"";
+    newUser[@"creditCardCVC"] = @"";
+    newUser[@"billingName"] = @"full name";
+    newUser[@"billingAddress"] = @"";
+    newUser[@"venmoHandle"] = @"";
+    newUser[@"rating"] = @5; // out of five stars
     newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
     newUser[@"conversations"] = [[NSMutableArray alloc] init];
     
@@ -39,44 +47,16 @@
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-                [self callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription]];
+                [self.helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 NSLog(@"User registered successfully");
                 [self performSegueWithIdentifier:@"loginSegue" sender:nil];
             }
         }];
     } else {
-        [self callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank"];
+        [self.helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
         NSLog(@"Did not register user");
     }
-}
-
-- (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
-    
-    // create OK action
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        // handle response here.
-    }];
-    [alert addAction:okAction];
-    
-    [self presentViewController:alert animated:YES completion:^{}];
-}
-
-- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {
-    
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
 - (void)didReceiveMemoryWarning {

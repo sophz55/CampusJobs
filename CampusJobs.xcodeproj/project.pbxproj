@@ -20,6 +20,7 @@
 		F39F4BEB20FD147200C11CD0 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BEA20FD147200C11CD0 /* Post.m */; };
 		F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BED20FD14A300C11CD0 /* Message.m */; };
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
+		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		FC6C7E2820FD1E8600034CC4 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2720FD1E8600034CC4 /* LocationViewController.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE7DD420FD08EC00692A48 /* LoginViewController.m */; };
@@ -73,6 +74,8 @@
 		F39F4BED20FD14A300C11CD0 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		F39F4BEF20FD14C000C11CD0 /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		F3B3947420FD451700379749 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		FC6C7E2620FD1E8600034CC4 /* LocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		FC6C7E2720FD1E8600034CC4 /* LocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				F39F4BED20FD14A300C11CD0 /* Message.m */,
 				F39F4BEF20FD14C000C11CD0 /* Conversation.h */,
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
+				F3B3947420FD451700379749 /* Helper.h */,
+				F3B3947520FD451700379749 /* Helper.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
+				F3B3947620FD451700379749 /* Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
