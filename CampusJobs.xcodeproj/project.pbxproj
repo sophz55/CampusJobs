@@ -11,13 +11,14 @@
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
-		F39E66F320EFE12900381BE7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66F220EFE12900381BE7 /* ViewController.m */; };
 		F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F420EFE12900381BE7 /* Main.storyboard */; };
 		F39E66F820EFE12900381BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F720EFE12900381BE7 /* Assets.xcassets */; };
 		F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */; };
 		F39E66FE20EFE12900381BE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66FD20EFE12900381BE7 /* main.m */; };
 		F39E670820EFE12900381BE7 /* CampusJobsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E670720EFE12900381BE7 /* CampusJobsTests.m */; };
 		F39E671320EFE12900381BE7 /* CampusJobsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E671220EFE12900381BE7 /* CampusJobsUITests.m */; };
+		FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE7DD420FD08EC00692A48 /* LoginViewController.m */; };
+		FCEE7DD820FD096700692A48 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE7DD720FD096700692A48 /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +51,6 @@
 		F39E66EB20EFE12800381BE7 /* CampusJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E66EE20EFE12800381BE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F39E66EF20EFE12800381BE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F39E66F120EFE12900381BE7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F39E66F220EFE12900381BE7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F39E66F520EFE12900381BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F39E66F720EFE12900381BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F39E66FA20EFE12900381BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +62,10 @@
 		F39E670E20EFE12900381BE7 /* CampusJobsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampusJobsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E671220EFE12900381BE7 /* CampusJobsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CampusJobsUITests.m; sourceTree = "<group>"; };
 		F39E671420EFE12900381BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCEE7DD320FD08EC00692A48 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FCEE7DD420FD08EC00692A48 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FCEE7DD620FD096700692A48 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		FCEE7DD720FD096700692A48 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,13 +146,15 @@
 			children = (
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
-				F39E66F120EFE12900381BE7 /* ViewController.h */,
-				F39E66F220EFE12900381BE7 /* ViewController.m */,
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
+				FCEE7DD620FD096700692A48 /* SignUpViewController.h */,
+				FCEE7DD720FD096700692A48 /* SignUpViewController.m */,
 				F39E66F720EFE12900381BE7 /* Assets.xcassets */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
+				FCEE7DD320FD08EC00692A48 /* LoginViewController.h */,
+				FCEE7DD420FD08EC00692A48 /* LoginViewController.m */,
 			);
 			path = CampusJobs;
 			sourceTree = "<group>";
@@ -381,9 +386,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F39E66F320EFE12900381BE7 /* ViewController.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
+				FCEE7DD820FD096700692A48 /* SignUpViewController.m in Sources */,
+				FCEE7DD520FD08EC00692A48 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
