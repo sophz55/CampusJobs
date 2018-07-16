@@ -21,10 +21,10 @@
     UISegmentedControl * segment= sender;
     switch(segment.selectedSegmentIndex) {
         case 0:
-            self.nearbyPostingsContainer.hidden=NO;
+            self.yourPostingsContainer.hidden=NO;
             break;
         case 1:
-            self.nearbyPostingsContainer.hidden=YES;
+            self.yourPostingsContainer.hidden=YES;
             break;
         default:
             break;
