@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CampusJobs/Base.lproj/LoginSignUp.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:CampusJobs.xcodeproj">
    </FileRef>
    <FileRef
