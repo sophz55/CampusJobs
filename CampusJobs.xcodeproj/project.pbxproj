@@ -10,9 +10,9 @@
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
+		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
 		F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F420EFE12900381BE7 /* Main.storyboard */; };
-		F39E66F820EFE12900381BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F720EFE12900381BE7 /* Assets.xcassets */; };
 		F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */; };
 		F39E66FE20EFE12900381BE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66FD20EFE12900381BE7 /* main.m */; };
 		F39E670820EFE12900381BE7 /* CampusJobsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E670720EFE12900381BE7 /* CampusJobsTests.m */; };
@@ -46,13 +46,13 @@
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
+		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E66EB20EFE12800381BE7 /* CampusJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E66EE20EFE12800381BE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F39E66EF20EFE12800381BE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F39E66F520EFE12900381BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F39E66F720EFE12900381BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F39E66FA20EFE12900381BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F39E66FC20EFE12900381BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F39E66FD20EFE12900381BE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -149,12 +149,12 @@
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
 				FCEE7DD620FD096700692A48 /* SignUpViewController.h */,
 				FCEE7DD720FD096700692A48 /* SignUpViewController.m */,
-				F39E66F720EFE12900381BE7 /* Assets.xcassets */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				FCEE7DD320FD08EC00692A48 /* LoginViewController.h */,
 				FCEE7DD420FD08EC00692A48 /* LoginViewController.m */,
+				D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */,
 			);
 			path = CampusJobs;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
-				F39E66F820EFE12900381BE7 /* Assets.xcassets in Resources */,
+				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
