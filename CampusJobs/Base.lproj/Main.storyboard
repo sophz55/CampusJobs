@@ -570,6 +570,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Profile"/>
+                                <connections>
+                                    <segue destination="1nA-Qz-weJ" kind="show" id="PJp-O5-POK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omf-Fx-kXx">
                                 <rect key="frame" x="117" y="347" width="242" height="39"/>
@@ -637,6 +640,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AR4-7H-hmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2316" y="2027.136431784108"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="d0P-Qb-Pc8">
+            <objects>
+                <viewController id="1nA-Qz-weJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V62-QW-QGE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="atX-tn-yfe"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VkX-YL-SMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3148" y="2027"/>
         </scene>
     </scenes>
     <resources>
