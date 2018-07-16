@@ -14,9 +14,4 @@
 @dynamic post;
 @dynamic seeker;
 
-// Conforming to Subclassing protocol
-+ (nonnull NSString *)parseClassName {
-    return @"Post";
-}
-
 @end
