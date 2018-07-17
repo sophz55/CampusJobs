@@ -13,6 +13,4 @@
 
 - (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller;
 
-- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image;
-
 @end
