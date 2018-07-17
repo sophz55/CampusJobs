@@ -28,6 +28,13 @@
     
     [Parse initializeWithConfiguration:config];
     
+    // user persists
+    if (PFUser.currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"UITabBarController-phF-uU-A6b"];
+    }
+    
     return YES;
 }
 
