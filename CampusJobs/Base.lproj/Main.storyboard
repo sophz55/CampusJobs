@@ -64,7 +64,7 @@
         <!--Chat-->
         <scene sceneID="A1P-Fh-cch">
             <objects>
-                <viewController id="6pg-MC-hWd" sceneMemberID="viewController">
+                <viewController id="6pg-MC-hWd" customClass="ChatsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RoY-LJ-fJX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="allChatsToSingleChatSegue" rowHeight="83" id="XhT-XO-Itf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="XhT-XO-Itf" customClass="ConversationTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XhT-XO-Itf" id="naN-1G-Xf8">
@@ -102,17 +102,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat cell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yri-jo-GHe">
-                                                    <rect key="frame" x="293" y="57" width="66" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Bdl-9U-zBf" kind="presentation" id="l2U-Rz-EI9"/>
+                                            <outlet property="messagePreviewLabel" destination="Mbj-7w-8py" id="III-P8-G8S"/>
+                                            <outlet property="otherUserLabel" destination="ETF-Qh-I2y" id="3gG-9G-kTC"/>
+                                            <outlet property="postTitleLabel" destination="dEq-fK-Ggf" id="1AC-5V-flA"/>
+                                            <segue destination="Bdl-9U-zBf" kind="presentation" identifier="allChatsToSingleChatSegue" id="l2U-Rz-EI9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -129,6 +125,9 @@
                         <viewLayoutGuide key="safeArea" id="fy2-J7-KOG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" id="gFm-Yc-9l9"/>
+                    <connections>
+                        <outlet property="conversationsTableView" destination="Yma-sh-hY5" id="GgJ-rs-LfI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Fc-XE-8MJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

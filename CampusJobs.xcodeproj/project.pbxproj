@@ -12,6 +12,8 @@
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
+		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
+		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
@@ -63,6 +65,10 @@
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
+		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
+		F338398420FE9B2300364F86 /* ConversationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationTableViewCell.h; sourceTree = "<group>"; };
+		F338398520FE9B2300364F86 /* ConversationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationTableViewCell.m; sourceTree = "<group>"; };
 		F37ADB8420FE8ABA004C593C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginSignUp.storyboard; sourceTree = "<group>"; };
 		F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F39E66EB20EFE12800381BE7 /* CampusJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +157,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F338398320FE9B1600364F86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F338398420FE9B2300364F86 /* ConversationTableViewCell.h */,
+				F338398520FE9B2300364F86 /* ConversationTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F39E66E220EFE12800381BE7 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +191,7 @@
 		F39E66ED20EFE12800381BE7 /* CampusJobs */ = {
 			isa = PBXGroup;
 			children = (
+				F338398320FE9B1600364F86 /* Views */,
 				FC6C7E2C20FD271400034CC4 /* ViewControllers */,
 				F39F4BE820FD146100C11CD0 /* Models */,
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
@@ -242,6 +258,8 @@
 				D3E5A15520FD545700891964 /* LoginViewController.m */,
 				D3E5A15620FD545700891964 /* SignUpViewController.h */,
 				D3E5A15720FD545800891964 /* SignUpViewController.m */,
+				F338397D20FE9AA000364F86 /* ConversationsViewController.h */,
+				F338397E20FE9AA000364F86 /* ConversationsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -456,9 +474,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
+				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E2820FD1E8600034CC4 /* LocationViewController.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
