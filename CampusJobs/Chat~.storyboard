@@ -230,8 +230,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                 <state key="normal" title="Compose Post"/>
                                 <connections>
-                                    <action selector="didTapComposeButton:" destination="mQb-X1-xCt" eventType="touchUpInside" id="WMs-a2-tIH"/>
-                                    <segue destination="gfv-l9-1Bb" kind="presentation" identifier="composeNewPostSegue" id="kBM-ES-iHU"/>
+                                    <segue destination="gfv-l9-1Bb" kind="presentation" id="kBM-ES-iHU"/>
                                 </connections>
                             </button>
                         </subviews>

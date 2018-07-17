@@ -14,6 +14,10 @@
 
 @implementation YourPostingsViewController
 
+- (IBAction)didTapComposeButton:(id)sender {
+     [self performSegueWithIdentifier:@"composeNewPostSegue" sender:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
