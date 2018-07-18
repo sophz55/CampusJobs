@@ -23,4 +23,6 @@
 @property (strong, nonatomic) NSMutableArray *photoFiles; //array of PFFiles
 @property (strong, nonatomic) NSString *location;
 
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
 @end
