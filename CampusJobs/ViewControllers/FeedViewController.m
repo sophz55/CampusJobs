@@ -7,6 +7,7 @@
 //
 
 #import "FeedViewController.h"
+#import "Parse.h"
 
 @interface FeedViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -39,6 +40,11 @@
         default:
             break;
     }
+}
+- (IBAction)didTapLogoutButton:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+    }];
 }
 
 /*
