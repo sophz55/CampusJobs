@@ -17,4 +17,6 @@
 @property (strong, nonatomic) PFUser *otherUser;
 @property (strong, nonatomic) Conversation *conversation;
 
+- (void)configureCellWithConversation:(Conversation *)conversation;
+
 @end
