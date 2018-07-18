@@ -7,9 +7,9 @@
 //
 
 #import "ComposeNewPostViewController.h"
+#import "Post.h"
 
 @interface ComposeNewPostViewController ()
-
 @end
 
 @implementation ComposeNewPostViewController
@@ -24,6 +24,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)didTapPostButton:(id)sender {
+   [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:self.enteredLocation
+    .text withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
+        if(succeeded){
+            NSLog(@"Shared Successfully");
+        } else{
+            NSLog(@"%@", error.localizedDescription);
+        }
+        
+    }];
+    
+     [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
+}
 
 /*
 #pragma mark - Navigation

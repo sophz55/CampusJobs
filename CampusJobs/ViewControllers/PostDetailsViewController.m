@@ -23,6 +23,12 @@
     self.user = [PFUser currentUser];
     
 }
+- (IBAction)didTapBackButton:(id)sender {
+    [self performSegueWithIdentifier:@"backToNearbyFeedSegue" sender:nil];
+}
+
+- (IBAction)didTapMessageButton:(id)sender {
+}
 
 - (void)messageAuthor {
     Conversation *conversation = [self findConversation];
