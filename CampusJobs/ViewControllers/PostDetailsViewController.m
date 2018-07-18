@@ -7,8 +7,11 @@
 //
 
 #import "PostDetailsViewController.h"
+#import "Conversation.h"
 
 @interface PostDetailsViewController ()
+
+@property (strong, nonatomic) PFUser *user;
 
 @end
 
@@ -16,7 +19,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.user = [PFUser currentUser];
+    
+}
+
+- (void)messageAuthor {
+    Conversation *conversation = [self findConversation];
+    NSLog(@"%@", conversation);
+}
+
+- (id)findConversation {
+    NSMutableArray *conversationsArray = self.user[@"conversations"];
+    NSMutableArray *postsArray = [[NSMutableArray alloc] init];
+    for (Conversation *conversation in conversationsArray) {
+        [postsArray addObject:conversation.post];
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = self.post.author"];
+    NSArray *filter = [postsArray filteredArrayUsingPredicate:predicate];
+    
+    if (filter.count != 0) {
+        return filter[0];
+    } else {
+        Conversation *newConversation = [Conversation new];
+        newConversation.messages = [[NSMutableArray alloc] init];
+        newConversation.post = self.post;
+        newConversation.seeker = self.user;
+        return newConversation;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
