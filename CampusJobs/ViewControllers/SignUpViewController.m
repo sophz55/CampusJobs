@@ -47,7 +47,6 @@
     newUser[@"venmoHandle"] = @"";
     newUser[@"rating"] = @5; // out of five stars
     newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
-    newUser[@"conversations"] = [[NSMutableArray alloc] init];
     
     
     if (![newUser.email isEqual:@""] && ![newUser[@"name"] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
