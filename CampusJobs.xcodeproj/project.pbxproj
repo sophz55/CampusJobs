@@ -194,18 +194,11 @@
 			isa = PBXGroup;
 			children = (
 				FC8D08DD20FFA89E00086062 /* Storyboards */,
-
 				FC5B61FF20FE9ADE00050EA7 /* Cells */,
 				FC6C7E2C20FD271400034CC4 /* ViewControllers */,
 				F39F4BE820FD146100C11CD0 /* Models */,
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
-
-				F39E66F420EFE12900381BE7 /* Main.storyboard */,
-				F32251F320FEA772003E4C08 /* Chat.storyboard */,
-				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
-				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
-
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */,
@@ -289,11 +282,10 @@
 		FC8D08DD20FFA89E00086062 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				FCB886F120FEA47F001612E2 /* Chat.storyboard */,
-				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
-				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
+				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
+				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

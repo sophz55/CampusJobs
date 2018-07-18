@@ -21,7 +21,7 @@
     // Configure the view for the selected state
 }
 
--(void)setPost:(Post *)post{
+-(void)setNearbyPost:(Post *)post{
     _post=post;
     self.postUserLabel.text=post.author;
     self.postTitleLabel.text=post.title;

@@ -13,7 +13,7 @@
         <!--Chat-->
         <scene sceneID="A1P-Fh-cch">
             <objects>
-                <viewController id="6pg-MC-hWd" customClass="ConversationsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Chat" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6pg-MC-hWd" customClass="ConversationsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RoY-LJ-fJX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -56,7 +56,7 @@
     NearbyPostCell * nearbyPostCell=[tableView dequeueReusableCellWithIdentifier:@"NearbyPostCell" forIndexPath:indexPath];
     Post * post=self.nearbyPostingsArray[indexPath.row];
     nearbyPostCell.post=post;
-    [nearbyPostCell setPost:post];
+    [nearbyPostCell setNearbyPost:post];
     return nearbyPostCell;
                                    
 }
@@ -71,8 +71,6 @@
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
-
-
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -83,8 +81,9 @@
          UITableViewCell * tappedCell=sender;
          NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
          Post * singlePost=self.nearbyPostingsArray[indexPath.row];
+         NSLog(@"%@", singlePost);
          PostDetailsViewController *postDetailsViewController=[segue destinationViewController];
-         postDetailsViewController.post=singlePost;
+         //postDetailsViewController.post=singlePost;
      }
  }
 
