@@ -8,6 +8,7 @@
 
 #import "NearbyPostingsViewController.h"
 #import "NearbyPostCell.h"
+#import "PostDetailsViewController.h"
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -34,17 +35,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 -(void)fetchNearbyPosts{
     PFQuery * query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
@@ -52,8 +42,6 @@
     [query includeKey: @"author"];
     [query includeKey: @"summary"];
     [query includeKey: @"location"];
-    
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if(posts!=nil){
             self.nearbyPostingsArray=posts;
@@ -83,5 +71,23 @@
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
+
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+     if([segue.identifier isEqualToString:@"cellToPostDetailsSegue"]){
+         UITableViewCell * tappedCell=sender;
+         NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
+         Post * singlePost=self.nearbyPostingsArray[indexPath.row];
+         PostDetailsViewController *postDetailsViewController=[segue destinationViewController];
+         postDetailsViewController.post=singlePost;
+     }
+ }
+
+
 
 @end

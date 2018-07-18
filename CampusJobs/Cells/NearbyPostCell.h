@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (strong, nonatomic) Post * post;
 
-
-
 -(void) setPost:(Post *)post;
 
 @end

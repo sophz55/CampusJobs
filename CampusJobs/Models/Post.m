@@ -15,11 +15,15 @@
 @dynamic price;
 @dynamic author;
 @dynamic taker;
-@dynamic date;
+@dynamic completedDate;
 @dynamic status; // 0 if open, 1 if job is taken, 2 if job is finished
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
 
++(nonnull NSString *) parseClassName{
+    return @"Post";
+    
+}
 // Posts job
 + (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
@@ -29,7 +33,7 @@
     newPost.price = nil;
     newPost.author = [PFUser currentUser];
     newPost.taker = nil;
-    newPost.date = date;
+    newPost.completedDate = date;
     newPost.status = 0; // 0 if open, 1 if job is taken, 2 if job is finished
     
     newPost.photoFiles = [NSMutableArray array];

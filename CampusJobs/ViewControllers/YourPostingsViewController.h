@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreviousUserPostCell.h"
 
 @interface YourPostingsViewController : UIViewController
+
+-(void)fetchPreviousUserPosts;
 
 @end

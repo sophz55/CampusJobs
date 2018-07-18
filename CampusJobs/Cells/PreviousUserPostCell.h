@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface PreviousUserPostCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *previousPostTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *completedByLabel;
+@property (weak, nonatomic) IBOutlet UILabel *completedOnLabel;
+@property (strong, nonatomic) Post * previousPost;
+
+-(void)setPreviousPost:(Post *)previousPost;
 
 @end

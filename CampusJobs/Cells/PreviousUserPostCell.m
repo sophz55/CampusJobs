@@ -21,4 +21,15 @@
     // Configure the view for the selected state
 }
 
+-(void)setPreviousPost:(Post *)previousPost{
+    _previousPost=previousPost;
+    self.previousPostTitleLabel.text=previousPost.title;
+    self.completedByLabel.text=previousPost.taker.username;
+    //Converting from NSDate to NSString (MM-dd-yyyy)
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy"];
+    self.completedOnLabel.text=[formatter stringFromDate:previousPost.completedDate];
+    
+}
+
 @end

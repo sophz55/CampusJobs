@@ -23,11 +23,14 @@
 
 -(void)setPost:(Post *)post{
     _post=post;
-    self.postUserLabel.text=post.author.username;
+    self.postUserLabel.text=post.author;
     self.postTitleLabel.text=post.title;
     self.postDescriptionLabel.text=post.summary;
     self.postDistanceLabel.text=post.location;
-    //self.postDateLabel.text=post.date;
+    //Converting from NSDate to NSString (MM-dd-yyyy)
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy"];
+    self.postDateLabel.text=[formatter stringFromDate:post.createdAt];
 }
 
 
