@@ -15,4 +15,9 @@
 @dynamic sender;
 @dynamic receiver;
 
+// conforming to subclassing protocol
++ (nonnull NSString *) parseClassName{
+    return @"Message";
+}
+
 @end
