@@ -20,10 +20,11 @@
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
 
-+(nonnull NSString *) parseClassName{
+// conforming to subclassing protocol
++ (nonnull NSString *) parseClassName{
     return @"Post";
-    
 }
+
 // Posts job
 + (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];

@@ -11,7 +11,7 @@
 #import "Post.h"
 #import "Message.h"
 
-@interface Conversation : PFObject
+@interface Conversation : PFObject <PFSubclassing>
 
 @property(strong, nonatomic) NSMutableArray *messages;
 @property(strong, nonatomic) Post *post;

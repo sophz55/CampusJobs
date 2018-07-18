@@ -14,4 +14,9 @@
 @dynamic post;
 @dynamic seeker;
 
+// conforming to subclassing protocol
++ (nonnull NSString *) parseClassName{
+    return @"Conversation";
+}
+
 @end
