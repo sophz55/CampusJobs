@@ -11,13 +11,21 @@
 @implementation Message
 
 @dynamic text;
-@dynamic time;
 @dynamic sender;
 @dynamic receiver;
 
 // conforming to subclassing protocol
 + (nonnull NSString *) parseClassName{
     return @"Message";
+}
+
++ (id)createMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver {
+    Message *newMessage = [Message new];
+    newMessage.text = text;
+    newMessage.sender = sender;
+    newMessage.receiver = receiver;
+    
+    return newMessage;
 }
 
 @end
