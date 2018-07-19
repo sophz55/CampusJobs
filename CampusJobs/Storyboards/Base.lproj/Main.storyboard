@@ -195,18 +195,18 @@
             </objects>
             <point key="canvasLocation" x="2008.8" y="1768.9655172413795"/>
         </scene>
-        <!--Chat-->
+        <!--conversationDetailViewController-->
         <scene sceneID="gYr-Q9-tBP">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chat" id="7Ie-cC-sXo" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Chat" referencedIdentifier="conversationDetailViewController" id="7Ie-cC-sXo" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZc-DY-a87" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="253" y="3385"/>
         </scene>
-        <!--View Controller-->
+        <!--Post Details View Controller-->
         <scene sceneID="tvl-Ml-l1v">
             <objects>
-                <viewController id="yWq-Xd-JjF" sceneMemberID="viewController">
+                <viewController id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogp-JF-Y2h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,7 +245,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Message"/>
                                 <connections>
-                                    <action selector="didTapMessageButton:" destination="eI0-xh-we4" eventType="touchUpInside" id="v9g-wW-wyM"/>
+                                    <action selector="didTapMessageButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="AWh-Ld-c6X"/>
                                     <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" id="gpE-gX-Ky2"/>
                                 </connections>
                             </button>
