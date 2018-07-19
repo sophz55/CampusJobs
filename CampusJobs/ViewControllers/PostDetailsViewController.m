@@ -27,9 +27,11 @@
     [self performSegueWithIdentifier:@"backToNearbyFeedSegue" sender:nil];
 }
 
-
 - (IBAction)didTapMessageButton:(id)sender {
+    [self performSegueWithIdentifier:@"chatSegue" sender:nil];
 }
+
+
 
 - (void)messageAuthor {
     Conversation *conversation = [self findConversation];

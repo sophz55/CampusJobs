@@ -23,18 +23,18 @@
             <objects>
                 <viewController id="65K-mn-r90" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fgQ-Er-vx4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qN0-c9-OTv" userLabel="Nearby Postings Container View">
-                                <rect key="frame" x="0.0" y="-61" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="79" width="375" height="539"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="mQb-X1-xCt" kind="embed" id="7Fb-af-Nck"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qXd-UF-mgO" userLabel="Your Postings Container View">
-                                <rect key="frame" x="0.0" y="-49" width="375" height="527"/>
+                                <rect key="frame" x="0.0" y="91" width="375" height="527"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="QfN-nh-tUT" kind="embed" id="Ce1-h6-ffz"/>
@@ -83,7 +83,7 @@
             <objects>
                 <viewController id="XNt-k6-svk" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JAZ-PN-dCT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhF-fD-jnc">
@@ -127,7 +127,7 @@
             <objects>
                 <viewController id="mQb-X1-xCt" customClass="YourPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEj-rP-uJU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYz-sO-Yq5">
@@ -195,6 +195,14 @@
             </objects>
             <point key="canvasLocation" x="2008.8" y="1768.9655172413795"/>
         </scene>
+        <!--Chat-->
+        <scene sceneID="gYr-Q9-tBP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Chat" id="7Ie-cC-sXo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YZc-DY-a87" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253" y="3385"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tvl-Ml-l1v">
             <objects>
@@ -237,7 +245,8 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Message"/>
                                 <connections>
-                                    <action selector="didTapMessageButton:" destination="eI0-xh-we4" eventType="touchUpInside" id="P7M-pN-xeC"/>
+                                    <action selector="didTapMessageButton:" destination="eI0-xh-we4" eventType="touchUpInside" id="v9g-wW-wyM"/>
+                                    <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" id="gpE-gX-Ky2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaQ-q8-g0m">
@@ -279,7 +288,7 @@
             <objects>
                 <viewController id="gfv-l9-1Bb" customClass="ComposeNewPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7im-hN-70S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-Jl-qks">
@@ -335,7 +344,7 @@
                                 <connections>
                                     <action selector="didTapPostButton:" destination="gfv-l9-1Bb" eventType="touchUpInside" id="ATX-Pq-FtH"/>
                                     <action selector="didTapPostButton:" destination="HLn-JV-Dff" eventType="touchUpInside" id="Yfd-Cm-Ju1"/>
-                                    <segue destination="mQb-X1-xCt" kind="presentation" identifier="backToPersonalFeedSegue" id="0Ec-D7-Y3P"/>
+                                    <segue destination="phF-uU-A6b" kind="presentation" identifier="backToPersonalFeedSegue" id="eJd-GW-33d"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lN1-n1-glr">
@@ -665,7 +674,7 @@
         <image name="if_Setting_2125612" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ce1-h6-ffz"/>
-        <segue reference="7Fb-af-Nck"/>
+        <segue reference="s62-ZV-JDH"/>
+        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>
