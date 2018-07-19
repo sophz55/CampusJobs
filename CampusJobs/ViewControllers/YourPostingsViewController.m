@@ -18,6 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.previousPostTableView.delegate=self;
+    self.previousPostTableView.dataSource=self;
+    self.previousPostsArray=[[NSArray alloc]init];
+    [self fetchPreviousUserPosts];
+    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.previousPostTableView insertSubview:refreshControl atIndex:0];
+    self.previousPostTableView.rowHeight=75;
     // Do any additional setup after loading the view.
 }
 
@@ -59,6 +67,13 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.previousPostsArray.count;
+}
+
+-(void)beginRefresh:(UIRefreshControl *)refreshControl{
+    //fetch all of the nearby posts
+    [self fetchPreviousUserPosts];
+    //tell the refresh control to stop spinning
+    [refreshControl endRefreshing];
 }
 /*
  #pragma mark - Navigation

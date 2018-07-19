@@ -28,6 +28,7 @@
     UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
+    self.nearbyPostTableView.rowHeight=75;
     // Do any additional setup after loading the view.
 }
 
@@ -83,7 +84,7 @@
          Post * singlePost=self.nearbyPostingsArray[indexPath.row];
          NSLog(@"%@", singlePost);
          PostDetailsViewController *postDetailsViewController=[segue destinationViewController];
-         //postDetailsViewController.post=singlePost;
+         postDetailsViewController.post=singlePost;
      }
  }
 
