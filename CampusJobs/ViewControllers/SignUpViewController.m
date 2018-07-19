@@ -54,14 +54,14 @@
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-                [self.helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+                [Helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 NSLog(@"User registered successfully");
                 [self performSegueWithIdentifier:@"signUpToLocationSegue" sender:nil];
             }
         }];
     } else {
-        [self.helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
+        [Helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
         NSLog(@"Did not register user");
     }
 }

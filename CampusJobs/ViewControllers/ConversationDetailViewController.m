@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *messagesTableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) PFUser *user;
-@property (strong, nonatomic) Helper *helper;
 
 @end
 
@@ -44,14 +43,14 @@
 
 - (IBAction)didTapSendMessage:(id)sender {
     Message *newMessage = [Message createMessageWithText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser];
-    [self.conversation.messages addObject:newMessage];
-    [self.conversation saveInBackgroundWithBlock: ^(BOOL succeeded, NSError *error) {
+    NSLog(@"%@", newMessage);
+    [self.conversation addToConversationWithMessage:newMessage withCompletion:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"sent message");
         }
         else {
             NSLog(@"%@", error.localizedDescription);
-            [self.helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }

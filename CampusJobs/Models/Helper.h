@@ -11,6 +11,6 @@
 
 @interface Helper : NSObject
 
-- (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller;
++ (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller;
 
 @end
