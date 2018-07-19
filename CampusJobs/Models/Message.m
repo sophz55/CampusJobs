@@ -25,6 +25,13 @@
     newMessage.sender = sender;
     newMessage.receiver = receiver;
     
+    [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"saved message");
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
     return newMessage;
 }
 

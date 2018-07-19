@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog (@"Other User: %@", self.otherUser.username);
+    NSLog (@"Conversation: %@", self.conversation);
     
     self.user = [PFUser currentUser];
     
@@ -44,7 +46,7 @@
 - (IBAction)didTapSendMessage:(id)sender {
     Message *newMessage = [Message createMessageWithText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser];
     NSLog(@"%@", newMessage);
-    [self.conversation addToConversationWithMessage:newMessage withCompletion:^(BOOL succeeded, NSError *error) {
+    [Conversation addToConversation:self.conversation withMessage:newMessage withCompletion:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"sent message");
         }
