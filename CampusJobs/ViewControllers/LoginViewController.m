@@ -13,7 +13,6 @@
 @interface LoginViewController ()
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordField;
-@property (strong, nonatomic) Helper *helper;
 
 @end
 
@@ -35,7 +34,7 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            [self.helper callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+            [Helper callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:@"loginToLocationSegue" sender:nil];

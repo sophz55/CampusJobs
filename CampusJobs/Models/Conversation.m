@@ -28,4 +28,10 @@
     return newConversation;
 }
 
+- (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    NSLog(@"is this happening");
+    [self.messages addObject:message];
+    [self saveInBackgroundWithBlock:completion];
+}
+
 @end
