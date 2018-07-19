@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-
 #import "Post.h"
 
 @interface PostDetailsViewController : UIViewController
-
 @property (strong, nonatomic) Post * post;
+@property (weak, nonatomic) IBOutlet UILabel *titleDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
+
+-(void)setDetailsPost:(Post *)post;
 
 
 

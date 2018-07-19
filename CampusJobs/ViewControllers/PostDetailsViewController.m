@@ -21,17 +21,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.user = [PFUser currentUser];
-    
+    [self setDetailsPost:self.post];
 }
+
 - (IBAction)didTapBackButton:(id)sender {
-    [self performSegueWithIdentifier:@"backToNearbyFeedSegue" sender:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapMessageButton:(id)sender {
     [self findConversation];
     [self performSegueWithIdentifier:@"chatSegue" sender:nil];
+}
+
+
+-(void) setDetailsPost:(Post *)post{
+    self.titleDetailsLabel.text=post.title;
+    self.descriptionDetailsLabel.text=post.summary;
+    self.userDetailsLabel.text=post.author.username;
+//    self.locationDetailsLabel.text=post.location;
 }
 
 - (void)findConversation {
