@@ -91,7 +91,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"chatSegue"]) {
-        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
+        UINavigationController *conversationNavigationController = [segue destinationViewController];
+        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
         conversationDetailController.conversation = self.conversation;
         conversationDetailController.otherUser = self.post.author;
     }

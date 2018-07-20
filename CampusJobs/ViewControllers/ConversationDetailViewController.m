@@ -8,6 +8,7 @@
 
 #import "ConversationDetailViewController.h"
 #import "MessageTableViewCell.h"
+#import "SuggestPriceViewController.h"
 #import "Message.h"
 #import "Helper.h"
 
@@ -28,6 +29,12 @@
     self.messagesTableView.dataSource = self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.messagesTableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.conversation.messages.count;
 }
@@ -40,8 +47,16 @@
     return cell;
 }
 
+- (IBAction)didTapSuggestPriceButton:(id)sender {
+    [self performSegueWithIdentifier:@"suggestPriceModalSegue" sender:nil];
+}
+
 - (IBAction)didTapBackButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTapAway:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (IBAction)didTapSendMessage:(id)sender {
@@ -66,14 +81,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"suggestPriceModalSegue"]) {
+        SuggestPriceViewController *suggestPriceController = [segue destinationViewController];
+        suggestPriceController.conversation = self.conversation;
+        suggestPriceController.otherUser = self.otherUser;
+    }
 }
-*/
 
 @end
