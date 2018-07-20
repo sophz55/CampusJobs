@@ -19,6 +19,6 @@
 
 + (id)createNewConversationWithPost:(Post *)post withSeeker:(PFUser *)seeker withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
-+ (void)addToConversation:(Conversation *)conversation withMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion;
+- (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
 @end

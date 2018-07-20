@@ -9,6 +9,7 @@
 #import "PostDetailsViewController.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
+#import "Helper.h"
 
 @interface PostDetailsViewController ()
 
@@ -31,41 +32,43 @@
 
 - (IBAction)didTapMessageButton:(id)sender {
     [self findConversation];
-    [self performSegueWithIdentifier:@"chatSegue" sender:nil];
 }
-
 
 -(void) setDetailsPost:(Post *)post{
     self.titleDetailsLabel.text=post.title;
     self.descriptionDetailsLabel.text=post.summary;
     self.userDetailsLabel.text=post.author.username;
-//    self.locationDetailsLabel.text=post.location;
+    self.locationDetailsLabel.text=post.location;
 }
 
 - (void)findConversation {
-    // create pfquery for conversations with current user as seeker, post author as author
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"post.author = %@", self.post.author];
-    PFQuery *conversationsQuery=[PFQuery queryWithClassName:@"Conversation" predicate:predicate];
+    
+    // create query to access "author" key within a conversation's post
+    PFQuery *postsQuery = [PFQuery queryWithClassName:@"Post"];
+    [postsQuery whereKey:@"author" equalTo:self.post.author];
+    
+    // create query for conversations with current user as seeker, post author as author, post as post
+    PFQuery *conversationsQuery=[PFQuery queryWithClassName:@"Conversation"];
     [conversationsQuery includeKey:@"post"];
+    [conversationsQuery whereKey:@"post" matchesQuery:postsQuery];
+    [conversationsQuery whereKey:@"post" equalTo:self.post];
+    
     [conversationsQuery includeKey: @"seeker"];
-    [conversationsQuery includeKey: @"messages"];
     [conversationsQuery whereKey:@"seeker" equalTo:self.user];
+    
+    [conversationsQuery includeKey: @"messages"];
+    
     [conversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError*error){
-        if (conversations != nil) {
-            // look through all conversations with correct user roles to see if exists conversation containing specific post in question
-            BOOL hasExistingConversation = NO;
-            int i = 0;
-            while (!hasExistingConversation && i < conversations.count) {
-                if (conversations[i][@"post"] == self.post) {
-                    hasExistingConversation = YES;
-                    NSLog(@"Found Existing Conversation");
-                    self.conversation = conversations[i];
-                }
-                i += 1;
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+            [Helper callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+        } else {
+            if (conversations.count > 0) {
+                self.conversation = conversations[0];
+                NSLog(@"Found Existing Conversation");
             }
-            
             // if there are no conversations with these users and this post, create one
-            if (!hasExistingConversation) {
+            else {
                 self.conversation = [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(BOOL succeeded, NSError * _Nullable error){
                     if(succeeded){
                         NSLog(@"New Conversation Created Successfully");
@@ -74,8 +77,8 @@
                     }
                 }];
             }
-        } else {
-            NSLog(@"%@", error.localizedDescription);
+            
+            [self performSegueWithIdentifier:@"chatSegue" sender:nil];
         }
     }];
 }

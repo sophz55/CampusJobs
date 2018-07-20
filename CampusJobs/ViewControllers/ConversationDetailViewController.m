@@ -22,9 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog (@"Other User: %@", self.otherUser.username);
-    NSLog (@"Conversation: %@", self.conversation);
-    
     self.user = [PFUser currentUser];
     
     self.messagesTableView.delegate = self;
@@ -44,13 +41,18 @@
 }
 
 - (IBAction)didTapSendMessage:(id)sender {
-    Message *newMessage = [Message createMessageWithText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser];
-    NSLog(@"%@", newMessage);
-    [Conversation addToConversation:self.conversation withMessage:newMessage withCompletion:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"sent message");
-        }
-        else {
+    [Message createMessageWithText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(PFObject *createdMessage, NSError *error) {
+        if (createdMessage) {
+            [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    self.messageTextField.text = @"";
+                    [self.messagesTableView reloadData];
+                }
+                else {
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
+        } else {
             NSLog(@"%@", error.localizedDescription);
             [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
