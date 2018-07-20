@@ -8,6 +8,8 @@
 
 #import "TableViewController.h"
 #import "TableViewCell.h"
+#import "DetailViewController.h"
+
 
 @interface TableViewController ()
 
@@ -24,7 +26,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    Title = @[@" Profile ",
+    Title = @[@"Profile",
               @"Settings",
               @"Payments",
               @"Contact",
@@ -143,5 +145,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier]isEqualToString:@"ShowDetails"])
+    {
+        DetailViewController *detailView = [segue destinationViewController];
+        NSIndexPath *myindexpath = [self.tableView indexPathForSelectedRow];
+        
+        int row = (int)[myindexpath row];
+        detailView.DetailModal = @[Title[row],Description[row],Image[row]];
+        
+         }
+    
+        
+    }
+
 
 @end

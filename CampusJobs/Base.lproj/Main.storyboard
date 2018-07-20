@@ -272,7 +272,6 @@
         <!--View Controller-->
         <scene sceneID="l9R-g5-1wY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mNe-CK-Djn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="SDi-eE-tE0" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2d-Qm-ic9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -315,13 +314,14 @@
                         <viewLayoutGuide key="safeArea" id="NBD-tT-Rd6"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNe-CK-Djn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1221.5999999999999" y="2045.1274362818592"/>
         </scene>
-        <!--UserProfileViewController-->
+        <!--InitialNavigationController-->
         <scene sceneID="OSA-AP-4Bc">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="UserProfileViewController" storyboardName="UserProfile" referencedIdentifier="UserProfileViewController" id="HfP-Ta-N3L" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="InitialNavigationController" storyboardName="Storyboard" referencedIdentifier="InitialNavigationController" id="HfP-Ta-N3L" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="onU-s4-5lx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2316" y="2027.136431784108"/>

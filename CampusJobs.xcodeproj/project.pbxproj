@@ -14,6 +14,7 @@
 		D38F039F20FFF30400EE35D1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */; };
 		D38F03A521011DFE00EE35D1 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A421011DFE00EE35D1 /* TableViewController.m */; };
 		D38F03A82101214E00EE35D1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A72101214E00EE35D1 /* TableViewCell.m */; };
+		D38F03AB210136FB00EE35D1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03AA210136FB00EE35D1 /* DetailViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
@@ -61,6 +62,8 @@
 		D38F03A421011DFE00EE35D1 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		D38F03A62101214E00EE35D1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		D38F03A72101214E00EE35D1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		D38F03A9210136FB00EE35D1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D38F03AA210136FB00EE35D1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -176,11 +179,13 @@
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
-				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
+				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 				D38F03A421011DFE00EE35D1 /* TableViewController.m */,
 				D38F03A62101214E00EE35D1 /* TableViewCell.h */,
 				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
+				D38F03A9210136FB00EE35D1 /* DetailViewController.h */,
+				D38F03AA210136FB00EE35D1 /* DetailViewController.m */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */,
@@ -455,6 +460,7 @@
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
+				D38F03AB210136FB00EE35D1 /* DetailViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				F3B3947620FD451700379749 /* Helper.m in Sources */,
