@@ -23,10 +23,10 @@
 -(void)setPreviousPost:(Post *)previousPost{
     _previousPost=previousPost;
     self.previousPostTitleLabel.text=previousPost.title;
-    if(previousPost.status==0){
+    if(previousPost.postStatus==openStatus){
         self.statusLabel.text=@"Open Job";
         self.takerLabel.hidden=YES;
-    } else if(previousPost.status.intValue==1){
+    } else if(previousPost.postStatus==inProgress){
         self.statusLabel.text=@"Price Confirmed, Transaction In Progress";
         self.takerLabel.hidden=NO;
         self.takerLabel.text=previousPost.taker.username;
@@ -35,16 +35,6 @@
         self.takerLabel.hidden=NO;
         self.takerLabel.text=previousPost.taker.username;
     }
-    //Converting from NSDate to NSString (MM-dd-yyyy)
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy"];
-//    if(previousPost.status.intValue==2){
-//        self.dateLabel.hidden=NO;
-//        self.dateLabel.text=[formatter stringFromDate:previousPost.completedDate];
-//    } else{
-//        self.dateLabel.hidden=YES;
-//    }
-    
     
 }
 

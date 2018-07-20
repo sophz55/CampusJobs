@@ -29,8 +29,8 @@
 }
 
 - (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion {
-    NSLog(@"is this happening");
     [self.messages addObject:message];
+    NSLog(@"Messages: %@", self.messages);
     [self saveInBackgroundWithBlock:completion];
 }
 

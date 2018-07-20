@@ -24,45 +24,60 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.queryLimit = 20;
+    
     self.conversationsTableView.delegate = self;
     self.conversationsTableView.dataSource = self;
+    
+    self.conversationsTableView.rowHeight = 100;
+    
+    self.conversations = [[NSMutableArray alloc] init];
     
     [self fetchConversations];
 }
 
 - (void)fetchConversations {
-    PFQuery *userIsSeekerQuery = [PFQuery queryWithClassName:@"Conversation"];
-    [userIsSeekerQuery whereKey:@"seeker" equalTo:[PFUser currentUser]];
-    userIsSeekerQuery.limit = self.queryLimit;
-    
-    [userIsSeekerQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
-        if (conversations != nil) {
-            self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"post.author = %@", [PFUser currentUser]];
-    PFQuery *userIsAuthorQuery = [PFQuery queryWithClassName:@"Conversation" predicate:predicate];
-    userIsAuthorQuery.limit = self.queryLimit;
-    
-    [userIsAuthorQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
-        if (conversations != nil) {
-            [self.conversations addObjectsFromArray:conversations];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    PFQuery *userIsSeekerQuery = [self createUserIsSeekerQuery];
+    PFQuery *userIsAuthorQuery = [self createUserIsAuthorQuery];
     
     PFQuery *userConversationsQuery = [PFQuery orQueryWithSubqueries:@[userIsSeekerQuery, userIsAuthorQuery]];
+    [userConversationsQuery includeKey:@"messages"];
+    [userConversationsQuery includeKey:@"post"];
+    [userConversationsQuery includeKey:@"post.author.username"];
+    [userConversationsQuery includeKey:@"seeker"];
+    [userConversationsQuery includeKey:@"seeker.username"];
+    userConversationsQuery.limit = self.queryLimit;
     [userConversationsQuery orderByDescending:@"createdAt"];
     
-    [self.conversationsTableView reloadData];
+    [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
+        if (error != nil) {
+            [Helper callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+        } else {
+            [self.conversations addObjectsFromArray:conversations];
+            [self.conversationsTableView reloadData];
+        }
+    }];
+}
+
+- (id)createUserIsSeekerQuery {
+    PFQuery *userIsSeekerQuery = [PFQuery queryWithClassName:@"Conversation"];
+    [userIsSeekerQuery whereKey:@"seeker" equalTo:[PFUser currentUser]];
+    
+    return userIsSeekerQuery;
+}
+
+- (id)createUserIsAuthorQuery {
+    PFQuery *postsQuery = [PFQuery queryWithClassName:@"Post"];
+    [postsQuery includeKey:@"author"];
+    [postsQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    
+    PFQuery *userIsAuthorQuery = [PFQuery queryWithClassName:@"Conversation"];
+    [userIsAuthorQuery whereKey:@"post" matchesQuery:postsQuery];
+    
+    return userIsAuthorQuery;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConversationCell" forIndexPath:indexPath];
     
     Conversation *conversation = self.conversations[indexPath.row];

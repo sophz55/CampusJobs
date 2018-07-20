@@ -16,7 +16,7 @@
 @dynamic author;
 @dynamic taker;
 @dynamic completedDate;
-@dynamic status; // 0 if open, 1 if job is taken, 2 if job is finished
+@dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is finished
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
 
@@ -35,7 +35,7 @@
     newPost.author = [PFUser currentUser];
     newPost.taker = nil;
     newPost.completedDate = date;
-    newPost.status = 0; // 0 if open, 1 if job is taken, 2 if job is finished
+    newPost.postStatus = openStatus;
     
     newPost.photoFiles = [NSMutableArray array];
     for (id image in images) {

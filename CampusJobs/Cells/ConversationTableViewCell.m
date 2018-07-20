@@ -33,7 +33,7 @@
     }
     self.otherUserLabel.text = self.otherUser.username;
     
-    self.messagePreviewLabel.text = [conversation.messages lastObject];
+    self.messagePreviewLabel.text = [conversation.messages lastObject][@"text"];
 }
 
 @end

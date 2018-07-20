@@ -1,18 +1,18 @@
 //
-//  LocationViewController.m
+//  MapViewController.m
 //  CampusJobs
 //
-//  Created by Sophia Khezri on 7/16/18.
+//  Created by Sophia Khezri on 7/19/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "LocationViewController.h"
+#import "MapViewController.h"
 
-@interface LocationViewController ()
+@interface MapViewController ()
 
 @end
 
-@implementation LocationViewController
+@implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (IBAction)didTapNextButton:(id)sender {
+    [self performSegueWithIdentifier:@"mapToTabBarSegue" sender:nil];
+}
 /*
 #pragma mark - Navigation
 
