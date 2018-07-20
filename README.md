@@ -4,8 +4,8 @@ Students often find a need for short-term jobs or favors that are too small to p
 
 Required
 
-- [ ] User should be able to log in
-- [ ] User should be able to create an account (maybe with facebook)
+- [x] User should be able to log in
+- [x] User should be able to create an account 
 - [ ] User should see a “Nearby Postings” feed
 - [ ] User should be able to click into postings detail view
 - [ ] User should be able to click into other users' profiles
@@ -28,3 +28,4 @@ Optional
 - [ ] User should be able to see map view of all nearby jobs
 - [ ] User should be able to give star ratings after job is done
 - [ ] User should be able to reset password
+- [ ] User should be able to sign up with facebook

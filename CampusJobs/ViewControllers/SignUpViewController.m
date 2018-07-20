@@ -11,6 +11,10 @@
 
 @interface SignUpViewController ()
 
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *nameField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordField;
 @property(strong, nonatomic) Helper *helper;
 
 @end
@@ -22,15 +26,19 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)didTapSignUp:(id)sender {
+    [self registerUser];
+}
+
 - (void)registerUser {
     PFUser *newUser = [PFUser user];
     
-    newUser.username = @"username";
-    newUser.email = @"email";
-    newUser.password = @"password";
-    newUser[@"name"] = @"full name";
+    newUser.username = self.usernameField.text;
+    newUser.email = self.emailField.text;
+    newUser.password = self.passwordField.text;
+    newUser[@"name"] = self.nameField.text;
     newUser[@"address"] = @"";
-    newUser[@"profileImageFile"] = [self.helper getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
+    newUser[@"profileImageFile"] = [self getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
     newUser[@"creditCardNumber"] = @"";
     newUser[@"creditCardExpDate"] = @"";
     newUser[@"creditCardCVC"] = @"";
@@ -39,7 +47,6 @@
     newUser[@"venmoHandle"] = @"";
     newUser[@"rating"] = @5; // out of five stars
     newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
-    newUser[@"conversations"] = [[NSMutableArray alloc] init];
     
     
     if (![newUser.email isEqual:@""] && ![newUser[@"name"] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
@@ -47,16 +54,32 @@
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-                [self.helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+                [Helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                [self performSegueWithIdentifier:@"signUpToLocationSegue" sender:nil];
             }
         }];
     } else {
-        [self.helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
+        [Helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
         NSLog(@"Did not register user");
     }
+}
+
+- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {
+    
+    // check if image is not nil
+    if (!image) {
+        return nil;
+    }
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // get image data and check if that is not nil
+    if (!imageData) {
+        return nil;
+    }
+    
+    return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,15 +7,16 @@
 //
 
 #import "FeedViewController.h"
+#import "Parse.h"
 
 @interface FeedViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *yourPostingsContainer;
+@property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
 
 @end
 
 @implementation FeedViewController
-
-- (IBAction)segmentedControlIndexChanged:(id)sender {
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +26,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)segmentedControlIndexChanged:(id)sender {
+    UISegmentedControl * segment= sender;
+    switch(segment.selectedSegmentIndex) {
+        case 0:
+            self.yourPostingsContainer.hidden=NO;
+            break;
+        case 1:
+            self.yourPostingsContainer.hidden=YES;
+            break;
+        default:
+            break;
+    }
+}
+- (IBAction)didTapLogoutButton:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+    }];
 }
 
 /*

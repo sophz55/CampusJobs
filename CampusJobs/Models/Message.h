@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface Message : PFObject
+@interface Message : PFObject <PFSubclassing>
 
 @property(strong, nonatomic) NSString *text;
-@property(strong, nonatomic) NSDate *time;
 @property(strong, nonatomic) PFUser *sender;
 @property(strong, nonatomic) PFUser *receiver;
+
++ (id)createMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver;
 
 @end
