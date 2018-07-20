@@ -60,7 +60,6 @@
     
     [conversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError*error){
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
             [Helper callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
             if (conversations.count > 0) {
@@ -73,7 +72,7 @@
                     if(succeeded){
                         NSLog(@"New Conversation Created Successfully");
                     } else{
-                        NSLog(@"%@", error.localizedDescription);
+                        [Helper callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                     }
                 }];
             }

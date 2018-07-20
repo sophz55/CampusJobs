@@ -49,11 +49,10 @@
                     [self.messagesTableView reloadData];
                 }
                 else {
-                    NSLog(@"%@", error.localizedDescription);
+                    [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                 }
             }];
         } else {
-            NSLog(@"%@", error.localizedDescription);
             [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
