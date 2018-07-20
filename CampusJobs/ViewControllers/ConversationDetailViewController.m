@@ -21,7 +21,7 @@
 @implementation ConversationDetailViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     self.user = [PFUser currentUser];
     
     self.messagesTableView.delegate = self;
@@ -47,8 +47,7 @@
                 if (succeeded) {
                     self.messageTextField.text = @"";
                     [self.messagesTableView reloadData];
-                }
-                else {
+                } else {
                     [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                 }
             }];

@@ -42,7 +42,6 @@
         [newPost.photoFiles addObject:[self getPFFileFromImage:image]];
     }
     
-    NSLog (@"%@", newPost);
     [newPost saveInBackgroundWithBlock: completion];
 }
 
