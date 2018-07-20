@@ -15,6 +15,7 @@
 		D38F03A521011DFE00EE35D1 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A421011DFE00EE35D1 /* TableViewController.m */; };
 		D38F03A82101214E00EE35D1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A72101214E00EE35D1 /* TableViewCell.m */; };
 		D38F03AB210136FB00EE35D1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03AA210136FB00EE35D1 /* DetailViewController.m */; };
+		D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
@@ -77,6 +78,8 @@
 		D38F03A72101214E00EE35D1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		D38F03A9210136FB00EE35D1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		D38F03AA210136FB00EE35D1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		D38F03AE21026D1A00EE35D1 /* TableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewHeader.h; sourceTree = "<group>"; };
+		D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewHeader.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
 				D38F03A9210136FB00EE35D1 /* DetailViewController.h */,
 				D38F03AA210136FB00EE35D1 /* DetailViewController.m */,
+				D38F03AE21026D1A00EE35D1 /* TableViewHeader.h */,
+				D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */,
@@ -545,6 +550,7 @@
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
+				D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E2820FD1E8600034CC4 /* LocationViewController.m in Sources */,
