@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+typedef void (^CompletionBlock)(PFObject *result, NSError *error);
+
 @interface Message : PFObject <PFSubclassing>
 
 @property(strong, nonatomic) NSString *text;
 @property(strong, nonatomic) PFUser *sender;
 @property(strong, nonatomic) PFUser *receiver;
 
-+ (id)createMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver;
++ (void)createMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion;
 
 @end
