@@ -32,6 +32,10 @@
     self.conversationsTableView.rowHeight = 100;
     
     self.conversations = [[NSMutableArray alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self fetchConversations];
 }

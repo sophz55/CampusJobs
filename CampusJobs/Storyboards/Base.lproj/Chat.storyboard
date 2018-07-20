@@ -57,7 +57,7 @@
                                             <outlet property="messagePreviewLabel" destination="Mbj-7w-8py" id="III-P8-G8S"/>
                                             <outlet property="otherUserLabel" destination="ETF-Qh-I2y" id="3gG-9G-kTC"/>
                                             <outlet property="postTitleLabel" destination="dEq-fK-Ggf" id="1AC-5V-flA"/>
-                                            <segue destination="Bdl-9U-zBf" kind="show" identifier="conversationsToDetailSegue" id="Dge-Nm-o4D"/>
+                                            <segue destination="Bdl-9U-zBf" kind="presentation" identifier="conversationsToDetailSegue" id="Dge-Nm-o4D"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -147,6 +147,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvH-sj-gUb">
+                                <rect key="frame" x="32" y="20" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="X1h-yQ-W1g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="V36-pU-Mde"/>
