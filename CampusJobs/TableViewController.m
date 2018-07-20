@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "TableViewCell.h"
 #import "DetailViewController.h"
+#import "TableViewHeader.h"
 
 
 @interface TableViewController ()
@@ -49,7 +50,12 @@
               @"contacts.jpg",
               @"lists.jpg",];
     
+    UIBarButtonItem *NewButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [[self navigationItem] setBackBarButtonItem:NewButton];
     
+    self.tableView.separatorColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:0.25];
+    
+    self.tableView.tableHeaderView =[[TableViewHeader alloc]initWithText:@"HELLO ???"];
     
     
     
