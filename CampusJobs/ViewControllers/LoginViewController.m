@@ -37,7 +37,7 @@
             [Helper callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
-            [self performSegueWithIdentifier:@"loginToLocationSegue" sender:nil];
+            [self performSegueWithIdentifier:@"loginToMapSegue" sender:nil];
         }
     }];
 }

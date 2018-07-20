@@ -211,7 +211,11 @@
 				F39E66EC20EFE12800381BE7 /* Products */,
 				B51BE74DA0F4FFAD537D3A1A /* Pods */,
 				2ED8957605F6C946F37EFB97 /* Frameworks */,
+
+				FC8EA1AB2102578F0054C43D /* Recovered References */,
+
 				D38F03AD2101643500EE35D1 /* Recovered References */,
+
 			);
 			sourceTree = "<group>";
 		};
@@ -336,6 +340,14 @@
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FC8EA1AB2102578F0054C43D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -768,7 +780,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szheng.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -786,7 +798,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szheng.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

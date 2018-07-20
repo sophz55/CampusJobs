@@ -7,24 +7,46 @@
 //
 
 #import "MapViewController.h"
+#import <MapKit/MapKit.h>
 
-@interface MapViewController ()
-
+@interface MapViewController () <CLLocationManagerDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISlider *radiusSliderBar;
+@property (strong, nonatomic) CLLocationManager * locationManager;
 @end
 
 @implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.mapView setShowsUserLocation:YES];
+    [self.mapView setDelegate:self];
+    
+    //must ask user permission to use their location
+    if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
+        [self.locationManager requestWhenInUseAuthorization];
+    }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)didTapNextButton:(id)sender {
     [self performSegueWithIdentifier:@"mapToTabBarSegue" sender:nil];
+}
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation*)userLocation {
+    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.11f, .11f)) animated:YES];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:userLocation.coordinate radius:1500];
+    [self.mapView addOverlay:circle];
+}
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(nonnull id<MKOverlay>)overlay{
+    MKCircleRenderer * circleRenderer=[[MKCircleRenderer alloc]initWithOverlay:overlay];
+    circleRenderer.strokeColor=[UIColor grayColor];
+    circleRenderer.fillColor=[UIColor grayColor];
+    circleRenderer.alpha=.04f;
+    return circleRenderer;
+    
 }
 /*
 #pragma mark - Navigation

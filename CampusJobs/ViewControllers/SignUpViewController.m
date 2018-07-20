@@ -57,7 +57,7 @@
                 [Helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"signUpToLocationSegue" sender:nil];
+                [self performSegueWithIdentifier:@"signUpToMapSegue" sender:nil];
             }
         }];
     } else {
