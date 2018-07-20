@@ -48,7 +48,10 @@
               @"credit_card.jpg",
               @"contacts.jpg",
               @"lists.jpg",];
+    UIBarButtonItem *NewButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [[self navigationItem] setBackBarButtonItem:NewButton];
     
+    self.tableView.separatorColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:0.25];
     
     
     

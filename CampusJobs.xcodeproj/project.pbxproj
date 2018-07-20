@@ -184,6 +184,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D38F03AD2101643500EE35D1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		F39E66E220EFE12800381BE7 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +201,7 @@
 				F39E66EC20EFE12800381BE7 /* Products */,
 				B51BE74DA0F4FFAD537D3A1A /* Pods */,
 				2ED8957605F6C946F37EFB97 /* Frameworks */,
+				D38F03AD2101643500EE35D1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -737,7 +746,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -755,7 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
