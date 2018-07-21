@@ -44,6 +44,7 @@
     
     [cell configureCellWithMessage:self.conversation.messages[indexPath.row]];
     
+    
     return cell;
 }
 

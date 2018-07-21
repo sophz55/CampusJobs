@@ -137,11 +137,13 @@
             </objects>
             <point key="canvasLocation" x="1316" y="-367.46626686656674"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="3Eo-ft-3K8">
             <objects>
                 <navigationController storyboardIdentifier="InitialNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c0p-YH-kAy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="TKY-4C-Y3q"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l08-p2-pP8">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
