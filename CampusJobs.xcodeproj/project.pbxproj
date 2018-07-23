@@ -208,11 +208,8 @@
 				F39E66EC20EFE12800381BE7 /* Products */,
 				B51BE74DA0F4FFAD537D3A1A /* Pods */,
 				2ED8957605F6C946F37EFB97 /* Frameworks */,
-
 				FC8EA1AB2102578F0054C43D /* Recovered References */,
-
 				D38F03AD2101643500EE35D1 /* Recovered References */,
-
 			);
 			sourceTree = "<group>";
 		};
@@ -236,7 +233,6 @@
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
 				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
-				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 				D38F03A421011DFE00EE35D1 /* TableViewController.m */,
 				D38F03A62101214E00EE35D1 /* TableViewCell.h */,
 				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
@@ -329,6 +325,7 @@
 		FC8D08DD20FFA89E00086062 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
@@ -340,7 +337,6 @@
 		FC8EA1AB2102578F0054C43D /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -566,11 +562,8 @@
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
-
 				D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */,
-
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
@@ -771,11 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
-
-				DEVELOPMENT_TEAM = 6KUP3X2WBF;
-
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -793,11 +782,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
-
-				DEVELOPMENT_TEAM = 6KUP3X2WBF;
-
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
