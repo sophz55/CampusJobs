@@ -8,6 +8,7 @@
 
 #import "SuggestPriceViewController.h"
 #import "Helper.h"
+#import "ConversationDetailViewController.h"
 
 @interface SuggestPriceViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *suggestedPriceTextField;
@@ -33,7 +34,10 @@
                 [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         self.suggestedPriceTextField.text = @"";
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        ConversationDetailViewController *vc = (ConversationDetailViewController *)[self presentingViewController];
+                        [self dismissViewControllerAnimated:YES completion: ^ {
+                            [vc reloadData];
+                        }];
                     } else {
                         [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                     }
