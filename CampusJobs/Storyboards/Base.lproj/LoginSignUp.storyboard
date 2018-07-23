@@ -31,6 +31,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Tv-AA-jYj"/>
+                                    <segue destination="a6w-BU-Fnj" kind="presentation" identifier="loginToMapSegue" id="pit-sh-NUt"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-hY-ZBR">
@@ -80,7 +81,6 @@
                     <connections>
                         <outlet property="passwordField" destination="EEL-eM-uEn" id="EcD-WK-KmC"/>
                         <outlet property="usernameField" destination="dqp-hY-ZBR" id="ScB-OI-0Nv"/>
-                        <segue destination="Iog-uP-aLf" kind="presentation" identifier="loginToLocationSegue" id="bHo-j9-TVF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,6 +88,7 @@
             <point key="canvasLocation" x="-228" y="-253.2233883058471"/>
         </scene>
         <!--Map View Controller-->
+
         <scene sceneID="vHY-iw-Zwo">
             <objects>
                 <viewController id="Iog-uP-aLf" customClass="MapViewController" sceneMemberID="viewController">
@@ -146,9 +147,10 @@
             <point key="canvasLocation" x="1544.8" y="-79.610194902548727"/>
         </scene>
         <!--View Controller-->
+
         <scene sceneID="5ZE-2L-h28">
             <objects>
-                <viewController id="a6w-BU-Fnj" sceneMemberID="viewController">
+                <viewController id="a6w-BU-Fnj" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xao-U1-Vin">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,15 +165,34 @@
                                     <segue destination="dkE-a4-TIu" kind="presentation" identifier="mapToTabBarSegue" id="07a-Uj-UXy"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iY9-No-Dwv">
+                                <rect key="frame" x="0.0" y="57" width="375" height="555"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="H4b-2X-wbZ">
+                                <rect key="frame" x="14" y="638" width="294" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Desired Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVg-S7-AVS">
+                                <rect key="frame" x="16" y="620" width="167" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="cb3-l9-yfE"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="iY9-No-Dwv" id="awB-rd-uas"/>
+                        <outlet property="radiusSliderBar" destination="H4b-2X-wbZ" id="5YI-hp-FvW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9g-05-T4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="C8o-LR-Ox6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1545" y="743"/>
+            <point key="canvasLocation" x="1125.5999999999999" y="-78.710644677661179"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="xeg-Tw-hGM">
@@ -244,6 +265,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="didTapSignUp:" destination="rPR-zo-A9b" eventType="touchUpInside" id="Z0i-YS-dZa"/>
+                                    <segue destination="a6w-BU-Fnj" kind="presentation" identifier="signUpToMapSegue" id="F0J-to-XZZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -259,7 +281,6 @@
                         <outlet property="nameField" destination="oCt-aS-RLW" id="rQM-pA-WX9"/>
                         <outlet property="passwordField" destination="lZQ-hM-j6o" id="YN9-ef-lmr"/>
                         <outlet property="usernameField" destination="0YF-ho-ZVc" id="QrS-ZP-nwD"/>
-                        <segue destination="Iog-uP-aLf" kind="presentation" identifier="signUpToLocationSegue" id="VCo-7C-X0w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csl-fQ-L9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,6 +297,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bHo-j9-TVF"/>
+        <segue reference="F0J-to-XZZ"/>
     </inferredMetricsTieBreakers>
 </document>

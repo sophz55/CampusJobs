@@ -24,10 +24,9 @@
     newMessage.text = text;
     newMessage.sender = sender;
     newMessage.receiver = receiver;
-    
-    [newMessage saveInBackground];
-    
-    completion(newMessage, nil);
+    [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        completion(newMessage, nil);
+    }];
 }
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import "ConversationDetailViewController.h"
-#import "MessageTableViewCell.h"
+#import "MessageCollectionViewCell.h"
+#import "SuggestPriceViewController.h"
 #import "Message.h"
 #import "Helper.h"
 
-@interface ConversationDetailViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *messagesTableView;
+
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) PFUser *user;
 
@@ -21,23 +23,47 @@
 @implementation ConversationDetailViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     self.user = [PFUser currentUser];
-    
-    self.messagesTableView.delegate = self;
-    self.messagesTableView.dataSource = self;
+    self.messagesCollectionView.delegate = self;
+    self.messagesCollectionView.dataSource = self;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self reloadData];
+}
+
+- (void)reloadData {
+    [self.messagesCollectionView reloadData];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.conversation.messages.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MessageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
     
     [cell configureCellWithMessage:self.conversation.messages[indexPath.row]];
     
     return cell;
+
+}
+
+- (IBAction)didTapSuggestPriceButton:(id)sender {
+    [self setDefinesPresentationContext:YES];
+    [self performSegueWithIdentifier:@"suggestPriceModalSegue" sender:nil];
+}
+
+- (IBAction)didTapBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTapAway:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (IBAction)didTapSendMessage:(id)sender {
@@ -46,9 +72,8 @@
             [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     self.messageTextField.text = @"";
-                    [self.messagesTableView reloadData];
-                }
-                else {
+                    [self reloadData];
+                } else {
                     [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                 }
             }];
@@ -63,14 +88,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"suggestPriceModalSegue"]) {
+        SuggestPriceViewController *suggestPriceController = [segue destinationViewController];
+        suggestPriceController.conversation = self.conversation;
+        suggestPriceController.otherUser = self.otherUser;
+    }
 }
-*/
 
 @end

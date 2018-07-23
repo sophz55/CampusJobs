@@ -64,20 +64,19 @@
         } else {
             if (conversations.count > 0) {
                 self.conversation = conversations[0];
-                NSLog(@"Found Existing Conversation");
+                [self performSegueWithIdentifier:@"chatSegue" sender:nil];
             }
             // if there are no conversations with these users and this post, create one
             else {
-                self.conversation = [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(BOOL succeeded, NSError * _Nullable error){
-                    if(succeeded){
-                        NSLog(@"New Conversation Created Successfully");
+                [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
+                    if (newConversation){
+                        self.conversation = (Conversation *)newConversation;
+                        [self performSegueWithIdentifier:@"chatSegue" sender:nil];
                     } else{
                         [Helper callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                     }
                 }];
             }
-            
-            [self performSegueWithIdentifier:@"chatSegue" sender:nil];
         }
     }];
 }
@@ -92,7 +91,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"chatSegue"]) {
-        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
+        UINavigationController *conversationNavigationController = [segue destinationViewController];
+        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
         conversationDetailController.conversation = self.conversation;
         conversationDetailController.otherUser = self.post.author;
     }

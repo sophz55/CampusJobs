@@ -19,18 +19,18 @@
     return @"Conversation";
 }
 
-+ (id)createNewConversationWithPost:(Post *)post withSeeker:(PFUser *)seeker withCompletion:(PFBooleanResultBlock _Nullable)completion {
++ (void)createNewConversationWithPost:(Post *)post withSeeker:(PFUser *)seeker withCompletion:(CompletionBlock)completion {
     Conversation *newConversation = [Conversation new];
     newConversation.post = post;
     newConversation.messages = [[NSMutableArray alloc] init];
     newConversation.seeker = seeker;
-    [newConversation saveInBackgroundWithBlock: completion];
-    return newConversation;
+    [newConversation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        completion(newConversation, nil);
+    }];
 }
 
 - (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion {
-    [self.messages addObject:message];
-    NSLog(@"Messages: %@", self.messages);
+    [self addObject:message forKey:@"messages"];
     [self saveInBackgroundWithBlock:completion];
 }
 

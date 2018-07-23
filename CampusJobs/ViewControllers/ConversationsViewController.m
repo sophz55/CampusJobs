@@ -32,6 +32,10 @@
     self.conversationsTableView.rowHeight = 100;
     
     self.conversations = [[NSMutableArray alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self fetchConversations];
 }
@@ -102,7 +106,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"conversationsToDetailSegue"]) {
         ConversationTableViewCell *cell = sender;
-        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
+        UINavigationController *conversationNavigationController = [segue destinationViewController];
+        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
     }
