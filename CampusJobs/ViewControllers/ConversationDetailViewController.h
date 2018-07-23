@@ -15,4 +15,6 @@
 @property (strong, nonatomic) PFUser *otherUser;
 @property (strong, nonatomic) Conversation *conversation;
 
+- (void)reloadData;
+
 @end
