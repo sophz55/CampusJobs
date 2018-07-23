@@ -231,8 +231,8 @@
 				F39F4BE820FD146100C11CD0 /* Models */,
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
-				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
 				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
+				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
 				D38F03A421011DFE00EE35D1 /* TableViewController.m */,
 				D38F03A62101214E00EE35D1 /* TableViewCell.h */,
 				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
@@ -554,11 +554,8 @@
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
-
 				D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */,
-
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,

@@ -49,6 +49,8 @@
     newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
     
     
+    
+    
     if (![newUser.email isEqual:@""] && ![newUser[@"name"] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
