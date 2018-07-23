@@ -236,7 +236,6 @@
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
 				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
-				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 				D38F03A421011DFE00EE35D1 /* TableViewController.m */,
 				D38F03A62101214E00EE35D1 /* TableViewCell.h */,
 				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
@@ -335,6 +334,7 @@
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
+				D38F039E20FFF30400EE35D1 /* Storyboard.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
