@@ -25,6 +25,7 @@
     self.locationManager.delegate = self;
     [self.jobPostingMapView setShowsUserLocation:YES];
     [self.jobPostingMapView setDelegate:self];
+
     //Creating a gesture recognizer
     UILongPressGestureRecognizer * userPressGesture= [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(getCoordinateFromUserTouch:)];
     [userPressGesture setNumberOfTouchesRequired:1];
