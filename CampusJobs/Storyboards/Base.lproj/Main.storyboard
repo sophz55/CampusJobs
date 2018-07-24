@@ -499,10 +499,10 @@
             </objects>
             <point key="canvasLocation" x="1046" y="4776"/>
         </scene>
-        <!--InitialNavigationController-->
+        <!--PhotoViewController-->
         <scene sceneID="OSA-AP-4Bc">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="InitialNavigationController" storyboardName="Storyboard" referencedIdentifier="InitialNavigationController" id="HfP-Ta-N3L" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="ProfileViewController" storyboardName="Storyboard" referencedIdentifier="PhotoViewController" id="HfP-Ta-N3L" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="onU-s4-5lx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2140" y="4758"/>
@@ -552,7 +552,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hoY-Rv-By4"/>
         <segue reference="7Fb-af-Nck"/>
         <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
