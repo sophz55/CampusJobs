@@ -42,7 +42,6 @@
 
 //Action method for when user double taps desired location (adds pin)
 - (IBAction)addPin:(UITapGestureRecognizer *)sender {
-    NSLog(@"Testing tap gesture");
     CGPoint chosenLocation = [sender locationInView:self.jobPostingMapView];
     selectedUserCoordinate=[self.jobPostingMapView convertPoint:chosenLocation toCoordinateFromView:self.jobPostingMapView];
     [self addSelectedAnnotationHelper:&(selectedUserCoordinate)];
