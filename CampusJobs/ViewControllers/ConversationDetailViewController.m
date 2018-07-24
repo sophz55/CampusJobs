@@ -12,7 +12,7 @@
 #import "Message.h"
 #import "Helper.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) PFUser *user;
@@ -28,6 +28,9 @@
     self.user = [PFUser currentUser];
     self.messagesCollectionView.delegate = self;
     self.messagesCollectionView.dataSource = self;
+    
+    self.maxCellWidth = self.messagesCollectionView.frame.size.width * .6; // max message text view width
+    self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
     // put other user's username label in navigation bar
     UILabel *otherUserLabel = [[UILabel alloc] init];
@@ -47,18 +50,21 @@
     
     MessageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
     
-    [cell configureCellWithMessage:self.conversation.messages[indexPath.item] withConversation:self.conversation withMaxWidth:self.maxCellWidth withMaxHeight:self.maxCellHeight];
+    cell.delegate = self;
+    
+    [cell configureCellWithMessage:self.conversation.messages[indexPath.item] withConversation:self.conversation withMaxWidth:self.maxCellWidth withMaxHeight:self.maxCellHeight withViewWidth:self.messagesCollectionView.frame.size.width];
     
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return CGSizeMake(0, 0);
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.maxCellWidth = collectionView.frame.size.width;
-    self.maxCellHeight = collectionView.frame.size.height * 3; // arbitrary large height
-    
     Message *message = self.conversation.messages[indexPath.item];
     NSString *messageText = message[@"text"];
-    
+
     // estimate frame size based on message text
     CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
@@ -70,7 +76,11 @@
         buttonsStackViewAllowance = 40;
     }
 
-    return CGSizeMake(collectionView.frame.size.width, estimatedFrame.size.height + 20 + buttonsStackViewAllowance);
+    return CGSizeMake(collectionView.frame.size.width, estimatedFrame.size.height + 16 + buttonsStackViewAllowance);
+}
+
+- (void)toggleOptionsShown {
+    NSLog(@"toggle!");
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
@@ -89,12 +99,13 @@
 - (IBAction)didTapSendMessage:(id)sender {
     [Message createMessageWithText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(PFObject *createdMessage, NSError *error) {
         if (createdMessage) {
+            __unsafe_unretained typeof(self) weakSelf = self;
             [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    self.messageTextField.text = @"";
-                    [self.messagesCollectionView reloadData];
+                    weakSelf.messageTextField.text = @"";
+                    [weakSelf.messagesCollectionView reloadData];
                 } else {
-                    [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                    [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
                 }
             }];
         } else {

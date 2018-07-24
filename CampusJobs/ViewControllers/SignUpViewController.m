@@ -42,7 +42,7 @@
     newUser[@"creditCardNumber"] = @"";
     newUser[@"creditCardExpDate"] = @"";
     newUser[@"creditCardCVC"] = @"";
-    newUser[@"billingName"] = @"full name";
+    newUser[@"billingName"] = self.nameField.text;
     newUser[@"billingAddress"] = @"";
     newUser[@"venmoHandle"] = @"";
     newUser[@"rating"] = @5; // out of five stars

@@ -10,13 +10,16 @@
 #import <Parse/Parse.h>
 #import "Helper.h"
 
-/*creating an enum type for the status
-//open: user has not officially accepted an offer from a taker
-//inProgress: price has been confirmed, but service and transaction have not been confirmed
-finished: transaction has been confirmed */
+/*
+creating an enum type for the status
+open: user has not officially accepted an offer from a taker
+inProgress: price has been confirmed, but service and transaction have not been confirmed
+finished: transaction has been confirmed
+*/
 typedef enum{
     openStatus=0, inProgress=1, finished=2
 } status;
+
 @interface Post : PFObject<PFSubclassing>
 
 @property (strong, nonatomic) NSString *title;
