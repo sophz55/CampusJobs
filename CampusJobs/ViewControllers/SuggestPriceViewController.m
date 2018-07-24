@@ -29,7 +29,7 @@
 
 - (IBAction)didTapSuggestButton:(id)sender {
     if (![self.suggestedPriceTextField.text isEqualToString:@""]) {
-        [Message createMessageWithText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(PFObject *createdMessage, NSError *error) {
+        [Message createMessageWithPrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(PFObject *createdMessage, NSError *error) {
             if (createdMessage) {
                 [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
