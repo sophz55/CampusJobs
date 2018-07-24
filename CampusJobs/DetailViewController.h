@@ -9,12 +9,39 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
+
+
+
 {
     
     NSArray *DetailModal;
     
 }
+@property (weak, nonatomic) IBOutlet UITextField *FirstName;
 
+@property (weak, nonatomic) IBOutlet UITextField *LastName;
+@property (weak, nonatomic) IBOutlet UITextField *Username;
+
+@property (weak, nonatomic) IBOutlet UITextField *Password;
+
+
+
+@property (weak, nonatomic) IBOutlet UITextField *Address;
+
+@property (strong)NSManagedObjectModel *device;
+
+
+
+
+
+
+- (IBAction)SaveData:(id)sender;
+
+- (IBAction)DismissKeyboard:(id)sender;
+
+
+
+///////////////
 
 @property (strong, nonatomic) NSArray *DetailModal;
 
@@ -27,9 +54,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *Fullname;
 
-@property (weak, nonatomic) IBOutlet UILabel *Password;
-
 @property (weak, nonatomic) IBOutlet UILabel *Rating;
-@property (weak, nonatomic) IBOutlet UILabel *Address;
+
+
+
+
+
+
 
 @end
+

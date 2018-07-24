@@ -11,7 +11,6 @@
 
 @interface ComposeNewPostViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *enteredTitle;
-@property (weak, nonatomic) IBOutlet UITextField *enteredLocation;
 @property (weak, nonatomic) IBOutlet UITextField *enteredDescription;
 
 @end

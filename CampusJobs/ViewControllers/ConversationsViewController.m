@@ -106,7 +106,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"conversationsToDetailSegue"]) {
         ConversationTableViewCell *cell = sender;
-        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
+        UINavigationController *conversationNavigationController = [segue destinationViewController];
+        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
     }
