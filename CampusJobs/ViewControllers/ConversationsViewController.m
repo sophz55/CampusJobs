@@ -57,7 +57,7 @@
         if (error != nil) {
             [Helper callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
-            [self.conversations addObjectsFromArray:conversations];
+            self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];
         }
     }];

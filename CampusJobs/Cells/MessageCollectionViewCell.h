@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Message.h"
+#import "Conversation.h"
 
 @interface MessageCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *messageTextLabel;
+@property (weak, nonatomic) IBOutlet UIView *textBubbleView;
+@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
+@property (weak, nonatomic) IBOutlet UIStackView *buttonsStackView;
+@property (strong, nonatomic) Message *message;
+@property (strong, nonatomic) Conversation *conversation;
+@property (assign, nonatomic) CGFloat maxWidth;
+@property (assign, nonatomic) CGFloat maxHeight;
 
-- (void)configureCellWithMessage:(Message *)message;
+- (void)configureCellWithMessage:(Message *)message withConversation:(Conversation *)conversation withMaxWidth:(CGFloat)maxWidth withMaxHeight:(CGFloat)maxHeight;
 
 @end

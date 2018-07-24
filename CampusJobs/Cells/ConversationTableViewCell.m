@@ -26,7 +26,7 @@
     
     self.postTitleLabel.text = conversation.post.title;
     
-    if ([PFUser currentUser] == conversation.post.author) {
+    if ([[PFUser currentUser].objectId isEqualToString:conversation.post.author.objectId]) {
         self.otherUser = conversation.seeker;
     } else {
         self.otherUser = conversation.post.author;
