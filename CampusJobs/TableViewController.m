@@ -12,11 +12,18 @@
 #import "TableViewHeader.h"
 
 
+
+
+
 @interface TableViewController ()
+
+
+
 
 @end
 
 @implementation TableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,6 +72,9 @@
     
 }
 
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -80,7 +90,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return Title.count;
+    
+    
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
