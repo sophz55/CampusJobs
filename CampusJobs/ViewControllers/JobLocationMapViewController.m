@@ -25,18 +25,10 @@
     self.locationManager.delegate = self;
     [self.jobPostingMapView setShowsUserLocation:YES];
     [self.jobPostingMapView setDelegate:self];
-
-    //Creating a gesture recognizer
-    UILongPressGestureRecognizer * userPressGesture= [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(getCoordinateFromUserTouch:)];
-    [userPressGesture setNumberOfTouchesRequired:1];
-    [self.jobPostingMapView addGestureRecognizer:userPressGesture];
-}
-
-  //Places an annotation at the user's desired coordinate
-- (void)addSelectedAnnotation:(CLLocationCoordinate2D *)coordinate{
-    MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
-    annotation.coordinate=selectedUserCoordinate;
-    [self.jobPostingMapView addAnnotation:annotation];
+    self.jobPostingMapView.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPin:)];
+    [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
+    tapGestureRecognizer.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,17 +40,20 @@
     [self.jobPostingMapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    return YES;
+//Action method for when user double taps desired location (adds pin)
+- (IBAction)addPin:(UITapGestureRecognizer *)sender {
+    CGPoint chosenLocation = [sender locationInView:self.jobPostingMapView];
+    selectedUserCoordinate=[self.jobPostingMapView convertPoint:chosenLocation toCoordinateFromView:self.jobPostingMapView];
+    [self addSelectedAnnotationHelper:&(selectedUserCoordinate)];
 }
 
-   //Converts the users touch to a specific coordinate
-- (void)getCoordinateFromUserTouch:(UILongPressGestureRecognizer *)userTouch{
-    if(userTouch.state==UIGestureRecognizerStateBegan){
-        CGPoint chosenLocation = [userTouch locationInView:self.jobPostingMapView];
-        selectedUserCoordinate=[self.jobPostingMapView convertPoint:chosenLocation toCoordinateFromView:self.jobPostingMapView];
-    }
+//Places an annotation at the user's desired coordinate (Helper method)
+- (void)addSelectedAnnotationHelper:(CLLocationCoordinate2D *)coordinate{
+    MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
+    annotation.coordinate=selectedUserCoordinate;
+    [self.jobPostingMapView addAnnotation:annotation];
 }
+
 /*
  #pragma mark - Navigation
  

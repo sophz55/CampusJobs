@@ -11,10 +11,9 @@
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
 		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
-		D38F03A521011DFE00EE35D1 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A421011DFE00EE35D1 /* TableViewController.m */; };
-		D38F03A82101214E00EE35D1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03A72101214E00EE35D1 /* TableViewCell.m */; };
-		D38F03AB210136FB00EE35D1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03AA210136FB00EE35D1 /* DetailViewController.m */; };
-		D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */; };
+		D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B67A8321066CA50042BD49 /* Storyboard.storyboard */; };
+		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
+		D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
@@ -74,14 +73,11 @@
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
-		D38F03A321011DFE00EE35D1 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		D38F03A421011DFE00EE35D1 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		D38F03A62101214E00EE35D1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
-		D38F03A72101214E00EE35D1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
-		D38F03A9210136FB00EE35D1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		D38F03AA210136FB00EE35D1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		D38F03AE21026D1A00EE35D1 /* TableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewHeader.h; sourceTree = "<group>"; };
-		D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewHeader.m; sourceTree = "<group>"; };
+		D3B67A8321066CA50042BD49 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		D3B67A8921067F5E0042BD49 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -238,14 +234,6 @@
 				F39F4BE820FD146100C11CD0 /* Models */,
 				F39E66EE20EFE12800381BE7 /* AppDelegate.h */,
 				F39E66EF20EFE12800381BE7 /* AppDelegate.m */,
-				D38F03A321011DFE00EE35D1 /* TableViewController.h */,
-				D38F03A421011DFE00EE35D1 /* TableViewController.m */,
-				D38F03A62101214E00EE35D1 /* TableViewCell.h */,
-				D38F03A72101214E00EE35D1 /* TableViewCell.m */,
-				D38F03A9210136FB00EE35D1 /* DetailViewController.h */,
-				D38F03AA210136FB00EE35D1 /* DetailViewController.m */,
-				D38F03AE21026D1A00EE35D1 /* TableViewHeader.h */,
-				D38F03AF21026D1A00EE35D1 /* TableViewHeader.m */,
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */,
@@ -340,6 +328,11 @@
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
+				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
+				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
+				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
+				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
+				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -463,7 +456,7 @@
 				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
-				FC15958A21068FED00D80958 /* Storyboard.storyboard in Resources */,
+				D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,8 +557,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D38F03A521011DFE00EE35D1 /* TableViewController.m in Sources */,
-				D38F03A82101214E00EE35D1 /* TableViewCell.m in Sources */,
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
 				FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */,
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
@@ -573,9 +564,10 @@
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
-				D38F03B021026D1A00EE35D1 /* TableViewHeader.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
+				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
+				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
@@ -583,7 +575,6 @@
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
-				D38F03AB210136FB00EE35D1 /* DetailViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				FC15958D210692E900D80958 /* JobLocationMapViewController.m in Sources */,
@@ -776,13 +767,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snweke.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -794,13 +785,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.snweke.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
