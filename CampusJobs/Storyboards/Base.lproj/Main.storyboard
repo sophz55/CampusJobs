@@ -112,7 +112,7 @@
             <objects>
                 <viewController id="mQb-X1-xCt" customClass="YourPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEj-rP-uJU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYz-sO-Yq5">
@@ -287,18 +287,11 @@
             <objects>
                 <viewController id="gfv-l9-1Bb" customClass="ComposeNewPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7im-hN-70S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-Jl-qks">
                                 <rect key="frame" x="37" y="105" width="48" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zty-yK-ZOx">
-                                <rect key="frame" x="37" y="145" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -346,13 +339,14 @@
                                     <segue destination="phF-uU-A6b" kind="presentation" identifier="backToPersonalFeedSegue" id="eJd-GW-33d"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lN1-n1-glr">
-                                <rect key="frame" x="142" y="153" width="97" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aZ-vY-Xfy">
+                                <rect key="frame" x="39" y="155" width="308" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <state key="normal" title="Select the desired location for your job"/>
+                                <connections>
+                                    <segue destination="ShG-hl-pRK" kind="show" id="v54-Ee-BRq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fn3-ee-LB9"/>
@@ -360,14 +354,46 @@
                     <navigationItem key="navigationItem" id="wzw-Ut-WOY"/>
                     <connections>
                         <outlet property="enteredDescription" destination="bQv-Gk-QjY" id="zbd-sw-c3G"/>
-                        <outlet property="enteredLocation" destination="lN1-n1-glr" id="i0l-Gk-lqx"/>
                         <outlet property="enteredTitle" destination="TBs-yM-a5R" id="X7W-X2-2ca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXi-zC-zUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HLn-JV-Dff" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="3597"/>
+            <point key="canvasLocation" x="2008.8" y="3596.8515742128939"/>
+        </scene>
+        <!--Job Location Map View Controller-->
+        <scene sceneID="0s5-3O-lwJ">
+            <objects>
+                <viewController id="ShG-hl-pRK" customClass="JobLocationMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pzV-br-hDd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kLG-SL-2pq" appends="YES" id="gLJ-RX-2ic"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JQp-QG-xMI"/>
+                    </view>
+                    <connections>
+                        <outlet property="jobPostingMapView" destination="Kbt-QR-Y3v" id="PrY-7a-CpN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9NF-bg-Eid" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTouchesRequired="0" id="kLG-SL-2pq">
+                    <connections>
+                        <action selector="addPin:" destination="ShG-hl-pRK" id="iUA-P9-IMP"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2789.5999999999999" y="3596.8515742128939"/>
         </scene>
         <!--Nearby Postings View Controller-->
         <scene sceneID="aZC-zz-e8g">

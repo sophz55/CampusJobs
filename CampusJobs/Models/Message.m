@@ -13,6 +13,7 @@
 @dynamic text;
 @dynamic sender;
 @dynamic receiver;
+@dynamic suggestedPrice;
 
 // conforming to subclassing protocol
 + (nonnull NSString *) parseClassName{
@@ -24,6 +25,17 @@
     newMessage.text = text;
     newMessage.sender = sender;
     newMessage.receiver = receiver;
+    [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        completion(newMessage, nil);
+    }];
+}
+
++ (void)createMessageWithPrice:(int)suggestedPrice withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion {
+    Message *newMessage = [Message new];
+    newMessage.text = text;
+    newMessage.sender = sender;
+    newMessage.receiver = receiver;
+    newMessage.suggestedPrice = suggestedPrice;
     [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         completion(newMessage, nil);
     }];
