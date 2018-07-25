@@ -38,6 +38,11 @@
     [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
 }
 
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
+
 /*
  #pragma mark - Navigation
  
