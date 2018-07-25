@@ -180,7 +180,16 @@
 }
 
 - (void)configureFinishedAppearance {
+    [self.suggestPriceButton setHidden:YES];
+    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 0, self.suggestPriceButton.frame.size.width);
     
+    [self.inProgressButtonsStackView setHidden:YES];
+    
+    [self.inProgressOptionsView setHidden:NO];
+    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 50);
+    self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
+    
+    self.jobStatusProgressLabel.text = @"This job has been completed, but feel free to keep chatting!";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -281,7 +290,14 @@
 - (IBAction)didTapJobCompletedButton:(id)sender {
     [self.conversation.post completeJobWithCompletion:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self reloadData];
+            __unsafe_unretained typeof(self) weakSelf = self;
+            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL saved, NSError *error) {
+                if (saved) {
+                    [weakSelf reloadData];
+                } else {
+                    [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf];
+                }
+            }];
         } else {
             [Helper callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
