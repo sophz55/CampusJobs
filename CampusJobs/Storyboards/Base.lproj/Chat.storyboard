@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -82,6 +83,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Fc-XE-8MJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="1038.5307346326838"/>
+        </scene>
+        <!--postDetailsViewController-->
+        <scene sceneID="lc8-39-LQ4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="postDetailsViewController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irC-KI-DeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4089" y="1205"/>
         </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="JtB-1h-Yrn">
@@ -250,9 +259,18 @@
                                 <action selector="didTapBackButton:" destination="Bdl-9U-zBf" id="cNz-Nn-66c"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Flag" id="fVc-jG-fOZ"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Flag" id="fVc-jG-fOZ"/>
+                            <barButtonItem title="View Post" id="MGD-Z6-bca">
+                                <connections>
+                                    <action selector="didTapViewPostButton:" destination="Bdl-9U-zBf" id="drV-v4-Ogo"/>
+                                    <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="LFd-yF-QPh"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
                         <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
                         <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>
@@ -260,6 +278,7 @@
                         <outlet property="messageTextField" destination="UD5-E2-ufm" id="4e6-XG-Cx5"/>
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
+                        <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>
