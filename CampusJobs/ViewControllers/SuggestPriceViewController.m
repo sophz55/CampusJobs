@@ -28,22 +28,17 @@
 }
 
 - (IBAction)didTapSuggestButton:(id)sender {
+    __unsafe_unretained typeof(self) weakSelf = self;
     if (![self.suggestedPriceTextField.text isEqualToString:@""]) {
-        [Message createMessageWithPrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(PFObject *createdMessage, NSError *error) {
-            if (createdMessage) {
-                [self.conversation addToConversationWithMessage:(Message *)createdMessage withCompletion:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        self.suggestedPriceTextField.text = @"";
-                        ConversationDetailViewController *vc = (ConversationDetailViewController *)[self presentingViewController];
-                        [self dismissViewControllerAnimated:YES completion: ^ {
-                            [vc reloadData];
-                        }];
-                    } else {
-                        [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-                    }
+        [self.conversation addToConversationWithMessagePrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                weakSelf.suggestedPriceTextField.text = @"";
+                ConversationDetailViewController *vc = (ConversationDetailViewController *)[weakSelf presentingViewController];
+                [weakSelf dismissViewControllerAnimated:YES completion: ^ {
+                    [vc reloadData];
                 }];
             } else {
-                [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
         }];
     } else {

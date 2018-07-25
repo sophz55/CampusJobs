@@ -60,4 +60,25 @@
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
+- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.price = price;
+    self.taker = taker;
+    self.postStatus = inProgress;
+    [self saveInBackgroundWithBlock:completion];
+}
+
+- (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.price = nil;
+    self.taker = nil;
+    self.postStatus = openStatus;
+    [self saveInBackgroundWithBlock:completion];
+}
+
+- (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.postStatus = finished;
+    [self saveInBackgroundWithBlock:completion];
+    
+    // TO DO: complete payment
+}
+
 @end
