@@ -50,7 +50,7 @@
     return circleRenderer;
 }
 - (IBAction)slideBarValueChanged:(id)sender {
-    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%f",self.radiusSliderBar.value];
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
 }
 - (void)createBoundaryWithRadius:(float)radius{

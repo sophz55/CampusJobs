@@ -340,16 +340,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aZ-vY-Xfy">
-                                <rect key="frame" x="39" y="155" width="308" height="30"/>
+                                <rect key="frame" x="39" y="155" width="174" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select the desired location for your job"/>
+                                <state key="normal" title="Pin Point Your Location"/>
                                 <connections>
-                                    <segue destination="ShG-hl-pRK" kind="show" id="v54-Ee-BRq"/>
+                                    <segue destination="ShG-hl-pRK" kind="presentation" id="v54-Ee-BRq"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="fn3-ee-LB9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rL6-kN-JlS" appends="YES" id="B4k-2X-1nd"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="wzw-Ut-WOY"/>
                     <connections>
@@ -359,6 +363,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXi-zC-zUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HLn-JV-Dff" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="rL6-kN-JlS">
+                    <connections>
+                        <action selector="tapGesture:" destination="gfv-l9-1Bb" id="SWY-6V-vIF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2008.8" y="3596.8515742128939"/>
         </scene>
@@ -370,18 +379,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
+                                <rect key="frame" x="0.0" y="49" width="375" height="574"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="kLG-SL-2pq" appends="YES" id="gLJ-RX-2ic"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3c-sY-JNm">
+                                <rect key="frame" x="317" y="20" width="58" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="didTapSaveButton" destination="ShG-hl-pRK" eventType="touchUpInside" id="DSC-Ud-JB8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JQp-QG-xMI"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="jobPostingMapView" destination="Kbt-QR-Y3v" id="PrY-7a-CpN"/>
                     </connections>
@@ -578,7 +597,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Fb-af-Nck"/>
-        <segue reference="9uG-9g-nTF"/>
+        <segue reference="s62-ZV-JDH"/>
+        <segue reference="eJd-GW-33d"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -91,14 +91,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
                                 <rect key="frame" x="10" y="627" width="355" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="uUc-D7-6mc"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
                                         <state key="normal" title="Suggest Price"/>
                                         <connections>
                                             <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
@@ -106,16 +103,16 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
-                                        <rect key="frame" x="132" y="0.0" width="223" height="30"/>
+                                        <rect key="frame" x="112" y="0.0" width="243" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
-                                                <rect key="frame" x="0.0" y="0.0" width="179" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
+                                                <rect key="frame" x="0.0" y="0.0" width="199" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                                <rect key="frame" x="187" y="0.0" width="36" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
+                                                <rect key="frame" x="207" y="0.0" width="36" height="30"/>
                                                 <state key="normal" title="Send"/>
                                                 <connections>
                                                     <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
@@ -124,11 +121,8 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="eQY-68-k2j"/>
-                                </constraints>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,7 +143,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOP-pb-Hkd">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.63553345719999998" green="0.64698843220000002" blue="0.96993559600000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" translatesAutoresizingMaskIntoConstraints="NO" id="UJ4-L7-1GI">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
@@ -157,7 +151,7 @@
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" notEnabled="YES"/>
                                                     </accessibility>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pdQ-rB-l6f">
@@ -188,7 +182,7 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="0bv-AA-JwQ"/>
+                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="JUO-O8-slV"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -201,13 +195,49 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sy6-BY-QPx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This job is now in progress!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTc-Hy-Kce">
+                                        <rect key="frame" x="8" y="0.0" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PZE-un-SDH">
+                                        <rect key="frame" x="8" y="25.5" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-GW-2II">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Cancel Job"/>
+                                                <connections>
+                                                    <action selector="didTapCancelJobButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="K9r-JK-R9v"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-eA-fcq">
+                                                <rect key="frame" x="85" y="0.0" width="105" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Job Completed"/>
+                                                <connections>
+                                                    <action selector="didTapJobCompletedButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="g7K-HC-hGZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.60100064212328763" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="rx3-Uz-Kb1" secondAttribute="bottom" constant="10" id="8I6-h5-q1d"/>
-                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="centerX" secondItem="M0U-ba-yhb" secondAttribute="centerX" id="Ovq-oO-SVB"/>
-                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="leading" secondItem="V36-pU-Mde" secondAttribute="leading" constant="10" id="jT3-jf-dmg"/>
+                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="centerX" secondItem="M0U-ba-yhb" secondAttribute="centerX" id="J59-Eu-LzC"/>
+                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="leading" secondItem="V36-pU-Mde" secondAttribute="leading" constant="10" id="ZpE-bd-bLd"/>
+                            <constraint firstItem="V36-pU-Mde" firstAttribute="bottom" secondItem="rx3-Uz-Kb1" secondAttribute="bottom" constant="10" id="fAI-Lo-XcI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V36-pU-Mde"/>
                         <connections>
@@ -223,8 +253,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Flag" id="fVc-jG-fOZ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
+                        <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
+                        <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>
+                        <outlet property="jobStatusProgressLabel" destination="oTc-Hy-Kce" id="wIr-Gs-7fy"/>
                         <outlet property="messageTextField" destination="UD5-E2-ufm" id="4e6-XG-Cx5"/>
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
+                        <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>

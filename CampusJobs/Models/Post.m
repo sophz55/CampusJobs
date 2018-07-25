@@ -26,9 +26,8 @@
 }
 
 // Posts job
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)postLocation withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
-    
     newPost.title = title;
     newPost.summary = summary;
     newPost.price = nil;
@@ -36,7 +35,7 @@
     newPost.taker = nil;
     newPost.completedDate = date;
     newPost.postStatus = openStatus;
-    
+    newPost.location=postLocation;
     newPost.photoFiles = [NSMutableArray array];
     for (id image in images) {
         [newPost.photoFiles addObject:[self getPFFileFromImage:image]];
@@ -50,14 +49,33 @@
     if (!image) {
         return nil;
     }
-    
     NSData *imageData = UIImagePNGRepresentation(image);
     // get image data and check if that is not nil
     if (!imageData) {
         return nil;
     }
-    
     return [PFFile fileWithName:@"image.png" data:imageData];
+}
+
+- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.price = price;
+    self.taker = taker;
+    self.postStatus = inProgress;
+    [self saveInBackgroundWithBlock:completion];
+}
+
+- (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.price = nil;
+    self.taker = nil;
+    self.postStatus = openStatus;
+    [self saveInBackgroundWithBlock:completion];
+}
+
+- (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
+    self.postStatus = finished;
+    [self saveInBackgroundWithBlock:completion];
+    
+    // TO DO: complete payment
 }
 
 @end

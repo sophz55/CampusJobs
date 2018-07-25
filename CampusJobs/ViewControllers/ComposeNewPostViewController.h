@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import <MapKit/MapKit.h>
 
 @interface ComposeNewPostViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *enteredTitle;
 @property (weak, nonatomic) IBOutlet UITextField *enteredDescription;
+@property (strong, nonatomic) PFGeoPoint * savedLocation;
+
 
 @end

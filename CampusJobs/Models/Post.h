@@ -9,14 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "Helper.h"
+#import <MapKit/MapKit.h>
 
-/*creating an enum type for the status
-//open: user has not officially accepted an offer from a taker
-//inProgress: price has been confirmed, but service and transaction have not been confirmed
-finished: transaction has been confirmed */
+/*
+creating an enum type for the status
+open: user has not officially accepted an offer from a taker
+inProgress: price has been confirmed, but service and transaction have not been confirmed
+finished: transaction has been confirmed
+*/
 typedef enum{
     openStatus=0, inProgress=1, finished=2
 } status;
+
 @interface Post : PFObject<PFSubclassing>
 
 @property (strong, nonatomic) NSString *title;
@@ -29,8 +33,17 @@ typedef enum{
  // 0 if open, 1 if job is taken, 2 if job is finished
 
 @property (strong, nonatomic) NSMutableArray *photoFiles; //array of PFFiles
-@property (strong, nonatomic) NSString *location;
 
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+//saving the post location as an NSValue, but will be converted back to CLLocationCoordinate2D
+@property (assign, nonatomic) PFGeoPoint * location;
 
+
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
+- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion;
+
+- (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion;
+
+- (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion;
+    
 @end

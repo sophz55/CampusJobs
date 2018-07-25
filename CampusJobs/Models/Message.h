@@ -17,9 +17,12 @@ typedef void (^CompletionBlock)(PFObject *result, NSError *error);
 @property(strong, nonatomic) PFUser *sender;
 @property(strong, nonatomic) PFUser *receiver;
 @property(assign, nonatomic) int suggestedPrice;
+@property(assign, nonatomic) BOOL isSystemMessage;
 
 + (void)createMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion;
 
-+ (void)createMessageWithPrice:(int)suggestedPrice withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion;
++ (void)createSystemMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion;
+
++ (void)createSystemMessageWithPrice:(int)suggestedPrice withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion;
 
 @end
