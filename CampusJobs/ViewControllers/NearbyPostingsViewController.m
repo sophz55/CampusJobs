@@ -27,7 +27,6 @@
     [self fetchNearbyPosts];
     UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self setDefinesPresentationContext:YES];
     [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
     self.nearbyPostTableView.rowHeight=75;
 }

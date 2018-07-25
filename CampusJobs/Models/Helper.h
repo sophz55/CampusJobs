@@ -13,4 +13,6 @@
 
 + (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller;
 
++ (void)animateView:(UIView *)view withDistance:(CGFloat)distance up:(BOOL)up;
+
 @end

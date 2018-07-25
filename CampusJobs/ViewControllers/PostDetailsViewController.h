@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
+@property (strong, nonatomic) UIViewController *parentVC;
 
 -(void)setDetailsPost:(Post *)post;
 
