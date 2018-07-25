@@ -13,7 +13,9 @@
     
      NSTimer *timer;
 }
+@property (weak, nonatomic) IBOutlet UISearchBar *SearchBar;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Indicator;
 
 
 @end

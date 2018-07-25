@@ -17,6 +17,10 @@
 		D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A8E2107BF800042BD49 /* Accounts.framework */; };
 		D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A902107BFC50042BD49 /* Social.framework */; };
 		D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A932107C3D20042BD49 /* SearchViewController.m */; };
+		D3B67A972107E6210042BD49 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A962107E6210042BD49 /* TableViewController.m */; };
+		D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A982107E6D30042BD49 /* CoreData.framework */; };
+		D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9B2107F3570042BD49 /* AddViewController.m */; };
+		D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9E2107F5390042BD49 /* CreditViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
@@ -83,6 +87,13 @@
 		D3B67A902107BFC50042BD49 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3B67A922107C3D20042BD49 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		D3B67A932107C3D20042BD49 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		D3B67A952107E6210042BD49 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		D3B67A962107E6210042BD49 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		D3B67A982107E6D30042BD49 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3B67A9A2107F3570042BD49 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		D3B67A9B2107F3570042BD49 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		D3B67A9D2107F5390042BD49 /* CreditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		D3B67A9E2107F5390042BD49 /* CreditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -147,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */,
 				D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */,
 				D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */,
 				FC8EA1AA21024AE60054C43D /* MapKit.framework in Frameworks */,
@@ -176,6 +188,7 @@
 		2ED8957605F6C946F37EFB97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B67A982107E6D30042BD49 /* CoreData.framework */,
 				D3B67A902107BFC50042BD49 /* Social.framework */,
 				D3B67A8E2107BF800042BD49 /* Accounts.framework */,
 				FC8EA1A921024AE60054C43D /* MapKit.framework */,
@@ -332,6 +345,12 @@
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
+				D3B67A952107E6210042BD49 /* TableViewController.h */,
+				D3B67A962107E6210042BD49 /* TableViewController.m */,
+				D3B67A9A2107F3570042BD49 /* AddViewController.h */,
+				D3B67A9B2107F3570042BD49 /* AddViewController.m */,
+				D3B67A9D2107F5390042BD49 /* CreditViewController.h */,
+				D3B67A9E2107F5390042BD49 /* CreditViewController.m */,
 				D3B67A922107C3D20042BD49 /* SearchViewController.h */,
 				D3B67A932107C3D20042BD49 /* SearchViewController.m */,
 				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
@@ -570,7 +589,10 @@
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
+				D3B67A972107E6210042BD49 /* TableViewController.m in Sources */,
 				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
+				D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */,
+				D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,

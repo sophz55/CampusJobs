@@ -36,31 +36,30 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    [self.Webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",self.SearchBar.text]]]];
-    [self.Webview addSubview:self.Indicator];
-    [self.SearchBar resignFirstResponder];
+    //[self.Webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",self.SearchBar.text]]]];
+    //[self.Webview addSubview:self.Indicator];
+    //[self.SearchBar resignFirstResponder];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(loading) userInfo:nil repeats:YES];
     
 }
 
--(void)loading {
+//-(void)loading {
     
-    if (!self.Webview.loading)
-        [self.Indicator stopAnimating];
-    else
-        [self.Indicator startAnimating];
+  //  if (!self.Webview.loading)
+   //     [self.Indicator stopAnimating];
+ //   else
+  //      [self.Indicator startAnimating];
     
-}
+//}
 
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
-    self.SearchBar.text = nil;
-    [self.SearchBar resignFirstResponder];
+   // self.SearchBar.text = nil;
+   // [self.SearchBar resignFirstResponder];
     
-    
-    
+
 }
 
 
