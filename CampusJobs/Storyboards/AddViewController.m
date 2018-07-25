@@ -75,9 +75,9 @@
         
         NSManagedObject *newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Device" inManagedObjectContext:context];
         
-        [newDevice setValue:self.Name.text forKey:@"text1"];
-        [newDevice setValue:self.Email.text forKey:@"text2"];
-        [newDevice setValue:self.Address.text forKey:@"text3"];
+        [UIDevice setValue:self.Name.text forKey:@"text1"];
+        [UIDevice setValue:self.Email.text forKey:@"text2"];
+        [UIDevice setValue:self.Address.text forKey:@"text3"];
         
     }
     
