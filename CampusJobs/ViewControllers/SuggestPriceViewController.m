@@ -30,7 +30,7 @@
 - (IBAction)didTapSuggestButton:(id)sender {
     __unsafe_unretained typeof(self) weakSelf = self;
     if (![self.suggestedPriceTextField.text isEqualToString:@""]) {
-        [self.conversation addToConversationWithMessagePrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
+        [self.conversation addToConversationWithSystemMessageWithPrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 weakSelf.suggestedPriceTextField.text = @"";
                 ConversationDetailViewController *vc = (ConversationDetailViewController *)[weakSelf presentingViewController];

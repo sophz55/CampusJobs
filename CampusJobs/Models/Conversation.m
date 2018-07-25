@@ -38,8 +38,17 @@
     }];
 }
 
-- (void)addToConversationWithMessagePrice:(int)price withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion {
-    [Message createMessageWithPrice:price withText:text withSender:sender withReceiver:receiver withCompletion:^(PFObject *createdMessage, NSError *error) {
+- (void)addToConversationWithSystemMessageWithPrice:(int)price withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    [Message createSystemMessageWithPrice:price withText:text withSender:sender withReceiver:receiver withCompletion:^(PFObject *createdMessage, NSError *error) {
+        if (createdMessage) {
+            [self addObject:createdMessage forKey:@"messages"];
+            [self saveInBackgroundWithBlock:completion];
+        }
+    }];
+}
+
+- (void)addToConversationWithSystemMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    [Message createSystemMessageWithText:text withSender:sender withReceiver:receiver withCompletion:^(PFObject *createdMessage, NSError *error) {
         if (createdMessage) {
             [self addObject:createdMessage forKey:@"messages"];
             [self saveInBackgroundWithBlock:completion];

@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -38,57 +39,34 @@
     self.maxCellWidth = self.messagesCollectionView.frame.size.width * .6; // max message text view width
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
+    [self configureRefreshControl];
     [self configureNavigatonBar];
-    [self configureOptions];
+    [self reloadData];
+}
+
+- (void)configureRefreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
+    [self.messagesCollectionView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)configureNavigatonBar {
     // put other user's username label in navigation bar
     UILabel *otherUserLabel = [[UILabel alloc] init];
-    otherUserLabel.text = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+    if (![self.conversation.post.title isEqualToString:@""]) {
+        otherUserLabel.text = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+    } else {
+        otherUserLabel.text = self.otherUser.username;
+    }
     self.navigationItem.titleView = otherUserLabel;
 }
 
 - (void)reloadData {
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
+    
     [self.messagesCollectionView reloadData];
     [self configureOptions];
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.conversation.messages.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    MessageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
-    
-    cell.delegate = self;
-    
-    [cell configureCellWithMessage:self.conversation.messages[indexPath.item] withConversation:self.conversation withMaxWidth:self.maxCellWidth withMaxHeight:self.maxCellHeight withViewWidth:self.messagesCollectionView.frame.size.width];
-    
-    return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return CGSizeMake(0, 0);
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    Message *message = self.conversation.messages[indexPath.item];
-    NSString *messageText = message[@"text"];
-
-    // estimate frame size based on message text
-    CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
-    NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
-    
-    // show/hide the accept/decline suggested price buttons
-    CGFloat buttonsStackViewAllowance = 0;
-    if (self.conversation.post.postStatus == openStatus && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        buttonsStackViewAllowance = 40;
-    }
-
-    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 24 + buttonsStackViewAllowance);
+    [self.refreshControl endRefreshing];
 }
 
 - (void)configureOptions {
@@ -97,19 +75,22 @@
         [self configureOpenStatusAppearance];
     } else if (self.conversation.post.postStatus == inProgress){
         if ([self.conversation.post.taker.objectId isEqualToString:[PFUser currentUser].objectId]) {
-            NSLog(@"taker is current user");
+            // if the current user is the post's taker
             [self configureInProgressAppearance];
         } else if ([self.conversation.post.author.objectId isEqualToString:[PFUser currentUser].objectId]){
             if ([self.conversation.post.taker.objectId isEqualToString:self.otherUser.objectId]) {
-                NSLog(@"author is current user, taker is otheruser");
+                // the current user is the post's author, and the other user is the post's taker
                 [self configureInProgressAppearance];
             } else {
-                NSLog(@"author is current user, taker is not otheruser");
+                // the current user is the post's author, but the other user is not the taker
                 [self configureNotTakerAppearance];
             }
         } else {
+            // the current user is a seeker but not the taker
             [self configureNotInvolvedUserAppearance];
         }
+    } else {
+        [self configureFinishedAppearance];
     }
 }
 
@@ -159,9 +140,51 @@
     [self.inProgressButtonsStackView setHidden:YES];
     
     [self.inProgressOptionsView setHidden:NO];
-    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 30);
+    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 50);
+    self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
     self.jobStatusProgressLabel.text = @"This job is already in progress with another user!";
+}
+
+- (void)configureFinishedAppearance {
+    
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.conversation.messages.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MessageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
+    
+    cell.delegate = self;
+    
+    [cell configureCellWithMessage:self.conversation.messages[indexPath.item] withConversation:self.conversation withMaxWidth:self.maxCellWidth withMaxHeight:self.maxCellHeight withViewWidth:self.messagesCollectionView.frame.size.width];
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return CGSizeMake(0, 0);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    Message *message = self.conversation.messages[indexPath.item];
+    NSString *messageText = message[@"text"];
+
+    // estimate frame size based on message text
+    CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
+    NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
+    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    
+    // show/hide the accept/decline suggested price buttons
+    CGFloat buttonsStackViewAllowance = 0;
+    if (self.conversation.post.postStatus == openStatus && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
+        buttonsStackViewAllowance = 40;
+    }
+
+    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + buttonsStackViewAllowance);
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
@@ -192,7 +215,14 @@
 - (IBAction)didTapCancelJobButton:(id)sender {
     [self.conversation.post cancelJobWithCompletion:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self reloadData];
+            __unsafe_unretained typeof(self) weakSelf = self;
+            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL saved, NSError *error) {
+                if (saved) {
+                    [weakSelf reloadData];
+                } else {
+                    [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf];
+                }
+            }];
         } else {
             [Helper callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
@@ -204,7 +234,7 @@
         if (succeeded) {
             [self reloadData];
         } else {
-            [Helper callAlertWithTitle:@"Error Completing Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Helper callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }

@@ -91,11 +91,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
-                                <rect key="frame" x="10" y="627" width="296" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
+                                <rect key="frame" x="10" y="627" width="355" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
                                         <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
                                         <state key="normal" title="Suggest Price"/>
                                         <connections>
@@ -103,17 +102,17 @@
                                             <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
-                                        <rect key="frame" x="128" y="0.0" width="168" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
+                                        <rect key="frame" x="112" y="0.0" width="243" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
+                                                <rect key="frame" x="0.0" y="0.0" width="199" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                                <rect key="frame" x="132" y="0.0" width="36" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
+                                                <rect key="frame" x="207" y="0.0" width="36" height="30"/>
                                                 <state key="normal" title="Send"/>
                                                 <connections>
                                                     <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
@@ -123,7 +122,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,6 +143,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOP-pb-Hkd">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.63553345719999998" green="0.64698843220000002" blue="0.96993559600000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" translatesAutoresizingMaskIntoConstraints="NO" id="UJ4-L7-1GI">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
@@ -155,11 +155,11 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pdQ-rB-l6f">
-                                                    <rect key="frame" x="124" y="177" width="91" height="27"/>
+                                                    <rect key="frame" x="124" y="177" width="94" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-nm-H5i">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="27"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="43" height="27"/>
                                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="Accept">
@@ -170,7 +170,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-zD-WXo">
-                                                            <rect key="frame" x="48" y="0.0" width="43" height="27"/>
+                                                            <rect key="frame" x="51" y="0.0" width="43" height="27"/>
                                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="Decline">
@@ -181,6 +181,9 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="JUO-O8-slV"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                         </view>
@@ -231,6 +234,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="centerX" secondItem="M0U-ba-yhb" secondAttribute="centerX" id="J59-Eu-LzC"/>
+                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="leading" secondItem="V36-pU-Mde" secondAttribute="leading" constant="10" id="ZpE-bd-bLd"/>
+                            <constraint firstItem="V36-pU-Mde" firstAttribute="bottom" secondItem="rx3-Uz-Kb1" secondAttribute="bottom" constant="10" id="fAI-Lo-XcI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="V36-pU-Mde"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="E62-uW-FJ7" appends="YES" id="xfn-nw-yMH"/>

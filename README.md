@@ -15,8 +15,8 @@ Required
 - [ ] SN User should be able to configure profile - image, email, phone, address, etc.
 - [ ] SN User should be able to add pictures to their posting
 - [ ] SN User should be able to search postings via search bar
-- [ ] SZ User should be able to bid prices
-- [ ] SZ User should be able to accept prices
+- [x] SZ User should be able to bid prices
+- [x] SZ User should be able to accept prices
 - [ ] SZ User should be able to indicate when job is done
 - [ ] SK User should be able to specify map radius
 - [ ] SK User should be able to see a “Your Postings” feed
