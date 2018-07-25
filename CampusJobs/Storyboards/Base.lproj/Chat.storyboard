@@ -149,7 +149,6 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOP-pb-Hkd">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" translatesAutoresizingMaskIntoConstraints="NO" id="UJ4-L7-1GI">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="169"/>
