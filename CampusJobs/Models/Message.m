@@ -32,12 +32,23 @@
     }];
 }
 
-+ (void)createMessageWithPrice:(int)suggestedPrice withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion {
++ (void)createSystemMessageWithPrice:(int)suggestedPrice withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion {
     Message *newMessage = [Message new];
     newMessage.text = text;
     newMessage.sender = sender;
     newMessage.receiver = receiver;
     newMessage.suggestedPrice = suggestedPrice;
+    newMessage.isSystemMessage = YES;
+    [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        completion(newMessage, nil);
+    }];
+}
+
++ (void)createSystemMessageWithText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(CompletionBlock)completion {
+    Message *newMessage = [Message new];
+    newMessage.text = text;
+    newMessage.sender = sender;
+    newMessage.receiver = receiver;
     newMessage.isSystemMessage = YES;
     [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         completion(newMessage, nil);

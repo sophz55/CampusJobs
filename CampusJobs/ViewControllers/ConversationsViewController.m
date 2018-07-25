@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *conversationsTableView;
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (assign, nonatomic) int queryLimit; // number of conversations to load
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,6 +33,14 @@
     self.conversationsTableView.rowHeight = 100;
     
     self.conversations = [[NSMutableArray alloc] init];
+    
+    [self configureRefreshControl];
+}
+
+- (void)configureRefreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchConversations) forControlEvents:UIControlEventValueChanged];
+    [self.conversationsTableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,6 +68,7 @@
         } else {
             self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];
+            [self.refreshControl endRefreshing];
         }
     }];
 }
@@ -105,6 +115,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"conversationsToDetailSegue"]) {
+        [self setDefinesPresentationContext:YES];
         ConversationTableViewCell *cell = sender;
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];

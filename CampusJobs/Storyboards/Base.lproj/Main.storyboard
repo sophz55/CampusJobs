@@ -199,9 +199,9 @@
         <!--Post Details View Controller-->
         <scene sceneID="tvl-Ml-l1v">
             <objects>
-                <viewController id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogp-JF-Y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-fv-Tjg">
@@ -270,8 +270,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="iaQ-q8-g0m" id="RbB-O6-Dwq"/>
                         <outlet property="descriptionDetailsLabel" destination="u1f-Gi-wCp" id="aoB-wE-s7k"/>
                         <outlet property="locationDetailsLabel" destination="OIW-L9-NEa" id="B2k-Fe-Raq"/>
+                        <outlet property="messageButton" destination="WpY-Uq-maF" id="sIA-fA-zAV"/>
                         <outlet property="titleDetailsLabel" destination="xlo-fv-Tjg" id="pJc-ez-p04"/>
                         <outlet property="userDetailsLabel" destination="r01-ou-N8r" id="LmX-16-CyS"/>
                         <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" id="vzT-Vd-GfX"/>
@@ -606,7 +608,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="XRD-2y-TCp"/>
         <segue reference="s62-ZV-JDH"/>
-        <segue reference="eJd-GW-33d"/>
+        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>
