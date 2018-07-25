@@ -29,9 +29,22 @@
     }];
 }
 
-- (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion {
-    [self addObject:message forKey:@"messages"];
-    [self saveInBackgroundWithBlock:completion];
+- (void)addToConversationWithMessageText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    [Message createMessageWithText:text withSender:sender withReceiver:receiver withCompletion:^(PFObject *createdMessage, NSError *error) {
+        if (createdMessage) {
+            [self addObject:createdMessage forKey:@"messages"];
+            [self saveInBackgroundWithBlock:completion];
+        }
+    }];
+}
+
+- (void)addToConversationWithMessagePrice:(int)price withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    [Message createMessageWithPrice:price withText:text withSender:sender withReceiver:receiver withCompletion:^(PFObject *createdMessage, NSError *error) {
+        if (createdMessage) {
+            [self addObject:createdMessage forKey:@"messages"];
+            [self saveInBackgroundWithBlock:completion];
+        }
+    }];
 }
 
 @end

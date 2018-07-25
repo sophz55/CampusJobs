@@ -21,6 +21,8 @@ typedef void (^CompletionBlock)(PFObject *result, NSError *error);
 
 + (void)createNewConversationWithPost:(Post *)post withSeeker:(PFUser *)seeker withCompletion:(CompletionBlock)completion;
 
-- (void)addToConversationWithMessage:(Message *)message withCompletion:(PFBooleanResultBlock _Nullable)completion;
+- (void)addToConversationWithMessageText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion;
+
+- (void)addToConversationWithMessagePrice:(int)price withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
 @end

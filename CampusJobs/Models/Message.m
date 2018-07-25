@@ -14,6 +14,7 @@
 @dynamic sender;
 @dynamic receiver;
 @dynamic suggestedPrice;
+@dynamic isSystemMessage;
 
 // conforming to subclassing protocol
 + (nonnull NSString *) parseClassName{
@@ -25,6 +26,7 @@
     newMessage.text = text;
     newMessage.sender = sender;
     newMessage.receiver = receiver;
+    newMessage.isSystemMessage = NO;
     [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         completion(newMessage, nil);
     }];
@@ -36,6 +38,7 @@
     newMessage.sender = sender;
     newMessage.receiver = receiver;
     newMessage.suggestedPrice = suggestedPrice;
+    newMessage.isSystemMessage = YES;
     [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         completion(newMessage, nil);
     }];

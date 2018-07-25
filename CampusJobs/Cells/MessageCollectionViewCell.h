@@ -12,7 +12,6 @@
 
 @protocol MessageCollectionViewCellDelegate
 - (void)reloadData;
-- (void)toggleOptionsShown;
 @end
 
 @interface MessageCollectionViewCell : UICollectionViewCell
