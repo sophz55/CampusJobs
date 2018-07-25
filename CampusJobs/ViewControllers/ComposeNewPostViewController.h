@@ -14,6 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *enteredTitle;
 @property (weak, nonatomic) IBOutlet UITextField *enteredDescription;
 @property (strong, nonatomic) PFGeoPoint * savedLocation;
+@property (weak, nonatomic) IBOutlet UILabel *locationAddressLabel;
+
+
+- (void)getAddressFromCoordinate:(PFGeoPoint *)geoPointLocation;
 
 
 @end
