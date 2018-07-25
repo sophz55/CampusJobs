@@ -88,6 +88,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
 
 /*
 #pragma mark - Navigation

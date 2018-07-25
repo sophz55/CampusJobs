@@ -26,7 +26,7 @@
 }
 
 // Posts job
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString *)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)postLocation withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
     newPost.title = title;
     newPost.summary = summary;
@@ -35,8 +35,7 @@
     newPost.taker = nil;
     newPost.completedDate = date;
     newPost.postStatus = openStatus;
-    newPost.location=location;
-    
+    newPost.location=postLocation;
     newPost.photoFiles = [NSMutableArray array];
     for (id image in images) {
         [newPost.photoFiles addObject:[self getPFFileFromImage:image]];
@@ -50,13 +49,11 @@
     if (!image) {
         return nil;
     }
-    
     NSData *imageData = UIImagePNGRepresentation(image);
     // get image data and check if that is not nil
     if (!imageData) {
         return nil;
     }
-    
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
 

@@ -72,11 +72,15 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="B4S-06-NtG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="81" id="hqH-Q1-MTi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B4S-06-NtG" secondAttribute="bottom" constant="37" id="ost-lP-c89"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="43X-nq-yB1" appends="YES" id="rbK-DK-W7h"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordField" destination="EEL-eM-uEn" id="EcD-WK-KmC"/>
@@ -84,6 +88,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="43X-nq-yB1">
+                    <connections>
+                        <action selector="tapGesture:" destination="BYZ-38-t0r" id="UXo-NQ-BTj"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-228" y="-253.2233883058471"/>
         </scene>
@@ -228,11 +237,15 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Zbm-Le-vR9" firstAttribute="bottom" secondItem="xEg-te-qYt" secondAttribute="bottom" constant="35" id="vH7-NI-dNU"/>
                             <constraint firstItem="xEg-te-qYt" firstAttribute="leading" secondItem="Zbm-Le-vR9" secondAttribute="leading" constant="53" id="x72-TY-Vg1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zbm-Le-vR9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Ms0-Rt-xrD" appends="YES" id="TRd-fq-uGN"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="mrN-nZ-KuW" id="rmf-2s-0Go"/>
@@ -242,6 +255,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csl-fQ-L9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ms0-Rt-xrD">
+                    <connections>
+                        <action selector="tapGesture:" destination="rPR-zo-A9b" id="KLE-SV-mYB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-228" y="530.28485757121439"/>
         </scene>

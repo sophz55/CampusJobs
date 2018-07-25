@@ -12,163 +12,36 @@
 
 @interface ComposeNewPostViewController ()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 @end
 
 @implementation ComposeNewPostViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDefinesPresentationContext:YES];
-    // Do any additional setup after loading the view.
 }
-- (IBAction)didTapCancelButton:(id)sender {
-    [self performSegueWithIdentifier:@"cancelComposeSegue" sender:nil];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)didTapCancelButton:(id)sender {
+    [self performSegueWithIdentifier:@"cancelComposeSegue" sender:nil];
+}
 - (IBAction)didTapPostButton:(id)sender {
-    
-    [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:nil
+    [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:self.savedLocation
        withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
            if(succeeded){
                NSLog(@"Shared Successfully");
            } else{
                NSLog(@"%@", error.localizedDescription);
            }
-           
        }];
-    
-    
     [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
 }
+
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
 
 /*
  #pragma mark - Navigation
