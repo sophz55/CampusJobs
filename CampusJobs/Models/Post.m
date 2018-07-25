@@ -26,9 +26,8 @@
 }
 
 // Posts job
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString *)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
-    
     newPost.title = title;
     newPost.summary = summary;
     newPost.price = nil;
@@ -36,6 +35,7 @@
     newPost.taker = nil;
     newPost.completedDate = date;
     newPost.postStatus = openStatus;
+    newPost.location=location;
     
     newPost.photoFiles = [NSMutableArray array];
     for (id image in images) {

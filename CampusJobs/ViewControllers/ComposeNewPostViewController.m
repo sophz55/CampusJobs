@@ -8,14 +8,142 @@
 
 #import "ComposeNewPostViewController.h"
 #import "Post.h"
+#import "JobLocationMapViewController.h"
 
 @interface ComposeNewPostViewController ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 @end
 
 @implementation ComposeNewPostViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setDefinesPresentationContext:YES];
     // Do any additional setup after loading the view.
 }
 - (IBAction)didTapCancelButton:(id)sender {
@@ -26,8 +154,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (IBAction)didTapPostButton:(id)sender {
+    
     [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:nil
        withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
            if(succeeded){
@@ -37,6 +165,7 @@
            }
            
        }];
+    
     
     [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
 }

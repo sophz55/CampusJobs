@@ -34,7 +34,6 @@
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
-		FC15958A21068FED00D80958 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC15958921068FED00D80958 /* Storyboard.storyboard */; };
 		FC15958D210692E900D80958 /* JobLocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC15958C210692E900D80958 /* JobLocationMapViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
@@ -292,6 +291,10 @@
 		FC6C7E2C20FD271400034CC4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
+				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
+				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
+				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
 				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
 				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
 				FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */,
@@ -329,10 +332,6 @@
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
-				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
-				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
-				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
-				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -767,13 +766,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KUP3X2WBF;
+				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snweke.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -785,13 +784,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KUP3X2WBF;
+				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snweke.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

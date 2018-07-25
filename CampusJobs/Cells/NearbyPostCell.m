@@ -26,7 +26,7 @@
     self.postUserLabel.text=post.author.username;
     self.postTitleLabel.text=post.title;
     self.postDescriptionLabel.text=post.summary;
-    self.postDistanceLabel.text=post.location;
+    //self.postDistanceLabel.text=post.location;
     //Converting from NSDate to NSString (MM-dd-yyyy)
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM-dd-yyyy"];

@@ -38,7 +38,6 @@
     self.titleDetailsLabel.text=post.title;
     self.descriptionDetailsLabel.text=post.summary;
     self.userDetailsLabel.text=post.author.username;
-    self.locationDetailsLabel.text=post.location;
 }
 
 - (void)findConversation {
