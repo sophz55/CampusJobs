@@ -42,16 +42,14 @@
 
 //Action method for when user double taps desired location (adds pin)
 - (IBAction)addPin:(UITapGestureRecognizer *)sender {
-    if(self.jobPostingMapView.annotations.count > 1){
+    if(self.jobPostingMapView.annotations.count >= 1){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot select more than one job location." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
         [alert show];
-        
     } else{
         CGPoint chosenLocation = [sender locationInView:self.jobPostingMapView];
         selectedUserCoordinate=[self.jobPostingMapView convertPoint:chosenLocation toCoordinateFromView:self.jobPostingMapView];
         [self addSelectedAnnotationHelper:&(selectedUserCoordinate)];
     }
-    
 }
 
 //Places an annotation at the user's desired coordinate (Helper method)
@@ -60,6 +58,16 @@
     annotation.coordinate=selectedUserCoordinate;
     [self.jobPostingMapView addAnnotation:annotation];
 }
+
+//saves the user's desired post location to Parse
+- (IBAction)didTapSaveButton {
+    UINavigationController * navController=(UINavigationController *)[self presentingViewController];
+    ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[navController topViewController];
+    PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
+    composedPost.savedLocation=locationCoordGeoPoint;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 /*
  #pragma mark - Navigation
  
