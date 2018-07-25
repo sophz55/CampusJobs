@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "Helper.h"
+#import <MapKit/MapKit.h>
 
 /*
 creating an enum type for the status
@@ -32,9 +33,10 @@ typedef enum{
  // 0 if open, 1 if job is taken, 2 if job is finished
 
 @property (strong, nonatomic) NSMutableArray *photoFiles; //array of PFFiles
-@property (strong, nonatomic) NSString *location;
+@property (assign, nonatomic) NSString * location;
 
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(NSString*)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 - (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
