@@ -13,6 +13,7 @@
 
 @interface JobLocationMapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>{
     CLLocationCoordinate2D selectedUserCoordinate;
+    CLLocationCoordinate2D retrievedLocation;
 }
 @end
 
@@ -28,7 +29,19 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPin:)];
     [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
-    [self.jobPostingMapView removeAnnotations:self.jobPostingMapView.annotations];
+    [self editSavedLocation:self.prevPost.savedLocation];
+
+    
+}
+- (void)editSavedLocation:(PFGeoPoint *)enteredPoint{
+    if(!(enteredPoint==nil)){
+        NSLog(@"%f", enteredPoint.latitude);
+        retrievedLocation.latitude=enteredPoint.latitude;
+        retrievedLocation.longitude=enteredPoint.longitude;
+        MKPointAnnotation *existingAnnotation=[[MKPointAnnotation alloc]init];
+        existingAnnotation.coordinate=retrievedLocation;
+        [self.jobPostingMapView addAnnotation:existingAnnotation];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,12 +74,21 @@
 
 //saves the user's desired post location to Parse
 - (IBAction)didTapSaveButton {
-    UINavigationController * navController=(UINavigationController *)[self presentingViewController];
-    ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[navController topViewController];
-    PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
-    composedPost.savedLocation=locationCoordGeoPoint;
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [composedPost getAddressFromCoordinate:composedPost.savedLocation];
+    if(self.jobPostingMapView.annotations.count==1){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please pin a location before saving." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+        [alert show];
+    } else{
+        UINavigationController * navController=(UINavigationController *)[self presentingViewController];
+        ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[navController topViewController];
+        PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
+        composedPost.savedLocation=locationCoordGeoPoint;
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [composedPost getAddressFromCoordinate:composedPost.savedLocation];
+    }
+}
+
+- (IBAction)didTapClearButton:(id)sender {
+    [self.jobPostingMapView removeAnnotations:self.jobPostingMapView.annotations];
 }
 
 /*
