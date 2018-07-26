@@ -10,6 +10,7 @@
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
+		D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31566C5210A86C900E5C414 /* HomeViewController.m */; };
 		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
 		D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B67A8321066CA50042BD49 /* Storyboard.storyboard */; };
 		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
@@ -17,10 +18,7 @@
 		D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A8E2107BF800042BD49 /* Accounts.framework */; };
 		D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A902107BFC50042BD49 /* Social.framework */; };
 		D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A932107C3D20042BD49 /* SearchViewController.m */; };
-		D3B67A972107E6210042BD49 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A962107E6210042BD49 /* TableViewController.m */; };
 		D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A982107E6D30042BD49 /* CoreData.framework */; };
-		D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9B2107F3570042BD49 /* AddViewController.m */; };
-		D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9E2107F5390042BD49 /* CreditViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
@@ -78,6 +76,8 @@
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
+		D31566C4210A86C900E5C414 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D31566C5210A86C900E5C414 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		D3B67A8321066CA50042BD49 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -88,13 +88,7 @@
 		D3B67A902107BFC50042BD49 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3B67A922107C3D20042BD49 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		D3B67A932107C3D20042BD49 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		D3B67A952107E6210042BD49 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		D3B67A962107E6210042BD49 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		D3B67A982107E6D30042BD49 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D3B67A9A2107F3570042BD49 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
-		D3B67A9B2107F3570042BD49 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
-		D3B67A9D2107F5390042BD49 /* CreditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
-		D3B67A9E2107F5390042BD49 /* CreditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -314,12 +308,8 @@
 		FC6C7E2C20FD271400034CC4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D3B67A952107E6210042BD49 /* TableViewController.h */,
-				D3B67A962107E6210042BD49 /* TableViewController.m */,
-				D3B67A9A2107F3570042BD49 /* AddViewController.h */,
-				D3B67A9B2107F3570042BD49 /* AddViewController.m */,
-				D3B67A9D2107F5390042BD49 /* CreditViewController.h */,
-				D3B67A9E2107F5390042BD49 /* CreditViewController.m */,
+				D31566C4210A86C900E5C414 /* HomeViewController.h */,
+				D31566C5210A86C900E5C414 /* HomeViewController.m */,
 				D3B67A922107C3D20042BD49 /* SearchViewController.h */,
 				D3B67A932107C3D20042BD49 /* SearchViewController.m */,
 				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
@@ -594,10 +584,7 @@
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-				D3B67A972107E6210042BD49 /* TableViewController.m in Sources */,
 				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
-				D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */,
-				D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
@@ -614,6 +601,7 @@
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
 				F3B3947620FD451700379749 /* Helper.m in Sources */,
+				D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -818,7 +806,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
