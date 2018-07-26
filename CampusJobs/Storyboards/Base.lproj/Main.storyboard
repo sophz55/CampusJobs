@@ -78,16 +78,6 @@
             </objects>
             <point key="canvasLocation" x="1421.5999999999999" y="1038.5307346326838"/>
         </scene>
-        <!--Storyboard-->
-        <scene sceneID="yVP-T7-1zD">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7t8-j6-Sez" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="Storyboard" id="TNQ-w7-aGJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ens-jB-byX"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="4432" y="884"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ql0-HW-rkf">
             <objects>
@@ -100,7 +90,7 @@
                     <connections>
                         <segue destination="65K-mn-r90" kind="relationship" relationship="viewControllers" id="hoY-Rv-By4"/>
                         <segue destination="kdL-iu-GBj" kind="relationship" relationship="viewControllers" id="seA-4C-t1C"/>
-                        <segue destination="TNQ-w7-aGJ" kind="relationship" relationship="viewControllers" id="Cr9-Ry-D5U"/>
+                        <segue destination="wdN-Nb-yf5" kind="relationship" relationship="viewControllers" id="jB0-CC-BFu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikG-ge-e9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -540,6 +530,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3h-05-vRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="1038.5307346326838"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="f6m-iU-2o6">
+            <objects>
+                <viewController id="wdN-Nb-yf5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RQW-dI-3kM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BP5-Gf-FoD">
+                                <rect key="frame" x="112" y="284" width="151" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Personal Settings"/>
+                                <connections>
+                                    <segue destination="j3w-LQ-mZh" kind="presentation" id="gsf-hE-FTe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moT-Fg-V3J">
+                                <rect key="frame" x="101" y="388" width="172" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Payment Information"/>
+                                <connections>
+                                    <segue destination="wpf-cF-Ljr" kind="presentation" id="uCh-Nc-CGV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Fvg-NP-EGz"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="mXu-9U-mth"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HJH-iR-C3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4224" y="900"/>
+        </scene>
+        <!--Storyboard-->
+        <scene sceneID="4TF-wp-S7C">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Storyboard" id="j3w-LQ-mZh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbT-Kw-HMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4775" y="688"/>
+        </scene>
+        <!--PaymentInfo-->
+        <scene sceneID="VP4-YQ-fch">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PaymentInfo" id="wpf-cF-Ljr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWf-Yi-RBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4782" y="1059"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r0X-3n-oi3">
