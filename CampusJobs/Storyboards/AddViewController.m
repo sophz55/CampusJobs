@@ -8,8 +8,13 @@
 
 #import "AddViewController.h"
 #import <CoreData/CoreData.h>
+#import "Parse.h"
 
 @interface AddViewController ()
+
+//make a property of pf user  type
+@property (strong,nonatomic)PFUser *currentuser;
+
 
 @end
 
@@ -40,6 +45,10 @@
     }
     
     
+    self.currentuser = [PFUser currentUser];
+    
+
+    self.Name.text = self.currentuser[@"name"];
     
     
 }
