@@ -44,6 +44,7 @@
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
+		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
@@ -143,6 +144,8 @@
 		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
+		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
+		FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
 		FC5B61FC20FE9A8B00050EA7 /* NearbyPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostCell.h; sourceTree = "<group>"; };
 		FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostCell.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
 				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
 				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
+				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
+				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
+				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
 				F3B3947620FD451700379749 /* Helper.m in Sources */,

@@ -33,12 +33,11 @@ typedef enum{
  // 0 if open, 1 if job is taken, 2 if job is finished
 
 @property (strong, nonatomic) NSMutableArray *photoFiles; //array of PFFiles
-
-//saving the post location as an NSValue, but will be converted back to CLLocationCoordinate2D
 @property (assign, nonatomic) PFGeoPoint * location;
+@property (strong, nonatomic) NSString * locationAddress;
 
 
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)location withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)location withLocationAddress:(NSString *_Nullable)locationAddress withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 - (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion;
 

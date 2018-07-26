@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface MapViewController : UIViewController
+
 
 @end

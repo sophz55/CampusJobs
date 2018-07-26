@@ -26,7 +26,7 @@
 }
 
 // Posts job
-+ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)postLocation withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)postLocation withLocationAddress:(NSString *_Nullable)locationAddress withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
     newPost.title = title;
     newPost.summary = summary;
@@ -37,6 +37,7 @@
     newPost.postStatus = openStatus;
     newPost.location=postLocation;
     newPost.photoFiles = [NSMutableArray array];
+    newPost.locationAddress=locationAddress;
     for (id image in images) {
         [newPost.photoFiles addObject:[self getPFFileFromImage:image]];
     }

@@ -35,7 +35,6 @@
     // Dispose of/Users/szheng/Desktop/CampusJobs/CampusJobs/Models/Post.h any resources that can be recreated.
 }
 
-
 -(void)fetchPreviousUserPosts{
     PFQuery * query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
@@ -56,7 +55,7 @@
 }
 
 - (IBAction)didTapComposeButton:(id)sender {
-     [self performSegueWithIdentifier:@"composeNewPostSegue" sender:nil];
+    [self performSegueWithIdentifier:@"composeNewPostSegue" sender:nil];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -65,7 +64,6 @@
     previousUserPostCell.previousPost=post;
     [previousUserPostCell setPreviousPost:post];
     return previousUserPostCell;
-    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -79,21 +77,18 @@
     [refreshControl endRefreshing];
 }
 
-
 #pragma mark - Navigation
- 
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"yourPostingsToDetailSegue"]) {
         PreviousUserPostCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.previousPostTableView indexPathForCell:tappedCell];
         Post *post = self.previousPostsArray[indexPath.row];
-        PostDetailsViewController *postDetailsController = [segue destinationViewController];
+        UINavigationController * postDetailsNavController = [segue destinationViewController];
+        PostDetailsViewController *postDetailsController = [postDetailsNavController topViewController];
         postDetailsController.post = post;
     }
 }
-
-
-
 
 @end
