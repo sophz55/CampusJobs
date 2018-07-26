@@ -35,12 +35,13 @@
     [super didReceiveMemoryWarning];
 }
 -(void)fetchNearbyPosts{
-    PFQuery * query=[PFQuery queryWithClassName:@"Post"];
+    PFQuery *query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"title"];
-    [query includeKey: @"author"];
-    [query includeKey: @"summary"];
-    [query includeKey: @"location"];
+    [query includeKey:@"author"];
+    [query includeKey:@"summary"];
+    [query includeKey:@"location"];
+    [query includeKey:@"postStatus"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if(posts!=nil){
             self.nearbyPostingsArray=posts;
