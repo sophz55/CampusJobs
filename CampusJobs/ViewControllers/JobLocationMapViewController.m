@@ -13,11 +13,12 @@
 
 @interface JobLocationMapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>{
     CLLocationCoordinate2D selectedUserCoordinate;
+    CLLocationCoordinate2D retrievedLocation;
 }
-@end
+    @end
 
 @implementation JobLocationMapViewController
-
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationManager = [[CLLocationManager alloc] init];
@@ -28,19 +29,29 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPin:)];
     [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
-    [self.jobPostingMapView removeAnnotations:self.jobPostingMapView.annotations];
+    [self editSavedLocation:self.prevPost.savedLocation];
 }
-
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+    
+    //Will check if the user already has a previously saved location (and it will reappear on the map)
+- (void)editSavedLocation:(PFGeoPoint *)enteredPoint{
+    if(!(enteredPoint==nil)){
+        retrievedLocation.latitude=enteredPoint.latitude;
+        retrievedLocation.longitude=enteredPoint.longitude;
+        MKPointAnnotation *existingAnnotation=[[MKPointAnnotation alloc]init];
+        existingAnnotation.coordinate=retrievedLocation;
+        [self.jobPostingMapView addAnnotation:existingAnnotation];
+    }
+}
+    
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation*)userLocation {
     [self.jobPostingMapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
 }
-
-//Action method for when user double taps desired location (adds pin)
+    //Action method for when user double taps desired location (adds pin)
 - (IBAction)addPin:(UITapGestureRecognizer *)sender {
     if(self.jobPostingMapView.annotations.count > 1){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot select more than one job location." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
@@ -51,32 +62,50 @@
         [self addSelectedAnnotationHelper:&(selectedUserCoordinate)];
     }
 }
-
-//Places an annotation at the user's desired coordinate (Helper method)
+    
+    //Places an annotation at the user's desired coordinate (Helper method)
 - (void)addSelectedAnnotationHelper:(CLLocationCoordinate2D *)coordinate{
     MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
     annotation.coordinate=selectedUserCoordinate;
     [self.jobPostingMapView addAnnotation:annotation];
 }
-
-//saves the user's desired post location to Parse
+    
+    //saves the user's desired post location to Parse
 - (IBAction)didTapSaveButton {
     UINavigationController * navController=(UINavigationController *)[self presentingViewController];
     ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[navController topViewController];
-    PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
-    composedPost.savedLocation=locationCoordGeoPoint;
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [composedPost getAddressFromCoordinate:composedPost.savedLocation];
+    //displays alert if user tries to save without selecting a location
+    if(self.jobPostingMapView.annotations.count==1){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please pin a location before saving." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+        [alert show];
+        //checks if user has already previously saved an annotation (will save again and not as null)
+    } else if(self.prevPost.savedLocation){
+        composedPost.savedLocation=self.prevPost.savedLocation;
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [composedPost getAddressFromCoordinate:self.prevPost.savedLocation];
+        
+    } else {
+        //saves desired location and will display on ComposeNewPostViewController
+        PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
+        composedPost.savedLocation=locationCoordGeoPoint;
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [composedPost getAddressFromCoordinate:composedPost.savedLocation];
+    }
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-@end
+    
+    //clears all pins on the map
+- (IBAction)didTapClearButton:(id)sender {
+    [self.jobPostingMapView removeAnnotations:self.jobPostingMapView.annotations];
+}
+    
+    /*
+     #pragma mark - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    @end

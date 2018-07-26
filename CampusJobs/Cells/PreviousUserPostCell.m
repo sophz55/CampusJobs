@@ -21,19 +21,19 @@
     // Configure the view for the selected state
 }
 -(void)setPreviousPost:(Post *)previousPost{
-    _previousPost=previousPost;
+    self.post=previousPost;
     self.previousPostTitleLabel.text=previousPost.title;
     if(previousPost.postStatus==openStatus){
-        self.statusLabel.text=@"Open Job";
+        self.statusLabel.text=@"Status: Open Job";
         self.takerLabel.hidden=YES;
     } else if(previousPost.postStatus==inProgress){
-        self.statusLabel.text=@"Price Confirmed, Transaction In Progress";
+        self.statusLabel.text=@"Status: Price Confirmed, Transaction In Progress";
         self.takerLabel.hidden=NO;
-        self.takerLabel.text=previousPost.taker.username;
+        self.takerLabel.text=[NSString stringWithFormat:@"Taken by: %@", previousPost.taker.username];
     } else{
-        self.statusLabel.text=@"Transaction Completed";
+        self.statusLabel.text=@"Status: Transaction Completed";
         self.takerLabel.hidden=NO;
-        self.takerLabel.text=previousPost.taker.username;
+        self.takerLabel.text=[NSString stringWithFormat:@"Taken by: %@", previousPost.taker.username];
     }
     
 }
