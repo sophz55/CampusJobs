@@ -202,7 +202,7 @@
             <objects>
                 <viewController storyboardIdentifier="postDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogp-JF-Y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-fv-Tjg">
@@ -355,7 +355,7 @@
                                 <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Pin Point Your Location"/>
                                 <connections>
-                                    <segue destination="ShG-hl-pRK" kind="presentation" id="v54-Ee-BRq"/>
+                                    <segue destination="ShG-hl-pRK" kind="presentation" identifier="composeToMapSegue" id="v54-Ee-BRq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -405,6 +405,14 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="didTapSaveButton" destination="ShG-hl-pRK" eventType="touchUpInside" id="DSC-Ud-JB8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llp-33-gTO">
+                                <rect key="frame" x="21" y="17" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="didTapClearButton:" destination="ShG-hl-pRK" eventType="touchUpInside" id="2Br-5t-6RE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -607,11 +615,16 @@
             </objects>
             <point key="canvasLocation" x="2008.8" y="2790.8545727136434"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="9LO-2H-1fr">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Rpj-ZB-wha" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALB-y9-Q9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kBM-ES-iHU"/>
         <segue reference="psQ-Bz-5d0"/>
-        <segue reference="s62-ZV-JDH"/>
-        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "ComposeNewPostViewController.h"
 
 @interface JobLocationMapViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *jobPostingMapView;
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (strong, nonatomic) CLLocation * userLocation;
+@property (strong, nonatomic) ComposeNewPostViewController * prevPost;
 
 @end
