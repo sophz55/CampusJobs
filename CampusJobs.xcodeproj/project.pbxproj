@@ -23,6 +23,9 @@
 		D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9E2107F5390042BD49 /* CreditViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
+		F3122698210A4DF2004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */; };
+		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
+		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
@@ -101,6 +104,11 @@
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentInfo.storyboard; sourceTree = "<group>"; };
+		F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPaymentInfoViewController.h; sourceTree = "<group>"; };
+		F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPaymentInfoViewController.m; sourceTree = "<group>"; };
+		F312269C210A535C004F4677 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		F312269D210A535C004F4677 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		F32251F420FEA772003E4C08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
 		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
@@ -292,6 +300,8 @@
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
 				F3B3947420FD451700379749 /* Helper.h */,
 				F3B3947520FD451700379749 /* Helper.m */,
+				F312269C210A535C004F4677 /* Card.h */,
+				F312269D210A535C004F4677 /* Card.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,6 +360,8 @@
 				FC8EA1A4210151890054C43D /* MapViewController.m */,
 				F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */,
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
+				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
+				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -362,6 +374,7 @@
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
+				F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -487,6 +500,7 @@
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
 				D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
+				F3122698210A4DF2004F4677 /* PaymentInfo.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +605,7 @@
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
+				F312269E210A535C004F4677 /* Card.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
@@ -603,6 +618,7 @@
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
+				F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */,
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
 				FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "SignUpViewController.h"
 #import "Helper.h"
+#import "Card.h"
 
 @interface SignUpViewController ()
 
@@ -39,17 +40,10 @@
     newUser[@"name"] = self.nameField.text;
     newUser[@"address"] = @"";
     newUser[@"profileImageFile"] = [self getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
-    newUser[@"creditCardNumber"] = @"";
-    newUser[@"creditCardExpDate"] = @"";
-    newUser[@"creditCardCVC"] = @"";
-    newUser[@"billingName"] = self.nameField.text;
-    newUser[@"billingAddress"] = @"";
     newUser[@"venmoHandle"] = @"";
     newUser[@"rating"] = @5; // out of five stars
     newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
-    
-    
-    
+    // user also has a key @"card", of class Card, that saves credit/debit card info
     
     if (![newUser.email isEqual:@""] && ![newUser[@"name"] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
         // call sign up function on the object
