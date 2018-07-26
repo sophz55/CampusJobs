@@ -7,6 +7,7 @@
 //
 
 #import "YourPostingsViewController.h"
+#import "PostDetailsViewController.h"
 
 @interface YourPostingsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
@@ -38,10 +39,12 @@
 -(void)fetchPreviousUserPosts{
     PFQuery * query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
-    [query whereKey:@"author" equalTo:[PFUser currentUser]];
     [query includeKey:@"taker"];
+    [query includeKey:@"username"];
     [query includeKey:@"completedDate"];
     [query includeKey: @"title"];
+    [query includeKey: @"author"];
+    [query whereKey:@"author" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * previousPosts, NSError * error){
         if(previousPosts!=nil){
             self.previousPostsArray=previousPosts;
@@ -75,15 +78,21 @@
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
-/*
- #pragma mark - Navigation
+
+
+#pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"yourPostingsToDetailSegue"]) {
+        PreviousUserPostCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.previousPostTableView indexPathForCell:tappedCell];
+        Post *post = self.previousPostsArray[indexPath.row];
+        PostDetailsViewController *postDetailsController = [segue destinationViewController];
+        postDetailsController.post = post;
+    }
+}
+
 
 
 

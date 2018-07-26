@@ -120,29 +120,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviousUserPostCell" rowHeight="94" id="Iyp-y6-fb6" customClass="PreviousUserPostCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="94"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviousUserPostCell" rowHeight="142" id="Iyp-y6-fb6" customClass="PreviousUserPostCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iyp-y6-fb6" id="b5G-z8-5sb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Apa-fT-gsg">
-                                                    <rect key="frame" x="15" y="0.0" width="53" height="21"/>
+                                                    <rect key="frame" x="15" y="0.0" width="266" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Taker:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-Fp-25r">
-                                                    <rect key="frame" x="15" y="58" width="46" height="21"/>
+                                                    <rect key="frame" x="15" y="58" width="266" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlr-qu-noy">
-                                                    <rect key="frame" x="15" y="29" width="53" height="21"/>
+                                                    <rect key="frame" x="15" y="29" width="266" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -160,8 +160,9 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="9Ap-OU-iOV" id="Pti-yU-r3t"/>
                                             <outlet property="previousPostTitleLabel" destination="Apa-fT-gsg" id="1I0-Io-vhG"/>
-                                            <outlet property="statusLabel" destination="Apa-fT-gsg" id="rzZ-at-HU8"/>
+                                            <outlet property="statusLabel" destination="hlr-qu-noy" id="mbl-zS-5Zm"/>
                                             <outlet property="takerLabel" destination="bk3-Fp-25r" id="3UP-I0-VaN"/>
+                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="yourPostingsToDetailSegue" id="psQ-Bz-5d0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -623,7 +624,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s62-ZV-JDH"/>
-        <segue reference="eJd-GW-33d"/>
+        <segue reference="kBM-ES-iHU"/>
+        <segue reference="psQ-Bz-5d0"/>
     </inferredMetricsTieBreakers>
 </document>
