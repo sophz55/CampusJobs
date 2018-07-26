@@ -209,38 +209,44 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="0.60100064212328763" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
-                                <rect key="frame" x="10" y="627" width="280" height="30"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpS-qz-gNA">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
-                                        <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
+                                        <rect key="frame" x="8" y="0.0" width="96" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Suggest Price"/>
                                         <connections>
                                             <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
                                             <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
-                                        <rect key="frame" x="112" y="0.0" width="168" height="30"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bea-AL-PPm">
+                                        <rect key="frame" x="120" y="0.0" width="255" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
+                                                <rect key="frame" x="8" y="1" width="195" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                                <rect key="frame" x="132" y="0.0" width="36" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
+                                                <rect key="frame" x="211" y="1" width="36" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Send"/>
                                                 <connections>
                                                     <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -267,13 +273,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
-                        <outlet property="bottomStackView" destination="rx3-Uz-Kb1" id="Xj1-Pb-jbA"/>
+                        <outlet property="bottomView" destination="fpS-qz-gNA" id="STW-e5-efk"/>
+                        <outlet property="composeMessageTextField" destination="UD5-E2-ufm" id="qjF-KX-Rbl"/>
+                        <outlet property="composeMessageView" destination="bea-AL-PPm" id="6F3-IL-K9u"/>
                         <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
                         <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>
                         <outlet property="jobStatusProgressLabel" destination="oTc-Hy-Kce" id="wIr-Gs-7fy"/>
-                        <outlet property="messageTextField" destination="UD5-E2-ufm" id="4e6-XG-Cx5"/>
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
+                        <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="kL8-yg-6B1"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
                         <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
                     </connections>

@@ -16,7 +16,7 @@
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
-@property (weak, nonatomic) IBOutlet UITextField *messageTextField;
+@property (weak, nonatomic) IBOutlet UITextField *composeMessageTextField;
 @property (strong, nonatomic) PFUser *user;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
@@ -28,8 +28,10 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewPostButton;
-@property (weak, nonatomic) IBOutlet UIStackView *bottomStackView;
-
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIView *composeMessageView;
+@property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
+@property (assign, nonatomic) BOOL showingSuggestViewController;
 @end
 
 @implementation ConversationDetailViewController
@@ -44,21 +46,27 @@
     self.maxCellWidth = self.messagesCollectionView.frame.size.width * .6; // max message text view width
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
-    self.messageTextField.delegate = self;
+    self.composeMessageTextField.delegate = self;
     
-    [self showByParent];
-    [self configureRefreshControl];
-    [self configureNavigatonBar];
+    [self configureInitialView];
     [self reloadData];
-    
-    [self configureKeyboardNotifications];
 }
 
-- (void)configureKeyboardNotifications {
+- (void)configureInitialView {
+    [self configureRefreshControl];
+    [self configureNavigatonBar];
+    
+    [self showByParent];
+    
+    self.showingSuggestViewController = NO;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.bottomStackView.frame = CGRectMake(10, self.view.frame.size.height - 40, self.view.frame.size.width - 20, 30);
+    CGFloat horizontalViewInset = 8;
+    CGFloat verticalViewInset = 8;
+    CGSize bottomViewSize = CGSizeMake(self.view.frame.size.width - 2 * horizontalViewInset, 30);
+    self.bottomView.frame = CGRectMake(horizontalViewInset, self.view.frame.size.height - bottomViewSize.height - verticalViewInset, bottomViewSize.width, bottomViewSize.height);
 }
 
 - (void)showByParent {
@@ -96,7 +104,6 @@
 
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    
     [self.messagesCollectionView reloadData];
     [self configureOptions];
     [self.refreshControl endRefreshing];
@@ -128,16 +135,14 @@
 }
 
 - (void)configureOpenStatusAppearance {
-    [self.suggestPriceButton setHidden:NO];
-    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 100, self.suggestPriceButton.frame.size.width);
+    [self configureBottomViewShowingSuggestPriceButton:YES];
     
     [self.inProgressOptionsView setHidden:YES];
     self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 0);
 }
 
 - (void)configureInProgressAppearance {
-    [self.suggestPriceButton setHidden:YES];
-    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 0, self.suggestPriceButton.frame.size.width);
+    [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressOptionsView setHidden:NO];
     self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 70);
@@ -155,8 +160,7 @@
 }
 
 - (void)configureNotInvolvedUserAppearance {
-    [self.suggestPriceButton setHidden:YES];
-    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 0, self.suggestPriceButton.frame.size.width);
+    [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressButtonsStackView setHidden:YES];
     
@@ -167,8 +171,7 @@
 }
 
 - (void)configureNotTakerAppearance {
-    [self.suggestPriceButton setHidden:YES];
-    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 0, self.suggestPriceButton.frame.size.width);
+    [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressButtonsStackView setHidden:YES];
     
@@ -180,8 +183,7 @@
 }
 
 - (void)configureFinishedAppearance {
-    [self.suggestPriceButton setHidden:YES];
-    self.suggestPriceButton.frame = CGRectMake(self.suggestPriceButton.frame.origin.x, self.suggestPriceButton.frame.origin.x, 0, self.suggestPriceButton.frame.size.width);
+    [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressButtonsStackView setHidden:YES];
     
@@ -190,6 +192,27 @@
     self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
     self.jobStatusProgressLabel.text = @"This job has been completed, but feel free to keep chatting!";
+}
+
+- (void)configureBottomViewShowingSuggestPriceButton:(BOOL)showsSuggestPrice {
+
+    if (showsSuggestPrice) {
+        [self.suggestPriceButton setHidden:NO];
+        self.suggestPriceButton.frame = CGRectMake(0, 0, 100, self.bottomView.frame.size.height);
+        
+        CGFloat composeMessageViewWidth = self.bottomView.frame.size.width - self.suggestPriceButton.frame.size.width - 8;
+        self.composeMessageView.frame = CGRectMake(self.bottomView.frame.size.width - composeMessageViewWidth, 0, composeMessageViewWidth, self.bottomView.frame.size.height);
+        
+    } else {
+        [self.suggestPriceButton setHidden:YES];
+        self.suggestPriceButton.frame = CGRectMake(0, 0, 0, self.bottomView.frame.size.height);
+        
+        self.composeMessageView.frame = CGRectMake(0, 0, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
+    }
+    
+    CGFloat sendMessageButtonWidth = 40;
+    self.sendMessageButton.frame = CGRectMake(self.composeMessageView.frame.size.width - sendMessageButtonWidth, 0, sendMessageButtonWidth, self.composeMessageView.frame.size.height);
+    self.composeMessageTextField.frame = CGRectMake(0, 0, self.composeMessageView.frame.size.width - sendMessageButtonWidth - 4, self.composeMessageView.frame.size.height);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -230,15 +253,20 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    [Helper animateView:self.bottomStackView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+    if (!self.showingSuggestViewController) {
+        [Helper animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    [Helper animateView:self.bottomStackView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+    if (!self.showingSuggestViewController) {
+        [Helper animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+    }
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
     [self setDefinesPresentationContext:YES];
+    self.showingSuggestViewController = YES;
     [self performSegueWithIdentifier:@"suggestPriceModalSegue" sender:nil];
 }
 
@@ -257,11 +285,11 @@
 }
 
 - (IBAction)didTapSendMessage:(id)sender {
-    if (![self.messageTextField.text isEqualToString:@""]) {
+    if (![self.composeMessageTextField.text isEqualToString:@""]) {
         __unsafe_unretained typeof(self) weakSelf = self;
-        [self.conversation addToConversationWithMessageText:self.messageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
+        [self.conversation addToConversationWithMessageText:self.composeMessageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                weakSelf.messageTextField.text = @"";
+                weakSelf.composeMessageTextField.text = @"";
                 [weakSelf.messagesCollectionView reloadData];
             } else {
                 [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
