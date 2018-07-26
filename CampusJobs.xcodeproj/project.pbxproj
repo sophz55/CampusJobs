@@ -10,6 +10,7 @@
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
+		D31566C32109258600E5C414 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31566C22109258600E5C414 /* ViewController.m */; };
 		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
 		D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B67A8321066CA50042BD49 /* Storyboard.storyboard */; };
 		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
@@ -77,6 +78,8 @@
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
+		D31566C12109258600E5C414 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D31566C22109258600E5C414 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		D3B67A8321066CA50042BD49 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
+				D31566C12109258600E5C414 /* ViewController.h */,
+				D31566C22109258600E5C414 /* ViewController.m */,
 				D3B67A952107E6210042BD49 /* TableViewController.h */,
 				D3B67A962107E6210042BD49 /* TableViewController.m */,
 				D3B67A9A2107F3570042BD49 /* AddViewController.h */,
@@ -357,10 +362,6 @@
 				D3B67A9E2107F5390042BD49 /* CreditViewController.m */,
 				D3B67A922107C3D20042BD49 /* SearchViewController.h */,
 				D3B67A932107C3D20042BD49 /* SearchViewController.m */,
-				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
-				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
-				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
-				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -599,6 +600,7 @@
 				D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
+				D31566C32109258600E5C414 /* ViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
