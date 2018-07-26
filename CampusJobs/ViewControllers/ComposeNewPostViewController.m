@@ -11,25 +11,25 @@
 #import "JobLocationMapViewController.h"
 
 @interface ComposeNewPostViewController ()
-
-@end
+    
+    @end
 
 @implementation ComposeNewPostViewController
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDefinesPresentationContext:YES];
 }
-
--(void)viewDidAppear:(BOOL)animated{
     
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
 - (IBAction)didTapCancelButton:(id)sender {
     [self performSegueWithIdentifier:@"cancelComposeSegue" sender:nil];
 }
+    
 - (IBAction)didTapPostButton:(id)sender {
     [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:self.savedLocation
        withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
@@ -41,12 +41,12 @@
        }];
     [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
 }
-
+    
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
 }
-
-//Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user
+    
+    //Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user
 - (void)getAddressFromCoordinate:(PFGeoPoint *)geoPointLocation{
     CLGeocoder * geocoder=[[CLGeocoder alloc]init];
     CLLocation * location=[[CLLocation alloc]init];
@@ -60,18 +60,16 @@
         }
     }];
 }
-
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     if([segue.identifier isEqualToString:@"composeToMapSegue"]){
-         JobLocationMapViewController * jobViewController=[segue destinationViewController];
-         jobViewController.prevPost=self;
-     }
- }
- 
-
-@end
+    
+#pragma mark - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if([segue.identifier isEqualToString:@"composeToMapSegue"]){
+            JobLocationMapViewController * jobViewController=[segue destinationViewController];
+            jobViewController.prevPost=self;
+        }
+    }
+    
+    @end
