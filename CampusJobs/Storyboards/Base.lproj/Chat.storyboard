@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,6 +84,14 @@
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="1038.5307346326838"/>
         </scene>
+        <!--postDetailsViewController-->
+        <scene sceneID="lc8-39-LQ4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="postDetailsViewController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irC-KI-DeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4089" y="1205"/>
+        </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="JtB-1h-Yrn">
             <objects>
@@ -91,37 +100,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
-                                <rect key="frame" x="10" y="627" width="355" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
-                                        <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
-                                        <state key="normal" title="Suggest Price"/>
-                                        <connections>
-                                            <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
-                                            <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
-                                        </connections>
-                                    </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
-                                        <rect key="frame" x="112" y="0.0" width="243" height="30"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
-                                                <rect key="frame" x="0.0" y="0.0" width="199" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                                <rect key="frame" x="207" y="0.0" width="36" height="30"/>
-                                                <state key="normal" title="Send"/>
-                                                <connections>
-                                                    <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -182,7 +160,7 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="JUO-O8-slV"/>
+                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="mkJ-hv-070"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -231,14 +209,41 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="0.60100064212328763" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rx3-Uz-Kb1">
+                                <rect key="frame" x="10" y="627" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
+                                        <state key="normal" title="Suggest Price"/>
+                                        <connections>
+                                            <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
+                                            <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="40G-J7-pzy">
+                                        <rect key="frame" x="112" y="0.0" width="168" height="30"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
+                                                <rect key="frame" x="132" y="0.0" width="36" height="30"/>
+                                                <state key="normal" title="Send"/>
+                                                <connections>
+                                                    <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="centerX" secondItem="M0U-ba-yhb" secondAttribute="centerX" id="J59-Eu-LzC"/>
-                            <constraint firstItem="rx3-Uz-Kb1" firstAttribute="leading" secondItem="V36-pU-Mde" secondAttribute="leading" constant="10" id="ZpE-bd-bLd"/>
-                            <constraint firstItem="V36-pU-Mde" firstAttribute="bottom" secondItem="rx3-Uz-Kb1" secondAttribute="bottom" constant="10" id="fAI-Lo-XcI"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="V36-pU-Mde"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="E62-uW-FJ7" appends="YES" id="xfn-nw-yMH"/>
@@ -250,9 +255,19 @@
                                 <action selector="didTapBackButton:" destination="Bdl-9U-zBf" id="cNz-Nn-66c"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Flag" id="fVc-jG-fOZ"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Flag" id="fVc-jG-fOZ"/>
+                            <barButtonItem title="View Post" id="MGD-Z6-bca">
+                                <connections>
+                                    <action selector="didTapViewPostButton:" destination="Bdl-9U-zBf" id="drV-v4-Ogo"/>
+                                    <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="LFd-yF-QPh"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
+                        <outlet property="bottomStackView" destination="rx3-Uz-Kb1" id="Xj1-Pb-jbA"/>
                         <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
                         <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>
@@ -260,6 +275,7 @@
                         <outlet property="messageTextField" destination="UD5-E2-ufm" id="4e6-XG-Cx5"/>
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
+                        <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>

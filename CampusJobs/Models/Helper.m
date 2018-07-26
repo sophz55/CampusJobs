@@ -22,4 +22,17 @@
     [controller presentViewController:alert animated:YES completion:^{}];
 }
 
++ (void)animateView:(UIView *)view withDistance:(CGFloat)distance up:(BOOL)up {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.2];
+    [UIView setAnimationBeginsFromCurrentState:TRUE];
+    if (up) {
+        distance *= -1;
+    }
+    
+    view.frame = CGRectOffset(view.frame, 0, distance);
+    
+    [UIView commitAnimations];
+}
+
 @end

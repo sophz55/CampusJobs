@@ -42,7 +42,20 @@
     [self.view endEditing:YES];
 }
 
-
+//Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user
+- (void)getAddressFromCoordinate:(PFGeoPoint *)geoPointLocation{
+    CLGeocoder * geocoder=[[CLGeocoder alloc]init];
+    CLLocation * location=[[CLLocation alloc]init];
+    location= [location initWithLatitude:geoPointLocation.latitude longitude:geoPointLocation.longitude];
+    //calls the reverse method of the geocoder
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray * placemarks, NSError * error){
+        if(error==nil & placemarks.count>0){
+            CLPlacemark * placemark=[placemarks firstObject];
+            //formats the location label
+            self.locationAddressLabel.text= [NSString stringWithFormat:@" %@ %@, %@, %@, %@" ,placemark.subThoroughfare, placemark.thoroughfare, placemark.locality,placemark.administrativeArea,placemark.postalCode];
+        }
+    }];
+}
 /*
  #pragma mark - Navigation
  

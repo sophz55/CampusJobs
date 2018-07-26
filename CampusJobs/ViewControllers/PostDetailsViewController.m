@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *messageButton;
 
 @end
 
@@ -24,6 +26,15 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     [self setDetailsPost:self.post];
+    [self setDefinesPresentationContext:YES];
+    
+    if ([self.post.author.objectId isEqualToString:self.user.objectId] || [self.parentVC isKindOfClass:[ConversationDetailViewController class]]) {
+        [self.messageButton setEnabled:NO];
+        [self.messageButton setTintColor:[UIColor clearColor]];
+    } else {
+        [self.messageButton setEnabled:YES];
+        [self.messageButton setTintColor:nil];
+    }
 }
 
 - (IBAction)didTapBackButton:(id)sender {

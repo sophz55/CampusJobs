@@ -20,7 +20,7 @@ Required
 - [ ] SZ User should be able to indicate when job is done
 - [ ] SK User should be able to specify map radius
 - [ ] SK User should be able to see a “Your Postings” feed
-- [ ] SK User should be able to add a location to new posts
+- [X] SK User should be able to add a location to new posts
 
 Optional
 

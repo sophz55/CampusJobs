@@ -42,7 +42,7 @@
 
 //Action method for when user double taps desired location (adds pin)
 - (IBAction)addPin:(UITapGestureRecognizer *)sender {
-    if(self.jobPostingMapView.annotations.count >= 1){
+    if(self.jobPostingMapView.annotations.count > 1){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot select more than one job location." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
         [alert show];
     } else{
@@ -66,6 +66,7 @@
     PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
     composedPost.savedLocation=locationCoordGeoPoint;
     [self dismissViewControllerAnimated:YES completion:nil];
+    [composedPost getAddressFromCoordinate:composedPost.savedLocation];
 }
 
 /*

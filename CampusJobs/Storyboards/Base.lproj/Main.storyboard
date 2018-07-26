@@ -199,9 +199,9 @@
         <!--Post Details View Controller-->
         <scene sceneID="tvl-Ml-l1v">
             <objects>
-                <viewController id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogp-JF-Y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-fv-Tjg">
@@ -270,8 +270,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="iaQ-q8-g0m" id="RbB-O6-Dwq"/>
                         <outlet property="descriptionDetailsLabel" destination="u1f-Gi-wCp" id="aoB-wE-s7k"/>
                         <outlet property="locationDetailsLabel" destination="OIW-L9-NEa" id="B2k-Fe-Raq"/>
+                        <outlet property="messageButton" destination="WpY-Uq-maF" id="sIA-fA-zAV"/>
                         <outlet property="titleDetailsLabel" destination="xlo-fv-Tjg" id="pJc-ez-p04"/>
                         <outlet property="userDetailsLabel" destination="r01-ou-N8r" id="LmX-16-CyS"/>
                         <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" id="vzT-Vd-GfX"/>
@@ -305,21 +307,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7C-LW-yhZ">
-                                <rect key="frame" x="37" y="193" width="118" height="29"/>
+                                <rect key="frame" x="37" y="145" width="118" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQv-Gk-QjY">
-                                <rect key="frame" x="170" y="193" width="140" height="30"/>
+                                <rect key="frame" x="172" y="145" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvI-sc-NF7">
-                                <rect key="frame" x="66" y="426" width="85" height="36"/>
+                                <rect key="frame" x="70" y="346" width="85" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <state key="normal" title="Cancel"/>
@@ -329,7 +331,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ES-Rf-4sz">
-                                <rect key="frame" x="256" y="424" width="44" height="41"/>
+                                <rect key="frame" x="260" y="344" width="44" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <state key="normal" title="Post"/>
@@ -339,9 +341,17 @@
                                     <segue destination="phF-uU-A6b" kind="presentation" identifier="backToPersonalFeedSegue" id="eJd-GW-33d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aZ-vY-Xfy">
-                                <rect key="frame" x="39" y="155" width="174" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please set a location for your task..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfB-dy-8yt">
+                                <rect key="frame" x="31" y="196" width="312" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aZ-vY-Xfy">
+                                <rect key="frame" x="31" y="236" width="179" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Pin Point Your Location"/>
                                 <connections>
                                     <segue destination="ShG-hl-pRK" kind="presentation" id="v54-Ee-BRq"/>
@@ -359,6 +369,7 @@
                     <connections>
                         <outlet property="enteredDescription" destination="bQv-Gk-QjY" id="zbd-sw-c3G"/>
                         <outlet property="enteredTitle" destination="TBs-yM-a5R" id="X7W-X2-2ca"/>
+                        <outlet property="locationAddressLabel" destination="NfB-dy-8yt" id="9Y0-bp-mKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXi-zC-zUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -597,7 +608,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="XRD-2y-TCp"/>
         <segue reference="s62-ZV-JDH"/>
-        <segue reference="eJd-GW-33d"/>
+        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>
