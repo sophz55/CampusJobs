@@ -15,6 +15,7 @@ NSString *const loginToFeedSegue = @"loginToFeedSegue";
 NSString *const signUpToAddCardSegue = @"signUpToAddCardSegue";
 NSString *const addCardToMapSegue = @"addCardToMapSegue";
 NSString *const mapToFeedSegue = @"mapToTabBarSegue";
+NSString *const backToProfileSegue = @"backToProfileSegue";
 
 #pragma mark - feed segues
 NSString *const feedToLogoutSegue = @"logoutSegue";
@@ -35,5 +36,7 @@ NSString *const messagesToPostDetailsSegue = @"messageToPostSegue";
 NSString *const conversationsToMessagesSegue = @"conversationsToDetailSegue";
 
 #pragma mark - user profile segues
+
+
 
 @end

@@ -15,6 +15,7 @@ extern NSString *const loginToFeedSegue;
 extern NSString *const signUpToAddCardSegue;
 extern NSString *const addCardToMapSegue;
 extern NSString *const mapToFeedSegue;
+extern NSString *const backToProfileSegue;
 
 #pragma mark - feed segues
 extern NSString *const feedToLogoutSegue;
