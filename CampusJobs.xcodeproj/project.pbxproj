@@ -45,6 +45,7 @@
 		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
+		FC29BF49210A913B00CB81DC /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
@@ -146,6 +147,8 @@
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
 		FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
+		FC29BF47210A913B00CB81DC /* MainProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainProfileViewController.h; sourceTree = "<group>"; };
+		FC29BF48210A913B00CB81DC /* MainProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainProfileViewController.m; sourceTree = "<group>"; };
 		FC5B61FC20FE9A8B00050EA7 /* NearbyPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostCell.h; sourceTree = "<group>"; };
 		FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostCell.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
 				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
+				FC29BF47210A913B00CB81DC /* MainProfileViewController.h */,
+				FC29BF48210A913B00CB81DC /* MainProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
 				D3B67A972107E6210042BD49 /* TableViewController.m in Sources */,
 				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
+				FC29BF49210A913B00CB81DC /* MainProfileViewController.m in Sources */,
 				D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */,
 				D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
