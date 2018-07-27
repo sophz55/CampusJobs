@@ -110,7 +110,7 @@
                 [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *errorSavingUser) {
                     if (didSaveUser) {
                         if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
-                            [self performSegueWithIdentifier:@"addCardToMapSegue" sender:nil];
+                            [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
                         } else {
                             [self dismissViewControllerAnimated:YES completion:nil];
                         }
@@ -128,7 +128,7 @@
 }
 
 - (IBAction)didTapSkipButton:(id)sender {
-    [self performSegueWithIdentifier:@"addCardToMapSegue" sender:nil];
+    [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {

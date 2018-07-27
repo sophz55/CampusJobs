@@ -39,7 +39,7 @@
 }
 
 - (IBAction)didTapNextButton:(id)sender {
-    [self performSegueWithIdentifier:@"mapToTabBarSegue" sender:nil];
+    [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
 }
 
 //Will only auto-zoom into user's location once

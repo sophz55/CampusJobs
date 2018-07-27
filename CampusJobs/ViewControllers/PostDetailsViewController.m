@@ -77,7 +77,7 @@
 
 - (IBAction)didTapEditButton:(id)sender {
     if (self.userIsAuthor) {
-        [self performSegueWithIdentifier:@"postDetailsToEditPostSegue" sender:nil];
+        [self performSegueWithIdentifier:postDetailsToEditPostSegue sender:nil];
     }
 }
 
@@ -106,14 +106,14 @@
         } else {
             if (conversation) {
                 self.conversation = (Conversation *)conversation;
-                [self performSegueWithIdentifier:@"chatSegue" sender:nil];
+                [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
             }
             // if there are no conversations with these users and this post, create one
             else {
                 [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
                     if (newConversation){
                         self.conversation = (Conversation *)newConversation;
-                        [self performSegueWithIdentifier:@"chatSegue" sender:nil];
+                        [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
                     } else{
                         [Utils callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                     }
@@ -127,16 +127,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"chatSegue"]) {
+    if ([segue.identifier isEqualToString:postDetailsToMessageSegue]) {
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
         conversationDetailController.conversation = self.conversation;
         conversationDetailController.otherUser = self.post.author;
-    } else if ([segue.identifier isEqualToString:@"detailsToMapSegue"]) {
+    } else if ([segue.identifier isEqualToString:postDetailsToMapSegue]) {
         // UINavigationController *detailsNavigationController = [segue destinationViewController];
         MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
         mapDetailsViewController.post=self.post;
-    } else if ([segue.identifier isEqualToString:@"postDetailsToEditPostSegue"]) {
+    } else if ([segue.identifier isEqualToString:postDetailsToEditPostSegue]) {
         UINavigationController *navController = [segue destinationViewController];
         ComposeNewPostViewController *editPostViewController = (ComposeNewPostViewController *)[navController topViewController];
         editPostViewController.delegate = self;

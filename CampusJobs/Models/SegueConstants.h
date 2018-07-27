@@ -23,6 +23,7 @@ extern NSString *const yourPostingsToComposePostSegue;
 extern NSString *const yourPostingsToPostDetailsSegue;
 extern NSString *const postDetailsToMessageSegue;
 extern NSString *const postDetailsToEditPostSegue;
+extern NSString *const postDetailsToMapSegue;
 
 #pragma mark - compose post segues
 extern NSString *const composePostToFeedSegue;
