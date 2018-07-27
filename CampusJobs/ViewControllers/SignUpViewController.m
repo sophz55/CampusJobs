@@ -53,7 +53,7 @@
                 [Utils callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 [self setDefinesPresentationContext:YES];
-                [self performSegueWithIdentifier:signUpToAddCardSegue sender:nil];
+                [self performSegueWithIdentifier:@"signUpToAddCardSegue" sender:nil];
             }
         }];
     } else {

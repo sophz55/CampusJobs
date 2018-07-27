@@ -44,7 +44,7 @@
 }
 - (IBAction)didTapLogoutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        [self performSegueWithIdentifier:feedToLogoutSegue sender:nil];
+        [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
     }];
 }
 

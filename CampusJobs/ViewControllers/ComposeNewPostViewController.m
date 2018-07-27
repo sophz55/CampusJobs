@@ -116,7 +116,7 @@
 #pragma mark - IBAction
 
 - (IBAction)didTapCancelButton:(id)sender {
-    [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
+    [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
 }
     
 - (IBAction)didTapPostButton:(id)sender {
@@ -127,7 +127,7 @@
         [Post postJob:self.enteredTitle.text withSummary:self.summaryView.text withLocation:self.savedLocation withLocationAddress:self.savedLocationAddress
            withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
                if (succeeded) {
-                   [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
+                   [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
                } else{
                    NSLog(@"%@", error.localizedDescription);
                }
@@ -158,7 +158,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:composePostToMapSegue]){
+    if([segue.identifier isEqualToString:@"composePostToMapSegue"]){
         JobLocationMapViewController * jobViewController=[segue destinationViewController];
         jobViewController.prevPost=self;
     }

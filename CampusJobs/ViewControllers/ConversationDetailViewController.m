@@ -250,7 +250,7 @@
 }
 
 - (IBAction)didTapViewPostButton:(id)sender {
-    [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
+    [self performSegueWithIdentifier:@"messageToPostSegue" sender:nil];
 }
 
 - (IBAction)didTapSendMessage:(id)sender {
@@ -269,7 +269,7 @@
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
     self.showingSuggestViewController = YES;
-    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+    [self performSegueWithIdentifier:@"suggestPriceModalSegue" sender:nil];
 }
 
 - (IBAction)didTapCancelJobButton:(id)sender {
@@ -349,12 +349,12 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:messagesToSuggestPriceSegue]) {
+    if ([segue.identifier isEqualToString:@"suggestPriceModalSegue"]) {
         SuggestPriceViewController *suggestPriceController = [segue destinationViewController];
         suggestPriceController.delegate = self;
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
-    } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
+    } else if ([segue.identifier isEqualToString:@"messageToPostSegue"]) {
         PostDetailsViewController *postDetailsVC = [segue destinationViewController];
         postDetailsVC.post = self.conversation.post;
         postDetailsVC.parentVC = self;

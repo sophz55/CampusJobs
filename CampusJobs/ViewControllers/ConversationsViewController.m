@@ -116,10 +116,10 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
+    if ([segue.identifier isEqualToString:@"conversationsToDetailSegue"]) {
         ConversationTableViewCell *cell = sender;
         UINavigationController *conversationNavigationController = [segue destinationViewController];
-        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
+        ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
     }

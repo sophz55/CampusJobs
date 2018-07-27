@@ -439,7 +439,7 @@
             <objects>
                 <viewController id="ShG-hl-pRK" customClass="JobLocationMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzV-br-hDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
