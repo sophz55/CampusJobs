@@ -18,7 +18,7 @@
 
 @implementation SuggestPriceViewController
 
-#pragma mark - UIViewController
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

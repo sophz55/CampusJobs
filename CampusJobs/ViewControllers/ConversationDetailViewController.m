@@ -39,7 +39,7 @@
 
 @implementation ConversationDetailViewController
 
-#pragma mark - UIViewController
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];    
@@ -108,12 +108,10 @@
 - (void)showByParent {
     if ([self.presentingViewController isKindOfClass:[PostDetailsViewController class]]) {
         self.backButton.title = @"Back to posting";
-        [self.viewPostButton setEnabled:NO];
-        [self.viewPostButton setTintColor:[UIColor clearColor]];
+        [Utils hideBarButton:self.viewPostButton];
     } else {
         self.backButton.title = @"Back to messages";
-        [self.viewPostButton setEnabled:YES];
-        [self.viewPostButton setTintColor:nil];
+        [Utils showButton:self.viewPostButton];
     }
 }
 

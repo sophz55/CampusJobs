@@ -31,7 +31,7 @@
 
 @implementation EditPaymentInfoViewController
 
-#pragma mark - UIViewController
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,13 +56,11 @@
     if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
         self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
         self.saveButton.titleLabel.text = @"Add Card";
-        [self.skipButton setEnabled:YES];
-        [self.skipButton setTintColor:nil];
+        [Utils showButton:self.skipButton];
     } else {
         self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
         self.saveButton.titleLabel.text = @"Update";
-        [self.skipButton setEnabled:NO];
-        [self.skipButton setTintColor:[UIColor clearColor]];
+        [Utils hideButton:self.skipButton];
     }
 }
 
