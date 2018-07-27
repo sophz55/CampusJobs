@@ -16,7 +16,7 @@
 @dynamic author;
 @dynamic taker;
 @dynamic completedDate;
-@dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is finished
+@dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is closed
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
 
@@ -34,7 +34,7 @@
     newPost.author = [PFUser currentUser];
     newPost.taker = nil;
     newPost.completedDate = date;
-    newPost.postStatus = openStatus;
+    newPost.postStatus = OPEN;
     newPost.location=postLocation;
     newPost.photoFiles = [NSMutableArray array];
     newPost.locationAddress=locationAddress;
@@ -61,19 +61,19 @@
 - (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion{
     self.price = price;
     self.taker = taker;
-    self.postStatus = inProgress;
+    self.postStatus = IN_PROGRESS;
     [self saveInBackgroundWithBlock:completion];
 }
 
 - (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
     self.price = nil;
     self.taker = nil;
-    self.postStatus = openStatus;
+    self.postStatus = OPEN;
     [self saveInBackgroundWithBlock:completion];
 }
 
 - (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
-    self.postStatus = finished;
+    self.postStatus = CLOSED;
     [self saveInBackgroundWithBlock:completion];
     
     // TO DO: complete payment

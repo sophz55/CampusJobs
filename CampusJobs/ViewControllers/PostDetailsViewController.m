@@ -9,7 +9,8 @@
 #import "PostDetailsViewController.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "Helper.h"
+#import "Utils.h"
+#import "SegueConstants.h"
 #import "MapDetailsViewController.h"
 
 @interface PostDetailsViewController ()
@@ -72,20 +73,20 @@
     
     [conversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError*error){
         if (error != nil) {
-            [Helper callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Utils callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
             if (conversations.count > 0) {
                 self.conversation = conversations[0];
-                [self performSegueWithIdentifier:@"chatSegue" sender:nil];
+                [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
             }
             // if there are no conversations with these users and this post, create one
             else {
                 [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
                     if (newConversation){
                         self.conversation = (Conversation *)newConversation;
-                        [self performSegueWithIdentifier:@"chatSegue" sender:nil];
+                        [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
                     } else{
-                        [Helper callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                        [Utils callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                     }
                 }];
             }
@@ -102,7 +103,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"chatSegue"]) {
+    if ([segue.identifier isEqualToString:postDetailsToMessageSegue]) {
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
         conversationDetailController.conversation = self.conversation;

@@ -8,17 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "Helper.h"
 #import <MapKit/MapKit.h>
 
 /*
 creating an enum type for the status
-open: user has not officially accepted an offer from a taker
-inProgress: price has been confirmed, but service and transaction have not been confirmed
-finished: transaction has been confirmed
+OPEN: user has not officially accepted an offer from a taker
+IN_PROGRESS: price has been confirmed, but service and transaction have not been confirmed
+CLOSED: transaction has been confirmed
 */
-typedef enum{
-    openStatus=0, inProgress=1, finished=2
+typedef enum {
+    OPEN = 0, IN_PROGRESS = 1, CLOSED = 2
 } status;
 
 @interface Post : PFObject<PFSubclassing>
@@ -30,7 +29,7 @@ typedef enum{
 @property (strong, nonatomic) PFUser *taker;
 @property (strong, nonatomic) NSDate *completedDate;
 @property (assign, nonatomic) status postStatus;
- // 0 if open, 1 if job is taken, 2 if job is finished
+ // 0 if open, 1 if job is taken, 2 if job is closed
 
 @property (strong, nonatomic) NSMutableArray *photoFiles; //array of PFFiles
 @property (assign, nonatomic) PFGeoPoint * location;

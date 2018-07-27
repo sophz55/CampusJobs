@@ -12,7 +12,8 @@
 #import "PostDetailsViewController.h"
 #import "ConversationsViewController.h"
 #import "Message.h"
-#import "Helper.h"
+#import "Utils.h"
+#import "SegueConstants.h"
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
@@ -82,7 +83,7 @@
 }
 
 - (IBAction)didTapViewPostButton:(id)sender {
-    [self performSegueWithIdentifier:@"messageToPostSegue" sender:nil];
+    [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
 }
 
 - (void)configureRefreshControl {
@@ -111,9 +112,9 @@
 
 - (void)configureOptions {
     // show "suggest price" button or "job in progress" bar
-    if (self.conversation.post.postStatus == openStatus) {
-        [self configureOpenStatusAppearance];
-    } else if (self.conversation.post.postStatus == inProgress){
+    if (self.conversation.post.postStatus == OPEN) {
+        [self configureOPENAppearance];
+    } else if (self.conversation.post.postStatus == IN_PROGRESS){
         if ([self.conversation.post.taker.objectId isEqualToString:[PFUser currentUser].objectId]) {
             // if the current user is the post's taker
             [self configureInProgressAppearance];
@@ -130,11 +131,11 @@
             [self configureNotInvolvedUserAppearance];
         }
     } else {
-        [self configureFinishedAppearance];
+        [self configureClosedAppearance];
     }
 }
 
-- (void)configureOpenStatusAppearance {
+- (void)configureOPENAppearance {
     [self configureBottomViewShowingSuggestPriceButton:YES];
     
     [self.inProgressOptionsView setHidden:YES];
@@ -182,7 +183,7 @@
     self.jobStatusProgressLabel.text = @"This job is already in progress with another user!";
 }
 
-- (void)configureFinishedAppearance {
+- (void)configureClosedAppearance {
     [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressButtonsStackView setHidden:YES];
@@ -245,7 +246,7 @@
     
     // show/hide the accept/decline suggested price buttons
     CGFloat buttonsStackViewAllowance = 0;
-    if (self.conversation.post.postStatus == openStatus && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
+    if (self.conversation.post.postStatus == OPEN && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         buttonsStackViewAllowance = 40;
     }
 
@@ -254,20 +255,20 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Helper animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Helper animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
     }
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
     [self setDefinesPresentationContext:YES];
     self.showingSuggestViewController = YES;
-    [self performSegueWithIdentifier:@"suggestPriceModalSegue" sender:nil];
+    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
 }
 
 - (IBAction)didTapBackButton:(id)sender {
@@ -292,7 +293,7 @@
                 weakSelf.composeMessageTextField.text = @"";
                 [weakSelf.messagesCollectionView reloadData];
             } else {
-                [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
         }];
     }
@@ -306,11 +307,11 @@
                 if (saved) {
                     [weakSelf reloadData];
                 } else {
-                    [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf];
+                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
             }];
         } else {
-            [Helper callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -323,11 +324,11 @@
                 if (saved) {
                     [weakSelf reloadData];
                 } else {
-                    [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf];
+                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
             }];
         } else {
-            [Helper callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Utils callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -341,11 +342,11 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"suggestPriceModalSegue"]) {
+    if ([segue.identifier isEqualToString:messagesToSuggestPriceSegue]) {
         SuggestPriceViewController *suggestPriceController = [segue destinationViewController];
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
-    } else if ([segue.identifier isEqualToString:@"messageToPostSegue"]) {
+    } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
         PostDetailsViewController *postDetailsVC = [segue destinationViewController];
         postDetailsVC.post = self.conversation.post;
         postDetailsVC.parentVC = self;

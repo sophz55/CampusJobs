@@ -192,7 +192,7 @@
             <objects>
                 <viewController id="B9a-ex-4vP" customClass="MapDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4v-AS-70k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tzd-Gx-G4c">

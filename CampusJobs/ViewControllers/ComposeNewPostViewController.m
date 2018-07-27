@@ -9,6 +9,7 @@
 #import "ComposeNewPostViewController.h"
 #import "Post.h"
 #import "JobLocationMapViewController.h"
+#import "SegueConstants.h"
 
 @interface ComposeNewPostViewController ()
     
@@ -27,7 +28,7 @@
 }
     
 - (IBAction)didTapCancelButton:(id)sender {
-    [self performSegueWithIdentifier:@"cancelComposeSegue" sender:nil];
+    [self performSegueWithIdentifier:cancelComposeSegue sender:nil];
 }
     
 - (IBAction)didTapPostButton:(id)sender {
@@ -39,7 +40,7 @@
                NSLog(@"%@", error.localizedDescription);
            }
        }];
-    [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
+    [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
 }
     
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
@@ -67,7 +68,7 @@
     - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if([segue.identifier isEqualToString:@"composeToMapSegue"]){
+        if([segue.identifier isEqualToString:composePostToMapSegue]){
             JobLocationMapViewController * jobViewController=[segue destinationViewController];
             jobViewController.prevPost=self;
         }
