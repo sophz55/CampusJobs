@@ -23,10 +23,10 @@
 -(void)setPreviousPost:(Post *)previousPost{
     self.post=previousPost;
     self.previousPostTitleLabel.text=previousPost.title;
-    if(previousPost.postStatus==openStatus){
+    if(previousPost.postStatus==OPEN){
         self.statusLabel.text=@"Status: Open Job";
         self.takerLabel.hidden=YES;
-    } else if(previousPost.postStatus==inProgress){
+    } else if(previousPost.postStatus==IN_PROGRESS){
         self.statusLabel.text=@"Status: Price Confirmed, Transaction In Progress";
         self.takerLabel.hidden=NO;
         self.takerLabel.text=[NSString stringWithFormat:@"Taken by: %@", previousPost.taker.username];

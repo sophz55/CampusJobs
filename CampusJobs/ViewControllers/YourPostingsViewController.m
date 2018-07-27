@@ -8,6 +8,7 @@
 
 #import "YourPostingsViewController.h"
 #import "PostDetailsViewController.h"
+#import "SegueConstants.h"
 
 @interface YourPostingsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
@@ -56,7 +57,7 @@
 }
 
 - (IBAction)didTapComposeButton:(id)sender {
-     [self performSegueWithIdentifier:@"composeNewPostSegue" sender:nil];
+     [self performSegueWithIdentifier:yourPostingsToComposePostSegue sender:nil];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -84,7 +85,7 @@
  
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"yourPostingsToDetailSegue"]) {
+    if ([segue.identifier isEqualToString:yourPostingsToPostDetailsSegue]) {
         PreviousUserPostCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.previousPostTableView indexPathForCell:tappedCell];
         Post *post = self.previousPostsArray[indexPath.row];

@@ -26,6 +26,8 @@
 		F3122698210A4DF2004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */; };
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
 		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
+		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
+		F31226A5210A8927004F4677 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
@@ -109,6 +111,10 @@
 		F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPaymentInfoViewController.m; sourceTree = "<group>"; };
 		F312269C210A535C004F4677 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		F312269D210A535C004F4677 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		F312269F210A8582004F4677 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F31226A0210A8582004F4677 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		F31226A3210A8927004F4677 /* SegueConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegueConstants.h; sourceTree = "<group>"; };
+		F31226A4210A8927004F4677 /* SegueConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueConstants.m; sourceTree = "<group>"; };
 		F32251F420FEA772003E4C08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
 		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
@@ -298,10 +304,14 @@
 				F39F4BED20FD14A300C11CD0 /* Message.m */,
 				F39F4BEF20FD14C000C11CD0 /* Conversation.h */,
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
+				F312269F210A8582004F4677 /* Utils.h */,
+				F31226A0210A8582004F4677 /* Utils.m */,
 				F3B3947420FD451700379749 /* Helper.h */,
 				F3B3947520FD451700379749 /* Helper.m */,
 				F312269C210A535C004F4677 /* Card.h */,
 				F312269D210A535C004F4677 /* Card.m */,
+				F31226A3210A8927004F4677 /* SegueConstants.h */,
+				F31226A4210A8927004F4677 /* SegueConstants.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -601,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
+				F31226A5210A8927004F4677 /* SegueConstants.m in Sources */,
 				FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */,
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
@@ -620,6 +631,7 @@
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
 				F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */,
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
+				F31226A1210A8582004F4677 /* Utils.m in Sources */,
 				FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,

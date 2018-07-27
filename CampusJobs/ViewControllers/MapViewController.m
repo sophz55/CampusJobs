@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
+#import "SegueConstants.h"
 
 @interface MapViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -37,7 +38,7 @@
     [super didReceiveMemoryWarning];
 }
 - (IBAction)didTapNextButton:(id)sender {
-    [self performSegueWithIdentifier:@"mapToTabBarSegue" sender:nil];
+    [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
 }
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation*)userLocation {
     [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];

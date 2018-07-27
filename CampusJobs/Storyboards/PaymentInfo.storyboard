@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Debit or Credit Card Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="566-ed-xAO">
-                                <rect key="frame" x="19" y="71" width="337" height="28"/>
+                                <rect key="frame" x="39" y="66" width="296" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -125,6 +125,14 @@
                                     <action selector="didTapCancelButton:" destination="3aW-av-G0t" eventType="touchUpInside" id="HQX-p2-f3D"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLh-L1-fvO">
+                                <rect key="frame" x="257" y="586" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="didTapSkipButton:" destination="3aW-av-G0t" eventType="touchUpInside" id="6dC-Au-anu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -139,8 +147,12 @@
                         <outlet property="cardNumberField" destination="tcx-6s-ubR" id="PMO-w9-aTR"/>
                         <outlet property="expDateField" destination="eIp-Yl-7vA" id="RY9-fx-n5e"/>
                         <outlet property="nameField" destination="7El-M4-S6Q" id="0xe-Pb-XQ7"/>
+                        <outlet property="pageTitleLabel" destination="566-ed-xAO" id="7u7-OV-hK0"/>
+                        <outlet property="saveButton" destination="1iU-DH-hco" id="QGj-dQ-XWk"/>
                         <outlet property="securityCodeField" destination="g8c-UM-Sen" id="55t-yJ-5Wo"/>
+                        <outlet property="skipButton" destination="mLh-L1-fvO" id="zPr-my-2z4"/>
                         <outlet property="zipcodeField" destination="srv-KO-u8L" id="xxk-Gv-Sdk"/>
+                        <segue destination="kXg-Yt-TPU" kind="presentation" identifier="addCardToMapSegue" id="eCI-e1-mUt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yx-oB-dnj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,6 +163,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-47.200000000000003" y="-96.7016491754123"/>
+        </scene>
+        <!--mapViewController-->
+        <scene sceneID="0D0-pc-eka">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LoginSignUp" referencedIdentifier="mapViewController" id="kXg-Yt-TPU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nJJ-9w-BCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="-97"/>
         </scene>
     </scenes>
 </document>

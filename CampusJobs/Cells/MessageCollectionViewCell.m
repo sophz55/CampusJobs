@@ -7,7 +7,7 @@
 //
 
 #import "MessageCollectionViewCell.h"
-#import "Helper.h"
+#import "Utils.h"
 #import "ConversationDetailViewController.h"
 
 @implementation MessageCollectionViewCell
@@ -61,7 +61,7 @@
 }
 
 - (void)toggleShowButtonStackView {
-    if (self.conversation.post.postStatus == openStatus && self.message[@"suggestedPrice"] && ![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
+    if (self.conversation.post.postStatus == OPEN && self.message[@"suggestedPrice"] && ![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         self.buttonsStackView.frame = CGRectMake(self.textBubbleView.frame.origin.x + self.textBubbleView.frame.size.width * .1, self.textBubbleView.frame.origin.y + self.textBubbleView.frame.size.height + 5, self.textBubbleView.frame.size.width * .8, 30);
         [self.buttonsStackView setHidden:NO];
     } else {
@@ -85,11 +85,11 @@
                     [weakSelf removeSuggestedPrice];
                     [weakSelf.delegate reloadData];
                 } else {
-                    [Helper callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf.delegate];
+                    [Utils callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
                 }
             }];
         } else {
-            [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf.delegate];
+            [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }
     }];
 }
@@ -100,7 +100,7 @@
         if (succeeded) {
             [weakSelf removeSuggestedPrice];
         } else {
-            [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)weakSelf.delegate];
+            [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }
     }];
 }
@@ -111,7 +111,7 @@
         if (saved) {
             [self.buttonsStackView setHidden:YES];
         } else {
-            [Helper callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error] viewController:(UIViewController *)self.delegate];
+            [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)self.delegate];
         }
     }];
 }

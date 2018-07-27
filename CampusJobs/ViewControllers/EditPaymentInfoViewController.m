@@ -9,7 +9,9 @@
 #import "EditPaymentInfoViewController.h"
 #import <Parse/Parse.h>
 #import "Card.h"
-#import "Helper.h"
+#import "Utils.h"
+#import "SegueConstants.h"
+#import "SignUpViewController.h"
 
 @interface EditPaymentInfoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -20,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressLine2Field;
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (strong, nonatomic) PFUser *user;
+
+@property (weak, nonatomic) IBOutlet UILabel *pageTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 
 @end
 
@@ -32,9 +38,28 @@
     [self populateFieldsWithExistingInformation];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self configureViewByParent];
+}
+
+- (void)configureViewByParent {
+    if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
+        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Debit or Credit Card Information", self.user.username];
+        self.saveButton.titleLabel.text = @"Add Card";
+        [self.skipButton setEnabled:YES];
+        [self.skipButton setTintColor:nil];
+    } else {
+        self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
+        self.saveButton.titleLabel.text = @"Update";
+        [self.skipButton setEnabled:NO];
+        [self.skipButton setTintColor:[UIColor clearColor]];
+    }
+}
+
 - (void)populateFieldsWithExistingInformation {
-    Card *card = self.user[@"card"];
-    if (card) {
+    if (self.user[@"card"]) {
+        Card *card = self.user[@"card"];
         self.nameField.text = card.billingName;
         self.cardNumberField.text = card.cardNumber;
         self.expDateField.text = card.expDate;
@@ -67,22 +92,34 @@
     card.addressLine2 = self.addressLine2Field.text;
     card.cityStateZip = self.zipcodeField.text;
     
-    [card saveInBackgroundWithBlock:^(BOOL savedCard, NSError *errorSavingCard) {
-        if (savedCard) {
-            if (!self.user[@"card"]) {
-                self.user[@"card"] = card;
-            }
-            [self.user saveInBackgroundWithBlock:^(BOOL savedUser, NSError *errorSavingUser) {
-                if (savedUser) {
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                } else {
-                    [Helper callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
+    if (![self.nameField.text isEqualToString:@""] && ![self.cardNumberField.text isEqualToString:@""] && ![self.expDateField.text isEqualToString:@""] && ![self.securityCodeField.text isEqualToString:@""] && ![self.addressLine1Field.text isEqualToString:@""] && ![self.zipcodeField.text isEqualToString:@""]){
+        [card saveInBackgroundWithBlock:^(BOOL savedCard, NSError *errorSavingCard) {
+            if (savedCard) {
+                if (!self.user[@"card"]) {
+                    self.user[@"card"] = card;
                 }
-            }];
-        } else {
-            [Helper callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
-        }
-    }];
+                [self.user saveInBackgroundWithBlock:^(BOOL savedUser, NSError *errorSavingUser) {
+                    if (savedUser) {
+                        if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
+                            [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
+                        } else {
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }
+                    } else {
+                        [Utils callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
+                    }
+                }];
+            } else {
+                [Utils callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
+            }
+        }];
+    } else {
+        [Utils callAlertWithTitle:@"Could not save card info" alertMessage:@"Some required fields are blank!" viewController:self];
+    }
+}
+
+- (IBAction)didTapSkipButton:(id)sender {
+    
 }
 
 - (IBAction)didTapCancelButton:(id)sender {

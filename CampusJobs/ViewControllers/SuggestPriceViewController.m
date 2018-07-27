@@ -7,7 +7,7 @@
 //
 
 #import "SuggestPriceViewController.h"
-#import "Helper.h"
+#import "Utils.h"
 #import "ConversationDetailViewController.h"
 
 @interface SuggestPriceViewController ()
@@ -38,11 +38,11 @@
                     [vc reloadData];
                 }];
             } else {
-                [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
         }];
     } else {
-        [Helper callAlertWithTitle:@"Couldn't send price" alertMessage:@"Cannot have empty price field" viewController:self];
+        [Utils callAlertWithTitle:@"Couldn't send price" alertMessage:@"Cannot have empty price field" viewController:self];
     }
 }
 

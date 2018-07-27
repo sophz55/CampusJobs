@@ -31,7 +31,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Tv-AA-jYj"/>
-                                    <segue destination="a6w-BU-Fnj" kind="presentation" identifier="loginToMapSegue" id="pit-sh-NUt"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-hY-ZBR">
@@ -85,6 +84,7 @@
                     <connections>
                         <outlet property="passwordField" destination="EEL-eM-uEn" id="EcD-WK-KmC"/>
                         <outlet property="usernameField" destination="dqp-hY-ZBR" id="ScB-OI-0Nv"/>
+                        <segue destination="dkE-a4-TIu" kind="presentation" identifier="loginToFeedSegue" id="1CD-3G-1S5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,7 +99,7 @@
         <!--Map View Controller-->
         <scene sceneID="5ZE-2L-h28">
             <objects>
-                <viewController id="a6w-BU-Fnj" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a6w-BU-Fnj" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xao-U1-Vin">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,7 +159,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9g-05-T4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="C8o-LR-Ox6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1125.5999999999999" y="-78.710644677661179"/>
+            <point key="canvasLocation" x="1010" y="530"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="xeg-Tw-hGM">
@@ -232,7 +232,6 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="didTapSignUp:" destination="rPR-zo-A9b" eventType="touchUpInside" id="Z0i-YS-dZa"/>
-                                    <segue destination="a6w-BU-Fnj" kind="presentation" identifier="signUpToMapSegue" id="F0J-to-XZZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -252,6 +251,7 @@
                         <outlet property="nameField" destination="oCt-aS-RLW" id="rQM-pA-WX9"/>
                         <outlet property="passwordField" destination="lZQ-hM-j6o" id="YN9-ef-lmr"/>
                         <outlet property="usernameField" destination="0YF-ho-ZVc" id="QrS-ZP-nwD"/>
+                        <segue destination="6fD-Zb-ubm" kind="presentation" identifier="signUpToAddCardSegue" id="dtR-kf-s3S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csl-fQ-L9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,7 +261,15 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-228" y="530.28485757121439"/>
+            <point key="canvasLocation" x="-1174" y="511"/>
+        </scene>
+        <!--PaymentInfo-->
+        <scene sceneID="NWH-kL-S8h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PaymentInfo" id="6fD-Zb-ubm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4R9-nd-8M3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175" y="525"/>
         </scene>
         <!--UITabBarController-phF-uU-A6b-->
         <scene sceneID="Emv-qf-C3i">
@@ -273,6 +281,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pit-sh-NUt"/>
+        <segue reference="07a-Uj-UXy"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,8 +7,10 @@
 //
 
 #import "SignUpViewController.h"
-#import "Helper.h"
+#import "Utils.h"
+#import "SegueConstants.h"
 #import "Card.h"
+#import "EditPaymentInfoViewController.h"
 
 @interface SignUpViewController ()
 
@@ -16,7 +18,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordField;
-@property(strong, nonatomic) Helper *helper;
 
 @end
 
@@ -49,16 +50,14 @@
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-                [Helper callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+                [Utils callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
-                NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"signUpToMapSegue" sender:nil];
+                [self setDefinesPresentationContext:YES];
+                [self performSegueWithIdentifier:signUpToAddCardSegue sender:nil];
             }
         }];
     } else {
-        [Helper callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
-        NSLog(@"Did not register user");
+        [Utils callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
     }
 }
 
@@ -87,14 +86,10 @@
 }
 
 
-/*
-#pragma mark - Navigation
+/* #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+} */
 
 @end
