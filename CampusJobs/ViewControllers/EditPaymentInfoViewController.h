@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EditPaymentDelegate
+@end
+
 @interface EditPaymentInfoViewController : UIViewController
+
+@property (strong, nonatomic) UIViewController <EditPaymentDelegate> *delegate;
 
 @end

@@ -31,6 +31,7 @@
 		F3543E09210BB3EA00CD3DE2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */; };
 		F3543E0A210BB3ED00CD3DE2 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */; };
 		F3543E0C210BC02F00CD3DE2 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
+		F3543E0D210BC66300CD3DE2 /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
@@ -629,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3543E0D210BC66300CD3DE2 /* MainProfileViewController.m in Sources */,
 				F3543E0C210BC02F00CD3DE2 /* SegueConstants.m in Sources */,
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
 				D38B1730210B973200EE5C8E /* ViewController.m in Sources */,

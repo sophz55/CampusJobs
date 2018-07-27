@@ -226,13 +226,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r01-ou-N8r">
-                                <rect key="frame" x="112" y="137" width="231" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIW-L9-NEa">
                                 <rect key="frame" x="32" y="182" width="311" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -290,15 +283,23 @@
                                     <action selector="didTapMessageButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="AWh-Ld-c6X"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r01-ou-N8r">
+                                <rect key="frame" x="112" y="137" width="231" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fec-Cr-NAq"/>
                     </view>
                     <navigationItem key="navigationItem" id="69i-eg-8sw">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="6BX-1y-qUV">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="6BX-1y-qUV">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CqU-Nr-n8U">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <rect key="frame" x="16" y="5" width="83" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <segue destination="phF-uU-A6b" kind="presentation" identifier="backToNearbyFeedSegue" id="9uG-9g-nTF"/>
@@ -336,7 +337,7 @@
             <objects>
                 <viewController id="gfv-l9-1Bb" customClass="ComposeNewPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7im-hN-70S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-Jl-qks">
@@ -439,7 +440,7 @@
             <objects>
                 <viewController id="ShG-hl-pRK" customClass="JobLocationMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzV-br-hDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
@@ -728,6 +729,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="psQ-Bz-5d0"/>
         <segue reference="G1s-oc-RkP"/>
-        <segue reference="aif-hz-NV1"/>
+        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,7 +14,7 @@
 #import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
 
-@interface PostDetailsViewController () <ComposePostDelegate>
+@interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
@@ -34,7 +34,8 @@
     self.user = [PFUser currentUser];
     self.userIsAuthor = [self.post.author.objectId isEqualToString:self.user.objectId];
     [self setDetailsPost:self.post];
-    [self setDefinesPresentationContext:YES];
+    
+    [self configureNavigatonBar];
     
     if (self.userIsAuthor || [self.parentVC isKindOfClass:[ConversationDetailViewController class]]) {
         [Utils hideButton:self.messageButton];
@@ -50,17 +51,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Custom Configurations
+#pragma mark - Delegate Methods
 
 - (void)reloadDetails {
     [self setDetailsPost:self.post];
 }
 
--(void) setDetailsPost:(Post *)post{
+#pragma mark - Custom Configurations
+
+- (void)setDetailsPost:(Post *)post{
     self.titleDetailsLabel.text=post.title;
     self.descriptionDetailsLabel.text=post.summary;
+    [self.descriptionDetailsLabel sizeToFit];
     self.userDetailsLabel.text=post.author.username;
     self.locationDetailsLabel.text=post.locationAddress;
+}
+
+- (void)configureNavigatonBar {
+    UILabel *navBarLabel = [[UILabel alloc] init];
+    if (self.userIsAuthor) {
+        navBarLabel.text = @"Your Posting";
+    } else {
+        navBarLabel.text = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
+    }
+    self.navigationItem.titleView = navBarLabel;
 }
 
 #pragma mark - IBAction
@@ -101,24 +115,20 @@
     [conversationsQuery includeKey: @"messages"];
     
     [conversationsQuery getFirstObjectInBackgroundWithBlock:^(NSObject *conversation, NSError*error){
-        if (error != nil) {
-            [Utils callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-        } else {
-            if (conversation) {
-                self.conversation = (Conversation *)conversation;
-                [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
-            }
-            // if there are no conversations with these users and this post, create one
-            else {
-                [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
-                    if (newConversation){
-                        self.conversation = (Conversation *)newConversation;
+        if (conversation) {
+            self.conversation = (Conversation *)conversation;
+            [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
+        } else if (error.code == 101) { // if there are no conversations with these users and this post, create one
+            [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
+                if (newConversation){
+                    self.conversation = (Conversation *)newConversation;
                         [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
-                    } else{
-                        [Utils callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-                    }
-                }];
-            }
+                } else {
+                    [Utils callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                }
+            }];
+        } else {
+            [Utils callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -130,6 +140,7 @@
     if ([segue.identifier isEqualToString:postDetailsToMessageSegue]) {
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
+        conversationDetailController.delegate = self;
         conversationDetailController.conversation = self.conversation;
         conversationDetailController.otherUser = self.post.author;
     } else if ([segue.identifier isEqualToString:postDetailsToMapSegue]) {

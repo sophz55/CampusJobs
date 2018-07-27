@@ -44,7 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     self.user = [PFUser currentUser];
-    
     self.messagesCollectionView.delegate = self;
     self.messagesCollectionView.dataSource = self;
     
@@ -62,6 +61,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Public Methods
+
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
     [self.messagesCollectionView reloadData];
@@ -69,12 +70,12 @@
     [self.refreshControl endRefreshing];
 }
 
+#pragma mark - Initial Configurations
+
 - (void)configureInitialView {
     [self configureRefreshControl];
     [self configureNavigatonBar];
-    
-    [self showByParent];
-    
+    [self showByDelegate];
     self.showingSuggestViewController = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -105,13 +106,13 @@
 
 #pragma mark - Configurations Based on State
 
-- (void)showByParent {
-    if ([self.presentingViewController isKindOfClass:[PostDetailsViewController class]]) {
+- (void)showByDelegate {
+    if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
+        self.backButton.title = @"Back to messages";
+        [Utils showBarButton:self.viewPostButton];
+    } else {
         self.backButton.title = @"Back to posting";
         [Utils hideBarButton:self.viewPostButton];
-    } else {
-        self.backButton.title = @"Back to messages";
-        [Utils showButton:self.viewPostButton];
     }
 }
 
