@@ -104,13 +104,13 @@
     card.cityStateZip = self.zipcodeField.text;
     
     if (![self.nameField.text isEqualToString:@""] && ![self.cardNumberField.text isEqualToString:@""] && ![self.expDateField.text isEqualToString:@""] && ![self.securityCodeField.text isEqualToString:@""] && ![self.addressLine1Field.text isEqualToString:@""] && ![self.zipcodeField.text isEqualToString:@""]){
-        [card saveInBackgroundWithBlock:^(BOOL savedCard, NSError *errorSavingCard) {
-            if (savedCard) {
+        [card saveInBackgroundWithBlock:^(BOOL didSaveCard, NSError *errorSavingCard) {
+            if (didSaveCard) {
                 if (!self.user[@"card"]) {
                     self.user[@"card"] = card;
                 }
-                [self.user saveInBackgroundWithBlock:^(BOOL savedUser, NSError *errorSavingUser) {
-                    if (savedUser) {
+                [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *errorSavingUser) {
+                    if (didSaveUser) {
                         if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
                             [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
                         } else {

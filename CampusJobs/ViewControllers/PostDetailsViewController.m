@@ -71,12 +71,12 @@
     
     [conversationsQuery includeKey: @"messages"];
     
-    [conversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError*error){
+    [conversationsQuery getFirstObjectInBackgroundWithBlock:^(NSObject *conversation, NSError*error){
         if (error != nil) {
             [Utils callAlertWithTitle:@"Could not open conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
-            if (conversations.count > 0) {
-                self.conversation = conversations[0];
+            if (conversation) {
+                self.conversation = (Conversation *)conversation;
                 [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
             }
             // if there are no conversations with these users and this post, create one
