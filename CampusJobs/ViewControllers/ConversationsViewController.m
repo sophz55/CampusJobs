@@ -10,6 +10,8 @@
 #import "ConversationTableViewCell.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
+#import "Utils.h"
+#import "SegueConstants.h"
 
 @interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -64,7 +66,7 @@
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
         if (error != nil) {
-            [Helper callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Utils callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
             self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];
@@ -114,8 +116,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"conversationsToDetailSegue"]) {
-        [self setDefinesPresentationContext:YES];
+    if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
         ConversationTableViewCell *cell = sender;
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];

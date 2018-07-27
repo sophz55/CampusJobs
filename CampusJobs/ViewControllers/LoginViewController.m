@@ -8,7 +8,8 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "Helper.h"
+#import "Utils.h"
+#import "SegueConstants.h"
 
 @interface LoginViewController ()
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
@@ -34,10 +35,10 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            [Helper callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+            [Utils callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
-            [self performSegueWithIdentifier:@"loginToMapSegue" sender:nil];
+            [self performSegueWithIdentifier:loginToFeedSegue sender:nil];
         }
     }];
 }

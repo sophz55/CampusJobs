@@ -7,20 +7,30 @@
 //
 
 #import "SuggestPriceViewController.h"
-#import "Helper.h"
+#import "Utils.h"
 #import "ConversationDetailViewController.h"
 
 @interface SuggestPriceViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *suggestedPriceTextField;
 
 @end
 
 @implementation SuggestPriceViewController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - IBAction
 
 - (IBAction)didTapCancelButton:(id)sender {
     self.suggestedPriceTextField.text = @"";
@@ -33,22 +43,16 @@
         [self.conversation addToConversationWithSystemMessageWithPrice:[self.suggestedPriceTextField.text intValue] withText:[NSString stringWithFormat:@"%@ has offered $%@.", [PFUser currentUser].username, self.suggestedPriceTextField.text] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 weakSelf.suggestedPriceTextField.text = @"";
-                ConversationDetailViewController *vc = (ConversationDetailViewController *)[weakSelf presentingViewController];
                 [weakSelf dismissViewControllerAnimated:YES completion: ^ {
-                    [vc reloadData];
+                    [weakSelf.delegate reloadData];
                 }];
             } else {
-                [Helper callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
         }];
     } else {
-        [Helper callAlertWithTitle:@"Couldn't send price" alertMessage:@"Cannot have empty price field" viewController:self];
+        [Utils callAlertWithTitle:@"Couldn't send price" alertMessage:@"Cannot have empty price field" viewController:self];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

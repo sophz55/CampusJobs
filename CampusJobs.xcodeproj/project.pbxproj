@@ -24,6 +24,12 @@
 		D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A982107E6D30042BD49 /* CoreData.framework */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
+		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
+		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
+		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
+		F31226A5210A8927004F4677 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
+		F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226A9210A995A004F4677 /* PaymentInfo.storyboard */; };
+		F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226AB210A995A004F4677 /* Storyboard.storyboard */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
@@ -40,8 +46,9 @@
 		F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BED20FD14A300C11CD0 /* Message.m */; };
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
-		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
+		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
+		FC29BF49210A913B00CB81DC /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
@@ -104,6 +111,16 @@
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPaymentInfoViewController.h; sourceTree = "<group>"; };
+		F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPaymentInfoViewController.m; sourceTree = "<group>"; };
+		F312269C210A535C004F4677 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		F312269D210A535C004F4677 /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		F312269F210A8582004F4677 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F31226A0210A8582004F4677 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		F31226A3210A8927004F4677 /* SegueConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegueConstants.h; sourceTree = "<group>"; };
+		F31226A4210A8927004F4677 /* SegueConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueConstants.m; sourceTree = "<group>"; };
+		F31226AA210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
+		F31226AC210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		F32251F420FEA772003E4C08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
 		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
@@ -134,10 +151,12 @@
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
-		F3B3947420FD451700379749 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
-		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
+		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
+		FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
+		FC29BF47210A913B00CB81DC /* MainProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainProfileViewController.h; sourceTree = "<group>"; };
+		FC29BF48210A913B00CB81DC /* MainProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainProfileViewController.m; sourceTree = "<group>"; };
 		FC5B61FC20FE9A8B00050EA7 /* NearbyPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostCell.h; sourceTree = "<group>"; };
 		FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostCell.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
@@ -306,8 +325,12 @@
 				F39F4BED20FD14A300C11CD0 /* Message.m */,
 				F39F4BEF20FD14C000C11CD0 /* Conversation.h */,
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
-				F3B3947420FD451700379749 /* Helper.h */,
-				F3B3947520FD451700379749 /* Helper.m */,
+				F312269C210A535C004F4677 /* Card.h */,
+				F312269D210A535C004F4677 /* Card.m */,
+				F312269F210A8582004F4677 /* Utils.h */,
+				F31226A0210A8582004F4677 /* Utils.m */,
+				F31226A3210A8927004F4677 /* SegueConstants.h */,
+				F31226A4210A8927004F4677 /* SegueConstants.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,30 +361,36 @@
 				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
 				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
 				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
-				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
-				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
+				D3E5A15820FD545800891964 /* LoginViewController.h */,
+				D3E5A15520FD545700891964 /* LoginViewController.m */,
+				D3E5A15620FD545700891964 /* SignUpViewController.h */,
+				D3E5A15720FD545800891964 /* SignUpViewController.m */,
+				FCD51ACD21092BCC002A5B2C /* JobLocationMapViewController.h */,
+				FCD51ACC21092BCC002A5B2C /* JobLocationMapViewController.m */,
+				FC8EA1A3210151890054C43D /* MapViewController.h */,
+				FC8EA1A4210151890054C43D /* MapViewController.m */,
+				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
+				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
 				FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */,
 				FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */,
 				FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */,
 				FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */,
 				FC6C7E3020FD47DF00034CC4 /* YourPostingsViewController.h */,
 				FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */,
+				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
+				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
 				FC6C7E3620FD51B600034CC4 /* PostDetailsViewController.h */,
 				FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */,
-				D3E5A15820FD545800891964 /* LoginViewController.h */,
-				D3E5A15520FD545700891964 /* LoginViewController.m */,
-				D3E5A15620FD545700891964 /* SignUpViewController.h */,
-				D3E5A15720FD545800891964 /* SignUpViewController.m */,
 				F338397D20FE9AA000364F86 /* ConversationsViewController.h */,
 				F338397E20FE9AA000364F86 /* ConversationsViewController.m */,
 				F359240420FFA8C20013FD61 /* ConversationDetailViewController.h */,
 				F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */,
-				FCD51ACD21092BCC002A5B2C /* JobLocationMapViewController.h */,
-				FCD51ACC21092BCC002A5B2C /* JobLocationMapViewController.m */,
-				FC8EA1A3210151890054C43D /* MapViewController.h */,
-				FC8EA1A4210151890054C43D /* MapViewController.m */,
 				F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */,
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
+				FC29BF47210A913B00CB81DC /* MainProfileViewController.h */,
+				FC29BF48210A913B00CB81DC /* MainProfileViewController.m */,
+				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
+				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -496,9 +525,10 @@
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
 				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
+				F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
+				F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
-				D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +635,7 @@
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
+				F312269E210A535C004F4677 /* Card.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
@@ -614,7 +645,9 @@
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
+				F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */,
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
+				F31226A1210A8582004F4677 /* Utils.m in Sources */,
 				FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
@@ -623,6 +656,7 @@
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				D38B172D210B971100EE5C8E /* TableViewCell.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
+				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
 				F3B3947620FD451700379749 /* Helper.m in Sources */,
@@ -663,6 +697,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F31226A9210A995A004F4677 /* PaymentInfo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F31226AA210A995A004F4677 /* Base */,
+			);
+			name = PaymentInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		F31226AB210A995A004F4677 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F31226AC210A995A004F4677 /* Base */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
 		F32251F320FEA772003E4C08 /* Chat.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -820,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szhengq.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -838,7 +888,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szhengq.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

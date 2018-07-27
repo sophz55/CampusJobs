@@ -9,6 +9,7 @@
 #import "ComposeNewPostViewController.h"
 #import "Post.h"
 #import "JobLocationMapViewController.h"
+#import "SegueConstants.h"
 
 @interface ComposeNewPostViewController ()
     
@@ -27,11 +28,11 @@
 }
     
 - (IBAction)didTapCancelButton:(id)sender {
-    [self performSegueWithIdentifier:@"cancelComposeSegue" sender:nil];
+    [self performSegueWithIdentifier:cancelComposeSegue sender:nil];
 }
     
 - (IBAction)didTapPostButton:(id)sender {
-    [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:self.savedLocation
+    [Post postJob:self.enteredTitle.text withSummary:self.enteredDescription.text withLocation:self.savedLocation withLocationAddress:self.savedLocationAddress
        withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
            if(succeeded){
                NSLog(@"Shared Successfully");
@@ -39,7 +40,7 @@
                NSLog(@"%@", error.localizedDescription);
            }
        }];
-    [self performSegueWithIdentifier:@"backToPersonalFeedSegue" sender:nil];
+    [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
 }
     
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
@@ -58,6 +59,7 @@
             //formats the location label
             self.locationAddressLabel.text= [NSString stringWithFormat:@" %@ %@, %@, %@, %@" ,placemark.subThoroughfare, placemark.thoroughfare, placemark.locality,placemark.administrativeArea,placemark.postalCode];
         }
+        self.savedLocationAddress=self.locationAddressLabel.text;
     }];
 }
     
@@ -66,7 +68,7 @@
     - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if([segue.identifier isEqualToString:@"composeToMapSegue"]){
+        if([segue.identifier isEqualToString:composePostToMapSegue]){
             JobLocationMapViewController * jobViewController=[segue destinationViewController];
             jobViewController.prevPost=self;
         }

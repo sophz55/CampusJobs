@@ -1,14 +1,14 @@
 //
-//  Helper.m
+//  Utils.m
 //  CampusJobs
 //
-//  Created by Sophia Zheng on 7/16/18.
+//  Created by Sophia Zheng on 7/26/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "Helper.h"
+#import "Utils.h"
 
-@implementation Helper
+@implementation Utils
 
 + (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
