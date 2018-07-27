@@ -15,6 +15,9 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPostTableView;
 @property (strong, nonatomic) NSArray * nearbyPostingsArray;
+@property (strong, nonatomic) PFUser * currentUser;
+@property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+@property (strong, nonatomic) NSNumber * userRadius;
 
 @end
 
@@ -30,11 +33,14 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
     self.nearbyPostTableView.rowHeight=75;
+    [self displayRadius];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 -(void)fetchNearbyPosts{
     PFQuery *query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
@@ -72,9 +78,16 @@
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
- #pragma mark - Navigation
- 
 
+- (void)displayRadius{
+    float floatRadius;
+    self.currentUser=[PFUser currentUser];
+    self.userRadius=self.currentUser[@"desiredRadius"];
+    floatRadius=[self.userRadius floatValue];
+    self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
+}
+
+ #pragma mark - Navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
@@ -87,7 +100,5 @@
          postDetailsViewController.post=singlePost;
      }
  }
-
-
 
 @end
