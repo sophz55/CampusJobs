@@ -82,8 +82,8 @@
          UITableViewCell * tappedCell=sender;
          NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
          Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-         NSLog(@"%@", singlePost);
-         PostDetailsViewController *postDetailsViewController=[segue destinationViewController];
+         UINavigationController *nearbyNavigationController = [segue destinationViewController];
+         PostDetailsViewController *postDetailsViewController=[nearbyNavigationController topViewController];
          postDetailsViewController.post=singlePost;
      }
  }

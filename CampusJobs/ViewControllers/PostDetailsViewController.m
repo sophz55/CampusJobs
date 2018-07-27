@@ -11,6 +11,7 @@
 #import "Conversation.h"
 #import "Utils.h"
 #import "SegueConstants.h"
+#import "MapDetailsViewController.h"
 
 @interface PostDetailsViewController ()
 
@@ -50,6 +51,7 @@
     self.titleDetailsLabel.text=post.title;
     self.descriptionDetailsLabel.text=post.summary;
     self.userDetailsLabel.text=post.author.username;
+    self.locationDetailsLabel.text=post.locationAddress;
 }
 
 - (void)findConversation {
@@ -107,7 +109,11 @@
         conversationDetailController.conversation = self.conversation;
         conversationDetailController.otherUser = self.post.author;
     }
+    else if([segue.identifier isEqualToString:@"detailsToMapSegue"]){
+        // UINavigationController *detailsNavigationController = [segue destinationViewController];
+        MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
+        mapDetailsViewController.post=self.post;
+    }
 }
-
 
 @end

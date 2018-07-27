@@ -11,7 +11,6 @@
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
 		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
-		D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B67A8321066CA50042BD49 /* Storyboard.storyboard */; };
 		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
 		D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */; };
 		D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A8E2107BF800042BD49 /* Accounts.framework */; };
@@ -23,11 +22,12 @@
 		D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9E2107F5390042BD49 /* CreditViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
-		F3122698210A4DF2004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */; };
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
 		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
 		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
 		F31226A5210A8927004F4677 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
+		F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226A9210A995A004F4677 /* PaymentInfo.storyboard */; };
+		F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226AB210A995A004F4677 /* Storyboard.storyboard */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
@@ -46,6 +46,7 @@
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
+		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
@@ -84,7 +85,6 @@
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
-		D3B67A8321066CA50042BD49 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		D3B67A8921067F5E0042BD49 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -106,7 +106,6 @@
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentInfo.storyboard; sourceTree = "<group>"; };
 		F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPaymentInfoViewController.h; sourceTree = "<group>"; };
 		F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPaymentInfoViewController.m; sourceTree = "<group>"; };
 		F312269C210A535C004F4677 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
@@ -115,6 +114,8 @@
 		F31226A0210A8582004F4677 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		F31226A3210A8927004F4677 /* SegueConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegueConstants.h; sourceTree = "<group>"; };
 		F31226A4210A8927004F4677 /* SegueConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueConstants.m; sourceTree = "<group>"; };
+		F31226AA210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
+		F31226AC210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		F32251F420FEA772003E4C08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
 		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
@@ -149,6 +150,8 @@
 		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
+		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
+		FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapDetailsViewController.m; sourceTree = "<group>"; };
 		FC5B61FC20FE9A8B00050EA7 /* NearbyPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostCell.h; sourceTree = "<group>"; };
 		FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostCell.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
 				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
 				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
+				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
+				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -383,8 +388,8 @@
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
-				D3B67A8321066CA50042BD49 /* Storyboard.storyboard */,
-				F3122697210A4DF2004F4677 /* PaymentInfo.storyboard */,
+				F31226A9210A995A004F4677 /* PaymentInfo.storyboard */,
+				F31226AB210A995A004F4677 /* Storyboard.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -506,11 +511,11 @@
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
 				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
+				F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
+				F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
-				D3B67A8421066CA50042BD49 /* Storyboard.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
-				F3122698210A4DF2004F4677 /* PaymentInfo.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +644,7 @@
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
+				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
 				F3B3947620FD451700379749 /* Helper.m in Sources */,
@@ -677,6 +683,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F31226A9210A995A004F4677 /* PaymentInfo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F31226AA210A995A004F4677 /* Base */,
+			);
+			name = PaymentInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		F31226AB210A995A004F4677 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F31226AC210A995A004F4677 /* Base */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
 		F32251F320FEA772003E4C08 /* Chat.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -834,7 +856,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szhengq.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -852,7 +874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szhengq.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

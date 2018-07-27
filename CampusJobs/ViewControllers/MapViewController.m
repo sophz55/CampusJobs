@@ -26,7 +26,6 @@
     self.locationManager.delegate = self;
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-    
     //must ask user permission to use their location
     if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
         [self.locationManager requestWhenInUseAuthorization];
@@ -34,15 +33,23 @@
     //set user location
     self.userLocation=self.locationManager.location;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 - (IBAction)didTapNextButton:(id)sender {
     [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
 }
+
+//Will only auto-zoom into user's location once
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation*)userLocation {
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
+    static dispatch_once_t useOnce;
+    dispatch_once(&useOnce, ^{
+        [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
+    });
 }
+
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(nonnull id<MKOverlay>)overlay{
     MKCircleRenderer * circleRenderer=[[MKCircleRenderer alloc]initWithOverlay:overlay];
     circleRenderer.strokeColor=[UIColor grayColor];
@@ -50,10 +57,12 @@
     circleRenderer.alpha=.5f;
     return circleRenderer;
 }
+
 - (IBAction)slideBarValueChanged:(id)sender {
     self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
 }
+
 - (void)createBoundaryWithRadius:(float)radius{
     [self.mapView removeOverlays: self.mapView.overlays];
     MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.userLocation.coordinate radius:(self.radiusSliderBar.value) * 1609.34];
@@ -64,6 +73,7 @@
     [self.mapView setRegion:adjustedRegion animated:YES];
     self.mapView.showsUserLocation = YES;
 }
+
 /*
  #pragma mark - Navigation
  
