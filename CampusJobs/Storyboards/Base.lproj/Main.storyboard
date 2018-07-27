@@ -566,13 +566,13 @@
         <!--Profile-->
         <scene sceneID="f6m-iU-2o6">
             <objects>
-                <viewController id="wdN-Nb-yf5" sceneMemberID="viewController">
+                <viewController id="wdN-Nb-yf5" customClass="MainProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RQW-dI-3kM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BP5-Gf-FoD">
-                                <rect key="frame" x="112" y="284" width="151" height="30"/>
+                                <rect key="frame" x="118" y="278" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit Personal Settings"/>
                                 <connections>
@@ -580,22 +580,68 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moT-Fg-V3J">
-                                <rect key="frame" x="101" y="388" width="172" height="30"/>
+                                <rect key="frame" x="107" y="326" width="172" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit Payment Information"/>
                                 <connections>
                                     <segue destination="wpf-cF-Ljr" kind="presentation" id="uCh-Nc-CGV"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-P0-lDi">
+                                <rect key="frame" x="146" y="31" width="83" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-ow-XrI">
+                                <rect key="frame" x="63" y="155" width="240" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVe-9a-sYI">
+                                <rect key="frame" x="88" y="184" width="198" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQv-8q-MGR">
+                                <rect key="frame" x="147" y="118" width="83" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <state key="normal" title="Edit Profile Picture"/>
+                                <connections>
+                                    <action selector="didTapEditProfilePicButton:" destination="wdN-Nb-yf5" eventType="touchUpInside" id="bKq-Xx-7Sn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EG-Wr-lL4">
+                                <rect key="frame" x="118" y="369" width="161" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Desired Radius"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bi-yH-seG">
+                                <rect key="frame" x="79" y="213" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fvg-NP-EGz"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="mXu-9U-mth"/>
+                    <connections>
+                        <outlet property="editProfPicButton" destination="mQv-8q-MGR" id="vok-yT-A6I"/>
+                        <outlet property="emailLabel" destination="9bi-yH-seG" id="wLp-qS-Du8"/>
+                        <outlet property="nameLabel" destination="UtC-ow-XrI" id="wuA-8q-gc2"/>
+                        <outlet property="profilePicture" destination="Olf-P0-lDi" id="rNz-Dy-PWl"/>
+                        <outlet property="usernameLabel" destination="NVe-9a-sYI" id="UuJ-H4-QIH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJH-iR-C3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4224" y="900"/>
+            <point key="canvasLocation" x="3769" y="913"/>
         </scene>
         <!--Storyboard-->
         <scene sceneID="4TF-wp-S7C">
