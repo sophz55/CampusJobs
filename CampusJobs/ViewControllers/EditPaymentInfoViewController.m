@@ -31,6 +31,8 @@
 
 @implementation EditPaymentInfoViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,17 +45,22 @@
     [self configureViewByParent];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Initial Configurations
+
 - (void)configureViewByParent {
     if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
-        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Debit or Credit Card Information", self.user.username];
+        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
         self.saveButton.titleLabel.text = @"Add Card";
-        [self.skipButton setEnabled:YES];
-        [self.skipButton setTintColor:nil];
+        [Utils showButton:self.skipButton];
     } else {
         self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
         self.saveButton.titleLabel.text = @"Update";
-        [self.skipButton setEnabled:NO];
-        [self.skipButton setTintColor:[UIColor clearColor]];
+        [Utils hideButton:self.skipButton];
     }
 }
 
@@ -71,6 +78,8 @@
         self.nameField.text = self.user[@"name"];
     }
 }
+
+#pragma mark - IBAction
 
 - (IBAction)didTapAway:(id)sender {
     [self.view endEditing:YES];
@@ -93,13 +102,13 @@
     card.cityStateZip = self.zipcodeField.text;
     
     if (![self.nameField.text isEqualToString:@""] && ![self.cardNumberField.text isEqualToString:@""] && ![self.expDateField.text isEqualToString:@""] && ![self.securityCodeField.text isEqualToString:@""] && ![self.addressLine1Field.text isEqualToString:@""] && ![self.zipcodeField.text isEqualToString:@""]){
-        [card saveInBackgroundWithBlock:^(BOOL savedCard, NSError *errorSavingCard) {
-            if (savedCard) {
+        [card saveInBackgroundWithBlock:^(BOOL didSaveCard, NSError *errorSavingCard) {
+            if (didSaveCard) {
                 if (!self.user[@"card"]) {
                     self.user[@"card"] = card;
                 }
-                [self.user saveInBackgroundWithBlock:^(BOOL savedUser, NSError *errorSavingUser) {
-                    if (savedUser) {
+                [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *errorSavingUser) {
+                    if (didSaveUser) {
                         if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
                             [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
                         } else {
@@ -119,16 +128,11 @@
 }
 
 - (IBAction)didTapSkipButton:(id)sender {
-    
+    [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

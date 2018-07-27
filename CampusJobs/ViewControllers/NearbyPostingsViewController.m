@@ -42,16 +42,17 @@
 }
 
 -(void)fetchNearbyPosts{
-    PFQuery *query=[PFQuery queryWithClassName:@"Post"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
     [query includeKey:@"summary"];
     [query includeKey:@"location"];
     [query includeKey:@"postStatus"];
+    [query whereKey:@"postStatus" equalTo:@0]; // postStatus is enum type status with 0 = OPEN
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
-        if(posts!=nil){
-            self.nearbyPostingsArray=posts;
+        if (posts != nil) {
+            self.nearbyPostingsArray = posts;
             [self.nearbyPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -96,7 +97,7 @@
          NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
          Post * singlePost=self.nearbyPostingsArray[indexPath.row];
          UINavigationController *nearbyNavigationController = [segue destinationViewController];
-         PostDetailsViewController *postDetailsViewController=[nearbyNavigationController topViewController];
+         PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
          postDetailsViewController.post=singlePost;
      }
  }

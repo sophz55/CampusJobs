@@ -87,7 +87,7 @@
         NSIndexPath *indexPath = [self.previousPostTableView indexPathForCell:tappedCell];
         Post *post = self.previousPostsArray[indexPath.row];
         UINavigationController * postDetailsNavController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsController = [postDetailsNavController topViewController];
+        PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavController topViewController];
         postDetailsController.post = post;
     }
 }

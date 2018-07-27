@@ -35,4 +35,24 @@
     [UIView commitAnimations];
 }
 
++ (void)showButton:(UIButton *)button {
+    [button setEnabled:YES];
+    [button setTintColor:nil];
+}
+
++ (void)hideButton:(UIButton *)button {
+    [button setEnabled:NO];
+    [button setTintColor:[UIColor clearColor]];
+}
+
++ (void)showBarButton:(UIBarButtonItem *)button {
+    [button setEnabled:YES];
+    [button setTintColor:nil];
+}
+
++ (void)hideBarButton:(UIBarButtonItem *)button {
+    [button setEnabled:NO];
+    [button setTintColor:[UIColor clearColor]];
+}
+
 @end

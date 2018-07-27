@@ -10,27 +10,27 @@
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
-		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
+		D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31566C5210A86C900E5C414 /* HomeViewController.m */; };
+		D38B172A210B96F200EE5C8E /* AddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B1729210B96F200EE5C8E /* AddressTableViewController.m */; };
+		D38B172D210B971100EE5C8E /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B172C210B971100EE5C8E /* TableViewCell.m */; };
+		D38B1730210B973200EE5C8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B172F210B973200EE5C8E /* ViewController.m */; };
 		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
 		D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */; };
 		D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A8E2107BF800042BD49 /* Accounts.framework */; };
 		D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A902107BFC50042BD49 /* Social.framework */; };
 		D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A932107C3D20042BD49 /* SearchViewController.m */; };
-		D3B67A972107E6210042BD49 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A962107E6210042BD49 /* TableViewController.m */; };
 		D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A982107E6D30042BD49 /* CoreData.framework */; };
-		D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9B2107F3570042BD49 /* AddViewController.m */; };
-		D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A9E2107F5390042BD49 /* CreditViewController.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
 		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
 		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
-		F31226A5210A8927004F4677 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
-		F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226A9210A995A004F4677 /* PaymentInfo.storyboard */; };
-		F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226AB210A995A004F4677 /* Storyboard.storyboard */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
+		F3543E09210BB3EA00CD3DE2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */; };
+		F3543E0A210BB3ED00CD3DE2 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */; };
+		F3543E0C210BC02F00CD3DE2 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
 		F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
@@ -44,10 +44,8 @@
 		F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BED20FD14A300C11CD0 /* Message.m */; };
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
-		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
-		FC29BF49210A913B00CB81DC /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
@@ -85,7 +83,15 @@
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
+		D31566C4210A86C900E5C414 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D31566C5210A86C900E5C414 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		D38B1728210B96F200EE5C8E /* AddressTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTableViewController.h; sourceTree = "<group>"; };
+		D38B1729210B96F200EE5C8E /* AddressTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewController.m; sourceTree = "<group>"; };
+		D38B172B210B971100EE5C8E /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		D38B172C210B971100EE5C8E /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		D38B172E210B973200EE5C8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D38B172F210B973200EE5C8E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		D3B67A8921067F5E0042BD49 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -94,13 +100,7 @@
 		D3B67A902107BFC50042BD49 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3B67A922107C3D20042BD49 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		D3B67A932107C3D20042BD49 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		D3B67A952107E6210042BD49 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		D3B67A962107E6210042BD49 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		D3B67A982107E6D30042BD49 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D3B67A9A2107F3570042BD49 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
-		D3B67A9B2107F3570042BD49 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
-		D3B67A9D2107F5390042BD49 /* CreditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
-		D3B67A9E2107F5390042BD49 /* CreditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -145,10 +145,10 @@
 		F39F4BED20FD14A300C11CD0 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		F39F4BEF20FD14C000C11CD0 /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		F39F8E2A210BB35500DC2C8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		F39F8E2D210BB36300DC2C8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
-		F3B3947420FD451700379749 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
-		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
@@ -235,6 +235,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D38B1727210B96B900EE5C8E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				D38B1728210B96F200EE5C8E /* AddressTableViewController.h */,
+				D38B1729210B96F200EE5C8E /* AddressTableViewController.m */,
+				D38B172B210B971100EE5C8E /* TableViewCell.h */,
+				D38B172C210B971100EE5C8E /* TableViewCell.m */,
+				D38B172E210B973200EE5C8E /* ViewController.h */,
+				D38B172F210B973200EE5C8E /* ViewController.m */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		D38F03AD2101643500EE35D1 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,12 +323,10 @@
 				F39F4BED20FD14A300C11CD0 /* Message.m */,
 				F39F4BEF20FD14C000C11CD0 /* Conversation.h */,
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
-				F312269F210A8582004F4677 /* Utils.h */,
-				F31226A0210A8582004F4677 /* Utils.m */,
-				F3B3947420FD451700379749 /* Helper.h */,
-				F3B3947520FD451700379749 /* Helper.m */,
 				F312269C210A535C004F4677 /* Card.h */,
 				F312269D210A535C004F4677 /* Card.m */,
+				F312269F210A8582004F4677 /* Utils.h */,
+				F31226A0210A8582004F4677 /* Utils.m */,
 				F31226A3210A8927004F4677 /* SegueConstants.h */,
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
 			);
@@ -340,48 +351,44 @@
 		FC6C7E2C20FD271400034CC4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D3B67A952107E6210042BD49 /* TableViewController.h */,
-				D3B67A962107E6210042BD49 /* TableViewController.m */,
-				D3B67A9A2107F3570042BD49 /* AddViewController.h */,
-				D3B67A9B2107F3570042BD49 /* AddViewController.m */,
-				D3B67A9D2107F5390042BD49 /* CreditViewController.h */,
-				D3B67A9E2107F5390042BD49 /* CreditViewController.m */,
+				D31566C4210A86C900E5C414 /* HomeViewController.h */,
+				D31566C5210A86C900E5C414 /* HomeViewController.m */,
 				D3B67A922107C3D20042BD49 /* SearchViewController.h */,
 				D3B67A932107C3D20042BD49 /* SearchViewController.m */,
 				D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */,
 				D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */,
 				D3B67A8821067F5E0042BD49 /* ProfileViewController.h */,
 				D3B67A8921067F5E0042BD49 /* ProfileViewController.m */,
-				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
-				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
+				D3E5A15820FD545800891964 /* LoginViewController.h */,
+				D3E5A15520FD545700891964 /* LoginViewController.m */,
+				D3E5A15620FD545700891964 /* SignUpViewController.h */,
+				D3E5A15720FD545800891964 /* SignUpViewController.m */,
+				FCD51ACD21092BCC002A5B2C /* JobLocationMapViewController.h */,
+				FCD51ACC21092BCC002A5B2C /* JobLocationMapViewController.m */,
+				FC8EA1A3210151890054C43D /* MapViewController.h */,
+				FC8EA1A4210151890054C43D /* MapViewController.m */,
+				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
+				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
 				FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */,
 				FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */,
 				FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */,
 				FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */,
 				FC6C7E3020FD47DF00034CC4 /* YourPostingsViewController.h */,
 				FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */,
+				FC6C7E3320FD4D5600034CC4 /* ComposeNewPostViewController.h */,
+				FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */,
 				FC6C7E3620FD51B600034CC4 /* PostDetailsViewController.h */,
 				FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */,
-				D3E5A15820FD545800891964 /* LoginViewController.h */,
-				D3E5A15520FD545700891964 /* LoginViewController.m */,
-				D3E5A15620FD545700891964 /* SignUpViewController.h */,
-				D3E5A15720FD545800891964 /* SignUpViewController.m */,
 				F338397D20FE9AA000364F86 /* ConversationsViewController.h */,
 				F338397E20FE9AA000364F86 /* ConversationsViewController.m */,
 				F359240420FFA8C20013FD61 /* ConversationDetailViewController.h */,
 				F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */,
-				FCD51ACD21092BCC002A5B2C /* JobLocationMapViewController.h */,
-				FCD51ACC21092BCC002A5B2C /* JobLocationMapViewController.m */,
-				FC8EA1A3210151890054C43D /* MapViewController.h */,
-				FC8EA1A4210151890054C43D /* MapViewController.m */,
 				F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */,
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
-				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
-				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
-				FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */,
-				FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */,
 				FC29BF47210A913B00CB81DC /* MainProfileViewController.h */,
 				FC29BF48210A913B00CB81DC /* MainProfileViewController.m */,
+				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
+				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -393,8 +400,9 @@
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
-				F31226A9210A995A004F4677 /* PaymentInfo.storyboard */,
-				F31226AB210A995A004F4677 /* Storyboard.storyboard */,
+				F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */,
+				F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */,
+				D38B1727210B96B900EE5C8E /* New Group */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -402,6 +410,8 @@
 		FC8EA1AB2102578F0054C43D /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				F31226A9210A995A004F4677 /* PaymentInfo.storyboard */,
+				F31226AB210A995A004F4677 /* Storyboard.storyboard */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -513,12 +523,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3543E0A210BB3ED00CD3DE2 /* PaymentInfo.storyboard in Resources */,
+				F3543E09210BB3EA00CD3DE2 /* Storyboard.storyboard in Resources */,
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
-				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
-				F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
-				F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
@@ -620,8 +629,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3543E0C210BC02F00CD3DE2 /* SegueConstants.m in Sources */,
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
-				F31226A5210A8927004F4677 /* SegueConstants.m in Sources */,
+				D38B1730210B973200EE5C8E /* ViewController.m in Sources */,
 				FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */,
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
@@ -630,11 +640,7 @@
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-				D3B67A972107E6210042BD49 /* TableViewController.m in Sources */,
 				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
-				FC29BF49210A913B00CB81DC /* MainProfileViewController.m in Sources */,
-				D3B67A9C2107F3570042BD49 /* AddViewController.m in Sources */,
-				D3B67A9F2107F5390042BD49 /* CreditViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
@@ -649,11 +655,13 @@
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
+				D38B172D210B971100EE5C8E /* TableViewCell.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
 				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
-				F3B3947620FD451700379749 /* Helper.m in Sources */,
+				D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */,
+				D38B172A210B96F200EE5C8E /* AddressTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,6 +743,22 @@
 				F39E66FA20EFE12900381BE7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F39F8E2A210BB35500DC2C8A /* Base */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+		F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F39F8E2D210BB36300DC2C8A /* Base */,
+			);
+			name = PaymentInfo.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -862,7 +886,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+
 				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -880,7 +906,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+
 				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

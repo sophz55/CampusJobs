@@ -15,4 +15,11 @@
 
 + (void)animateView:(UIView *)view withDistance:(CGFloat)distance up:(BOOL)up;
 
++ (void)showButton:(UIButton *)button;
++ (void)hideButton:(UIButton *)button;
+
++ (void)showBarButton:(UIBarButtonItem *)button;
++ (void)hideBarButton:(UIBarButtonItem *)button;
+
+
 @end

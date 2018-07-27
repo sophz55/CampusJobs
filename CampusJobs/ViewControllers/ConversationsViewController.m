@@ -119,7 +119,7 @@
     if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
         ConversationTableViewCell *cell = sender;
         UINavigationController *conversationNavigationController = [segue destinationViewController];
-        ConversationDetailViewController *conversationDetailController = [conversationNavigationController topViewController];
+        ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
     }

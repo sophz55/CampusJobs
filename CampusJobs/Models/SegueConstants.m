@@ -19,13 +19,14 @@ NSString *const backToProfileSegue = @"backToProfileSegue";
 
 #pragma mark - feed segues
 NSString *const feedToLogoutSegue = @"logoutSegue";
-NSString *const yourPostingsToComposePostSegue = @"composeNewPostSegue";
 NSString *const nearbyPostingsToPostDetailsSegue = @"cellToPostDetailsSegue";
-NSString *const postDetailsToMessageSegue = @"chatSegue";
+NSString *const yourPostingsToComposePostSegue = @"composeNewPostSegue";
 NSString *const yourPostingsToPostDetailsSegue = @"yourPostingsToDetailSegue";
+NSString *const postDetailsToMessageSegue = @"chatSegue";
+NSString *const postDetailsToEditPostSegue = @"postDetailsToEditPostSegue";
+NSString *const postDetailsToMapSegue = @"detailsToMapSegue";
 
 #pragma mark - compose post segues
-NSString *const cancelComposeSegue = @"cancelComposeSegue";
 NSString *const composePostToFeedSegue = @"backToPersonalFeedSegue";
 NSString *const composePostToMapSegue = @"composeToMapSegue";
 

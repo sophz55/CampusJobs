@@ -15,27 +15,31 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
-@property (weak, nonatomic) IBOutlet UITextField *composeMessageTextField;
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, UITextFieldDelegate>
+
 @property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
+@property (assign, nonatomic) BOOL showingSuggestViewController;
+@property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
+@property (weak, nonatomic) IBOutlet UITextField *composeMessageTextField;
 @property (weak, nonatomic) IBOutlet UIButton *suggestPriceButton;
 @property (weak, nonatomic) IBOutlet UIView *inProgressOptionsView;
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewPostButton;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *composeMessageView;
 @property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
-@property (assign, nonatomic) BOOL showingSuggestViewController;
+
 @end
 
 @implementation ConversationDetailViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];    
@@ -51,6 +55,18 @@
     
     [self configureInitialView];
     [self reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadData {
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
+    [self.messagesCollectionView reloadData];
+    [self configureOptions];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)configureInitialView {
@@ -70,22 +86,6 @@
     self.bottomView.frame = CGRectMake(horizontalViewInset, self.view.frame.size.height - bottomViewSize.height - verticalViewInset, bottomViewSize.width, bottomViewSize.height);
 }
 
-- (void)showByParent {
-    if ([self.presentingViewController isKindOfClass:[PostDetailsViewController class]]) {
-        self.backButton.title = @"Back to posting";
-        [self.viewPostButton setEnabled:NO];
-        [self.viewPostButton setTintColor:[UIColor clearColor]];
-    } else {
-        self.backButton.title = @"Back to messages";
-        [self.viewPostButton setEnabled:YES];
-        [self.viewPostButton setTintColor:nil];
-    }
-}
-
-- (IBAction)didTapViewPostButton:(id)sender {
-    [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
-}
-
 - (void)configureRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
@@ -103,17 +103,22 @@
     self.navigationItem.titleView = otherUserLabel;
 }
 
-- (void)reloadData {
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    [self.messagesCollectionView reloadData];
-    [self configureOptions];
-    [self.refreshControl endRefreshing];
+#pragma mark - Configurations Based on State
+
+- (void)showByParent {
+    if ([self.presentingViewController isKindOfClass:[PostDetailsViewController class]]) {
+        self.backButton.title = @"Back to posting";
+        [Utils hideBarButton:self.viewPostButton];
+    } else {
+        self.backButton.title = @"Back to messages";
+        [Utils showButton:self.viewPostButton];
+    }
 }
 
 - (void)configureOptions {
     // show "suggest price" button or "job in progress" bar
     if (self.conversation.post.postStatus == OPEN) {
-        [self configureOPENAppearance];
+        [self configureOpenAppearance];
     } else if (self.conversation.post.postStatus == IN_PROGRESS){
         if ([self.conversation.post.taker.objectId isEqualToString:[PFUser currentUser].objectId]) {
             // if the current user is the post's taker
@@ -135,7 +140,7 @@
     }
 }
 
-- (void)configureOPENAppearance {
+- (void)configureOpenAppearance {
     [self configureBottomViewShowingSuggestPriceButton:YES];
     
     [self.inProgressOptionsView setHidden:YES];
@@ -216,6 +221,93 @@
     self.composeMessageTextField.frame = CGRectMake(0, 0, self.composeMessageView.frame.size.width - sendMessageButtonWidth - 4, self.composeMessageView.frame.size.height);
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification {
+    if (!self.showingSuggestViewController) {
+        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    if (!self.showingSuggestViewController) {
+        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+    }
+}
+
+#pragma mark - IBAction
+
+- (IBAction)didTapAway:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (IBAction)didTapBackButton:(id)sender {
+    if (self.conversation.messages.count == 0) {
+        [self.conversation deleteInBackgroundWithBlock:^(BOOL didDeleteConversation, NSError *error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (IBAction)didTapViewPostButton:(id)sender {
+    [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
+}
+
+- (IBAction)didTapSendMessage:(id)sender {
+    if (![self.composeMessageTextField.text isEqualToString:@""]) {
+        __unsafe_unretained typeof(self) weakSelf = self;
+        [self.conversation addToConversationWithMessageText:self.composeMessageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
+            if (didSendMessage) {
+                weakSelf.composeMessageTextField.text = @"";
+                [weakSelf.messagesCollectionView reloadData];
+            } else {
+                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+            }
+        }];
+    }
+}
+
+- (IBAction)didTapSuggestPriceButton:(id)sender {
+    self.showingSuggestViewController = YES;
+    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+}
+
+- (IBAction)didTapCancelJobButton:(id)sender {
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [self.conversation.post cancelJobWithCompletion:^(BOOL didCancelJob, NSError *error) {
+        if (didCancelJob) {
+            [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
+                if (didSendMessage) {
+                    [weakSelf reloadData];
+                } else {
+                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
+                }
+            }];
+        } else {
+            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+        }
+    }];
+}
+
+- (IBAction)didTapJobCompletedButton:(id)sender {
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [self.conversation.post completeJobWithCompletion:^(BOOL didUpdateJob, NSError *error) {
+        if (didUpdateJob) {
+            [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
+                if (didSendMessage) {
+                    [weakSelf reloadData];
+                } else {
+                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
+                }
+            }];
+        } else {
+            [Utils callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+        }
+    }];
+}
+
+#pragma mark - UICollectionViewDataSource
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.conversation.messages.count;
 }
@@ -238,7 +330,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = self.conversation.messages[indexPath.item];
     NSString *messageText = message[@"text"];
-
+    
     // estimate frame size based on message text
     CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
@@ -249,93 +341,8 @@
     if (self.conversation.post.postStatus == OPEN && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         buttonsStackViewAllowance = 40;
     }
-
+    
     return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + buttonsStackViewAllowance);
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-    if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
-    }
-}
-
-- (IBAction)didTapSuggestPriceButton:(id)sender {
-    [self setDefinesPresentationContext:YES];
-    self.showingSuggestViewController = YES;
-    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
-}
-
-- (IBAction)didTapBackButton:(id)sender {
-    if (self.conversation.messages.count == 0) {
-        [self.conversation deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-    } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-- (IBAction)didTapAway:(id)sender {
-    [self.view endEditing:YES];
-}
-
-- (IBAction)didTapSendMessage:(id)sender {
-    if (![self.composeMessageTextField.text isEqualToString:@""]) {
-        __unsafe_unretained typeof(self) weakSelf = self;
-        [self.conversation addToConversationWithMessageText:self.composeMessageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                weakSelf.composeMessageTextField.text = @"";
-                [weakSelf.messagesCollectionView reloadData];
-            } else {
-                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
-            }
-        }];
-    }
-}
-
-- (IBAction)didTapCancelJobButton:(id)sender {
-    [self.conversation.post cancelJobWithCompletion:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            __unsafe_unretained typeof(self) weakSelf = self;
-            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL saved, NSError *error) {
-                if (saved) {
-                    [weakSelf reloadData];
-                } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
-                }
-            }];
-        } else {
-            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-        }
-    }];
-}
-
-- (IBAction)didTapJobCompletedButton:(id)sender {
-    [self.conversation.post completeJobWithCompletion:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            __unsafe_unretained typeof(self) weakSelf = self;
-            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:self.otherUser withCompletion:^(BOOL saved, NSError *error) {
-                if (saved) {
-                    [weakSelf reloadData];
-                } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
-                }
-            }];
-        } else {
-            [Utils callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-        }
-    }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Navigation
@@ -344,6 +351,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:messagesToSuggestPriceSegue]) {
         SuggestPriceViewController *suggestPriceController = [segue destinationViewController];
+        suggestPriceController.delegate = self;
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
