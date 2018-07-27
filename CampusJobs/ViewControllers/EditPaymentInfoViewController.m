@@ -31,6 +31,8 @@
 
 @implementation EditPaymentInfoViewController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,9 +45,16 @@
     [self configureViewByParent];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Initial Configurations
+
 - (void)configureViewByParent {
     if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
-        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Debit or Credit Card Information", self.user.username];
+        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
         self.saveButton.titleLabel.text = @"Add Card";
         [self.skipButton setEnabled:YES];
         [self.skipButton setTintColor:nil];
@@ -71,6 +80,8 @@
         self.nameField.text = self.user[@"name"];
     }
 }
+
+#pragma mark - IBAction
 
 - (IBAction)didTapAway:(id)sender {
     [self.view endEditing:YES];
@@ -119,16 +130,11 @@
 }
 
 - (IBAction)didTapSkipButton:(id)sender {
-    
+    [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

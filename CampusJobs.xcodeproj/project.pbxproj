@@ -44,7 +44,6 @@
 		F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BED20FD14A300C11CD0 /* Message.m */; };
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
-		F3B3947620FD451700379749 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B3947520FD451700379749 /* Helper.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
@@ -146,8 +145,6 @@
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
-		F3B3947420FD451700379749 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
-		F3B3947520FD451700379749 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
@@ -307,12 +304,10 @@
 				F39F4BED20FD14A300C11CD0 /* Message.m */,
 				F39F4BEF20FD14C000C11CD0 /* Conversation.h */,
 				F39F4BF020FD14C000C11CD0 /* Conversation.m */,
-				F312269F210A8582004F4677 /* Utils.h */,
-				F31226A0210A8582004F4677 /* Utils.m */,
-				F3B3947420FD451700379749 /* Helper.h */,
-				F3B3947520FD451700379749 /* Helper.m */,
 				F312269C210A535C004F4677 /* Card.h */,
 				F312269D210A535C004F4677 /* Card.m */,
+				F312269F210A8582004F4677 /* Utils.h */,
+				F31226A0210A8582004F4677 /* Utils.m */,
 				F31226A3210A8927004F4677 /* SegueConstants.h */,
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
 			);
@@ -647,7 +642,6 @@
 				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
 				D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */,
-				F3B3947620FD451700379749 /* Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
