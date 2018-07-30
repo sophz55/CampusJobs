@@ -15,7 +15,7 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, UITextFieldDelegate>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -49,8 +49,6 @@
     
     self.maxCellWidth = self.messagesCollectionView.frame.size.width * .6; // max message text view width
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
-    
-    self.composeMessageTextField.delegate = self;
     
     [self configureInitialView];
     [self reloadData];
@@ -358,7 +356,7 @@
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
         PostDetailsViewController *postDetailsVC = [segue destinationViewController];
         postDetailsVC.post = self.conversation.post;
-        postDetailsVC.parentVC = self;
+        postDetailsVC.delegate = self;
     }
 }
 

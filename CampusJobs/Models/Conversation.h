@@ -27,4 +27,6 @@ typedef void (^CompletionBlock)(PFObject *result, NSError *error);
 
 - (void)addToConversationWithSystemMessageWithPrice:(int)price withText:(NSString *)text withSender:(PFUser *)sender withReceiver:(PFUser *)receiver withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
++ (void)deleteAllWithPost:(Post *)post withCompletion:(PFBooleanResultBlock _Nullable)completion;
+
 @end

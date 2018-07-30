@@ -17,7 +17,10 @@ Required
 - [ ] SN User should be able to search postings via search bar
 - [x] SZ User should be able to bid prices
 - [x] SZ User should be able to accept prices
-- [ ] SZ User should be able to indicate when job is done
+- [x] SZ User should be able to indicate when job is done
+- [x] SZ User should be able to add credit card
+- [x] SZ User can edit posts
+- [x] SZ User can delete posts
 - [ ] SK User should be able to specify map radius
 - [ ] SK User should be able to see a “Your Postings” feed
 - [X] SK User should be able to add a location to new posts
@@ -25,11 +28,9 @@ Required
 Optional
 
 - [ ] SK User should be able to see map view of all nearby jobs
-- [ ] User can edit/delete posts
 - [ ] User should be able to give star ratings after job is done
 - [ ] User should be able to reset password
 - [ ] User should be able to sign up with facebook
 - [ ] User should be able to add venmo
-- [ ] User should be able to add credit card
 - [ ] User should be able to report abuse
 

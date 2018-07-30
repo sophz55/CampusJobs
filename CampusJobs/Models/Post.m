@@ -7,6 +7,8 @@
 //
 
 #import "Post.h"
+#import "Conversation.h"
+#import "Utils.h"
 
 @implementation Post
 
@@ -19,6 +21,7 @@
 @dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is closed
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
+@dynamic locationAddress;
 
 // conforming to subclassing protocol
 + (nonnull NSString *) parseClassName{
@@ -78,5 +81,15 @@
     
     // TO DO: complete payment
 }
+
+- (void)deletePostAndConversationsWithCompletion:(PFBooleanResultBlock _Nullable)completion {
+    [Conversation deleteAllWithPost:self withCompletion:^(BOOL didDeleteConversations, NSError *error){
+        if (didDeleteConversations) {
+            [self deleteInBackgroundWithBlock:completion];
+        }
+    }];
+}
+
+
 
 @end
