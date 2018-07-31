@@ -38,8 +38,13 @@
     //Calculate distance and set distance label in cell
     CLLocationDistance distance = [userLocation getDistanceFrom:postLocation];
     double miles=distance/1609.34;
-    NSNumber * doubleNum=[NSNumber numberWithDouble:miles];
-    self.postDistanceLabel.text=[doubleNum stringValue];
+    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.2f",miles];
+    
+    //Format the date (date the post was posted on)
+    NSDateFormatter * formatter= [[NSDateFormatter alloc] init];
+    formatter.dateFormat= @"MM/dd/yyyy";
+    NSDate * createdAt= post.createdAt;
+    self.postDateLabel.text= [formatter stringFromDate: createdAt];
     
 }
 

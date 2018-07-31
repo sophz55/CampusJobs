@@ -53,7 +53,8 @@
     [query whereKey:@"postStatus" equalTo:@0]; // postStatus is enum type status with 0 = OPEN
     
     //filter based on the radius selected by the user (based on user radius and post location)
-    [query whereKey:@"location" nearGeoPoint:(currentLocation) withinMiles:[self.userRadius doubleValue]];
+    //***Commented out because it is currently causing a network error***
+    //  [query whereKey:@"location" nearGeoPoint:(currentLocation) withinMiles:[self.userRadius doubleValue]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
             self.nearbyPostingsArray = posts;
@@ -85,7 +86,6 @@
 }
 
 - (void)displayRadius{
-    //self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     float floatRadius;
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[@"desiredRadius"];
