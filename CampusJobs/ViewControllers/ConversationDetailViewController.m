@@ -63,8 +63,8 @@
 
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    [self.messagesCollectionView reloadData];
     [self configureOptions];
+    [self.messagesCollectionView reloadData];
     [self.refreshControl endRefreshing];
 }
 

@@ -28,17 +28,17 @@
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
 
-    // create Yes action
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:yesTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [helper confirmationAlertHandler:YES];
-    }];
-    [alert addAction:yesAction];
-
     // create No action
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:noTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [helper confirmationAlertHandler:NO];
     }];
     [alert addAction:noAction];
+    
+    // create Yes action
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:yesTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [helper confirmationAlertHandler:YES];
+    }];
+    [alert addAction:yesAction];
 
     [controller presentViewController:alert animated:YES completion:^{}];
 }

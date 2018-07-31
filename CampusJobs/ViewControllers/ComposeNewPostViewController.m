@@ -9,6 +9,7 @@
 #import "ComposeNewPostViewController.h"
 #import "Post.h"
 #import "JobLocationMapViewController.h"
+#import "FeedViewController.h"
 #import "SegueConstants.h"
 #import "Utils.h"
 
@@ -116,7 +117,7 @@
 #pragma mark - IBAction
 
 - (IBAction)didTapCancelButton:(id)sender {
-    [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
     
 - (IBAction)didTapPostButton:(id)sender {

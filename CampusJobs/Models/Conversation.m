@@ -64,11 +64,9 @@
         if (conversations) {
             for (Conversation *conversation in conversations) {
                 [Message deleteAllInBackground:conversation.messages block:^(BOOL didDeleteMessages, NSError *error) {
-                    if (didDeleteMessages) {
-                        [conversation deleteInBackgroundWithBlock:completion];
-                    }
                 }];
             }
+            [Conversation deleteAllInBackground:conversations block:completion];
         }
     }];
 }

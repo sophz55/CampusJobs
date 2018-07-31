@@ -11,6 +11,9 @@
 #import "Post.h"
 
 @protocol PostDetailsDelegate
+
+- (void)reloadData;
+
 @end
 
 @interface PostDetailsViewController : UIViewController

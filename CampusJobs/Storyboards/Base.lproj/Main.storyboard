@@ -216,7 +216,7 @@
             <objects>
                 <viewController storyboardIdentifier="postDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWq-Xd-JjF" customClass="PostDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ogp-JF-Y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-fv-Tjg">
@@ -267,15 +267,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpY-Uq-maF">
-                                <rect key="frame" x="113" y="459" width="149" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
-                                <state key="normal" title="Message"/>
-                                <connections>
-                                    <action selector="didTapMessageButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="AWh-Ld-c6X"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r01-ou-N8r">
                                 <rect key="frame" x="32" y="137" width="311" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -284,12 +275,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYg-NL-uyE" userLabel="Delete Post">
-                                <rect key="frame" x="118" y="413" width="140" height="48"/>
+                                <rect key="frame" x="117" y="459" width="140" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Delete Post"/>
                                 <connections>
                                     <action selector="didTapDeleteButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="hmL-oq-yoP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpY-Uq-maF">
+                                <rect key="frame" x="113" y="473" width="149" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <state key="normal" title="Message"/>
+                                <connections>
+                                    <action selector="didTapMessageButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="AWh-Ld-c6X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -340,7 +340,7 @@
             <objects>
                 <viewController id="gfv-l9-1Bb" customClass="ComposeNewPostViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7im-hN-70S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-Jl-qks">
@@ -443,7 +443,7 @@
             <objects>
                 <viewController id="ShG-hl-pRK" customClass="JobLocationMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzV-br-hDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
@@ -770,7 +770,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="psQ-Bz-5d0"/>
+        <segue reference="XRD-2y-TCp"/>
         <segue reference="G1s-oc-RkP"/>
         <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>

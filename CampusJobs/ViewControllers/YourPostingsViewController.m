@@ -10,7 +10,7 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 
-@interface YourPostingsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
 @property (strong, nonatomic) NSArray * previousPostsArray;
 
@@ -23,7 +23,7 @@
     self.previousPostTableView.delegate=self;
     self.previousPostTableView.dataSource=self;
     self.previousPostsArray=[[NSArray alloc]init];
-    [self fetchPreviousUserPosts];
+    [self fetchUserPosts];
     UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.previousPostTableView insertSubview:refreshControl atIndex:0];
@@ -36,8 +36,12 @@
     // Dispose of/Users/szheng/Desktop/CampusJobs/CampusJobs/Models/Post.h any resources that can be recreated.
 }
 
--(void)fetchPreviousUserPosts{
-    PFQuery * query=[PFQuery queryWithClassName:@"Post"];
+- (void)reloadData {
+    [self fetchUserPosts];
+}
+
+-(void)fetchUserPosts{
+    PFQuery *query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"taker"];
     [query includeKey:@"username"];
@@ -73,7 +77,7 @@
 
 -(void)beginRefresh:(UIRefreshControl *)refreshControl{
     //fetch all of the nearby posts
-    [self fetchPreviousUserPosts];
+    [self fetchUserPosts];
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
@@ -88,6 +92,7 @@
         Post *post = self.previousPostsArray[indexPath.row];
         UINavigationController * postDetailsNavController = [segue destinationViewController];
         PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavController topViewController];
+        postDetailsController.delegate = self;
         postDetailsController.post = post;
     }
 }

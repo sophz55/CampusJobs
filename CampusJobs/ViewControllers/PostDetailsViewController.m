@@ -171,7 +171,8 @@
     if (response && self.userIsAuthor) {
         [self.post deletePostAndConversationsWithCompletion:^(BOOL didDeletePost, NSError *error) {
             if (didDeletePost) {
-                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate reloadData];
             } else {
                 [Utils callAlertWithTitle:@"Error Deleting Post" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
             }

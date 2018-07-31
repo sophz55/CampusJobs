@@ -11,7 +11,7 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 
-@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPostTableView;
 @property (strong, nonatomic) NSArray * nearbyPostingsArray;
@@ -98,7 +98,8 @@
          Post * singlePost=self.nearbyPostingsArray[indexPath.row];
          UINavigationController *nearbyNavigationController = [segue destinationViewController];
          PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
-         postDetailsViewController.post=singlePost;
+         postDetailsViewController.delegate = self;
+         postDetailsViewController.post = singlePost;
      }
  }
 
