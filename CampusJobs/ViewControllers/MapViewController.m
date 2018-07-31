@@ -42,6 +42,7 @@
 }
 
 - (IBAction)didTapNextButton:(id)sender {
+    self.currentUser[@"currentLocation"]=[PFGeoPoint geoPointWithLocation:self.userLocation];
     [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(!succeeded){

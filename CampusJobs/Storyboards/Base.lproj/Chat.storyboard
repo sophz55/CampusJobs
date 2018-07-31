@@ -74,7 +74,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fy2-J7-KOG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" id="qMc-12-bYU"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="iconmonstr-speech-bubble-28-24" selectedImage="iconmonstr-speech-bubble-28-24" id="qMc-12-bYU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="conversationsTableView" destination="Yma-sh-hY5" id="frh-ZF-PbP"/>
@@ -371,4 +371,7 @@
             <point key="canvasLocation" x="2885.5999999999999" y="1924.5877061469266"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-speech-bubble-28-24" width="24" height="24"/>
+    </resources>
 </document>

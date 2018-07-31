@@ -11,7 +11,6 @@
 #import "SegueConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
-
 @interface SignUpViewController ()
 
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *nameField;
@@ -34,7 +33,6 @@
 
 - (void)registerUser {
     PFUser *newUser = [PFUser user];
-    
     newUser.username = self.usernameField.text;
     newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
