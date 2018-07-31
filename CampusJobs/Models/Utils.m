@@ -27,7 +27,7 @@
     helper.delegate = controller;
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
-
+    
     // create No action
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:noTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [helper confirmationAlertHandler:NO];
@@ -39,7 +39,7 @@
         [helper confirmationAlertHandler:YES];
     }];
     [alert addAction:yesAction];
-
+    
     [controller presentViewController:alert animated:YES completion:^{}];
 }
 
@@ -78,6 +78,22 @@
 + (void)hideBarButton:(UIBarButtonItem *)button {
     [button setEnabled:NO];
     [button setTintColor:[UIColor clearColor]];
+}
+
+//Calculating the distance between the location of a post and a user's location
++ (double)calculateDistance:(PFGeoPoint *)postGeoPoint betweenUserandPost:(PFGeoPoint *)userGeoPoint{
+    //Convert postGeoPoint and userGeoPoint to CLLocation
+    CLLocation  * postLocation=[[CLLocation alloc]init];
+    postLocation = [postLocation initWithLatitude:postGeoPoint.latitude longitude:postGeoPoint.longitude];
+    CLLocation * userLocation=[[CLLocation alloc]init];
+    userLocation = [userLocation initWithLatitude:userGeoPoint.latitude longitude:userGeoPoint.longitude];
+    
+    //Calculate distance between the two points
+    CLLocationDistance distance = [userLocation getDistanceFrom:postLocation];
+    //convert from meters to miles
+    double miles=distance/1609.34;
+    
+    return miles;
 }
 
 @end

@@ -31,5 +31,8 @@
 + (void)showBarButton:(UIBarButtonItem *)button;
 + (void)hideBarButton:(UIBarButtonItem *)button;
 
++ (double)calculateDistance:(PFGeoPoint *)postLocation betweenUserandPost:(PFGeoPoint *)userLocation;
+
+
 
 @end
