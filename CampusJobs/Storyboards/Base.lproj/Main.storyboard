@@ -233,15 +233,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaQ-q8-g0m">
-                                <rect key="frame" x="16" y="34" width="47" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="didTapBackButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="h4F-XT-ukb"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1f-Gi-wCp">
                                 <rect key="frame" x="32" y="302" width="311" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -275,7 +266,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYg-NL-uyE" userLabel="Delete Post">
-                                <rect key="frame" x="117" y="459" width="140" height="48"/>
+                                <rect key="frame" x="117" y="478" width="140" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Delete Post"/>
@@ -284,7 +275,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpY-Uq-maF">
-                                <rect key="frame" x="113" y="473" width="149" height="34"/>
+                                <rect key="frame" x="96" y="436" width="183" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Message"/>
@@ -292,23 +283,22 @@
                                     <action selector="didTapMessageButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="AWh-Ld-c6X"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbm-Qz-9QJ">
+                                <rect key="frame" x="149" y="555" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel Job"/>
+                                <connections>
+                                    <action selector="didTapCancelButton:" destination="yWq-Xd-JjF" eventType="touchUpInside" id="WsO-mK-ZqO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fec-Cr-NAq"/>
                     </view>
                     <navigationItem key="navigationItem" id="69i-eg-8sw">
-                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="6BX-1y-qUV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CqU-Nr-n8U">
-                                <rect key="frame" x="16" y="5" width="83" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="phF-uU-A6b" kind="presentation" identifier="backToNearbyFeedSegue" id="9uG-9g-nTF"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="yWn-VD-vsT">
                             <connections>
-                                <action selector="didTapBackButton:" destination="eI0-xh-we4" id="xWv-7f-gH0"/>
+                                <action selector="didTapBackButton:" destination="yWq-Xd-JjF" id="AvJ-Az-Q5G"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Tee-7c-GnR">
@@ -318,7 +308,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="backButton" destination="iaQ-q8-g0m" id="RbB-O6-Dwq"/>
+                        <outlet property="backButton" destination="yWn-VD-vsT" id="sWB-0y-kFA"/>
+                        <outlet property="cancelButton" destination="bbm-Qz-9QJ" id="UWP-Na-HNV"/>
                         <outlet property="deleteButton" destination="OYg-NL-uyE" id="p5k-w7-Rb8"/>
                         <outlet property="descriptionDetailsLabel" destination="u1f-Gi-wCp" id="aoB-wE-s7k"/>
                         <outlet property="editButton" destination="Tee-7c-GnR" id="BDd-UV-T5b"/>
@@ -331,7 +322,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dN-n2-Bca" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="eI0-xh-we4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1876" y="2533.5832083958021"/>
         </scene>
@@ -753,7 +743,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aZO-13-srJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YET-4K-xtV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="postDetailsNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YET-4K-xtV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SD0-Ci-hLx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -774,10 +764,8 @@
         <image name="iconmonstr-user-2-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XRD-2y-TCp"/>
+        <segue reference="ZR2-il-GTU"/>
         <segue reference="psQ-Bz-5d0"/>
-        <segue reference="kBM-ES-iHU"/>
         <segue reference="G1s-oc-RkP"/>
-        <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>

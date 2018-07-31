@@ -84,6 +84,10 @@
     [refreshControl endRefreshing];
 }
 
+- (void)reloadData {
+    [self fetchNearbyPosts];
+}
+
 - (void)displayRadius{
     //self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     float floatRadius;

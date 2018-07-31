@@ -354,9 +354,10 @@
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
-        PostDetailsViewController *postDetailsVC = [segue destinationViewController];
-        postDetailsVC.post = self.conversation.post;
-        postDetailsVC.delegate = self;
+        UINavigationController *postDetailsNavigationController = [segue destinationViewController];
+        PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavigationController topViewController];
+        postDetailsController.post = self.conversation.post;
+        postDetailsController.delegate = self;
     }
 }
 

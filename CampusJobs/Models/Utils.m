@@ -65,6 +65,12 @@
     [button setTintColor:nil];
 }
 
++ (void)showButton:(UIButton *)button withText:(NSString *)text {
+    [button setEnabled:YES];
+    [button setTintColor:nil];
+    [button setTitle:text forState:UIControlStateNormal];
+}
+
 + (void)hideButton:(UIButton *)button {
     [button setEnabled:NO];
     [button setTintColor:[UIColor clearColor]];

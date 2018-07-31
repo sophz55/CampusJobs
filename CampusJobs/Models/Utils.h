@@ -26,6 +26,7 @@
 + (void)animateView:(UIView *)view withDistance:(CGFloat)distance up:(BOOL)up;
 
 + (void)showButton:(UIButton *)button;
++ (void)showButton:(UIButton *)button withText:(NSString *)text;
 + (void)hideButton:(UIButton *)button;
 
 + (void)showBarButton:(UIBarButtonItem *)button;

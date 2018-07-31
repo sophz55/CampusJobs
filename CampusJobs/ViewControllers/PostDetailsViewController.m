@@ -19,10 +19,11 @@
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
 @property (assign, nonatomic) BOOL userIsAuthor;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end
 
@@ -47,6 +48,17 @@
 
 - (void)reloadDetails {
     [self setDetailsPost:self.post];
+    [self configureInitialView];
+}
+
+- (void)confirmationAlertHandler:(BOOL)response {
+    if (response) {
+        if (self.post.postStatus == OPEN && self.userIsAuthor) {
+            [self deletePost];
+        } else if (self.post.postStatus == IN_PROGRESS) {
+            [self cancelJob];
+        }
+    }
 }
 
 #pragma mark - Custom Configurations
@@ -54,18 +66,18 @@
 - (void)configureInitialView {
     [self configureNavigatonBar];
     
-    if ([self.delegate isKindOfClass:[ConversationDetailViewController class]] || self.userIsAuthor) {
-        [Utils hideButton:self.messageButton];
-    } else {
-        [Utils showButton:self.messageButton];
-    }
-    
     [self setDetailsPost:self.post];
     
     if (self.userIsAuthor) {
         [self configureAuthorView];
     } else {
         [self configureSeekerView];
+    }
+    
+    if (self.post.postStatus == IN_PROGRESS && (self.userIsAuthor || [self.user.objectId isEqualToString:self.post.taker.objectId])) {
+        [Utils showButton:self.cancelButton];
+    } else {
+        [Utils hideButton:self.cancelButton];
     }
 }
 
@@ -82,16 +94,31 @@
 - (void)configureAuthorView {
     [Utils showBarButton:self.editButton];
     
-    if (self.post.postStatus != OPEN && self.post.taker) {
-        self.userDetailsLabel.text = [NSString stringWithFormat: @"Taker: %@", self.post.taker.username];
-        [Utils hideButton:self.deleteButton];
-    } else {
+    if (self.post.postStatus == OPEN) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open!"];
         [Utils showButton:self.deleteButton];
+    } else if (self.post.postStatus == IN_PROGRESS) {
+        self.userDetailsLabel.text = [NSString stringWithFormat: @"In progress with user: %@", self.post.taker.username];
+        [Utils hideButton:self.deleteButton];
+    } else {
+        self.userDetailsLabel.text = [NSString stringWithFormat: @"Completed by: %@", self.post.taker.username];
+        [Utils hideButton:self.deleteButton];
+    }
+    
+    if ([self.delegate isKindOfClass:[ConversationDetailViewController class]] || self.post.postStatus == OPEN) {
+        [Utils hideButton:self.messageButton];
+    } else {
+        [Utils showButton:self.messageButton withText:[NSString stringWithFormat: @"Message %@", self.post.taker.username]];
     }
 }
 
 - (void)configureSeekerView {
+    if ([self.delegate isKindOfClass:[ConversationDetailViewController class]]) {
+        [Utils hideButton:self.messageButton];
+    } else {
+        [Utils showButton:self.messageButton withText:@"Message"];
+    }
+    
     [Utils hideBarButton:self.editButton];
     [Utils hideButton:self.deleteButton];
     
@@ -114,6 +141,8 @@
 - (IBAction)didTapMessageButton:(id)sender {
     if (!self.userIsAuthor) {
         [self findConversation];
+    } else {
+        [self findConversationWithTaker];
     }
 }
 
@@ -124,8 +153,20 @@
 }
 
 - (IBAction)didTapDeleteButton:(id)sender {
-    if (self.userIsAuthor) {
+    if (self.userIsAuthor && self.post.postStatus == OPEN) {
         [Utils callConfirmationWithTitle:@"Are you sure you want to delete this post?" confirmationMessage:@"This cannot be undone." yesActionTitle:@"Delete" noActionTitle:@"Cancel" viewController:self];
+    }
+}
+
+- (IBAction)didTapCancelButton:(id)sender {
+    if (self.post.postStatus == IN_PROGRESS && (self.userIsAuthor || [self.user.objectId isEqualToString:self.post.taker.objectId])) {
+        NSString *confirmationMessage;
+        if (self.userIsAuthor) {
+            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress with %@ for $%@.", self.post.taker.username, self.post.price];
+        } else {
+            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for %@.", self.post.price];
+        }
+        [Utils callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
     }
 }
 
@@ -167,17 +208,49 @@
     }];
 }
 
-- (void)confirmationAlertHandler:(BOOL)response {
-    if (response && self.userIsAuthor) {
-        [self.post deletePostAndConversationsWithCompletion:^(BOOL didDeletePost, NSError *error) {
-            if (didDeletePost) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self.delegate reloadData];
-            } else {
-                [Utils callAlertWithTitle:@"Error Deleting Post" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
-            }
-        }];
-    }
+- (void)findConversationWithTaker {
+    // create query to access "author" key within a conversation's post
+    PFQuery *postsQuery = [PFQuery queryWithClassName:@"Post"];
+    [postsQuery whereKey:@"author" equalTo:self.user];
+    
+    // create query for conversations with current user as seeker, post author as author, post as post
+    PFQuery *conversationsQuery=[PFQuery queryWithClassName:@"Conversation"];
+    [conversationsQuery includeKey:@"post"];
+    [conversationsQuery whereKey:@"post" matchesQuery:postsQuery];
+    [conversationsQuery whereKey:@"post" equalTo:self.post];
+    
+    [conversationsQuery includeKey: @"seeker"];
+    [conversationsQuery whereKey:@"seeker" equalTo:self.post.taker];
+    
+    [conversationsQuery includeKey: @"messages"];
+    
+    [conversationsQuery getFirstObjectInBackgroundWithBlock:^(NSObject *conversation, NSError*error){
+        if (conversation) {
+            self.conversation = (Conversation *)conversation;
+            [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
+        } else {
+            [Utils callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+        }
+    }];
+}
+
+- (void)deletePost {
+    [self.post deletePostAndConversationsWithCompletion:^(BOOL didDeletePost, NSError *error) {
+        if (didDeletePost) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate reloadData];
+        } else {
+            [Utils callAlertWithTitle:@"Error Deleting Post" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+        }
+    }];
+}
+
+- (void)cancelJob {
+    [self.post cancelJobWithCompletion:^(BOOL didCancelJob, NSError *error) {
+        if (didCancelJob) {
+            [self reloadDetails];
+        }
+    }];
 }
 
 #pragma mark - Navigation
@@ -189,7 +262,11 @@
         ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
         conversationDetailController.delegate = self;
         conversationDetailController.conversation = self.conversation;
-        conversationDetailController.otherUser = self.post.author;
+        if ([self.user.objectId isEqualToString:self.post.author.objectId] && self.post.taker) {
+            conversationDetailController.otherUser = self.post.taker;
+        } else {
+            conversationDetailController.otherUser = self.post.author;
+        }
     } else if ([segue.identifier isEqualToString:postDetailsToMapSegue]) {
         // UINavigationController *detailsNavigationController = [segue destinationViewController];
         MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];

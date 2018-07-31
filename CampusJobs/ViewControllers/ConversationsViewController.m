@@ -59,10 +59,10 @@
     [userConversationsQuery includeKey:@"messages"];
     [userConversationsQuery includeKey:@"post"];
     [userConversationsQuery includeKey:@"post.author.username"];
+    [userConversationsQuery includeKey:@"post.taker"];
     [userConversationsQuery includeKey:@"seeker"];
     [userConversationsQuery includeKey:@"seeker.username"];
     userConversationsQuery.limit = self.queryLimit;
-    [userConversationsQuery orderByDescending:@"createdAt"];
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
         if (error != nil) {
