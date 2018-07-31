@@ -15,7 +15,7 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, UITextFieldDelegate>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -44,14 +44,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     self.user = [PFUser currentUser];
-    
     self.messagesCollectionView.delegate = self;
     self.messagesCollectionView.dataSource = self;
     
     self.maxCellWidth = self.messagesCollectionView.frame.size.width * .6; // max message text view width
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
-    
-    self.composeMessageTextField.delegate = self;
     
     [self configureInitialView];
     [self reloadData];
@@ -62,6 +59,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Public Methods
+
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
     [self.messagesCollectionView reloadData];
@@ -69,12 +68,12 @@
     [self.refreshControl endRefreshing];
 }
 
+#pragma mark - Initial Configurations
+
 - (void)configureInitialView {
     [self configureRefreshControl];
     [self configureNavigatonBar];
-    
-    [self showByParent];
-    
+    [self showByDelegate];
     self.showingSuggestViewController = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -105,13 +104,13 @@
 
 #pragma mark - Configurations Based on State
 
-- (void)showByParent {
-    if ([self.presentingViewController isKindOfClass:[PostDetailsViewController class]]) {
+- (void)showByDelegate {
+    if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
+        self.backButton.title = @"Back to messages";
+        [Utils showBarButton:self.viewPostButton];
+    } else {
         self.backButton.title = @"Back to posting";
         [Utils hideBarButton:self.viewPostButton];
-    } else {
-        self.backButton.title = @"Back to messages";
-        [Utils showButton:self.viewPostButton];
     }
 }
 
@@ -357,7 +356,7 @@
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
         PostDetailsViewController *postDetailsVC = [segue destinationViewController];
         postDetailsVC.post = self.conversation.post;
-        postDetailsVC.parentVC = self;
+        postDetailsVC.delegate = self;
     }
 }
 

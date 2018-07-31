@@ -13,7 +13,7 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 
-@interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource, ConversationDetailDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *conversationsTableView;
 @property (strong, nonatomic) NSMutableArray *conversations;
@@ -120,6 +120,7 @@
         ConversationTableViewCell *cell = sender;
         UINavigationController *conversationNavigationController = [segue destinationViewController];
         ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
+        conversationDetailController.delegate = self;
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
     }

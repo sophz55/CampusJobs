@@ -10,8 +10,12 @@
 #import <Parse/Parse.h>
 #import "Conversation.h"
 
+@protocol ConversationDetailDelegate
+@end
+
 @interface ConversationDetailViewController : UIViewController
 
+@property (strong, nonatomic) UIViewController <ConversationDetailDelegate> *delegate;
 @property (strong, nonatomic) PFUser *otherUser;
 @property (strong, nonatomic) Conversation *conversation;
 
