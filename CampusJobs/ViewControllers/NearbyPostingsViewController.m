@@ -44,12 +44,16 @@
 -(void)fetchNearbyPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
+    //user's current location
+    PFGeoPoint * currentLocation =self.currentUser[@"currentLocation"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
     [query includeKey:@"summary"];
-    [query includeKey:@"location"];
     [query includeKey:@"postStatus"];
     [query whereKey:@"postStatus" equalTo:@0]; // postStatus is enum type status with 0 = OPEN
+    
+    //filter based on the radius selected by the user (based on user radius and post location)
+    [query whereKey:@"location" nearGeoPoint:(currentLocation) withinMiles:[self.userRadius doubleValue]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
             self.nearbyPostingsArray = posts;
@@ -66,7 +70,7 @@
     nearbyPostCell.post=post;
     [nearbyPostCell setNearbyPost:post];
     return nearbyPostCell;
-                                   
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -81,6 +85,7 @@
 }
 
 - (void)displayRadius{
+    //self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     float floatRadius;
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[@"desiredRadius"];
