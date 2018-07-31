@@ -10,11 +10,12 @@
 #import "NearbyPostCell.h"
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
+#import "Utils.h"
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPostTableView;
-@property (strong, nonatomic) NSArray * nearbyPostingsArray;
+@property (retain, nonatomic) NSMutableArray * nearbyPostingsArray;
 @property (strong, nonatomic) PFUser * currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
 @property (strong, nonatomic) NSNumber * userRadius;
@@ -27,7 +28,7 @@
     [super viewDidLoad];
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
-    self.nearbyPostingsArray=[[NSArray alloc]init];
+    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self fetchNearbyPosts];
     UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -43,6 +44,10 @@
 
 -(void)fetchNearbyPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    //convert desired radius into a double
+    NSNumber* desiredRadius =self.currentUser[@"desiredRadius"];
+    double desiredRadiusDouble=[desiredRadius doubleValue];
+    
     [query orderByDescending:@"createdAt"];
     //user's current location
     PFGeoPoint * currentLocation =self.currentUser[@"currentLocation"];
@@ -50,13 +55,23 @@
     [query includeKey:@"author"];
     [query includeKey:@"summary"];
     [query includeKey:@"postStatus"];
+    [query includeKey:@"location"];
     [query whereKey:@"postStatus" equalTo:@0]; // postStatus is enum type status with 0 = OPEN
     
-    //filter based on the radius selected by the user (based on user radius and post location)
-    [query whereKey:@"location" nearGeoPoint:(currentLocation) withinMiles:[self.userRadius doubleValue]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
-            self.nearbyPostingsArray = posts;
+            self.nearbyPostingsArray=[[NSMutableArray alloc]init];
+            //Loop through all of the posts in order to filter by the desired radius
+            for(int i=0; i<[posts count];i++){
+                Post * currPost=[posts objectAtIndex:i];
+                PFGeoPoint * postGeoPoint=currPost[@"location"];
+                //calculate distance between post location and user location
+                double calculatedDistance=[Utils calculateDistance:postGeoPoint betweenUserandPost:currentLocation];
+                //if the calculated distance (miles) is less than the desired radius, add to postings array
+                if(calculatedDistance <= desiredRadiusDouble){
+                    [self.nearbyPostingsArray addObject:currPost];
+                }
+            }
             [self.nearbyPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -89,7 +104,6 @@
 }
 
 - (void)displayRadius{
-    //self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
     float floatRadius;
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[@"desiredRadius"];
@@ -97,19 +111,19 @@
     self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
 }
 
- #pragma mark - Navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
-         UITableViewCell * tappedCell=sender;
-         NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
-         Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-         UINavigationController *nearbyNavigationController = [segue destinationViewController];
-         PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
-         postDetailsViewController.delegate = self;
-         postDetailsViewController.post = singlePost;
-     }
- }
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
+        UITableViewCell * tappedCell=sender;
+        NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
+        Post * singlePost=self.nearbyPostingsArray[indexPath.row];
+        UINavigationController *nearbyNavigationController = [segue destinationViewController];
+        PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
+        postDetailsViewController.delegate = self;
+        postDetailsViewController.post = singlePost;
+    }
+}
 
 @end

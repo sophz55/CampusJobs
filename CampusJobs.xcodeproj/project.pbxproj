@@ -46,9 +46,7 @@
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
-		FC0A87E9210BCFB300A641EB /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		FC209033210FB5FF00E27A5E /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC209032210FB5FF00E27A5E /* TabBarViewController.m */; };
-
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
@@ -896,13 +894,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -914,13 +912,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 2GHFV9ZM9C;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
