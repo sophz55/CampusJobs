@@ -11,7 +11,7 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 
-@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPostTableView;
 @property (strong, nonatomic) NSArray * nearbyPostingsArray;
@@ -93,18 +93,19 @@
     self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
-        UITableViewCell * tappedCell=sender;
-        NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
-        Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-        UINavigationController *nearbyNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
-        postDetailsViewController.post=singlePost;
-    }
-}
+ #pragma mark - Navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+     if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
+         UITableViewCell * tappedCell=sender;
+         NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
+         Post * singlePost=self.nearbyPostingsArray[indexPath.row];
+         UINavigationController *nearbyNavigationController = [segue destinationViewController];
+         PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
+         postDetailsViewController.delegate = self;
+         postDetailsViewController.post = singlePost;
+     }
+ }
 
 @end
