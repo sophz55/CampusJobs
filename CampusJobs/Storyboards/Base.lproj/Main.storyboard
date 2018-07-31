@@ -775,11 +775,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="psQ-Bz-5d0"/>
-<<<<<<< HEAD
+
         <segue reference="kBM-ES-iHU"/>
-=======
+
         <segue reference="G1s-oc-RkP"/>
->>>>>>> 7008746e58d5a4e94b75d99e37db1ea3eb304816
+
         <segue reference="9uG-9g-nTF"/>
     </inferredMetricsTieBreakers>
 </document>

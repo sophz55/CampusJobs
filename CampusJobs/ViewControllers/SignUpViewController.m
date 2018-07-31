@@ -11,12 +11,8 @@
 #import "SegueConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
-<<<<<<< HEAD
-@interface SignUpViewController ()
-=======
-
 @interface SignUpViewController () <EditPaymentDelegate>
->>>>>>> 7008746e58d5a4e94b75d99e37db1ea3eb304816
+
 
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *nameField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailField;
