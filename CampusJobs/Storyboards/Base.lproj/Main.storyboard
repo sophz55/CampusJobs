@@ -771,8 +771,6 @@
         <image name="iconmonstr-user-2-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZR2-il-GTU"/>
-        <segue reference="psQ-Bz-5d0"/>
         <segue reference="XRD-2y-TCp"/>
         <segue reference="G1s-oc-RkP"/>
     </inferredMetricsTieBreakers>

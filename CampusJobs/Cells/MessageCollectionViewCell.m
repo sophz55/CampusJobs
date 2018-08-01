@@ -78,16 +78,10 @@
     }
     
     __unsafe_unretained typeof(self) weakSelf = self;
-    [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withCompletion:^(BOOL didUpdateJob, NSError *error) {
+    [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withConversation:self.conversation withCompletion:^(BOOL didUpdateJob, NSError *error) {
         if (didUpdateJob) {
-            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%d. This job is now in progress - please coordinate how you would like to proceed!", [PFUser currentUser].username, self.message.suggestedPrice] withSender:[PFUser currentUser] withReceiver:self.message.sender withCompletion:^(BOOL didSendMessage, NSError *error) {
-                if (didSendMessage) {
-                    [weakSelf removeSuggestedPrice];
-                    [weakSelf.delegate reloadData];
-                } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
-                }
-            }];
+            [weakSelf removeSuggestedPrice];
+            [weakSelf.delegate reloadData];
         } else {
             [Utils callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }

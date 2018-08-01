@@ -60,32 +60,6 @@
     [UIView commitAnimations];
 }
 
-+ (void)showButton:(UIButton *)button {
-    [button setEnabled:YES];
-    [button setTintColor:nil];
-}
-
-+ (void)showButton:(UIButton *)button withText:(NSString *)text {
-    [button setEnabled:YES];
-    [button setTintColor:nil];
-    [button setTitle:text forState:UIControlStateNormal];
-}
-
-+ (void)hideButton:(UIButton *)button {
-    [button setEnabled:NO];
-    [button setTintColor:[UIColor clearColor]];
-}
-
-+ (void)showBarButton:(UIBarButtonItem *)button {
-    [button setEnabled:YES];
-    [button setTintColor:nil];
-}
-
-+ (void)hideBarButton:(UIBarButtonItem *)button {
-    [button setEnabled:NO];
-    [button setTintColor:[UIColor clearColor]];
-}
-
 //Calculating the distance between the location of a post and a user's location
 + (double)calculateDistance:(PFGeoPoint *)postGeoPoint betweenUserandPost:(PFGeoPoint *)userGeoPoint{
     //Convert postGeoPoint and userGeoPoint to CLLocation

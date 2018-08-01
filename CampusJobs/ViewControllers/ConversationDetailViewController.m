@@ -106,11 +106,11 @@
 
 - (void)showByDelegate {
     if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
-        self.backButton.title = @"Back to messages";
-        [Utils showBarButton:self.viewPostButton];
+        [self.viewPostButton setEnabled:YES];
+        [self.viewPostButton setTintColor:nil];
     } else {
-        self.backButton.title = @"Back to posting";
-        [Utils hideBarButton:self.viewPostButton];
+        [self.viewPostButton setEnabled:NO];
+        [self.viewPostButton setTintColor:[UIColor clearColor]];
     }
 }
 
@@ -273,15 +273,9 @@
 
 - (IBAction)didTapCancelJobButton:(id)sender {
     __unsafe_unretained typeof(self) weakSelf = self;
-    [self.conversation.post cancelJobWithCompletion:^(BOOL didCancelJob, NSError *error) {
+    [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
         if (didCancelJob) {
-            [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
-                if (didSendMessage) {
-                    [weakSelf reloadData];
-                } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
-                }
-            }];
+            [weakSelf reloadData];
         } else {
             [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
         }
