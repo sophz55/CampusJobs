@@ -16,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *AddressButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *CreditCardButton;
-@property (weak, nonatomic) IBOutlet UIButton *RatingButton;
+
+
+
 
 ////
 
@@ -24,7 +26,7 @@
 - (IBAction)Email:(id)sender;
 - (IBAction)Address:(id)sender;
 - (IBAction)CreditCard:(id)sender;
-- (IBAction)Rating:(id)sender;
+
 
 
 

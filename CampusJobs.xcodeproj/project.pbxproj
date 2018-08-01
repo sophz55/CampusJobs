@@ -10,10 +10,22 @@
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
+		D306831B210FBF79003C2CB1 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3068315210FBF49003C2CB1 /* PaymentInfo.storyboard */; };
+		D306831C210FBF79003C2CB1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3068318210FBF57003C2CB1 /* Storyboard.storyboard */; };
 		D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31566C5210A86C900E5C414 /* HomeViewController.m */; };
-		D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */; };
-		D38B1733210BA5CC00EE5C8E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D38B1731210BA5CC00EE5C8E /* Storyboard.storyboard */; };
-		D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
+		D38B18AE210EB8F6005E607F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18AD210EB8F6005E607F /* ViewController.m */; };
+		D38B18C4210EC850005E607F /* ServicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18C3210EC850005E607F /* ServicesTableViewController.m */; };
+		D38B18C7210EC86D005E607F /* ServicesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18C6210EC86D005E607F /* ServicesTableViewCell.m */; };
+		D38B18CA210EC891005E607F /* ServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18C9210EC891005E607F /* ServicesViewController.m */; };
+		D38B18CD210EC8AE005E607F /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18CC210EC8AE005E607F /* PortfolioViewController.m */; };
+		D38B18D1210EC921005E607F /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18D0210EC921005E607F /* ContactViewController.m */; };
+		D38B18D7210EC968005E607F /* SocialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18D6210EC968005E607F /* SocialTableViewController.m */; };
+		D38B18DA210EC993005E607F /* SocialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18D9210EC993005E607F /* SocialTableViewCell.m */; };
+		D38B18DD210EC9AF005E607F /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18DC210EC9AF005E607F /* SocialViewController.m */; };
+		D38B18DE210F80CB005E607F /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
+		D38B18DF210F80CB005E607F /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
+		D38B18E2210FB1CF005E607F /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38B18E1210FB1CF005E607F /* NameViewController.m */; };
+		D38B18E6210FBE43005E607F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8921067F5E0042BD49 /* ProfileViewController.m */; };
 		D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A8C21079C2C0042BD49 /* PhotoViewController.m */; };
 		D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A8E2107BF800042BD49 /* Accounts.framework */; };
 		D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A902107BFC50042BD49 /* Social.framework */; };
@@ -24,8 +36,6 @@
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
 		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
 		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
-		F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226A9210A995A004F4677 /* PaymentInfo.storyboard */; };
-		F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31226AB210A995A004F4677 /* Storyboard.storyboard */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
@@ -81,10 +91,32 @@
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD498F905C1ED7EC86FBB555 /* Pods-CampusJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.release.xcconfig"; sourceTree = "<group>"; };
+		D3068316210FBF49003C2CB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
+		D3068319210FBF57003C2CB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		D31566C4210A86C900E5C414 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D31566C5210A86C900E5C414 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D3811B2C20FD3EA800EEA6FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
-		D38B1732210BA5CC00EE5C8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		D38B18AC210EB8F6005E607F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D38B18AD210EB8F6005E607F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D38B18C2210EC850005E607F /* ServicesTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesTableViewController.h; sourceTree = "<group>"; };
+		D38B18C3210EC850005E607F /* ServicesTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServicesTableViewController.m; sourceTree = "<group>"; };
+		D38B18C5210EC86D005E607F /* ServicesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesTableViewCell.h; sourceTree = "<group>"; };
+		D38B18C6210EC86D005E607F /* ServicesTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServicesTableViewCell.m; sourceTree = "<group>"; };
+		D38B18C8210EC891005E607F /* ServicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesViewController.h; sourceTree = "<group>"; };
+		D38B18C9210EC891005E607F /* ServicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServicesViewController.m; sourceTree = "<group>"; };
+		D38B18CB210EC8AE005E607F /* PortfolioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
+		D38B18CC210EC8AE005E607F /* PortfolioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
+		D38B18CF210EC921005E607F /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		D38B18D0210EC921005E607F /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		D38B18D2210EC940005E607F /* EmailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmailViewController.h; sourceTree = "<group>"; };
+		D38B18D5210EC968005E607F /* SocialTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialTableViewController.h; sourceTree = "<group>"; };
+		D38B18D6210EC968005E607F /* SocialTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialTableViewController.m; sourceTree = "<group>"; };
+		D38B18D8210EC993005E607F /* SocialTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialTableViewCell.h; sourceTree = "<group>"; };
+		D38B18D9210EC993005E607F /* SocialTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialTableViewCell.m; sourceTree = "<group>"; };
+		D38B18DB210EC9AF005E607F /* SocialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
+		D38B18DC210EC9AF005E607F /* SocialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
+		D38B18E0210FB1CF005E607F /* NameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
+		D38B18E1210FB1CF005E607F /* NameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NameViewController.m; sourceTree = "<group>"; };
 		D3B67A8821067F5E0042BD49 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		D3B67A8921067F5E0042BD49 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D3B67A8B21079C2C0042BD49 /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -226,11 +258,58 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D38B1727210B96B900EE5C8E /* New Group */ = {
+		D38B1727210B96B900EE5C8E /* BusinessApp */ = {
 			isa = PBXGroup;
 			children = (
+				D38B18AC210EB8F6005E607F /* ViewController.h */,
+				D38B18AD210EB8F6005E607F /* ViewController.m */,
 			);
-			path = "New Group";
+			path = BusinessApp;
+			sourceTree = "<group>";
+		};
+		D38B18BE210EC624005E607F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D38B18C2210EC850005E607F /* ServicesTableViewController.h */,
+				D38B18C3210EC850005E607F /* ServicesTableViewController.m */,
+				D38B18C5210EC86D005E607F /* ServicesTableViewCell.h */,
+				D38B18C6210EC86D005E607F /* ServicesTableViewCell.m */,
+				D38B18C8210EC891005E607F /* ServicesViewController.h */,
+				D38B18C9210EC891005E607F /* ServicesViewController.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D38B18BF210EC65D005E607F /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				D38B18D5210EC968005E607F /* SocialTableViewController.h */,
+				D38B18D6210EC968005E607F /* SocialTableViewController.m */,
+				D38B18D8210EC993005E607F /* SocialTableViewCell.h */,
+				D38B18D9210EC993005E607F /* SocialTableViewCell.m */,
+				D38B18DB210EC9AF005E607F /* SocialViewController.h */,
+				D38B18DC210EC9AF005E607F /* SocialViewController.m */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		D38B18C0210EC676005E607F /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				D38B18CB210EC8AE005E607F /* PortfolioViewController.h */,
+				D38B18CC210EC8AE005E607F /* PortfolioViewController.m */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		D38B18C1210EC69F005E607F /* Contact Us */ = {
+			isa = PBXGroup;
+			children = (
+				D38B18CF210EC921005E607F /* ContactViewController.h */,
+				D38B18D0210EC921005E607F /* ContactViewController.m */,
+				D38B18D2210EC940005E607F /* EmailViewController.h */,
+			);
+			path = "Contact Us";
 			sourceTree = "<group>";
 		};
 		D38F03AD2101643500EE35D1 /* Recovered References */ = {
@@ -384,9 +463,16 @@
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
+				D3068315210FBF49003C2CB1 /* PaymentInfo.storyboard */,
+				D3068318210FBF57003C2CB1 /* Storyboard.storyboard */,
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
-				D38B1731210BA5CC00EE5C8E /* Storyboard.storyboard */,
-				D38B1727210B96B900EE5C8E /* New Group */,
+				D38B18E0210FB1CF005E607F /* NameViewController.h */,
+				D38B18E1210FB1CF005E607F /* NameViewController.m */,
+				D38B1727210B96B900EE5C8E /* BusinessApp */,
+				D38B18BE210EC624005E607F /* Services */,
+				D38B18C0210EC676005E607F /* Gallery */,
+				D38B18C1210EC69F005E607F /* Contact Us */,
+				D38B18BF210EC65D005E607F /* Social */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -507,13 +593,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D306831B210FBF79003C2CB1 /* PaymentInfo.storyboard in Resources */,
+				D306831C210FBF79003C2CB1 /* Storyboard.storyboard in Resources */,
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
-				D38B1733210BA5CC00EE5C8E /* Storyboard.storyboard in Resources */,
-				D3811B2D20FD3EA800EEA6FC /* Assets.xcassets in Resources */,
-				F31226AD210A995B004F4677 /* PaymentInfo.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
-				F31226AE210A995B004F4677 /* Storyboard.storyboard in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
@@ -615,30 +699,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38B18E6210FBE43005E607F /* ProfileViewController.m in Sources */,
+				D38B18DE210F80CB005E607F /* MainProfileViewController.m in Sources */,
+				D38B18DF210F80CB005E607F /* SegueConstants.m in Sources */,
+				D38B18D1210EC921005E607F /* ContactViewController.m in Sources */,
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
+				D38B18CA210EC891005E607F /* ServicesViewController.m in Sources */,
 				FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */,
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
 				F312269E210A535C004F4677 /* Card.m in Sources */,
 				F39E66FE20EFE12900381BE7 /* main.m in Sources */,
+				D38B18D7210EC968005E607F /* SocialTableViewController.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-				D3B67A8A21067F5E0042BD49 /* ProfileViewController.m in Sources */,
+				D38B18C4210EC850005E607F /* ServicesTableViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
+				D38B18DA210EC993005E607F /* SocialTableViewCell.m in Sources */,
+				D38B18E2210FB1CF005E607F /* NameViewController.m in Sources */,
 				F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */,
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
 				F31226A1210A8582004F4677 /* Utils.m in Sources */,
 				FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
+				D38B18CD210EC8AE005E607F /* PortfolioViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
+				D38B18DD210EC9AF005E607F /* SocialViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
+				D38B18C7210EC86D005E607F /* ServicesTableViewCell.m in Sources */,
+				D38B18AE210EB8F6005E607F /* ViewController.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
 				FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
@@ -679,10 +775,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D38B1731210BA5CC00EE5C8E /* Storyboard.storyboard */ = {
+		D3068315210FBF49003C2CB1 /* PaymentInfo.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D38B1732210BA5CC00EE5C8E /* Base */,
+				D3068316210FBF49003C2CB1 /* Base */,
+			);
+			name = PaymentInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		D3068318210FBF57003C2CB1 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3068319210FBF57003C2CB1 /* Base */,
 			);
 			name = Storyboard.storyboard;
 			sourceTree = "<group>";
