@@ -56,4 +56,19 @@
     }];
 }
 
++ (void)deleteAllWithPost:(Post *)post withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
+    [query includeKey:@"post"];
+    [query whereKey:@"post" equalTo:post];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
+        if (conversations) {
+            for (Conversation *conversation in conversations) {
+                [Message deleteAllInBackground:conversation.messages block:^(BOOL didDeleteMessages, NSError *error) {
+                }];
+            }
+            [Conversation deleteAllInBackground:conversations block:completion];
+        }
+    }];
+}
+
 @end

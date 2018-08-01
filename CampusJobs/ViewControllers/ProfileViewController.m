@@ -38,11 +38,7 @@
     
     [self resignFirstResponder];
     self.NameLabel.text = self.NameTextField.text;
-    
-    
     self.EmailLabel.text = self.EmailTextField.text;
-    
-    
     self.AddressLabel.text = self.Address.text;
     
 }

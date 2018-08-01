@@ -8,13 +8,14 @@
 
 #import "MainProfileViewController.h"
 #import "Parse.h"
+#import "ParseUI.h"
 
 @interface MainProfileViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (strong, nonatomic) PFUser *currentUser;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *editProfPicButton;
 
 @end
@@ -80,22 +81,18 @@
 
 //Helper method
 - (void)formatPicAndButtons{
+    //set profile picture (if there is one already selected)
+    if(self.currentUser[@"profileImageFile"]){
+        self.profilePicture.file = self.currentUser[@"profileImageFile"];
+        [self.profilePicture loadInBackground];
+    }
     //Create a circle for profile picture
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
     
     //Add border around edit button
-    self.editProfPicButton.layer.borderWidth=0.5f;
+    self.editProfPicButton.layer.borderWidth=0.25f;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

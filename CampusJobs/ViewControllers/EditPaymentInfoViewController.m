@@ -31,7 +31,7 @@
 
 @implementation EditPaymentInfoViewController
 
-#pragma mark - UIViewController
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self configureViewByParent];
+    [self configureViewByDelegate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,17 +52,15 @@
 
 #pragma mark - Initial Configurations
 
-- (void)configureViewByParent {
-    if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
+- (void)configureViewByDelegate {
+    if ([self.delegate isKindOfClass:[SignUpViewController class]]) {
         self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
         self.saveButton.titleLabel.text = @"Add Card";
-        [self.skipButton setEnabled:YES];
-        [self.skipButton setTintColor:nil];
+        [Utils showButton:self.skipButton];
     } else {
         self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
         self.saveButton.titleLabel.text = @"Update";
-        [self.skipButton setEnabled:NO];
-        [self.skipButton setTintColor:[UIColor clearColor]];
+        [Utils hideButton:self.skipButton];
     }
 }
 
@@ -111,7 +109,7 @@
                 }
                 [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *errorSavingUser) {
                     if (didSaveUser) {
-                        if ([self.presentingViewController isKindOfClass:[SignUpViewController class]]) {
+                        if ([self.delegate isKindOfClass:[SignUpViewController class]]) {
                             [self performSegueWithIdentifier:addCardToMapSegue sender:nil];
                         } else {
                             [self dismissViewControllerAnimated:YES completion:nil];

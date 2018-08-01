@@ -70,26 +70,26 @@
 }
 
 - (IBAction)didTapAccept:(id)sender {
+    PFUser *taker;
+    if ([self.message.sender.objectId isEqualToString:self.conversation.post.author.objectId]) {
+        taker = self.message.receiver;
+    } else {
+        taker = self.message.sender;
+    }
+    
     __unsafe_unretained typeof(self) weakSelf = self;
-    [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%d. This job is now in progress - please coordinate how you would like to proceed!", [PFUser currentUser].username, self.message.suggestedPrice] withSender:[PFUser currentUser] withReceiver:self.message.sender withCompletion:^(BOOL didSendMessage, NSError *error) {
-        if (didSendMessage) {
-            PFUser *taker;
-            if ([weakSelf.message.sender.objectId isEqualToString:weakSelf.conversation.post.author.objectId]) {
-                taker = weakSelf.message.receiver;
-            } else {
-                taker = weakSelf.message.sender;
-            }
-            
-            [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withCompletion:^(BOOL didUpdateJob, NSError *error) {
-                if (didUpdateJob) {
+    [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withCompletion:^(BOOL didUpdateJob, NSError *error) {
+        if (didUpdateJob) {
+            [self.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%d. This job is now in progress - please coordinate how you would like to proceed!", [PFUser currentUser].username, self.message.suggestedPrice] withSender:[PFUser currentUser] withReceiver:self.message.sender withCompletion:^(BOOL didSendMessage, NSError *error) {
+                if (didSendMessage) {
                     [weakSelf removeSuggestedPrice];
                     [weakSelf.delegate reloadData];
                 } else {
-                    [Utils callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
+                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
                 }
             }];
         } else {
-            [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
+            [Utils callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }
     }];
 }

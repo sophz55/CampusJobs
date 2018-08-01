@@ -74,7 +74,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fy2-J7-KOG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" id="qMc-12-bYU"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="iconmonstr-speech-bubble-28-24" selectedImage="iconmonstr-speech-bubble-28-24" id="qMc-12-bYU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="conversationsTableView" destination="Yma-sh-hY5" id="frh-ZF-PbP"/>
@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="1038.5307346326838"/>
         </scene>
-        <!--postDetailsViewController-->
+        <!--postDetailsNavigationController-->
         <scene sceneID="lc8-39-LQ4">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="postDetailsViewController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="postDetailsNavigationController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irC-KI-DeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4089" y="1205"/>
@@ -266,7 +266,6 @@
                             <barButtonItem title="View Post" id="MGD-Z6-bca">
                                 <connections>
                                     <action selector="didTapViewPostButton:" destination="Bdl-9U-zBf" id="drV-v4-Ogo"/>
-                                    <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="LFd-yF-QPh"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -284,6 +283,7 @@
                         <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="kL8-yg-6B1"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
                         <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
+                        <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="iVW-Fy-iAQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,4 +371,7 @@
             <point key="canvasLocation" x="2885.5999999999999" y="1924.5877061469266"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-speech-bubble-28-24" width="24" height="24"/>
+    </resources>
 </document>

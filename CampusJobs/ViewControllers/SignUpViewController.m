@@ -11,8 +11,8 @@
 #import "SegueConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
+@interface SignUpViewController () <EditPaymentDelegate>
 
-@interface SignUpViewController ()
 
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *nameField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailField;
@@ -34,7 +34,6 @@
 
 - (void)registerUser {
     PFUser *newUser = [PFUser user];
-    
     newUser.username = self.usernameField.text;
     newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
@@ -52,7 +51,6 @@
             if (error != nil) {
                 [Utils callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
-                [self setDefinesPresentationContext:YES];
                 [self performSegueWithIdentifier:signUpToAddCardSegue sender:nil];
             }
         }];
@@ -86,10 +84,14 @@
 }
 
 
-/* #pragma mark - Navigation
+#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-} */
+    if ([segue.identifier isEqualToString:signUpToAddCardSegue]) {
+        EditPaymentInfoViewController *editPaymentController = [segue destinationViewController];
+        editPaymentController.delegate = self;
+    }
+}
 
 @end

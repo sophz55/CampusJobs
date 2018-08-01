@@ -10,16 +10,22 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 
+@protocol PostDetailsDelegate
+
+- (void)reloadData;
+
+@end
+
 @interface PostDetailsViewController : UIViewController
+
+@property (strong, nonatomic) UIViewController <PostDetailsDelegate> *delegate;
 @property (strong, nonatomic) Post * post;
 @property (weak, nonatomic) IBOutlet UILabel *titleDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
-@property (strong, nonatomic) UIViewController *parentVC;
 
 -(void)setDetailsPost:(Post *)post;
-
 
 
 @end

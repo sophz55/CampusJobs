@@ -7,6 +7,8 @@
 //
 
 #import "NearbyPostCell.h"
+#import "Parse.h"
+#import "Utils.h"
 
 @implementation NearbyPostCell
 
@@ -17,20 +19,27 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
--(void)setNearbyPost:(Post *)post{
+- (void)setNearbyPost:(Post *)post{
     _post=post;
     self.postUserLabel.text=post.author.username;
     self.postTitleLabel.text=post.title;
     self.postDescriptionLabel.text=post.summary;
-    //self.postDistanceLabel.text=post.location;
-    //Converting from NSDate to NSString (MM-dd-yyyy)
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy"];
-    self.postDateLabel.text=[formatter stringFromDate:post.createdAt];
+    
+    PFGeoPoint * postGeoPoint=post[@"location"];
+    PFGeoPoint * userGeoPoint=post.author[@"currentLocation"];
+    //Call Utils method to calculate distance between post location and user
+    double miles=[Utils calculateDistance:postGeoPoint betweenUserandPost:userGeoPoint];
+    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.2f",miles];
+    
+    //Format the date (date the post was posted on)
+    NSDateFormatter * formatter= [[NSDateFormatter alloc] init];
+    formatter.dateFormat= @"MM/dd/yyyy";
+    NSDate * createdAt= post.createdAt;
+    self.postDateLabel.text= [formatter stringFromDate: createdAt];
+    
 }
 
 

@@ -10,6 +10,8 @@
 #import <Parse/Parse.h>
 #import "Utils.h"
 #import "SegueConstants.h"
+#import <ChameleonFramework/Chameleon.h>
+
 
 @interface LoginViewController ()
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
@@ -21,11 +23,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addGradient];
     // Do any additional setup after loading the view.
 }
 
 - (IBAction)didTapLogin:(id)sender {
     [self loginUser];
+}
+
+- (void)addGradient{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:FlatWhite];
+    [colors addObject:FlatSkyBlue];
+     [colors addObject:FlatSkyBlueDark];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 }
 
 - (void)loginUser {

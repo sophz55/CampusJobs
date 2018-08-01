@@ -11,6 +11,4 @@
 
 @interface YourPostingsViewController : UIViewController
 
--(void)fetchPreviousUserPosts;
-
 @end

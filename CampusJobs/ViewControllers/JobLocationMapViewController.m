@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
     [self.jobPostingMapView setShowsUserLocation:YES];
     [self.jobPostingMapView setDelegate:self];
     self.jobPostingMapView.userInteractionEnabled=YES;

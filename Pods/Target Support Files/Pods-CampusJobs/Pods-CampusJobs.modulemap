@@ -1,0 +1,6 @@
+module Pods_CampusJobs {
+  umbrella header "Pods-CampusJobs-umbrella.h"
+
+  export *
+  module * { export * }
+}
