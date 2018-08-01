@@ -32,13 +32,21 @@
     [self askLocationPermission];
     //set user location
     self.userLocation=self.locationManager.location;
-    
     //check if the user is editing their current selected radius
     [self checkEditing];
+    [self setDefaultRadius];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+//Set default radius to 1 mile
+- (void)setDefaultRadius{
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f", self.radiusSliderBar.value];
+    [self createBoundaryWithRadius:self.radiusSliderBar.value];
+    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
 }
 
 - (IBAction)didTapNextButton:(id)sender {
@@ -99,7 +107,7 @@
 }
 
 //Helper method to ask user to use their location
--(void)askLocationPermission{
+- (void)askLocationPermission{
     if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
         [self.locationManager requestWhenInUseAuthorization];
     }

@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  ServicesViewController.m
 //  CampusJobs
 //
-//  Created by Somtochukwu Nweke on 7/27/18.
+//  Created by Somtochukwu Nweke on 7/29/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ServicesViewController.h"
 
-@interface ViewController ()
+@interface ServicesViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ServicesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

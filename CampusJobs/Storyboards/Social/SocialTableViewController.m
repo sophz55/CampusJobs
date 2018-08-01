@@ -1,26 +1,29 @@
 //
-//  AddressTableViewController.m
+//  SocialTableViewController.m
 //  CampusJobs
 //
-//  Created by Somtochukwu Nweke on 7/27/18.
+//  Created by Somtochukwu Nweke on 7/29/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
+#import "SocialTableViewController.h"
+#import "SocialTableViewCell.h"
+#import "SocialViewController.h"
 
-#import "AddressTableViewController.h"
-#import "TableViewCell.h"
-#import "ViewController.h"
-
-@interface AddressTableViewController ()
+@interface SocialTableViewController ()
 
 @end
 
-@implementation AddressTableViewController
+@implementation SocialTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    title = @[@"Service 1",@"Service 2",@"Service 3",@"Service 4",@"Service 5",];
+    title = @[@"Facebook",@"Twitter",@"Google+",@"LinkedIn",@"YouTube",@"Website"];
+    
+    image = @[@"SocialIcon1.png",@"SocialIcon2.png",@"SocialIcon3.png",@"SocialIcon4.png",@"SocialIcon5.png",@"SocialIcon6.png"];
+    
+    self.navigationItem.title = @"Social Links";
     
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
     
@@ -47,16 +50,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    SocialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
     
-    cell.cellLabel.text = title[indexPath.row];
+    cell.cellTitle.text = title[indexPath.row];
+    cell.cellImage.image = [UIImage imageNamed:image[indexPath.row]];
     
     
     return cell;
-    
-    
 }
 
 
@@ -98,22 +100,21 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         
-        ViewController *detailView = [segue destinationViewController];
+        SocialViewController *detailView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         
         int row = (int)[myIndexPath row];
         detailView.detail = title[row];
+        
     }
     
     
     
 }
-
 
 
 @end

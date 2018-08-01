@@ -18,11 +18,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.NameButton.layer.cornerRadius = 5;
-    self.EmailButton.layer.cornerRadius = 5;
-    self.AddressButton.layer.cornerRadius = 5;
-    self.CreditCardButton.layer.cornerRadius = 5;
-    self.RatingButton.layer.cornerRadius = 5;
+    self.NameButton.layer.cornerRadius = 10;
+    self.EmailButton.layer.cornerRadius =10;
+    self.AddressButton.layer.cornerRadius = 10;
+   self.CreditCardButton.layer.cornerRadius = 10;
     
     
     [[self navigationItem] setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil]];
@@ -49,31 +48,29 @@
 
 - (IBAction)Name:(id)sender {
     
-    [(UITabBarController *) self.tabBarController setSelectedIndex:2];
+    
     
 }
 
 - (IBAction)Email:(id)sender {
-    
-    [(UITabBarController *) self.tabBarController setSelectedIndex:3];
+   
     
 }
 
 - (IBAction)Address:(id)sender {
     
     
-    [(UITabBarController *) self.tabBarController setSelectedIndex:1];
+   
     
     
 }
 
 - (IBAction)CreditCard:(id)sender {
     
-    [(UITabBarController *) self.tabBarController setSelectedIndex:4];
+   
     
     
 }
 
-- (IBAction)Rating:(id)sender {
-}
+
 @end

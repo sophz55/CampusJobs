@@ -10,6 +10,8 @@
 
 @interface ProfileViewController : UIViewController
 
+- (IBAction)Name:(id)sender;
+- (IBAction)Name:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *NameTextField;
 - (IBAction)DismissKeyboard:(id)sender;

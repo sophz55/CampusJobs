@@ -1,14 +1,14 @@
 //
-//  TableViewCell.m
+//  ServicesTableViewCell.m
 //  CampusJobs
 //
-//  Created by Somtochukwu Nweke on 7/27/18.
+//  Created by Somtochukwu Nweke on 7/29/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import "TableViewCell.h"
+#import "ServicesTableViewCell.h"
 
-@implementation TableViewCell
+@implementation ServicesTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

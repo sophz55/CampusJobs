@@ -42,7 +42,7 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)fetchNearbyPosts{
+- (void)fetchNearbyPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     //convert desired radius into a double
     NSNumber* desiredRadius =self.currentUser[@"desiredRadius"];
@@ -92,7 +92,7 @@
     return self.nearbyPostingsArray.count;
 }
 
--(void)beginRefresh:(UIRefreshControl *)refreshControl{
+- (void)beginRefresh:(UIRefreshControl *)refreshControl{
     //fetch all of the nearby posts
     [self fetchNearbyPosts];
     //tell the refresh control to stop spinning
