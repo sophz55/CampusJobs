@@ -7,17 +7,21 @@
 //
 
 #import "ComposeNewPostViewController.h"
+#import <MaterialTextFields.h>
 #import "Post.h"
 #import "JobLocationMapViewController.h"
 #import "FeedViewController.h"
 #import "SegueConstants.h"
-#import "Utils.h"
+#import "Alert.h"
 
-@interface ComposeNewPostViewController () <UITextViewDelegate>
+@interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (weak, nonatomic) IBOutlet UIButton *editLocationButton;
-@property (weak, nonatomic) IBOutlet UITextView *summaryView;
-@property (assign, nonatomic) BOOL usesPlaceholderText;
+@property (weak, nonatomic) IBOutlet MDCMultilineTextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet MDCMultilineTextField *titleTextField;
+
+@property (strong, nonatomic) MDCTextInputControllerUnderline *titleTextFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *descriptionTextFieldController;
 @end
 
 @implementation ComposeNewPostViewController
@@ -27,7 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDefinesPresentationContext:YES];
-    self.summaryView.delegate = self;
     
     [self configureIntialView];
 }
@@ -39,20 +42,19 @@
 
 #pragma mark - UITextViewDelegate
 
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if (self.usesPlaceholderText) {
-        textView.text = @"";
-        self.summaryView.textColor = [UIColor blackColor];
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [textView sizeToFit];
+    if ([textView isEqual:self.titleTextField.textView]) {
+        [self.titleTextField sizeToFit];
+    } else if ([textView isEqual:self.descriptionTextField.textView]) {
+        [self.descriptionTextField sizeToFit];
     }
-}
-
-- (void)textViewDidChange:(UITextView *)textView{
-    self.usesPlaceholderText = NO;
 }
 
 #pragma mark - Custom Configurations
 
 - (void)configureIntialView {
+    [self configureTextFields];
     if (self.post) {
         [self configureWithExistingPost];
     } else {
@@ -60,18 +62,32 @@
     }
 }
 
-- (void)configureWithExistingPost {
-    self.enteredTitle.text = self.post.title;
+- (void)configureTextFields {
+    CGFloat textFieldWidth = 350;
+    CGFloat textFieldHeight = 50;
+    CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
     
-    self.summaryView.text = self.post.summary;
-    if (![self.summaryView.text isEqualToString:@""]) {
-        self.summaryView.textColor = [UIColor blackColor];
-        self.usesPlaceholderText = NO;
-    } else {
-        self.summaryView.text = @"Add a description...";
-        self.summaryView.textColor = [UIColor lightGrayColor];
-        self.usesPlaceholderText = YES;
-    }
+    CGFloat topTextFieldOriginY = 80;
+    CGFloat verticalSpace = textFieldHeight + 20;
+    
+    
+    self.titleTextField.textView.delegate = self;
+    self.titleTextField.placeholder = @"Title";
+    self.titleTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
+    [self.titleTextField sizeToFit];
+    self.titleTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.titleTextField];
+    
+    self.descriptionTextField.textView.delegate = self;
+    self.descriptionTextField.placeholder = @"Description";
+    self.descriptionTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
+    [self.descriptionTextField sizeToFit];
+    self.descriptionTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.descriptionTextField];
+}
+
+- (void)configureWithExistingPost {
+    self.titleTextField.text = self.post.title;
+    
+    self.descriptionTextField.text = self.post.summary;
     
     self.savedLocation = self.post.location;
     self.savedLocationAddress = self.post.locationAddress;
@@ -87,10 +103,6 @@
 }
 
 - (void)configureForNewPost {
-    self.summaryView.text = @"Add a description...";
-    self.summaryView.textColor = [UIColor lightGrayColor];
-    self.usesPlaceholderText = YES;
-    
     self.locationAddressLabel.text = @"Please set a location for your task...";
     [self.editLocationButton setTitle:@"Pin Point Your Location" forState:UIControlStateNormal];
 
@@ -121,11 +133,8 @@
 }
     
 - (IBAction)didTapPostButton:(id)sender {
-    if (self.usesPlaceholderText) {
-        self.summaryView.text = @"";
-    }
     if (!self.post) {
-        [Post postJob:self.enteredTitle.text withSummary:self.summaryView.text withLocation:self.savedLocation withLocationAddress:self.savedLocationAddress
+        [Post postJob:self.titleTextField.text withSummary:self.descriptionTextField.text withLocation:self.savedLocation withLocationAddress:self.savedLocationAddress
            withImages:nil withDate:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error){
                if (succeeded) {
                    [self performSegueWithIdentifier:composePostToFeedSegue sender:nil];
@@ -134,8 +143,8 @@
                }
            }];
     } else {
-        self.post.title = self.enteredTitle.text;
-        self.post.summary = self.summaryView.text;
+        self.post.title = self.titleTextField.text;
+        self.post.summary = self.descriptionTextField.text;
         self.post.location = self.savedLocation;
         self.post.locationAddress = self.savedLocationAddress;
         
@@ -144,7 +153,7 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate reloadDetails];
             } else {
-                [Utils callAlertWithTitle:@"Error Saving Changes" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                [Alert callAlertWithTitle:@"Error Saving Changes" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
             }
         }];
     }

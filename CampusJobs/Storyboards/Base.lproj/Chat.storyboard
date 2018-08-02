@@ -222,26 +222,17 @@
                                             <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bea-AL-PPm">
-                                        <rect key="frame" x="120" y="0.0" width="255" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
+                                        <rect key="frame" x="331" y="1" width="36" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-E2-ufm">
-                                                <rect key="frame" x="8" y="1" width="195" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                                <rect key="frame" x="211" y="1" width="36" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Send"/>
-                                                <connections>
-                                                    <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q64-vc-5sv" customClass="MDCMultilineTextField">
+                                        <rect key="frame" x="127" y="1" width="196" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -273,8 +264,7 @@
                     <connections>
                         <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
                         <outlet property="bottomView" destination="fpS-qz-gNA" id="STW-e5-efk"/>
-                        <outlet property="composeMessageTextField" destination="UD5-E2-ufm" id="qjF-KX-Rbl"/>
-                        <outlet property="composeMessageView" destination="bea-AL-PPm" id="6F3-IL-K9u"/>
+                        <outlet property="composeMessageTextField" destination="Q64-vc-5sv" id="ANS-jS-VeJ"/>
                         <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
                         <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>

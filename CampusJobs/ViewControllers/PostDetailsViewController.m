@@ -9,12 +9,12 @@
 #import "PostDetailsViewController.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 #import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
 
-@interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, UtilsDelegate>
+@interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
@@ -158,7 +158,7 @@
 
 - (IBAction)didTapDeleteButton:(id)sender {
     if (self.userIsAuthor && self.post.postStatus == OPEN) {
-        [Utils callConfirmationWithTitle:@"Are you sure you want to delete this post?" confirmationMessage:@"This cannot be undone." yesActionTitle:@"Delete" noActionTitle:@"Cancel" viewController:self];
+        [Alert callConfirmationWithTitle:@"Are you sure you want to delete this post?" confirmationMessage:@"This cannot be undone." yesActionTitle:@"Delete" noActionTitle:@"Cancel" viewController:self];
     }
 }
 
@@ -170,7 +170,7 @@
         } else {
             confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for %@.", self.post.price];
         }
-        [Utils callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
+        [Alert callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
     }
 }
 
@@ -203,11 +203,11 @@
                     self.conversation = (Conversation *)newConversation;
                         [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
                 } else {
-                    [Utils callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+                    [Alert callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                 }
             }];
         } else {
-            [Utils callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -233,7 +233,7 @@
             self.conversation = (Conversation *)conversation;
             [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
         } else {
-            [Utils callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error Fetching Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -244,7 +244,7 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             [self.delegate reloadData];
         } else {
-            [Utils callAlertWithTitle:@"Error Deleting Post" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error Deleting Post" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }
@@ -254,7 +254,7 @@
         if (didCancelJob) {
             [self reloadDetails];
         } else {
-            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }

@@ -16,7 +16,6 @@
 
 @interface ComposeNewPostViewController : UIViewController
 @property (weak, nonatomic) id <ComposePostDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITextField *enteredTitle;
 @property (weak, nonatomic) IBOutlet UILabel *locationAddressLabel;
 @property (strong, nonatomic) PFGeoPoint * savedLocation;
 @property (strong, nonatomic) NSString * savedLocationAddress;

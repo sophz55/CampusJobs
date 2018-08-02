@@ -8,7 +8,7 @@
 
 #import "Post.h"
 #import "Conversation.h"
-#import "Utils.h"
+#import "Alert.h"
 
 @implementation Post
 

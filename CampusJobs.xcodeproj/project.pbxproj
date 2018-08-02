@@ -36,13 +36,10 @@
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
 		F312269E210A535C004F4677 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269D210A535C004F4677 /* Card.m */; };
 		F31226A1210A8582004F4677 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A0210A8582004F4677 /* Utils.m */; };
+		F31CC594211264F500C899B7 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = F31CC593211264F500C899B7 /* Alert.m */; };
 		F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32251F320FEA772003E4C08 /* Chat.storyboard */; };
 		F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F338397E20FE9AA000364F86 /* ConversationsViewController.m */; };
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
-		F3543E09210BB3EA00CD3DE2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */; };
-		F3543E0A210BB3ED00CD3DE2 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */; };
-		F3543E0C210BC02F00CD3DE2 /* SegueConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F31226A4210A8927004F4677 /* SegueConstants.m */; };
-		F3543E0D210BC66300CD3DE2 /* MainProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF48210A913B00CB81DC /* MainProfileViewController.m */; };
 		F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
@@ -147,6 +144,8 @@
 		F31226A4210A8927004F4677 /* SegueConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueConstants.m; sourceTree = "<group>"; };
 		F31226AA210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
 		F31226AC210A995A004F4677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		F31CC592211264F500C899B7 /* Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		F31CC593211264F500C899B7 /* Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		F32251F420FEA772003E4C08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		F338397D20FE9AA000364F86 /* ConversationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationsViewController.h; sourceTree = "<group>"; };
 		F338397E20FE9AA000364F86 /* ConversationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationsViewController.m; sourceTree = "<group>"; };
@@ -175,8 +174,6 @@
 		F39F4BED20FD14A300C11CD0 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		F39F4BEF20FD14C000C11CD0 /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		F39F8E2A210BB35500DC2C8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
-		F39F8E2D210BB36300DC2C8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentInfo.storyboard; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
@@ -402,6 +399,8 @@
 				F31226A0210A8582004F4677 /* Utils.m */,
 				F31226A3210A8927004F4677 /* SegueConstants.h */,
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
+				F31CC592211264F500C899B7 /* Alert.h */,
+				F31CC593211264F500C899B7 /* Alert.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -692,6 +691,26 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs-resources.sh",
+				"${PODS_ROOT}/MaterialComponents/components/ActivityIndicator/src/MaterialActivityIndicator.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/AppBar/src/MaterialAppBar.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/BottomNavigation/src/MaterialBottomNavigation.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/CollectionCells/src/MaterialCollectionCells.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/Collections/src/MaterialCollections.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/Dialogs/src/MaterialDialogs.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/FeatureHighlight/src/MaterialFeatureHighlight.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/PageControl/src/MaterialPageControl.bundle",
+				"${PODS_ROOT}/MaterialComponents/components/Tabs/src/MaterialTabs.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_arrow_back.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_check.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_check_circle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_chevron_right.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_color_lens.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_help_outline.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_info.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_more_horiz.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_radio_button_unchecked.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_reorder.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_settings.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -699,6 +718,26 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialActivityIndicator.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialAppBar.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialBottomNavigation.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCollectionCells.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCollections.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialDialogs.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialFeatureHighlight.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialPageControl.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialTabs.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_arrow_back.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_check.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_check_circle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_chevron_right.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_color_lens.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_help_outline.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_info.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_more_horiz.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_radio_button_unchecked.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_reorder.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons_ic_settings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -716,6 +755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31CC594211264F500C899B7 /* Alert.m in Sources */,
 				D38B18E6210FBE43005E607F /* ProfileViewController.m in Sources */,
 				D38B18DE210F80CB005E607F /* MainProfileViewController.m in Sources */,
 				D38B18DF210F80CB005E607F /* SegueConstants.m in Sources */,
@@ -857,22 +897,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		F39F8E29210BB35500DC2C8A /* Storyboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F39F8E2A210BB35500DC2C8A /* Base */,
-			);
-			name = Storyboard.storyboard;
-			sourceTree = "<group>";
-		};
-		F39F8E2C210BB36300DC2C8A /* PaymentInfo.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F39F8E2D210BB36300DC2C8A /* Base */,
-			);
-			name = PaymentInfo.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -998,7 +1022,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng2.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1016,7 +1040,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng2.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

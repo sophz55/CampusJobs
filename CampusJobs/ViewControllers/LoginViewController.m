@@ -8,14 +8,18 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 #import <ChameleonFramework/Chameleon.h>
+#import <MaterialComponents/MaterialTextFields.h>
 
+@interface LoginViewController () <UITextFieldDelegate>
 
-@interface LoginViewController ()
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
+@property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
+
+@property (strong, nonatomic) MDCTextInputControllerFilled *usernameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerFilled *passwordFieldController;
 
 @end
 
@@ -25,6 +29,24 @@
     [super viewDidLoad];
     [self addGradient];
     // Do any additional setup after loading the view.
+    
+    [self configureTextFields];
+}
+
+- (void)configureTextFields {
+    CGFloat textFieldWidth = 300;
+    CGFloat textFieldHeight = 50;
+    CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
+    CGFloat topTextFieldOriginY = 250;
+    CGFloat verticalSpace = textFieldHeight + 20;
+    
+    self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
+    self.usernameField.delegate = self;
+    self.usernameFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameField];
+    
+    self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
+    self.passwordField.delegate = self;
+    self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
 }
 
 - (IBAction)didTapLogin:(id)sender {
@@ -46,7 +68,7 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            [Utils callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:loginToFeedSegue sender:nil];

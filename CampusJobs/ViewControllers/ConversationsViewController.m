@@ -10,7 +10,7 @@
 #import "ConversationTableViewCell.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 
 @interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource, ConversationDetailDelegate>
@@ -66,7 +66,7 @@
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
         if (error != nil) {
-            [Utils callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
             self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];

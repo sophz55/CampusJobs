@@ -9,7 +9,7 @@
 #import "EditPaymentInfoViewController.h"
 #import <Parse/Parse.h>
 #import "Card.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 #import "SignUpViewController.h"
 
@@ -115,15 +115,15 @@
                             [self dismissViewControllerAnimated:YES completion:nil];
                         }
                     } else {
-                        [Utils callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
+                        [Alert callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
                     }
                 }];
             } else {
-                [Utils callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
+                [Alert callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
             }
         }];
     } else {
-        [Utils callAlertWithTitle:@"Could not save card info" alertMessage:@"Some required fields are blank!" viewController:self];
+        [Alert callAlertWithTitle:@"Could not save card info" alertMessage:@"Some required fields are blank!" viewController:self];
     }
 }
 

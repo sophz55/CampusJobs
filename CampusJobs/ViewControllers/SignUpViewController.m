@@ -7,17 +7,22 @@
 //
 
 #import "SignUpViewController.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
-@interface SignUpViewController () <EditPaymentDelegate>
+#import <MaterialTextFields.h>
+@interface SignUpViewController () <EditPaymentDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet MDCTextField *nameField;
+@property (weak, nonatomic) IBOutlet MDCTextField *emailField;
+@property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
+@property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
 
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *nameField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *nameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *emailFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
 
 @end
 
@@ -26,6 +31,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self configureFields];
+}
+
+- (void)configureFields {
+    
+    CGFloat textFieldWidth = 300;
+    CGFloat textFieldHeight = 50;
+    CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
+    
+    CGFloat topTextFieldOriginY = 170;
+    CGFloat verticalSpace = textFieldHeight + 20;
+    
+    self.nameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
+    self.nameField.delegate = self;
+    self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
+    
+    self.emailField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
+    self.emailField.delegate = self;
+    self.emailFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.emailField];
+    
+    self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + 2 * verticalSpace, textFieldWidth, textFieldHeight);
+    self.usernameField.delegate = self;
+    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
+    
+    self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + 3 * verticalSpace, textFieldWidth, textFieldHeight);
+    self.passwordField.delegate = self;
+    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
 }
 
 - (IBAction)didTapSignUp:(id)sender {
@@ -49,13 +82,13 @@
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
-                [Utils callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+                [Alert callAlertWithTitle:@"Error" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
             } else {
                 [self performSegueWithIdentifier:signUpToAddCardSegue sender:nil];
             }
         }];
     } else {
-        [Utils callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
+        [Alert callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
     }
 }
 
