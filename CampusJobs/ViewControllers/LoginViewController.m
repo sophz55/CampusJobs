@@ -11,6 +11,7 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "Colors.h"
 
 
 @interface LoginViewController ()
@@ -33,9 +34,9 @@
 
 - (void)addGradient{
     NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:FlatWhite];
-    [colors addObject:FlatSkyBlue];
-     [colors addObject:FlatSkyBlueDark];
+    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
     self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 }
 

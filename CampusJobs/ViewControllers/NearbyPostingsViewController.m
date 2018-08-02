@@ -11,6 +11,7 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 #import "Utils.h"
+#import "Colors.h"
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
