@@ -57,6 +57,7 @@
 		FC209033210FB5FF00E27A5E /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC209032210FB5FF00E27A5E /* TabBarViewController.m */; };
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
 		FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */; };
+		FC5E1DC4211223D10088DDBE /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5E1DC3211223D10088DDBE /* Colors.m */; };
 		FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */; };
 		FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */; };
 		FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */; };
@@ -186,6 +187,8 @@
 		FC29BF48210A913B00CB81DC /* MainProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainProfileViewController.m; sourceTree = "<group>"; };
 		FC5B61FC20FE9A8B00050EA7 /* NearbyPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostCell.h; sourceTree = "<group>"; };
 		FC5B61FD20FE9A8B00050EA7 /* NearbyPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyPostCell.m; sourceTree = "<group>"; };
+		FC5E1DC2211223D10088DDBE /* Colors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
+		FC5E1DC3211223D10088DDBE /* Colors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
 		FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NearbyPostingsViewController.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
 				F31CC592211264F500C899B7 /* Alert.h */,
 				F31CC593211264F500C899B7 /* Alert.m */,
+				FC5E1DC2211223D10088DDBE /* Colors.h */,
+				FC5E1DC3211223D10088DDBE /* Colors.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				D38B18D7210EC968005E607F /* SocialTableViewController.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
+				FC5E1DC4211223D10088DDBE /* Colors.m in Sources */,
 				D38B18C4210EC850005E607F /* ServicesTableViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "MainProfileViewController.h"
 #import "Parse.h"
 #import "ParseUI.h"
+#import "Colors.h"
 
 @interface MainProfileViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -27,6 +28,7 @@
     self.currentUser=[PFUser currentUser];
     [self setMainPageLabels];
     [self formatPicAndButtons];
+    [self formatColors];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,6 +94,10 @@
     
     //Add border around edit button
     self.editProfPicButton.layer.borderWidth=0.25f;
+}
+
+- (void)formatColors{
+    [self.view setBackgroundColor:[Colors primaryBlueColor]];
 }
 
 

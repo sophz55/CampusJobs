@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
 @property (assign, nonatomic) CGFloat bottomViewHeight;
+@property (assign, nonatomic) CGFloat initialButtonHeight;
 
 @end
 
@@ -70,8 +71,16 @@
     [self.refreshControl endRefreshing];
 }
 
-
 #pragma mark - UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self configureBottomViewShowingSuggestPriceButton:NO];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self configureBottomViewShowingSuggestPriceButton:YES];
+}
+
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView isEqual:self.composeMessageTextField.textView]) {
         if ([textView.text isEqualToString:@""]) {
@@ -85,6 +94,7 @@
             CGFloat distance = self.composeMessageTextField.frame.size.height + 8 - self.bottomViewHeight;
             self.bottomViewHeight = self.composeMessageTextField.frame.size.height + 8;
             [Utils animateView:self.bottomView withDistance:distance up:YES];
+            [self configureBottomViewShowingSuggestPriceButton:NO];
         }
     }
 }
@@ -104,7 +114,8 @@
     self.composeMessageTextField.placeholder = @"New Message...";
     self.composeMessageTextField.minimumLines = 1;
     
-    self.bottomViewHeight = 50;
+    self.initialButtonHeight = 50;
+    self.bottomViewHeight = self.initialButtonHeight;
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
 }
 
@@ -227,11 +238,11 @@
     CGFloat horizontalInset = 8;
     
     CGFloat sendMessageButtonWidth = 40;
-    self.sendMessageButton.frame = CGRectMake(self.bottomView.frame.size.width - horizontalInset - sendMessageButtonWidth, 0, sendMessageButtonWidth, self.bottomViewHeight);
+    self.sendMessageButton.frame = CGRectMake(self.bottomView.frame.size.width - horizontalInset - sendMessageButtonWidth, self.bottomViewHeight - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
     
     if (showsSuggestPrice) {
         self.suggestPriceButton.hidden = NO;
-        self.suggestPriceButton.frame = CGRectMake(horizontalInset, 0, 100, self.bottomViewHeight);
+        self.suggestPriceButton.frame = CGRectMake(horizontalInset, self.bottomViewHeight - self.initialButtonHeight, 100, self.initialButtonHeight);
         
         CGFloat composeMessageOriginX = self.suggestPriceButton.frame.origin.x + self.suggestPriceButton.frame.size.width + horizontalInset;
         self.composeMessageTextField.textView.frame = CGRectMake(composeMessageOriginX, 0, self.sendMessageButton.frame.origin.x - 4 - composeMessageOriginX, self.bottomViewHeight);

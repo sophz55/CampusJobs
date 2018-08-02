@@ -13,6 +13,8 @@
 #import "SegueConstants.h"
 #import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate>
 
@@ -35,7 +37,7 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     self.userIsAuthor = [self.post.author.objectId isEqualToString:self.user.objectId];
-    
+    [self formatColors];
     [self configureInitialView];
 }
 
@@ -62,7 +64,6 @@
 }
 
 #pragma mark - Custom Configurations
-
 - (void)configureInitialView {
     [self configureNavigatonBar];
     
@@ -201,7 +202,7 @@
             [Conversation createNewConversationWithPost:self.post withSeeker:self.user withCompletion:^(PFObject *newConversation, NSError * _Nullable error){
                 if (newConversation){
                     self.conversation = (Conversation *)newConversation;
-                        [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
+                    [self performSegueWithIdentifier:postDetailsToMessageSegue sender:nil];
                 } else {
                     [Alert callAlertWithTitle:@"Error Creating Conversation" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
                 }
@@ -283,6 +284,13 @@
         editPostViewController.delegate = self;
         editPostViewController.post = self.post;
     }
+}
+
+- (void)formatColors{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[Colors secondaryGreyLighterColor]];
+    [colors addObject:[Colors secondaryGreyLightColor]];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 }
 
 @end

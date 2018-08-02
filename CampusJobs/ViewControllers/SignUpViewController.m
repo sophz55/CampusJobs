@@ -12,7 +12,10 @@
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
 #import <MaterialTextFields.h>
-@interface SignUpViewController () <EditPaymentDelegate, UITextFieldDelegate>
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
+
+@interface SignUpViewController () <EditPaymentDelegate>
 
 @property (weak, nonatomic) IBOutlet MDCTextField *nameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *emailField;
@@ -30,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addGradient];
     // Do any additional setup after loading the view.
     
     [self configureFields];
@@ -116,6 +120,13 @@
     [self.view endEditing:YES];
 }
 
+- (void)addGradient{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+}
 
 #pragma mark - Navigation
 
