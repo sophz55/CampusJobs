@@ -56,11 +56,11 @@
     if ([self.delegate isKindOfClass:[SignUpViewController class]]) {
         self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
         self.saveButton.titleLabel.text = @"Add Card";
-        [Utils showButton:self.skipButton];
+        self.skipButton.hidden = NO;
     } else {
         self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
         self.saveButton.titleLabel.text = @"Update";
-        [Utils hideButton:self.skipButton];
+        self.skipButton.hidden = YES;
     }
 }
 

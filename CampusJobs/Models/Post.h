@@ -27,6 +27,7 @@ typedef enum {
 @property (strong, nonatomic) NSNumber *price;
 @property (strong, nonatomic) PFUser *author;
 @property (strong, nonatomic) PFUser *taker;
+@property (strong, nonatomic) PFObject *conversation;
 @property (strong, nonatomic) NSDate *completedDate;
 @property (assign, nonatomic) status postStatus;
  // 0 if open, 1 if job is taken, 2 if job is closed
@@ -38,9 +39,9 @@ typedef enum {
 
 + (void)postJob: (NSString * _Nullable)title withSummary:(NSString * _Nullable)summary withLocation:(PFGeoPoint * _Nullable)location withLocationAddress:(NSString *_Nullable)locationAddress withImages:(NSArray * _Nullable)images withDate:(NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
-- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion;
+- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withConversation:(PFObject *)conversation withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
-- (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion;
+- (void)cancelJobWithConversation:(PFObject *)conversation withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
 - (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion;
 

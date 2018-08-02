@@ -76,9 +76,9 @@
     }
     
     if (self.post.postStatus == IN_PROGRESS && (self.userIsAuthor || [self.user.objectId isEqualToString:self.post.taker.objectId])) {
-        [Utils showButton:self.cancelButton];
+        self.cancelButton.hidden = NO;
     } else {
-        [Utils hideButton:self.cancelButton];
+        self.cancelButton.hidden = YES;
     }
 }
 
@@ -93,35 +93,39 @@
 }
 
 - (void)configureAuthorView {
-    [Utils showBarButton:self.editButton];
+    [self.editButton setEnabled:YES];
+    [self.editButton setTintColor:nil];
     
     if (self.post.postStatus == OPEN) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open!"];
-        [Utils showButton:self.deleteButton];
+        self.deleteButton.hidden = NO;
     } else if (self.post.postStatus == IN_PROGRESS) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"In progress with user: %@", self.post.taker.username];
-        [Utils hideButton:self.deleteButton];
+        self.deleteButton.hidden = YES;
     } else {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"Completed by: %@", self.post.taker.username];
-        [Utils hideButton:self.deleteButton];
+        self.deleteButton.hidden = YES;
     }
     
     if ([self.delegate isKindOfClass:[ConversationDetailViewController class]] || self.post.postStatus == OPEN) {
-        [Utils hideButton:self.messageButton];
+        self.messageButton.hidden = YES;
     } else {
-        [Utils showButton:self.messageButton withText:[NSString stringWithFormat: @"Message %@", self.post.taker.username]];
+        self.messageButton.hidden = NO;
+        [self.messageButton setTitle:[NSString stringWithFormat: @"Message %@", self.post.taker.username] forState:UIControlStateNormal];
     }
 }
 
 - (void)configureSeekerView {
     if ([self.delegate isKindOfClass:[ConversationDetailViewController class]]) {
-        [Utils hideButton:self.messageButton];
+        self.messageButton.hidden = YES;
     } else {
-        [Utils showButton:self.messageButton withText:@"Message"];
+        self.messageButton.hidden = NO;
+        [self.messageButton setTitle:@"Message" forState:UIControlStateNormal];
     }
     
-    [Utils hideBarButton:self.editButton];
-    [Utils hideButton:self.deleteButton];
+    [self.editButton setEnabled:NO];
+    [self.editButton setTintColor:[UIColor clearColor]];
+    self.deleteButton.hidden = YES;
     
     self.userDetailsLabel.text = [NSString stringWithFormat: @"Author: %@", self.post.author.username];
 }
@@ -247,9 +251,11 @@
 }
 
 - (void)cancelJob {
-    [self.post cancelJobWithCompletion:^(BOOL didCancelJob, NSError *error) {
+    [self.post cancelJobWithConversation:self.post.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
         if (didCancelJob) {
             [self reloadDetails];
+        } else {
+            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
     }];
 }

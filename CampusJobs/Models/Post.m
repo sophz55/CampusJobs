@@ -17,6 +17,7 @@
 @dynamic price;
 @dynamic author;
 @dynamic taker;
+@dynamic conversation;
 @dynamic completedDate;
 @dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is closed
 @dynamic photoFiles; //array of PFFiles
@@ -36,6 +37,7 @@
     newPost.price = nil;
     newPost.author = [PFUser currentUser];
     newPost.taker = nil;
+    newPost.conversation = nil;
     newPost.completedDate = date;
     newPost.postStatus = OPEN;
     newPost.location=postLocation;
@@ -61,18 +63,44 @@
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
-- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withCompletion:(PFBooleanResultBlock _Nullable)completion{
+- (void)acceptJobWithPrice:(NSNumber *)price withTaker:(PFUser *)taker withConversation:(PFObject *)conversation withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    self.conversation = conversation;
     self.price = price;
     self.taker = taker;
     self.postStatus = IN_PROGRESS;
-    [self saveInBackgroundWithBlock:completion];
+    [self saveInBackgroundWithBlock:^(BOOL didAcceptJob, NSError *error) {
+        if (didAcceptJob) {
+            PFUser *user = [PFUser currentUser];
+            PFUser *otherUser;
+            if ([user.objectId isEqualToString:self.taker.objectId]) {
+                otherUser = self.author;
+            } else {
+                otherUser = self.taker;
+            }
+            
+            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%@. This job is now in progress - please coordinate how you would like to proceed!", user.username, price] withSender:user withReceiver:otherUser withCompletion:completion];
+        }
+    }];
 }
 
-- (void)cancelJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
+- (void)cancelJobWithConversation:(PFObject *)conversation withCompletion:(PFBooleanResultBlock _Nullable)completion {
     self.price = nil;
     self.taker = nil;
+    self.conversation = nil;
     self.postStatus = OPEN;
-    [self saveInBackgroundWithBlock:completion];
+    [self saveInBackgroundWithBlock:^(BOOL didCancelJob, NSError *error) {
+        if (didCancelJob) {
+            PFUser *user = [PFUser currentUser];
+            PFUser *otherUser;
+            if ([user.objectId isEqualToString:self.taker.objectId]) {
+                otherUser = self.author;
+            } else {
+                otherUser = self.taker;
+            }
+            
+            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", user.username] withSender:user withReceiver:otherUser withCompletion:completion];
+        }
+    }];
 }
 
 - (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{

@@ -78,4 +78,9 @@
     
 
      }
+- (IBAction)Name:(id)sender {
+}
+
+//- (IBAction)Name:(id)sender {
+//}
 @end

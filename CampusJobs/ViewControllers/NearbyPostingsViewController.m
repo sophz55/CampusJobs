@@ -31,12 +31,12 @@
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
     UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
     self.nearbyPostTableView.rowHeight=75;
     [self displayRadius];
-    
 }
 
 - (void)didReceiveMemoryWarning {
