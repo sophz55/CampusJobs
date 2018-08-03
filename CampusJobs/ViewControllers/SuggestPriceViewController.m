@@ -9,10 +9,14 @@
 #import "SuggestPriceViewController.h"
 #import "Alert.h"
 #import "ConversationDetailViewController.h"
+#import <MaterialComponents/MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons.h>
 
 @interface SuggestPriceViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *suggestedPriceTextField;
+@property (weak, nonatomic) IBOutlet MDCTextField *suggestedPriceTextField;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *suggestButton;
 
 @end
 

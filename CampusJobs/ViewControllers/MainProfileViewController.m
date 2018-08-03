@@ -10,14 +10,18 @@
 #import "Parse.h"
 #import "ParseUI.h"
 #import "Colors.h"
+#import <MaterialComponents/MaterialButtons.h>
 
-@interface MainProfileViewController ()
+@interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UIButton *editProfPicButton;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *editProfPicButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
 
 @end
 

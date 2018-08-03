@@ -40,7 +40,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="B4S-06-NtG">
-                                <rect key="frame" x="81" y="599.5" width="242" height="30.5"/>
+                                <rect key="frame" x="81" y="599.5" width="246" height="30.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ew4-49-awj">
                                         <rect key="frame" x="0.0" y="5" width="179" height="20.5"/>
@@ -48,9 +48,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeF-h7-JLY">
-                                        <rect key="frame" x="187" y="0.0" width="55" height="30.5"/>
-                                        <state key="normal" title="Sign Up">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeF-h7-JLY" customClass="MDCFlatButton">
+                                        <rect key="frame" x="187" y="0.0" width="59" height="30.5"/>
+                                        <state key="normal" title="Sign Up.">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -63,7 +63,7 @@
                                     <constraint firstItem="PeF-h7-JLY" firstAttribute="top" secondItem="B4S-06-NtG" secondAttribute="top" id="RJH-yj-twA"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-yI-6lw">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-yI-6lw" customClass="MDCRaisedButton">
                                 <rect key="frame" x="143" y="415" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="19"/>
@@ -88,7 +88,10 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="eqB-yI-6lw" id="QLu-1O-jNO"/>
                         <outlet property="passwordField" destination="EEL-eM-uEn" id="6h8-JF-S8T"/>
+                        <outlet property="signUpButton" destination="PeF-h7-JLY" id="D92-VM-xmf"/>
+                        <outlet property="titleLabel" destination="Fth-3F-8T7" id="9VK-RC-55q"/>
                         <outlet property="usernameField" destination="dqp-hY-ZBR" id="N8i-Of-EBE"/>
                         <segue destination="dkE-a4-TIu" kind="presentation" identifier="loginToFeedSegue" id="1CD-3G-1S5"/>
                     </connections>
@@ -100,7 +103,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-228" y="-253.2233883058471"/>
+            <point key="canvasLocation" x="-980" y="-493"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="5ZE-2L-h28">
@@ -168,7 +171,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9g-05-T4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="C8o-LR-Ox6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="648.79999999999995" y="524.8875562218891"/>
+            <point key="canvasLocation" x="410" y="363"/>
         </scene>
         <!--tabBarController-->
         <scene sceneID="ISJ-Ds-SZq">
@@ -230,7 +233,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EW-e9-8V6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EW-e9-8V6" customClass="MDCFlatButton">
                                         <rect key="frame" x="204" y="0.0" width="51" height="30.5"/>
                                         <state key="normal" title="Sign In."/>
                                         <connections>
@@ -243,10 +246,12 @@
                                     <constraint firstItem="e5r-MR-cBe" firstAttribute="top" secondItem="xEg-te-qYt" secondAttribute="top" constant="5" id="KcR-4B-3eP"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsD-Mx-O5V">
-                                <rect key="frame" x="160" y="502" width="55" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsD-Mx-O5V" customClass="MDCRaisedButton">
+                                <rect key="frame" x="132" y="502" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Up"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="didTapSignUp:" destination="rPR-zo-A9b" eventType="touchUpInside" id="Z0i-YS-dZa"/>
                                 </connections>
@@ -267,6 +272,9 @@
                         <outlet property="emailField" destination="mrN-nZ-KuW" id="tIc-Db-kBZ"/>
                         <outlet property="nameField" destination="oCt-aS-RLW" id="bdq-wr-ZCR"/>
                         <outlet property="passwordField" destination="lZQ-hM-j6o" id="cZs-Jm-UkA"/>
+                        <outlet property="signInButton" destination="3EW-e9-8V6" id="2Km-QN-Xwy"/>
+                        <outlet property="signUpButton" destination="gsD-Mx-O5V" id="Mka-zb-hcc"/>
+                        <outlet property="titleLabel" destination="jMa-XL-qsw" id="K1D-T6-FJC"/>
                         <outlet property="usernameField" destination="0YF-ho-ZVc" id="Zq3-ps-24E"/>
                         <segue destination="6fD-Zb-ubm" kind="presentation" identifier="signUpToAddCardSegue" id="dtR-kf-s3S"/>
                     </connections>
@@ -278,7 +286,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1174" y="511"/>
+            <point key="canvasLocation" x="-980" y="363"/>
         </scene>
         <!--PaymentInfo-->
         <scene sceneID="NWH-kL-S8h">
@@ -286,7 +294,7 @@
                 <viewControllerPlaceholder storyboardName="PaymentInfo" id="6fD-Zb-ubm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R9-nd-8M3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175" y="525"/>
+            <point key="canvasLocation" x="-327" y="363"/>
         </scene>
         <!--tabBarController-->
         <scene sceneID="Emv-qf-C3i">
@@ -294,10 +302,10 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="tabBarController" id="dkE-a4-TIu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSl-uc-xUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="-78"/>
+            <point key="canvasLocation" x="1072" y="-407"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1CD-3G-1S5"/>
+        <segue reference="07a-Uj-UXy"/>
     </inferredMetricsTieBreakers>
 </document>

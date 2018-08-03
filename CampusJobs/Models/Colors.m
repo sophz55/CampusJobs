@@ -37,7 +37,7 @@
     return [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:1.0];
 }
 +(UIColor *)primaryOrangeColor{
-    return [UIColor colorWithRed:.16 green:.71 blue:.96 alpha:1.0];
+    return [UIColor colorWithRed:.96 green:.71 blue:.16 alpha:1.0];
 }
 +(UIColor *)secondaryGreyLighterColor{
     return [UIColor colorWithRed:.81 green:.85 blue:.86 alpha:1.0];

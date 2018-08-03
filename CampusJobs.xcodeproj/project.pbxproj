@@ -43,6 +43,8 @@
 		F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
+		F396B1F82113ADFE0099E623 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396B1F72113ADFE0099E623 /* Feed.storyboard */; };
+		F396B1FB2113B2260099E623 /* AppScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = F396B1FA2113B2260099E623 /* AppScheme.m */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
 		F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F420EFE12900381BE7 /* Main.storyboard */; };
 		F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */; };
@@ -156,6 +158,9 @@
 		F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationDetailViewController.m; sourceTree = "<group>"; };
 		F37ADB8420FE8ABA004C593C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginSignUp.storyboard; sourceTree = "<group>"; };
 		F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F396B1F72113ADFE0099E623 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		F396B1F92113B2260099E623 /* AppScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppScheme.h; sourceTree = "<group>"; };
+		F396B1FA2113B2260099E623 /* AppScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppScheme.m; sourceTree = "<group>"; };
 		F39E66EB20EFE12800381BE7 /* CampusJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39E66EE20EFE12800381BE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F39E66EF20EFE12800381BE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -365,6 +370,8 @@
 				F39E66FC20EFE12900381BE7 /* Info.plist */,
 				F39E66FD20EFE12900381BE7 /* main.m */,
 				F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */,
+				F396B1F92113B2260099E623 /* AppScheme.h */,
+				F396B1FA2113B2260099E623 /* AppScheme.m */,
 			);
 			path = CampusJobs;
 			sourceTree = "<group>";
@@ -476,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				F39E66F420EFE12900381BE7 /* Main.storyboard */,
+				F396B1F72113ADFE0099E623 /* Feed.storyboard */,
 				F32251F320FEA772003E4C08 /* Chat.storyboard */,
 				F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */,
 				D3068315210FBF49003C2CB1 /* PaymentInfo.storyboard */,
@@ -611,6 +619,7 @@
 				D306831B210FBF79003C2CB1 /* PaymentInfo.storyboard in Resources */,
 				D306831C210FBF79003C2CB1 /* Storyboard.storyboard in Resources */,
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
+				F396B1F82113ADFE0099E623 /* Feed.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
@@ -793,6 +802,7 @@
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
 				D38B18CD210EC8AE005E607F /* PortfolioViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
+				F396B1FB2113B2260099E623 /* AppScheme.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				D38B18DD210EC9AF005E607F /* SocialViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,

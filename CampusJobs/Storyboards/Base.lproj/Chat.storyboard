@@ -92,10 +92,10 @@
         <!--postDetailsNavigationController-->
         <scene sceneID="lc8-39-LQ4">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="postDetailsNavigationController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Feed" referencedIdentifier="postDetailsNavigationController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irC-KI-DeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4089" y="1205"/>
+            <point key="canvasLocation" x="4217" y="1219"/>
         </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="JtB-1h-Yrn">
@@ -141,7 +141,7 @@
                                                     <rect key="frame" x="124" y="177" width="94" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-nm-H5i">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-nm-H5i" customClass="MDCRaisedButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="43" height="27"/>
                                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -152,7 +152,7 @@
                                                                 <action selector="didTapAccept:" destination="RsE-B9-ecx" eventType="touchUpInside" id="ths-NB-h4N"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-zD-WXo">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-zD-WXo" customClass="MDCRaisedButton">
                                                             <rect key="frame" x="51" y="0.0" width="43" height="27"/>
                                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -171,7 +171,9 @@
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="acceptButton" destination="eRL-nm-H5i" id="Pzl-co-ceI"/>
                                             <outlet property="buttonsStackView" destination="pdQ-rB-l6f" id="lCv-Ge-nJt"/>
+                                            <outlet property="declineButton" destination="IgL-zD-WXo" id="6cb-Ic-MYN"/>
                                             <outlet property="messageTextView" destination="UJ4-L7-1GI" id="GlS-mD-yqo"/>
                                             <outlet property="textBubbleView" destination="BOP-pb-Hkd" id="Kty-d9-j3L"/>
                                         </connections>
@@ -193,7 +195,7 @@
                                         <rect key="frame" x="8" y="25.5" width="190" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-GW-2II">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-GW-2II" customClass="MDCRaisedButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel Job"/>
@@ -201,7 +203,7 @@
                                                     <action selector="didTapCancelJobButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="K9r-JK-R9v"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-eA-fcq">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-eA-fcq" customClass="MDCRaisedButton">
                                                 <rect key="frame" x="85" y="0.0" width="105" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Job Completed"/>
@@ -218,8 +220,8 @@
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1">
-                                        <rect key="frame" x="8" y="0.0" width="96" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1" customClass="MDCFlatButton">
+                                        <rect key="frame" x="8" y="0.0" width="150" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Suggest Price"/>
                                         <connections>
@@ -227,8 +229,8 @@
                                             <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj">
-                                        <rect key="frame" x="331" y="1" width="36" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj" customClass="MDCFlatButton">
+                                        <rect key="frame" x="318" y="1" width="60" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
@@ -269,14 +271,15 @@
                     <connections>
                         <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
                         <outlet property="bottomView" destination="fpS-qz-gNA" id="STW-e5-efk"/>
+                        <outlet property="cancelJobButton" destination="VgO-GW-2II" id="fjz-sS-TA0"/>
                         <outlet property="composeMessageTextField" destination="Q64-vc-5sv" id="ANS-jS-VeJ"/>
                         <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
-                        <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="AWw-FV-Vco"/>
+                        <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="4yE-wk-rhJ"/>
                         <outlet property="jobStatusProgressLabel" destination="oTc-Hy-Kce" id="wIr-Gs-7fy"/>
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
-                        <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="kL8-yg-6B1"/>
-                        <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="Mmh-zu-qcE"/>
+                        <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="IwH-b7-Kq7"/>
+                        <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="tct-zn-lei"/>
                         <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
                         <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="iVW-Fy-iAQ"/>
                     </connections>
@@ -302,29 +305,20 @@
                                 <rect key="frame" x="67" y="234" width="240" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L32-76-TEg">
-                                        <rect key="frame" x="39" y="101" width="48" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L32-76-TEg" customClass="MDCRaisedButton">
+                                        <rect key="frame" x="32" y="101" width="73" height="30"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="didTapCancelButton:" destination="0H4-vw-4U8" eventType="touchUpInside" id="Dpb-UK-G7N"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuN-QR-PsP">
-                                        <rect key="frame" x="144" y="101" width="57" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuN-QR-PsP" customClass="MDCRaisedButton">
+                                        <rect key="frame" x="141" y="101" width="83" height="30"/>
                                         <state key="normal" title="Suggest"/>
                                         <connections>
                                             <action selector="didTapSuggestButton:" destination="0H4-vw-4U8" eventType="touchUpInside" id="irP-a5-flu"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-dU-20h">
-                                        <rect key="frame" x="72" y="61" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggest a price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-gK-Nm9">
                                         <rect key="frame" x="8" y="18" width="224" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -332,15 +326,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-dU-20h" customClass="MDCTextField">
+                                        <rect key="frame" x="72" y="50" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="JuN-QR-PsP" firstAttribute="width" secondItem="L32-76-TEg" secondAttribute="width" id="DkN-ka-Ltt"/>
+                                    <constraint firstItem="JuN-QR-PsP" firstAttribute="height" secondItem="L32-76-TEg" secondAttribute="height" id="lem-93-ToV"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.74941138698630139" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="svb-KT-Kus"/>
                     </view>
                     <connections>
-                        <outlet property="suggestedPriceTextField" destination="SJ2-dU-20h" id="oxy-oi-PcT"/>
+                        <outlet property="cancelButton" destination="L32-76-TEg" id="Zfm-Tl-p4f"/>
+                        <outlet property="suggestButton" destination="JuN-QR-PsP" id="dRe-E0-x28"/>
+                        <outlet property="suggestedPriceTextField" destination="SJ2-dU-20h" id="AaJ-Rz-OO1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeX-vw-HYj" userLabel="First Responder" sceneMemberID="firstResponder"/>

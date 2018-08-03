@@ -12,15 +12,22 @@
 #import "SegueConstants.h"
 #import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialTextFields+ColorThemer.h>
+#import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import "AppScheme.h"
 #import "Colors.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
-
 @property (strong, nonatomic) MDCTextInputControllerFilled *usernameFieldController;
 @property (strong, nonatomic) MDCTextInputControllerFilled *passwordFieldController;
+
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *loginButton;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *signUpButton;
 
 @end
 
@@ -48,6 +55,18 @@
     self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
     self.passwordField.delegate = self;
     self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
+    
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    self.titleLabel.textColor = colorScheme.onSurfaceColor;
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.usernameFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.passwordFieldController];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
+                                              toButton:self.loginButton];
+    [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.signUpButton];
+    
 }
 
 - (IBAction)didTapLogin:(id)sender {

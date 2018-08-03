@@ -15,6 +15,7 @@
 #import "ComposeNewPostViewController.h"
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
+#import <MaterialComponents/MaterialButtons.h>
 
 @interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate>
 
@@ -22,10 +23,11 @@
 @property (strong, nonatomic) Conversation *conversation;
 @property (assign, nonatomic) BOOL userIsAuthor;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *messageButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *messageButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *viewLocationButton;
 
 @end
 

@@ -11,12 +11,19 @@
 #import "SegueConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
-#import <MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import <MaterialComponents/MaterialTextFields+ColorThemer.h>
+#import <MaterialComponents/MaterialButtons+TypographyThemer.h>
+#import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "AppScheme.h"
 
 @interface SignUpViewController () <EditPaymentDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MDCTextField *nameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *emailField;
 @property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
@@ -26,6 +33,9 @@
 @property (strong, nonatomic) MDCTextInputControllerUnderline *emailFieldController;
 @property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
 @property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
+
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *signUpButton;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *signInButton;
 
 @end
 
@@ -49,21 +59,37 @@
     CGFloat verticalSpace = textFieldHeight + 20;
     
     self.nameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
-    self.nameField.delegate = self;
     self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
     
     self.emailField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
-    self.emailField.delegate = self;
     self.emailFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.emailField];
     
     self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + 2 * verticalSpace, textFieldWidth, textFieldHeight);
-    self.usernameField.delegate = self;
     self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
     
     self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + 3 * verticalSpace, textFieldWidth, textFieldHeight);
-    self.passwordField.delegate = self;
     self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
+    
+    
+    
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    self.view.backgroundColor = colorScheme.surfaceColor;
+    self.titleLabel.textColor = colorScheme.onSurfaceColor;
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.nameFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.emailFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.usernameFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.passwordFieldController];
+    [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
+                                              toButton:self.signInButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.signUpButton];
+    
 }
+
 
 - (IBAction)didTapSignUp:(id)sender {
     [self registerUser];
