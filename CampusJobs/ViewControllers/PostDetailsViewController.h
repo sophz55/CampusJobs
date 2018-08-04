@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @protocol PostDetailsDelegate
 
