@@ -31,8 +31,8 @@
     
     self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(didTapLogoutButton:)];
     self.navigationItem.leftBarButtonItem = self.logoutButton;
-    self.title = @"SEIZE";
     [Utils formatColorForAppBar:self.appBar];
+    self.title = @"SEIZE";
 }
 
 - (void)didReceiveMemoryWarning {

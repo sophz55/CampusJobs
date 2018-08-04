@@ -25,7 +25,6 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
-@property (assign, nonatomic) BOOL showingSuggestViewController;
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *composeMessageTextField;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *suggestPriceButton;
@@ -46,6 +45,8 @@
 @end
 
 @implementation ConversationDetailViewController
+
+@synthesize showingSuggestViewController;
 
 #pragma mark - Lifecycle
 
@@ -71,7 +72,7 @@
 
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    [self configureOptions];
+    
     [self.messagesCollectionView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -125,6 +126,11 @@
     self.initialButtonHeight = 58;
     self.bottomViewHeight = self.initialButtonHeight;
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
+    self.bottomView.backgroundColor = [Colors secondaryGreyLighterColor];
+    
+    [self setLocationSendMessageButton];
+    
+    [self configureOptions];
 }
 
 - (void)configureRefreshControl {
@@ -255,9 +261,6 @@
     
     CGFloat horizontalInset = 8;
     
-    CGFloat sendMessageButtonWidth = 70;
-    self.sendMessageButton.frame = CGRectMake(self.bottomView.frame.size.width - sendMessageButtonWidth, self.bottomViewHeight - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
-    
     if (showsSuggestPrice) {
         self.suggestPriceButton.hidden = NO;
         self.suggestPriceButton.frame = CGRectMake(0, self.bottomViewHeight - self.initialButtonHeight, 130, self.initialButtonHeight);
@@ -276,14 +279,23 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:YES];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:YES];
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:NO];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:NO];
     }
+}
+
+- (void)setLocationSendMessageButton {
+    CGFloat sendMessageButtonWidth = 70;
+    self.sendMessageButton.frame = CGRectMake(self.view.frame.size.width - sendMessageButtonWidth, self.view.frame.size.height - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
 }
 
 #pragma mark - IBAction

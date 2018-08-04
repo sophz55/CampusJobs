@@ -40,7 +40,7 @@
     return [UIColor colorWithRed:.96 green:.71 blue:.16 alpha:1.0];
 }
 +(UIColor *)secondaryGreyLighterColor{
-    return [UIColor colorWithRed:.81 green:.85 blue:.86 alpha:1.0];
+    return [UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
 }
 
 @end

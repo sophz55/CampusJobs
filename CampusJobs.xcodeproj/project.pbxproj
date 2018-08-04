@@ -42,6 +42,7 @@
 		F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F338398520FE9B2300364F86 /* ConversationTableViewCell.m */; };
 		F34966D62114DF77006AEDFE /* roboto in Resources */ = {isa = PBXBuildFile; fileRef = F34966D52114DF77006AEDFE /* roboto */; };
 		F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */; };
+		F35E0B27211563F200FAC63C /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F35E0B26211563F200FAC63C /* EditProfileViewController.m */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
 		F396B1FB2113B2260099E623 /* AppScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = F396B1FA2113B2260099E623 /* AppScheme.m */; };
@@ -158,6 +159,8 @@
 		F34966D52114DF77006AEDFE /* roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = roboto; sourceTree = "<group>"; };
 		F359240420FFA8C20013FD61 /* ConversationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationDetailViewController.h; sourceTree = "<group>"; };
 		F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationDetailViewController.m; sourceTree = "<group>"; };
+		F35E0B25211563F200FAC63C /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		F35E0B26211563F200FAC63C /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		F37ADB8420FE8ABA004C593C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginSignUp.storyboard; sourceTree = "<group>"; };
 		F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F396B1F72113ADFE0099E623 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
@@ -478,6 +481,8 @@
 				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 				FC209031210FB5FF00E27A5E /* TabBarViewController.h */,
 				FC209032210FB5FF00E27A5E /* TabBarViewController.m */,
+				F35E0B25211563F200FAC63C /* EditProfileViewController.h */,
+				F35E0B26211563F200FAC63C /* EditProfileViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -795,6 +800,7 @@
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
+				F35E0B27211563F200FAC63C /* EditProfileViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
 				D38B18DA210EC993005E607F /* SocialTableViewCell.m in Sources */,
 				D38B18E2210FB1CF005E607F /* NameViewController.m in Sources */,

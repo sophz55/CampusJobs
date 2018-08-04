@@ -37,28 +37,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentUser=[PFUser currentUser];
+    [self configureNavigationBar];
     [self setMainPageLabels];
-    [self formatPicAndButtons];
-    
+    [self formatViewLayout];
+    [self formatPic];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    [self formatButtons];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)configureNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     self.title = @"YOUR PROFILE";
     [Utils formatColorForAppBar:self.appBar];
-    [self formatViewLayout];
 }
 
 //Helper method
 - (void)formatViewLayout{
     //Format top view
-    self.topView.frame=CGRectMake(0,0, self.view.frame.size.width, 300);
+    self.topView.frame=CGRectMake(0,0, self.view.frame.size.width, 320);
     NSMutableArray *topColors = [NSMutableArray array];
     [topColors addObject:[Colors primaryBlueLightColor]];
     [topColors addObject:[Colors primaryBlueColor]];
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
-    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.size.height-50, self.view.frame.size.width *2, 100);
+    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.size.height-50, self.view.frame.size.width * 2, 100);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
     self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
@@ -69,11 +82,6 @@
     [bottomColors addObject:[UIColor whiteColor]];
     [bottomColors addObject:[Colors secondaryGreyLightColor]];
     self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleRadial withFrame:self.view.frame andColors:bottomColors];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)didTapEditProfilePicButton:(id)sender {
@@ -122,20 +130,26 @@
 }
 
 //Helper method
-- (void)formatPicAndButtons{
-    //set profile picture (if there is one already selected)
-    if(self.currentUser[@"profileImageFile"]){
-        self.profilePicture.file = self.currentUser[@"profileImageFile"];
-        [self.profilePicture loadInBackground];
-    }
+- (void)formatPic {
     //Create a circle for profile picture
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
+    
+    //Placeholder for profile picture while waiting for load
+    self.profilePicture.image = [UIImage imageNamed:@"image_placeholder"];
     
     //format profile picture border
     self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
     self.profilePicture.layer.borderWidth=2.0;
     
+    //set profile picture (if there is one already selected)
+    if(self.currentUser[@"profileImageFile"]){
+        self.profilePicture.file = self.currentUser[@"profileImageFile"];
+        [self.profilePicture loadInBackground];
+    }
+}
+
+- (void)formatButtons {
     //Edit profile picture button
     self.editProfPicButton.layer.borderWidth=.25f;
     [self.editProfPicButton sizeToFit];
@@ -150,5 +164,15 @@
     self.editPaymentInfoButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
     self.editDesiredRadiusButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    Get the new view controller using [segue destinationViewController].
+//    Pass the selected object to the new view controller.
+}
+ */
 
 @end

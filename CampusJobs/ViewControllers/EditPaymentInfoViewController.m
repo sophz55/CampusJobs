@@ -111,12 +111,9 @@
     [Utils addGreyGradientToView:self.view];
     
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.cancelButton];
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.skipButton];
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.saveButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.cancelButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.skipButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.saveButton];
 }
 
 #pragma mark - IBAction
