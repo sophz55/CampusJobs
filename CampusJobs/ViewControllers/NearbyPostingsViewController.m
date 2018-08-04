@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
@@ -120,8 +121,7 @@
         UITableViewCell * tappedCell=sender;
         NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
         Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-        UINavigationController *nearbyNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
+        PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.delegate = self;
         postDetailsViewController.post = singlePost;
     }

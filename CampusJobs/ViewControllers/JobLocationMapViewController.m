@@ -9,12 +9,16 @@
 #import "JobLocationMapViewController.h"
 #import <MapKit/MapKit.h>
 #import "ComposeNewPostViewController.h"
-
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Utils.h"
 
 @interface JobLocationMapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>{
     CLLocationCoordinate2D selectedUserCoordinate;
     CLLocationCoordinate2D retrievedLocation;
 }
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (strong, nonatomic) UIBarButtonItem *clearButton;
+@property (strong, nonatomic) UIBarButtonItem *saveButton;
 @end
 
 @implementation JobLocationMapViewController
@@ -28,11 +32,29 @@
     [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
     [self editSavedLocation:self.prevPost.savedLocation];
+    
+    [self configureNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(didTapClearButton:)];
+    self.navigationItem.leftBarButtonItem = self.clearButton;
+    
+    self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSaveButton:)];
+    self.navigationItem.rightBarButtonItem = self.saveButton;
+    
+    self.title = @"ADD LOCATION";
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 //Will check if the user already has a previously saved location (and it will reappear on the map)
@@ -74,9 +96,8 @@
 }
 
 //saves the user's desired post location to Parse
-- (IBAction)didTapSaveButton {
-    UINavigationController * navController=(UINavigationController *)[self presentingViewController];
-    ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[navController topViewController];
+- (IBAction)didTapSaveButton:(id)sender {
+    ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[self presentingViewController];
     //displays alert if user tries to save without selecting a location
     if(self.jobPostingMapView.annotations.count==1){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please pin a location before saving." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];

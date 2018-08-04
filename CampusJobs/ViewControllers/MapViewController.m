@@ -8,22 +8,26 @@
 
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Utils.h"
 #import "SegueConstants.h"
 
-@interface MapViewController () <CLLocationManagerDelegate>
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISlider *radiusSliderBar;
 @property (weak, nonatomic) IBOutlet UILabel *desiredRadiusLabel;
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (strong, nonatomic) CLLocation * userLocation;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (strong, nonatomic) UIBarButtonItem *nextButton;
 @property (strong, nonatomic) PFUser * currentUser;
+@property (strong, nonatomic) MDCAppBar *appBar;
 @end
 
 @implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureNavigationBar];
     self.currentUser=[PFUser currentUser];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -35,11 +39,22 @@
     //check if the user is editing their current selected radius
     [self checkEditing];
     [self setDefaultRadius];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
+    self.navigationItem.rightBarButtonItem = self.nextButton;
+    
+    self.title = @"CHOOSE A RADIUS";
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 //Set default radius to 1 mile
@@ -57,7 +72,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    if([self.nextButton.titleLabel.text isEqual:@"Save"]){
+    if([self.nextButton.title isEqualToString:@"Save"]){
         [self performSegueWithIdentifier:backToProfileSegue sender:nil];
     } else{
         [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
@@ -98,11 +113,11 @@
 
 //check if the user has already set a radius and is now editing it
 - (void)checkEditing{
-    if(self.currentUser[@"desiredRadius"]){
+    if (self.currentUser[@"desiredRadius"]){
         self.radiusSliderBar.value=[self.currentUser[@"desiredRadius"] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
         self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
-        [self.nextButton setTitle:@"Save" forState:UIControlStateNormal];
+        [self.nextButton setTitle:@"Save"];
     }
 }
 

@@ -61,7 +61,7 @@
         // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
         _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
         //TODO: Add our custom fonts after this line
-        NSString *fontName = @"SystemBold";
+        NSString *fontName = @"Roboto Condensed";
         _typographyScheme.headline5 = [UIFont fontWithName:fontName size:24.0];
         _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];
         _typographyScheme.subtitle1 = [UIFont fontWithName:fontName size:16.0];

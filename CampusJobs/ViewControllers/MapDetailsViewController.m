@@ -8,11 +8,15 @@
 
 #import "MapDetailsViewController.h"
 #import <MapKit/MapKit.h>
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Utils.h"
 
 @interface MapDetailsViewController (){
     CLLocationCoordinate2D geoPointToCoord;
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
 
 @end
 
@@ -27,6 +31,8 @@
     annotation.coordinate=geoPointToCoord;
     [self.mapView addAnnotation:annotation];
     // Do any additional setup after loading the view.
+    
+    [self configureNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +40,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)didTapBackButton {
-    [self performSegueWithIdentifier:@"backToDetailsSegue" sender:nil];
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = self.backButton;
+    
+    self.title = @"POST LOCATION";
+    [Utils formatColorForAppBar:self.appBar];
+}
+
+- (IBAction)didTapBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

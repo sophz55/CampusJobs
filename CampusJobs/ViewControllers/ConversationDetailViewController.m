@@ -17,6 +17,7 @@
 #import "SegueConstants.h"
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialAppBar.h>
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
 
@@ -33,12 +34,14 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *flagButton;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *sendMessageButton;
 @property (assign, nonatomic) CGFloat bottomViewHeight;
 @property (assign, nonatomic) CGFloat initialButtonHeight;
+@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
@@ -131,14 +134,24 @@
 }
 
 - (void)configureNavigatonBar {
-    // put other user's username label in navigation bar
-    UILabel *otherUserLabel = [[UILabel alloc] init];
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
     if (![self.conversation.post.title isEqualToString:@""]) {
-        otherUserLabel.text = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+        self.title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
     } else {
-        otherUserLabel.text = self.otherUser.username;
+        self.title = self.otherUser.username;
     }
-    self.navigationItem.titleView = otherUserLabel;
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = self.backButton;
+    self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.flagButton = [[UIBarButtonItem alloc] initWithTitle:@"Flag" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
+    
+    [Utils formatColorForAppBar:self.appBar];
+    
+    self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
 }
 
 #pragma mark - Configurations Based on State
@@ -146,10 +159,10 @@
 - (void)showByDelegate {
     if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
         [self.viewPostButton setEnabled:YES];
-        [self.viewPostButton setTintColor:nil];
+        self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
     } else {
         [self.viewPostButton setEnabled:NO];
-        [self.viewPostButton setTintColor:[UIColor clearColor]];
+        self.navigationItem.rightBarButtonItems = @[self.flagButton];
     }
 }
 
@@ -389,8 +402,7 @@
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
-        UINavigationController *postDetailsNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavigationController topViewController];
+        PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.post = self.conversation.post;
         postDetailsController.delegate = self;
     }

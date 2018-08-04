@@ -17,9 +17,8 @@
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+TypographyThemer.h>
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
-#import "Colors.h"
-#import <ChameleonFramework/Chameleon.h>
 #import "AppScheme.h"
+#import "Utils.h"
 
 @interface SignUpViewController () <EditPaymentDelegate>
 
@@ -43,10 +42,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addGradient];
+    [self formatColors];
     // Do any additional setup after loading the view.
     
     [self configureFields];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureFields {
@@ -70,10 +74,12 @@
     self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + 3 * verticalSpace, textFieldWidth, textFieldHeight);
     self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
     
-    
+}
+
+- (void)formatColors {
+    [Utils addBlueGradientToView:self.view];
     
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
-    self.view.backgroundColor = colorScheme.surfaceColor;
     self.titleLabel.textColor = colorScheme.onSurfaceColor;
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.nameFieldController];
@@ -87,7 +93,6 @@
                                               toButton:self.signInButton];
     [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
                                                    toButton:self.signUpButton];
-    
 }
 
 
@@ -138,20 +143,8 @@
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
-}
-
-- (void)addGradient{
-    NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors primaryBlueLightColor]];
-    [colors addObject:[Colors primaryBlueColor]];
-    [colors addObject:[Colors primaryBlueDarkColor]];
-    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 }
 
 #pragma mark - Navigation

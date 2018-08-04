@@ -24,6 +24,7 @@
 
 - (void)setNearbyPost:(Post *)post{
     _post=post;
+    
     self.postUserLabel.text=post.author.username;
     self.postTitleLabel.text=post.title;
     self.postDescriptionLabel.text=post.summary;

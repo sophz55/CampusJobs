@@ -4,15 +4,12 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Kelson Sans Bold BG.otf</string>
-		<string>Kelson Sans Bold RU.otf</string>
-		<string>Kelson Sans Bold.otf</string>
-		<string>Kelson Sans Light BG.otf</string>
-		<string>Kelson Sans Light RU.otf</string>
-		<string>Kelson Sans Light </string>
-		<string>Kelson Sans Regular BG.otf</string>
-		<string>Kelson Sans Regular RU.otf</string>
-		<string>Kelson Sans Regular.otf</string>
+		<string>RobotoCondensed-Bold.ttf</string>
+		<string>RobotoCondensed-BoldItalic.ttf</string>
+		<string>RobotoCondensed-Italic.ttf</string>
+		<string>RobotoCondensed-Light.ttf</string>
+		<string>RobotoCondensed-LightItalic.ttf</string>
+		<string>RobotoCondensed-Regular.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

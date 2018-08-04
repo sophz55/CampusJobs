@@ -7,27 +7,40 @@
 //
 
 #import "PostDetailsViewController.h"
+
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import <MaterialComponents/MaterialAppBar.h>
+
+#import "AppScheme.h"
+#import "Alert.h"
+#import "Utils.h"
+#import "SegueConstants.h"
+
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "Alert.h"
-#import "SegueConstants.h"
 #import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
-#import "Colors.h"
-#import <ChameleonFramework/Chameleon.h>
-#import <MaterialComponents/MaterialButtons.h>
 
 @interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
 @property (assign, nonatomic) BOOL userIsAuthor;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *editButton;
+
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *messageButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet MDCRaisedButton *viewLocationButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
+@property (weak, nonatomic) IBOutlet MDCFloatingButton *viewLocationButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
 
 @end
 
@@ -39,7 +52,6 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     self.userIsAuthor = [self.post.author.objectId isEqualToString:self.user.objectId];
-    [self formatColors];
     [self configureInitialView];
 }
 
@@ -66,8 +78,29 @@
 }
 
 #pragma mark - Custom Configurations
+
+- (void)formatColors{
+    [Utils addGreyGradientToView:self.view];
+    
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    self.titleDetailsLabel.textColor = colorScheme.onSurfaceColor;
+    self.userDetailsLabel.textColor = colorScheme.onSurfaceColor;
+    self.locationDetailsLabel.textColor = colorScheme.onSurfaceColor;
+    self.descriptionDetailsLabel.textColor = colorScheme.onSurfaceColor;
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.messageButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.deleteButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.cancelButton];
+    [MDCFloatingButtonColorThemer applySemanticColorScheme:colorScheme
+                                                   toButton:self.viewLocationButton];
+    self.viewLocationButton.tintColor = colorScheme.onSecondaryColor;
+}
+
 - (void)configureInitialView {
     [self configureNavigatonBar];
+    [self formatColors];
     
     [self setDetailsPost:self.post];
     
@@ -85,18 +118,28 @@
 }
 
 - (void)configureNavigatonBar {
-    UILabel *navBarLabel = [[UILabel alloc] init];
+    
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
     if (self.userIsAuthor) {
-        navBarLabel.text = @"Your Posting";
+        self.title = @"Your Posting";
     } else {
-        navBarLabel.text = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
+        self.title = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
     }
-    self.navigationItem.titleView = navBarLabel;
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = self.backButton;
+    
+    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
+    self.navigationItem.rightBarButtonItem = self.editButton;
+    
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 - (void)configureAuthorView {
     [self.editButton setEnabled:YES];
-    [self.editButton setTintColor:nil];
+    self.navigationItem.rightBarButtonItem = self.editButton;
     
     if (self.post.postStatus == OPEN) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open!"];
@@ -126,7 +169,7 @@
     }
     
     [self.editButton setEnabled:NO];
-    [self.editButton setTintColor:[UIColor clearColor]];
+    self.navigationItem.rightBarButtonItem = nil;
     self.deleteButton.hidden = YES;
     
     self.userDetailsLabel.text = [NSString stringWithFormat: @"Author: %@", self.post.author.username];
@@ -267,8 +310,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:postDetailsToMessageSegue]) {
-        UINavigationController *conversationNavigationController = [segue destinationViewController];
-        ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
+        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
         conversationDetailController.delegate = self;
         conversationDetailController.conversation = self.conversation;
         if ([self.user.objectId isEqualToString:self.post.author.objectId] && self.post.taker) {
@@ -277,22 +319,13 @@
             conversationDetailController.otherUser = self.post.author;
         }
     } else if ([segue.identifier isEqualToString:postDetailsToMapSegue]) {
-        // UINavigationController *detailsNavigationController = [segue destinationViewController];
         MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
         mapDetailsViewController.post=self.post;
     } else if ([segue.identifier isEqualToString:postDetailsToEditPostSegue]) {
-        UINavigationController *navController = [segue destinationViewController];
-        ComposeNewPostViewController *editPostViewController = (ComposeNewPostViewController *)[navController topViewController];
+        ComposeNewPostViewController *editPostViewController = [segue destinationViewController];
         editPostViewController.delegate = self;
         editPostViewController.post = self.post;
     }
-}
-
-- (void)formatColors{
-    NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors secondaryGreyLighterColor]];
-    [colors addObject:[Colors secondaryGreyLightColor]];
-    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 }
 
 @end

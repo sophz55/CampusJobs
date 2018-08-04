@@ -10,13 +10,12 @@
 #import <Parse/Parse.h>
 #import "Alert.h"
 #import "SegueConstants.h"
-#import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import "AppScheme.h"
-#import "Colors.h"
+#import "Utils.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -35,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addGradient];
+    [self formatColors];
     // Do any additional setup after loading the view.
     
     [self configureTextFields];
@@ -56,6 +55,15 @@
     self.passwordField.delegate = self;
     self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
     
+}
+
+- (IBAction)didTapLogin:(id)sender {
+    [self loginUser];
+}
+
+- (void)formatColors {
+    [Utils addBlueGradientToView:self.view];
+    
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     self.titleLabel.textColor = colorScheme.onSurfaceColor;
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
@@ -63,22 +71,9 @@
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.passwordFieldController];
     [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                              toButton:self.loginButton];
+                                                   toButton:self.loginButton];
     [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.signUpButton];
-    
-}
-
-- (IBAction)didTapLogin:(id)sender {
-    [self loginUser];
-}
-
-- (void)addGradient{
-    NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors primaryBlueLightColor]];
-    [colors addObject:[Colors primaryBlueColor]];
-    [colors addObject:[Colors primaryBlueDarkColor]];
-    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+                                              toButton:self.signUpButton];
 }
 
 - (void)loginUser {

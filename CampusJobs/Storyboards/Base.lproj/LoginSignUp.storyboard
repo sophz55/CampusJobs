@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -21,8 +26,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SEIZE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fth-3F-8T7">
                                 <rect key="frame" x="45" y="182" width="284" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="47"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-hY-ZBR" customClass="MDCTextField">
@@ -113,17 +118,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03D-tQ-Bcf">
-                                <rect key="frame" x="295" y="20" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="didTapNextButton:" destination="a6w-BU-Fnj" eventType="touchUpInside" id="5Lv-IG-npW"/>
-                                    <action selector="didTapNextButton:" destination="C8o-LR-Ox6" eventType="touchUpInside" id="JyQ-If-FXT"/>
-                                    <action selector="tap:" destination="C8o-LR-Ox6" eventType="touchUpInside" id="p8q-6X-ubx"/>
-                                    <segue destination="dkE-a4-TIu" kind="presentation" identifier="mapToTabBarSegue" id="07a-Uj-UXy"/>
-                                </connections>
-                            </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iY9-No-Dwv">
                                 <rect key="frame" x="0.0" y="57" width="375" height="555"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -163,13 +157,12 @@
                     <connections>
                         <outlet property="desiredRadiusLabel" destination="BNp-Ml-iCs" id="jwD-Qm-FOr"/>
                         <outlet property="mapView" destination="iY9-No-Dwv" id="awB-rd-uas"/>
-                        <outlet property="nextButton" destination="03D-tQ-Bcf" id="aLW-6Y-h4F"/>
                         <outlet property="radiusSliderBar" destination="H4b-2X-wbZ" id="5YI-hp-FvW"/>
                         <segue destination="jEt-fT-LpR" kind="show" identifier="backToProfileSegue" id="wp5-Cg-Bje"/>
+                        <segue destination="dkE-a4-TIu" kind="presentation" identifier="mapToTabBarSegue" id="9Pl-YX-qjA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9g-05-T4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="C8o-LR-Ox6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="410" y="363"/>
         </scene>
@@ -306,6 +299,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="07a-Uj-UXy"/>
+        <segue reference="9Pl-YX-qjA"/>
     </inferredMetricsTieBreakers>
 </document>

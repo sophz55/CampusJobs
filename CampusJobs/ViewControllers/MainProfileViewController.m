@@ -10,7 +10,10 @@
 #import "Parse.h"
 #import "ParseUI.h"
 #import "Colors.h"
+#import "Utils.h"
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialAppBar+ColorThemer.h>
+#import "AppScheme.h"
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -22,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
+@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
@@ -33,6 +37,12 @@
     [self setMainPageLabels];
     [self formatPicAndButtons];
     [self formatColors];
+    
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    self.title = @"YOUR PROFILE";
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 - (void)didReceiveMemoryWarning {
