@@ -9,6 +9,8 @@
 #import "YourPostingsViewController.h"
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
@@ -24,11 +26,8 @@
     self.previousPostTableView.dataSource=self;
     self.previousPostsArray=[[NSArray alloc]init];
     [self fetchUserPosts];
-    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.previousPostTableView insertSubview:refreshControl atIndex:0];
-    self.previousPostTableView.rowHeight=75;
-    // Do any additional setup after loading the view.
+    [self addRefreshControl];
+    [self displayGradient];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +39,7 @@
     [self fetchUserPosts];
 }
 
--(void)fetchUserPosts{
+- (void)fetchUserPosts{
     PFQuery *query=[PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"taker"];
@@ -60,7 +59,7 @@
 }
 
 - (IBAction)didTapComposeButton:(id)sender {
-     [self performSegueWithIdentifier:yourPostingsToComposePostSegue sender:nil];
+    [self performSegueWithIdentifier:yourPostingsToComposePostSegue sender:nil];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -71,19 +70,61 @@
     return previousUserPostCell;
 }
 
+//Visual formatting for each cell
+//Creates spaces in between the cells, creates round corners, adds cell shadow and cell color
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.previousPostTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
+    //initializes white rounded cell
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 70)];
+    CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
+    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
+    roundedCellView.layer.masksToBounds=false;
+    //rounded edges
+    roundedCellView.layer.cornerRadius=5.0;
+    //adds shadow property
+    roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
+    roundedCellView.layer.shadowOpacity=0.4;
+    roundedCellView.layer.shadowRadius=1.0;
+    roundedCellView.clipsToBounds = false;
+    roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
+    //adds rounded cell to each cell content view
+    [cell.contentView addSubview:roundedCellView];
+    [cell.contentView sendSubviewToBack:roundedCellView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.previousPostsArray.count;
 }
 
--(void)beginRefresh:(UIRefreshControl *)refreshControl{
+- (void)addRefreshControl{
+    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.previousPostTableView insertSubview:refreshControl atIndex:0];
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl{
     //fetch all of the nearby posts
     [self fetchUserPosts];
     //tell the refresh control to stop spinning
     [refreshControl endRefreshing];
 }
 
-#pragma mark - Navigation
+//Adds gradient background
+- (void)displayGradient{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+    self.previousPostTableView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+}
 
+#pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:yourPostingsToPostDetailsSegue]) {

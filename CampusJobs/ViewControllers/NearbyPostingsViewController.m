@@ -12,6 +12,7 @@
 #import "SegueConstants.h"
 #import "Utils.h"
 #import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
@@ -33,10 +34,8 @@
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
-    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
-    self.nearbyPostTableView.rowHeight=75;
+    [self addRefreshControl];
+    [self displayGradient];
     [self displayRadius];
 }
 
@@ -87,7 +86,34 @@
     nearbyPostCell.post=post;
     [nearbyPostCell setNearbyPost:post];
     return nearbyPostCell;
-    
+}
+
+//Visual formatting for each cell
+//Creates spaces in between the cells, creates round corners, adds cell shadow and cell color
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.nearbyPostTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.nearbyPostTableView.rowHeight=75;
+    cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
+    //initializes white rounded cell
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 105)];
+    CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
+    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
+    roundedCellView.layer.masksToBounds=false;
+    //rounded edges
+    roundedCellView.layer.cornerRadius=5.0;
+    //adding shadow
+    roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
+    roundedCellView.layer.shadowOpacity=0.6;
+    roundedCellView.layer.shadowRadius=2.0;
+    roundedCellView.clipsToBounds = false;
+    roundedCellView.layer.shadowColor=[[UIColor blueColor]CGColor];
+    //adds rounded cell to each cell content view
+    [cell.contentView addSubview:roundedCellView];
+    [cell.contentView sendSubviewToBack:roundedCellView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 115;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -111,6 +137,22 @@
     self.userRadius=self.currentUser[@"desiredRadius"];
     floatRadius=[self.userRadius floatValue];
     self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
+}
+
+//Displays the background gradient
+- (void)displayGradient{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+    self.nearbyPostTableView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+}
+
+- (void)addRefreshControl{
+    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
 }
 
 #pragma mark - Navigation

@@ -328,4 +328,11 @@
     }
 }
 
+- (void)formatColors{
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[UIColor whiteColor]];
+    [colors addObject:[Colors secondaryGreyLightColor]];
+    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+}
+
 @end
