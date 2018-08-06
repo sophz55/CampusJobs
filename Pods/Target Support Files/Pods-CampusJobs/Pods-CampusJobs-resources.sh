@@ -92,6 +92,7 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/ActivityIndicator/src/MaterialActivityIndicator.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/AppBar/src/MaterialAppBar.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/BottomNavigation/src/MaterialBottomNavigation.bundle"
@@ -118,6 +119,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/ActivityIndicator/src/MaterialActivityIndicator.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/AppBar/src/MaterialAppBar.bundle"
   install_resource "${PODS_ROOT}/MaterialComponents/components/BottomNavigation/src/MaterialBottomNavigation.bundle"

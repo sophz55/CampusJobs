@@ -9,6 +9,7 @@
 #import "NearbyPostCell.h"
 #import "Parse.h"
 #import "Utils.h"
+#import "DateTools.h"
 
 @implementation NearbyPostCell
 
@@ -37,9 +38,12 @@
     
     //Format the date (date the post was posted on)
     NSDateFormatter * formatter= [[NSDateFormatter alloc] init];
-    formatter.dateFormat= @"MM/dd/yyyy";
+    formatter.dateFormat=@"E MMM d HH:mm:ss Z y";
+    formatter.dateStyle= NSDateFormatterShortStyle;
+    formatter.timeStyle= NSDateFormatterNoStyle;
     NSDate * createdAt= post.createdAt;
-    self.postDateLabel.text= [formatter stringFromDate: createdAt];
+    NSString * timeAgo= [NSDate shortTimeAgoSinceDate:createdAt];
+    self.postDateLabel.text= timeAgo;
     
 }
 

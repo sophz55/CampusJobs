@@ -13,9 +13,11 @@
 #import "Utils.h"
 #import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import "MaterialButtons+ButtonThemer.h"
 #import <MaterialComponents/MaterialAppBar+ColorThemer.h>
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
+
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (strong, nonatomic) MDCButtonScheme* buttonScheme;
 
 @end
 
@@ -41,6 +44,7 @@
     [self configureNavigationBar];
     [self setMainPageLabels];
     [self formatViewLayout];
+    self.buttonScheme = [[MDCButtonScheme alloc] init];
     [self formatPic];
 }
 
@@ -159,11 +163,23 @@
     [self.editProfPicButton sizeToFit];
     
     //Add rounded edges to bottom view buttons
-    self.editPersonalSettingsButton.layer.cornerRadius=3.0;
-    self.editPaymentInfoButton.layer.cornerRadius=3.0;
-    self.editDesiredRadiusButton.layer.cornerRadius=3.0;
+    self.editPersonalSettingsButton.layer.cornerRadius=5.0;
+    self.editPaymentInfoButton.layer.cornerRadius=5.0;
+    self.editDesiredRadiusButton.layer.cornerRadius=5.0;
+    
+    //Making button text capitalized
     [self.editPersonalSettingsButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
     [self.editPersonalSettingsButton sizeToFit];
+    [self.editPaymentInfoButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
+    [self.editPaymentInfoButton sizeToFit];
+    [self.editDesiredRadiusButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
+    [self.editDesiredRadiusButton sizeToFit];
+    
+    //Add a theme to all buttons
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPersonalSettingsButton];
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPaymentInfoButton];
+    [MDCTextButtonThemer applyScheme:self.buttonScheme toButton:self.editProfPicButton];
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editDesiredRadiusButton];
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];

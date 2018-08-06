@@ -47,7 +47,7 @@
                                     <segment title="Nearby Postings"/>
                                     <segment title="Your Postings"/>
                                 </segments>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentedControl:" destination="jXy-bP-LE5" eventType="valueChanged" id="gkW-Ze-h8w"/>
                                     <action selector="segmentedControlIndexChanged:" destination="65K-mn-r90" eventType="valueChanged" id="fVA-wh-2Hp"/>

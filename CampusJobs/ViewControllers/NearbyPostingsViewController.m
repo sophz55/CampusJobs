@@ -97,7 +97,7 @@
     //initializes white rounded cell
     UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 105)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
-    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
+    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
     roundedCellView.layer.masksToBounds=false;
     //rounded edges
     roundedCellView.layer.cornerRadius=5.0;
