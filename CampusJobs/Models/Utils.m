@@ -63,7 +63,7 @@
 + (void)formatColorForAppBar:(MDCAppBar *)appBar {
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     [MDCAppBarColorThemer applySemanticColorScheme:colorScheme toAppBar:appBar];
-    appBar.navigationBar.backgroundColor = [Colors secondaryGreyLightColor];
+    appBar.navigationBar.backgroundColor = [Colors primaryBlueColor];
     appBar.headerViewController.headerView.backgroundColor = appBar.navigationBar.backgroundColor;
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;

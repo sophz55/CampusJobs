@@ -61,11 +61,26 @@
         // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
         _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
         //TODO: Add our custom fonts after this line
-        NSString *fontName = @"Roboto Condensed";
-        _typographyScheme.headline5 = [UIFont fontWithName:fontName size:24.0];
-        _typographyScheme.headline6 = [UIFont fontWithName:fontName size:20.0];
-        _typographyScheme.subtitle1 = [UIFont fontWithName:fontName size:16.0];
-        _typographyScheme.button = [UIFont fontWithName:fontName size:14.0];
+        NSString *lightFont = @"RobotoCondensed-Light";
+        NSString *boldFont = @"RobotoCondensed-Bold";
+        NSString *boldItalicFont = @"RobotoCondensed-BoldItalic";
+        NSString *lightItalicFont = @"RobotoCondensed-LightItalic";
+        NSString *regularFont = @"RobotoCondensed-Regular";
+        NSString *italicFont = @"RobotoCondensed-Italic";
+        _typographyScheme.headline1 = [UIFont fontWithName:lightFont size:96.0];
+        _typographyScheme.headline2 = [UIFont fontWithName:lightFont size:60.0];
+        _typographyScheme.headline3 = [UIFont fontWithName:regularFont size:48.0];
+        _typographyScheme.headline4 = [UIFont fontWithName:regularFont size:34.0];
+        _typographyScheme.headline5 = [UIFont fontWithName:regularFont size:24.0];
+        _typographyScheme.headline6 = [UIFont fontWithName:boldFont size:20.0];
+        _typographyScheme.subtitle1 = [UIFont fontWithName:regularFont size:16.0];
+        _typographyScheme.subtitle2 = [UIFont fontWithName:boldFont size:14.0];
+        _typographyScheme.body1 = [UIFont fontWithName:regularFont size:16.0];
+        _typographyScheme.body2 = [UIFont fontWithName:regularFont size:14.0];
+        _typographyScheme.caption = [UIFont fontWithName:boldFont size:14.0];
+        _typographyScheme.button = [UIFont fontWithName:regularFont size:12.0];
+        _typographyScheme.overline = [UIFont fontWithName:regularFont size:10.0];
+        
         
         // Create a button scheme based off our custom colors and typography
         _buttonScheme = [[MDCButtonScheme alloc] init];

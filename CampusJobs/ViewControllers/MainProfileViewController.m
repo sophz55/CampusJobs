@@ -14,6 +14,7 @@
 #import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialAppBar+ColorThemer.h>
+#import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -46,6 +47,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     [self formatButtons];
+    
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    self.nameLabel.font = typographyScheme.headline4;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,6 +162,8 @@
     self.editPersonalSettingsButton.layer.cornerRadius=3.0;
     self.editPaymentInfoButton.layer.cornerRadius=3.0;
     self.editDesiredRadiusButton.layer.cornerRadius=3.0;
+    [self.editPersonalSettingsButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
+    [self.editPersonalSettingsButton sizeToFit];
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];

@@ -62,6 +62,7 @@
                         <outlet property="nearbyPostingsContainer" destination="qN0-c9-OTv" id="bm4-90-UMe"/>
                         <outlet property="segmentedControl" destination="yXW-QA-wb4" id="Fkd-Jt-SsQ"/>
                         <outlet property="yourPostingsContainer" destination="qXd-UF-mgO" id="W3g-AX-uyw"/>
+                        <segue destination="2ff-kP-9pV" kind="presentation" identifier="logoutSegue" id="yOK-Ju-NbC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8db-jv-fu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
