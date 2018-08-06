@@ -60,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="2886" y="517"/>
         </scene>
-        <!--Profile-->
+        <!--Main Profile View Controller-->
         <scene sceneID="f6m-iU-2o6">
             <objects>
                 <viewController storyboardIdentifier="mainProfileViewController" id="wdN-Nb-yf5" customClass="MainProfileViewController" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P8e-QQ-g6a">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-P0-lDi" customClass="PFImageView">
@@ -160,7 +160,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fvg-NP-EGz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="iconmonstr-user-2-24" selectedImage="iconmonstr-user-2-24" id="mXu-9U-mth"/>
+                    <tabBarItem key="tabBarItem" title="" image="iconmonstr-user-2-24" selectedImage="iconmonstr-user-2-24" id="mXu-9U-mth"/>
                     <connections>
                         <outlet property="editDesiredRadiusButton" destination="9EG-Wr-lL4" id="9wj-gd-3Jw"/>
                         <outlet property="editPaymentInfoButton" destination="moT-Fg-V3J" id="cKk-NC-YlB"/>

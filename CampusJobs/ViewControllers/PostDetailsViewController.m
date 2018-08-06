@@ -11,6 +11,7 @@
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import <MaterialComponents/MaterialAppBar.h>
+#import <ChameleonFramework/Chameleon.h>
 
 #import "AppScheme.h"
 #import "Alert.h"
@@ -22,7 +23,9 @@
 #import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
 
-@interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate>
+@interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate> {
+        CLLocationCoordinate2D geoPointToCoord;
+    }
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
@@ -41,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
+@property (weak, nonatomic) IBOutlet MKMapView *postLocationMap;
 
 @end
 
@@ -53,6 +57,8 @@
     self.user = [PFUser currentUser];
     self.userIsAuthor = [self.post.author.objectId isEqualToString:self.user.objectId];
     [self configureInitialView];
+    [self setMapWithAnnotation];
+    self.view.backgroundColor=[Colors secondaryGreyLighterColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,8 +86,6 @@
 #pragma mark - Custom Configurations
 
 - (void)formatColors{
-    [Utils addGreyGradientToView:self.view];
-    
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     self.titleDetailsLabel.textColor = colorScheme.onSurfaceColor;
     self.userDetailsLabel.textColor = colorScheme.onSurfaceColor;
@@ -143,7 +147,7 @@
     self.navigationItem.rightBarButtonItem = self.editButton;
     
     if (self.post.postStatus == OPEN) {
-        self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open"];
+        self.userDetailsLabel.text = [NSString stringWithFormat: @"Open Post"];
         self.deleteButton.hidden = NO;
     } else if (self.post.postStatus == IN_PROGRESS) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"In progress with user: %@", self.post.taker.username];
@@ -173,11 +177,24 @@
     self.navigationItem.rightBarButtonItem = nil;
     self.deleteButton.hidden = YES;
     
-    self.userDetailsLabel.text = [NSString stringWithFormat: @"Author: %@", self.post.author.username];
+    self.userDetailsLabel.text = [NSString stringWithFormat: @"%@", self.post.author.username];
 }
 
 - (void)setDetailsPost:(Post *)post{
-    self.titleDetailsLabel.text=post.title;
+    //set fonts
+    self.titleDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:24];
+    self.descriptionDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 18];
+    self.locationDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
+    self.userDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Light" size:24];
+    
+    //set color
+    self.titleDetailsLabel.textColor=[UIColor blackColor];
+    self.locationDetailsLabel.textColor=[UIColor blackColor];
+    self.userDetailsLabel.textColor=[UIColor blackColor];
+    self.descriptionDetailsLabel.textColor=[UIColor blackColor];
+    
+    //set text
+    self.titleDetailsLabel.text=[post.title uppercaseString];
     self.descriptionDetailsLabel.text=post.summary;
     [self.descriptionDetailsLabel sizeToFit];
     self.locationDetailsLabel.text=post.locationAddress;
@@ -222,7 +239,6 @@
 }
 
 #pragma mark - Private Methods
-
 - (void)findConversation {
     
     // create query to access "author" key within a conversation's post
@@ -306,6 +322,28 @@
     }];
 }
 
+- (void)setMapWithAnnotation{
+    //format map
+    self.postLocationMap.layer.cornerRadius=5.0;
+    self.postLocationMap.layer.borderColor=[[Colors primaryBlueColor]CGColor];
+    self.postLocationMap.layer.borderWidth=1.0;
+    
+    //add shadow
+    self.postLocationMap.layer.shadowOffset=CGSizeMake(0, 0);
+    self.postLocationMap.layer.shadowOpacity=0.7;
+    self.postLocationMap.layer.shadowRadius=1.0;
+    self.postLocationMap.clipsToBounds = false;
+    self.postLocationMap.layer.shadowColor=[[UIColor blackColor]CGColor];
+    
+    //set map with displayed annotation
+    geoPointToCoord.latitude=self.post.location.latitude;
+    geoPointToCoord.longitude=self.post.location.longitude;
+    [self.postLocationMap setRegion:MKCoordinateRegionMake(geoPointToCoord, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
+    MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
+    annotation.coordinate=geoPointToCoord;
+    [self.postLocationMap addAnnotation:annotation];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -319,9 +357,6 @@
         } else {
             conversationDetailController.otherUser = self.post.author;
         }
-    } else if ([segue.identifier isEqualToString:postDetailsToMapSegue]) {
-        MapDetailsViewController *mapDetailsViewController = [segue destinationViewController];
-        mapDetailsViewController.post=self.post;
     } else if ([segue.identifier isEqualToString:postDetailsToEditPostSegue]) {
         ComposeNewPostViewController *editPostViewController = [segue destinationViewController];
         editPostViewController.delegate = self;
