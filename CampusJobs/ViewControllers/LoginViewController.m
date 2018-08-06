@@ -47,7 +47,7 @@
     CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
     CGFloat topTextFieldOriginY = 250;
     CGFloat verticalSpace = textFieldHeight + 20;
-    
+
     self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
     self.usernameField.delegate = self;
     self.usernameFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameField];

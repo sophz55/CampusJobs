@@ -99,7 +99,7 @@
     [self.editButton setTintColor:nil];
     
     if (self.post.postStatus == OPEN) {
-        self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open!"];
+        self.userDetailsLabel.text = [NSString stringWithFormat: @"This post is open"];
         self.deleteButton.hidden = NO;
     } else if (self.post.postStatus == IN_PROGRESS) {
         self.userDetailsLabel.text = [NSString stringWithFormat: @"In progress with user: %@", self.post.taker.username];

@@ -12,6 +12,7 @@
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import "MaterialButtons+ButtonThemer.h"
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (strong, nonatomic) MDCButtonScheme* buttonScheme;
 
 @end
 
@@ -36,6 +38,7 @@
     [self setMainPageLabels];
     [self formatPicAndButtons];
     [self formatViewLayout];
+    self.buttonScheme = [[MDCButtonScheme alloc] init];
 }
 
 //Helper method
@@ -131,9 +134,15 @@
     [self.editProfPicButton sizeToFit];
     
     //Add rounded edges to bottom view buttons
-    self.editPersonalSettingsButton.layer.cornerRadius=3.0;
-    self.editPaymentInfoButton.layer.cornerRadius=3.0;
-    self.editDesiredRadiusButton.layer.cornerRadius=3.0;
+    self.editPersonalSettingsButton.layer.cornerRadius=5.0;
+    self.editPaymentInfoButton.layer.cornerRadius=5.0;
+    self.editDesiredRadiusButton.layer.cornerRadius=5.0;
+    
+    //Add a theme to all buttons
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPersonalSettingsButton];
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPaymentInfoButton];
+    [MDCTextButtonThemer applyScheme:self.buttonScheme toButton:self.editProfPicButton];
+    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editDesiredRadiusButton];
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];

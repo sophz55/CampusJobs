@@ -7,6 +7,7 @@
 //
 
 #import "TabBarViewController.h"
+#import "MaterialTabs.h"
 
 @interface TabBarViewController ()
 
