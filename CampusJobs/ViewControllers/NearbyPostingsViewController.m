@@ -35,7 +35,7 @@
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
     [self addRefreshControl];
-    [self displayGradient];
+    [self displayBackgroundColor];
     [self displayRadius];
 }
 
@@ -99,14 +99,17 @@
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
     roundedCellView.layer.masksToBounds=false;
+    //add border color
+    roundedCellView.layer.borderWidth=.5;
+    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
-    roundedCellView.layer.cornerRadius=5.0;
+    roundedCellView.layer.cornerRadius=3.0;
     //adding shadow
     roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
-    roundedCellView.layer.shadowOpacity=0.6;
-    roundedCellView.layer.shadowRadius=2.0;
+    roundedCellView.layer.shadowOpacity=0.7;
+    roundedCellView.layer.shadowRadius=1.0;
     roundedCellView.clipsToBounds = false;
-    roundedCellView.layer.shadowColor=[[UIColor blueColor]CGColor];
+    roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];
@@ -139,14 +142,10 @@
     self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
 }
 
-//Displays the background gradient
-- (void)displayGradient{
-    NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors primaryBlueLightColor]];
-    [colors addObject:[Colors primaryBlueColor]];
-    [colors addObject:[Colors primaryBlueDarkColor]];
-    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
-    self.nearbyPostTableView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+//Displays the background color
+- (void)displayBackgroundColor{
+    self.view.backgroundColor=[Colors secondaryGreyLighterColor];
+    self.nearbyPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
 }
 
 - (void)addRefreshControl{

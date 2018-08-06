@@ -27,7 +27,7 @@
     self.previousPostsArray=[[NSArray alloc]init];
     [self fetchUserPosts];
     [self addRefreshControl];
-    [self displayGradient];
+    [self displayBackgroundColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,12 +80,15 @@
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
     roundedCellView.layer.masksToBounds=false;
+    //border color
+    roundedCellView.layer.borderWidth=0.3;
+    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
-    roundedCellView.layer.cornerRadius=5.0;
+    roundedCellView.layer.cornerRadius=3.0;
     //adds shadow property
     roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
     roundedCellView.layer.shadowOpacity=0.4;
-    roundedCellView.layer.shadowRadius=1.0;
+    roundedCellView.layer.shadowRadius=1.7;
     roundedCellView.clipsToBounds = false;
     roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
     //adds rounded cell to each cell content view
@@ -114,14 +117,10 @@
     [refreshControl endRefreshing];
 }
 
-//Adds gradient background
-- (void)displayGradient{
-    NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors primaryBlueLightColor]];
-    [colors addObject:[Colors primaryBlueColor]];
-    [colors addObject:[Colors primaryBlueDarkColor]];
-    self.view.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
-    self.previousPostTableView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
+//Adds background color
+- (void)displayBackgroundColor{
+    self.view.backgroundColor=[Colors secondaryGreyLighterColor];
+    self.previousPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
 }
 
 #pragma mark - Navigation
