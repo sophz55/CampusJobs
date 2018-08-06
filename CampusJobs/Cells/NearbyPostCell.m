@@ -10,6 +10,8 @@
 #import "Parse.h"
 #import "Utils.h"
 #import "DateTools.h"
+#import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
+#import "AppScheme.h"
 
 @implementation NearbyPostCell
 
@@ -25,9 +27,18 @@
 
 - (void)setNearbyPost:(Post *)post{
     _post=post;
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     
+    //initialize fonts for labels
+    self.postTitleLabel.font=typographyScheme.overline;
+    self.postUserLabel.font=typographyScheme.headline6;
+    self.postDescriptionLabel.font=typographyScheme.subtitle1;
+    self.postDateLabel.font=typographyScheme.subtitle1;
+    self.postDistanceLabel.font=typographyScheme.subtitle1;
+    
+    //initialize text for labels
     self.postUserLabel.text=post.author.username;
-    self.postTitleLabel.text=post.title;
+    self.postTitleLabel.text=[post.title uppercaseString];
     self.postDescriptionLabel.text=post.summary;
     
     PFGeoPoint * postGeoPoint=post[@"location"];
