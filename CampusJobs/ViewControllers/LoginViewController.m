@@ -15,7 +15,7 @@
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import "AppScheme.h"
-#import "Utils.h"
+#import "Format.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -62,7 +62,7 @@
 }
 
 - (void)formatColors {
-    [Utils addBlueGradientToView:self.view];
+    [Format addBlueGradientToView:self.view];
     
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     self.titleLabel.textColor = colorScheme.onSurfaceColor;

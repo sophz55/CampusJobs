@@ -18,7 +18,7 @@
 #import <MaterialComponents/MaterialButtons+TypographyThemer.h>
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
-#import "Utils.h"
+#import "Format.h"
 
 @interface SignUpViewController () <EditPaymentDelegate>
 
@@ -77,7 +77,7 @@
 }
 
 - (void)formatColors {
-    [Utils addBlueGradientToView:self.view];
+    [Format addBlueGradientToView:self.view];
     
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     self.titleLabel.textColor = colorScheme.onSurfaceColor;

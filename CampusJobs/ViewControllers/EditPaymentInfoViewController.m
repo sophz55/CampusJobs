@@ -17,7 +17,7 @@
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
+#import "Format.h"
 #import "AppScheme.h"
 
 @interface EditPaymentInfoViewController ()
@@ -104,11 +104,11 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@""];
 }
 
 - (void)formatColors {
-    [Utils addGreyGradientToView:self.view];
+    [Format addGreyGradientToView:self.view];
     
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.cancelButton];

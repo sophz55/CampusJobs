@@ -17,6 +17,7 @@
 #import "Alert.h"
 #import "Utils.h"
 #import "SegueConstants.h"
+#import "Format.h"
 
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
@@ -120,6 +121,16 @@
     } else {
         self.cancelButton.hidden = YES;
     }
+    
+    [Format formatRaisedButton:self.cancelButton];
+    [Format centerHorizontalView:self.cancelButton inView:self.view];
+    
+    [Format formatRaisedButton:self.messageButton];
+    [Format centerHorizontalView:self.messageButton inView:self.view];
+    
+    [Format formatRaisedButton:self.deleteButton];
+    [Format centerHorizontalView:self.deleteButton inView:self.view];
+    
 }
 
 - (void)configureNavigatonBar {
@@ -127,19 +138,21 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    if (self.userIsAuthor) {
-        self.title = @"Your Posting";
-    } else {
-        self.title = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
-    }
     
-    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
     
     self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
     self.navigationItem.rightBarButtonItem = self.editButton;
     
-    [Utils formatColorForAppBar:self.appBar];
+    NSString *title;
+    if (self.userIsAuthor) {
+        title = @"Your Posting";
+    } else {
+        title = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
+    }
+    
+    [Format formatAppBar:self.appBar withTitle:title];
 }
 
 - (void)configureAuthorView {

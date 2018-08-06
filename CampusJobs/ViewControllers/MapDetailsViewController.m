@@ -9,7 +9,7 @@
 #import "MapDetailsViewController.h"
 #import <MapKit/MapKit.h>
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
+#import "Format.h"
 
 @interface MapDetailsViewController (){
     CLLocationCoordinate2D geoPointToCoord;
@@ -45,11 +45,10 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]  style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
     
-    self.title = @"POST LOCATION";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"POST LOCATION"];
 }
 
 - (IBAction)didTapBackButton:(id)sender {

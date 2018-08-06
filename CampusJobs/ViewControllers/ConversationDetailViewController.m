@@ -18,6 +18,7 @@
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialAppBar.h>
+#import "Format.h"
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
 
@@ -143,19 +144,20 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    if (![self.conversation.post.title isEqualToString:@""]) {
-        self.title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
-    } else {
-        self.title = self.otherUser.username;
-    }
     
-    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
     self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
-    self.flagButton = [[UIBarButtonItem alloc] initWithTitle:@"Flag" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
     self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
     
-    [Utils formatColorForAppBar:self.appBar];
+    NSString *title;
+    if (![self.conversation.post.title isEqualToString:@""]) {
+        title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+    } else {
+        title = self.otherUser.username;
+    }
+    [Format formatAppBar:self.appBar withTitle:title];
     
     self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
 }

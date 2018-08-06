@@ -17,6 +17,7 @@
 #import <MaterialComponents/MaterialAppBar+ColorThemer.h>
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
+#import "Format.h"
 
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -62,8 +63,7 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    self.title = @"YOUR PROFILE";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
 }
 
 //Helper method
@@ -157,26 +157,24 @@
 - (void)formatButtons {
     //Edit profile picture button
     self.editProfPicButton.layer.borderWidth=.25f;
-    [self.editProfPicButton sizeToFit];
+    [Format formatFlatButton:self.editProfPicButton];
+    [Format centerHorizontalView:self.editProfPicButton inView:self.view];
     
-    //Add rounded edges to bottom view buttons
-    self.editPersonalSettingsButton.layer.cornerRadius=5.0;
-    self.editPaymentInfoButton.layer.cornerRadius=5.0;
-    self.editDesiredRadiusButton.layer.cornerRadius=5.0;
+    //Add rounded edges, typography, color theme to bottom view buttons
+    [Format formatRaisedButton:self.editPersonalSettingsButton];
+    self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
     
-    //Making button text capitalized
-    [self.editPersonalSettingsButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
-    [self.editPersonalSettingsButton sizeToFit];
-    [self.editPaymentInfoButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
-    [self.editPaymentInfoButton sizeToFit];
-    [self.editDesiredRadiusButton setTitle:[self.editPersonalSettingsButton.titleLabel.text uppercaseString] forState:UIControlStateNormal];
-    [self.editDesiredRadiusButton sizeToFit];
+    [Format formatRaisedButton:self.editPaymentInfoButton];
+    self.editPaymentInfoButton.backgroundColor = [Colors secondaryGreyLightColor];
     
-    //Add a theme to all buttons
-    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPersonalSettingsButton];
-    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editPaymentInfoButton];
-    [MDCTextButtonThemer applyScheme:self.buttonScheme toButton:self.editProfPicButton];
-    [MDCContainedButtonThemer applyScheme:self.buttonScheme toButton:self.editDesiredRadiusButton];
+    [Format formatRaisedButton:self.editDesiredRadiusButton];
+    self.editDesiredRadiusButton.backgroundColor = [Colors secondaryGreyLightColor];
+    
+    
+    //Center bottom view buttons
+    [Format centerHorizontalView:self.editPersonalSettingsButton inView:self.view];
+    [Format centerHorizontalView:self.editPaymentInfoButton inView:self.view];
+    [Format centerHorizontalView:self.editDesiredRadiusButton inView:self.view];
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];

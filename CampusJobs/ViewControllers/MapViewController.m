@@ -9,8 +9,8 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
 #import "SegueConstants.h"
+#import "Format.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -53,8 +53,7 @@
     self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
     self.navigationItem.rightBarButtonItem = self.nextButton;
     
-    self.title = @"CHOOSE A RADIUS";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"CHOOSE A RADIUS"];
 }
 
 //Set default radius to 1 mile

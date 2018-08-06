@@ -10,7 +10,8 @@
 #import "Parse.h"
 #import "SegueConstants.h"
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
+#import <MaterialComponents/MaterialTypography.h>
+#import "Format.h"
 
 @interface FeedViewController ()
 @property(nonatomic, strong) MDCAppBar *appBar;
@@ -31,8 +32,7 @@
     
     self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(didTapLogoutButton:)];
     self.navigationItem.leftBarButtonItem = self.logoutButton;
-    [Utils formatColorForAppBar:self.appBar];
-    self.title = @"SEIZE";
+    [Format formatAppBar:self.appBar withTitle:@"SEIZE"];
 }
 
 - (void)didReceiveMemoryWarning {
