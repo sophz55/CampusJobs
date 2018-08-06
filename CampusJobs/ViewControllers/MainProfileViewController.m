@@ -51,9 +51,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     [self formatButtons];
-    
-    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
-    self.nameLabel.font = typographyScheme.headline4;
 }
 
 - (void)didReceiveMemoryWarning {
