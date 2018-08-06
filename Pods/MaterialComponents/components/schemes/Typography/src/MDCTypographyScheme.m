@@ -33,7 +33,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpartial-availability"
 #pragma clang diagnostic ignored "-Wtautological-pointer-compare"
-        _headline1 = [UIFont systemFontOfSize:96.0 weight:UIFontWeightLight];
+        _headline1 = [UIFont systemFontOfSize:96.0 weight:UIFontWeightLight];        
         _headline2 = [UIFont systemFontOfSize:60.0 weight:UIFontWeightLight];
         _headline3 = [UIFont systemFontOfSize:48.0 weight:UIFontWeightRegular];
         _headline4 = [UIFont systemFontOfSize:34.0 weight:UIFontWeightRegular];
