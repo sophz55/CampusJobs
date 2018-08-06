@@ -32,11 +32,13 @@
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-    [self fetchNearbyPosts];
-    [self.nearbyPostTableView reloadData];
+    
     [self addRefreshControl];
     [self displayGradient];
     [self displayRadius];
+    
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

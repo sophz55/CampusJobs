@@ -78,7 +78,7 @@
         _typographyScheme.body1 = [UIFont fontWithName:regularFont size:16.0];
         _typographyScheme.body2 = [UIFont fontWithName:regularFont size:14.0];
         _typographyScheme.caption = [UIFont fontWithName:boldFont size:14.0];
-        _typographyScheme.button = [UIFont fontWithName:regularFont size:12.0];
+        _typographyScheme.button = [UIFont fontWithName:regularFont size:14.0];
         _typographyScheme.overline = [UIFont fontWithName:regularFont size:10.0];
         
         

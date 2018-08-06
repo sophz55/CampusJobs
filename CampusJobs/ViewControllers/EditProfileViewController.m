@@ -9,7 +9,7 @@
 #import "EditProfileViewController.h"
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialTextFields.h>
-#import "Utils.h"
+#import "Format.h"
 #import "Alert.h"
 #import <Parse/Parse.h>
 
@@ -56,15 +56,13 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.title = @"YOUR PROFILE";
-    
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     
     self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSaveButton:)];
     self.navigationItem.rightBarButtonItem = self.saveButton;
     
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {

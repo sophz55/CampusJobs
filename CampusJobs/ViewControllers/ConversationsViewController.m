@@ -16,7 +16,7 @@
 #import <MaterialComponents/MaterialAppBar+ColorThemer.h>
 #import "AppScheme.h"
 #import "Colors.h"
-#import "Utils.h"
+#import "Format.h"
 
 @interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource, ConversationDetailDelegate>
 
@@ -47,8 +47,7 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    self.title = @"MESSAGES";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"MESSAGES"];
 }
 
 - (void)configureRefreshControl {

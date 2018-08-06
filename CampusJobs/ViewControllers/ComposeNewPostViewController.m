@@ -14,7 +14,7 @@
 #import "SegueConstants.h"
 #import "Alert.h"
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
+#import "Format.h"
 
 @interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *editLocationButton;
@@ -79,8 +79,7 @@
     self.postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapPostButton:)];
     self.navigationItem.rightBarButtonItem = self.postButton;
     
-    self.title = @"NEW POST";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"NEW POST"];
 }
 
 - (void)configureTextFields {

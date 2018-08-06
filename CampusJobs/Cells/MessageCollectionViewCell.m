@@ -9,6 +9,7 @@
 #import "MessageCollectionViewCell.h"
 #import "Alert.h"
 #import "ConversationDetailViewController.h"
+#import "Colors.h"
 
 @implementation MessageCollectionViewCell
 
@@ -46,7 +47,7 @@
     
     if (![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         self.textBubbleView.frame = CGRectMake(horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
-        self.textBubbleView.backgroundColor = [UIColor lightGrayColor];
+        self.textBubbleView.backgroundColor = [Colors secondaryGreyLightColor];
         self.textBubbleView.alpha = 0.3;
         self.messageTextView.textColor = [UIColor blackColor];
     } else {

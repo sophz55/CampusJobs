@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "ComposeNewPostViewController.h"
 #import <MaterialComponents/MaterialAppBar.h>
-#import "Utils.h"
+#import "Format.h"
 
 @interface JobLocationMapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>{
     CLLocationCoordinate2D selectedUserCoordinate;
@@ -53,8 +53,7 @@
     self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSaveButton:)];
     self.navigationItem.rightBarButtonItem = self.saveButton;
     
-    self.title = @"ADD LOCATION";
-    [Utils formatColorForAppBar:self.appBar];
+    [Format formatAppBar:self.appBar withTitle:@"ADD LOCATION"];
 }
 
 //Will check if the user already has a previously saved location (and it will reappear on the map)

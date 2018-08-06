@@ -62,6 +62,7 @@
 		F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F4BF020FD14C000C11CD0 /* Conversation.m */; };
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
+		F3E55E5D2118CFB1001E03EF /* Format.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E55E5C2118CFB1001E03EF /* Format.m */; };
 		F3FD740421153589004BF81B /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396B1F72113ADFE0099E623 /* Feed.storyboard */; };
 		FC209033210FB5FF00E27A5E /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC209032210FB5FF00E27A5E /* TabBarViewController.m */; };
 		FC29BF46210A7DD600CB81DC /* MapDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC29BF45210A7DD600CB81DC /* MapDetailsViewController.m */; };
@@ -200,6 +201,8 @@
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		F3E55E5A2118C2A5001E03EF /* Apache License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		F3E55E5B2118CFB1001E03EF /* Format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
+		F3E55E5C2118CFB1001E03EF /* Format.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Format.m; sourceTree = "<group>"; };
 		FC209031210FB5FF00E27A5E /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		FC209032210FB5FF00E27A5E /* TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		FC29BF44210A7DD600CB81DC /* MapDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapDetailsViewController.h; sourceTree = "<group>"; };
@@ -430,6 +433,8 @@
 				F31CC593211264F500C899B7 /* Alert.m */,
 				FC5E1DC2211223D10088DDBE /* Colors.h */,
 				FC5E1DC3211223D10088DDBE /* Colors.m */,
+				F3E55E5B2118CFB1001E03EF /* Format.h */,
+				F3E55E5C2118CFB1001E03EF /* Format.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -830,6 +835,7 @@
 				FC5E1DC4211223D10088DDBE /* Colors.m in Sources */,
 				D38B18C4210EC850005E607F /* ServicesTableViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
+				F3E55E5D2118CFB1001E03EF /* Format.m in Sources */,
 				D3B67A8D21079C2C0042BD49 /* PhotoViewController.m in Sources */,
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
