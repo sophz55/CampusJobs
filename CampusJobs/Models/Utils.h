@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import <MaterialComponents/MaterialAppBar.h>
+
 
 @interface Utils : NSObject
 
@@ -15,6 +17,10 @@
 
 + (double)calculateDistance:(PFGeoPoint *)postLocation betweenUserandPost:(PFGeoPoint *)userLocation;
 
++ (void)addGreyGradientToView:(UIView *)view;
 
++ (void)addBlueGradientToView:(UIView *)view;
+
++ (void)formatColorForAppBar:(MDCAppBar *)appBar;
 
 @end

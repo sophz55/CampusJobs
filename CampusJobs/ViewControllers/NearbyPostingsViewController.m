@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
@@ -158,12 +159,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
-        UITableViewCell * tappedCell=sender;
-        NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
-        Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-        UINavigationController *nearbyNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
+    if ([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.nearbyPostTableView indexPathForCell:tappedCell];
+        Post *singlePost = self.nearbyPostingsArray[indexPath.row];
+        PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.delegate = self;
         postDetailsViewController.post = singlePost;
     }

@@ -9,10 +9,14 @@
 #import "FeedViewController.h"
 #import "Parse.h"
 #import "SegueConstants.h"
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Utils.h"
 
 @interface FeedViewController ()
+@property(nonatomic, strong) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *yourPostingsContainer;
 @property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
+@property (strong, nonatomic) UIBarButtonItem *logoutButton;
 
 @end
 
@@ -20,7 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(didTapLogoutButton:)];
+    self.navigationItem.leftBarButtonItem = self.logoutButton;
+    [Utils formatColorForAppBar:self.appBar];
+    self.title = @"SEIZE";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +53,7 @@
             break;
     }
 }
+
 - (IBAction)didTapLogoutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         [self performSegueWithIdentifier:feedToLogoutSegue sender:nil];

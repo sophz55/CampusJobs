@@ -7,6 +7,12 @@
 //
 
 #import "Utils.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
+#import "Colors.h"
+#import <MaterialComponents/MaterialAppBar+ColorThemer.h>
+#import <MaterialComponents/MaterialAppBar+TypographyThemer.h>
+#import "AppScheme.h"
 
 @implementation Utils
 
@@ -37,6 +43,31 @@
     double miles=distance/1609.34;
     
     return miles;
+}
+
++ (void)addGreyGradientToView:(UIView *)view {
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[UIColor whiteColor]];
+    [colors addObject:[Colors secondaryGreyLighterColor]];
+    view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:view.frame andColors:colors];
+}
+
++ (void)addBlueGradientToView:(UIView *)view {
+    NSMutableArray *colors = [NSMutableArray array];
+    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
+    view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:view.frame andColors:colors];
+}
+
++ (void)formatColorForAppBar:(MDCAppBar *)appBar {
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    [MDCAppBarColorThemer applySemanticColorScheme:colorScheme toAppBar:appBar];
+    appBar.navigationBar.backgroundColor = [Colors secondaryGreyLightColor];
+    appBar.headerViewController.headerView.backgroundColor = appBar.navigationBar.backgroundColor;
+    
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    [MDCAppBarTypographyThemer applyTypographyScheme:typographyScheme toAppBar:appBar];
 }
 
 @end

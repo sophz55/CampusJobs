@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yma-sh-hY5">
-                                <rect key="frame" x="0.0" y="79" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="539"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -63,7 +62,7 @@
                                             <outlet property="messagePreviewLabel" destination="Mbj-7w-8py" id="III-P8-G8S"/>
                                             <outlet property="otherUserLabel" destination="ETF-Qh-I2y" id="3gG-9G-kTC"/>
                                             <outlet property="postTitleLabel" destination="dEq-fK-Ggf" id="1AC-5V-flA"/>
-                                            <segue destination="1zM-8s-jXT" kind="presentation" identifier="conversationsToDetailSegue" id="Dge-Nm-o4D"/>
+                                            <segue destination="Bdl-9U-zBf" kind="presentation" identifier="conversationsToDetailSegue" id="ScK-CC-Mvf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -89,13 +88,13 @@
             </objects>
             <point key="canvasLocation" x="2885.5999999999999" y="1038.5307346326838"/>
         </scene>
-        <!--postDetailsNavigationController-->
+        <!--postDetailsViewController-->
         <scene sceneID="lc8-39-LQ4">
             <objects>
-                <viewControllerPlaceholder storyboardName="Feed" referencedIdentifier="postDetailsNavigationController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Feed" referencedIdentifier="postDetailsViewController" id="4L3-8b-uuT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irC-KI-DeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4217" y="1219"/>
+            <point key="canvasLocation" x="3825" y="2328"/>
         </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="JtB-1h-Yrn">
@@ -106,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6mP-oN-Sb1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="619"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XGX-sA-UlI">
@@ -181,7 +180,7 @@
                                 </cells>
                             </collectionView>
                             <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sy6-BY-QPx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="71"/>
+                                <rect key="frame" x="0.0" y="24" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This job is now in progress!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTc-Hy-Kce">
@@ -229,14 +228,6 @@
                                             <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj" customClass="MDCFlatButton">
-                                        <rect key="frame" x="318" y="1" width="60" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Send"/>
-                                        <connections>
-                                            <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q64-vc-5sv" customClass="MDCMultilineTextField">
                                         <rect key="frame" x="127" y="1" width="196" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -245,6 +236,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj" customClass="MDCFlatButton">
+                                <rect key="frame" x="299" y="632" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -253,23 +252,7 @@
                             <outletCollection property="gestureRecognizers" destination="E62-uW-FJ7" appends="YES" id="xfn-nw-yMH"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="YbM-5q-qlc">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="HRW-8C-Im5">
-                            <connections>
-                                <action selector="didTapBackButton:" destination="Bdl-9U-zBf" id="cNz-Nn-66c"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Flag" id="fVc-jG-fOZ"/>
-                            <barButtonItem title="View Post" id="MGD-Z6-bca">
-                                <connections>
-                                    <action selector="didTapViewPostButton:" destination="Bdl-9U-zBf" id="drV-v4-Ogo"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
                     <connections>
-                        <outlet property="backButton" destination="HRW-8C-Im5" id="32t-Cm-BJx"/>
                         <outlet property="bottomView" destination="fpS-qz-gNA" id="STW-e5-efk"/>
                         <outlet property="cancelJobButton" destination="VgO-GW-2II" id="fjz-sS-TA0"/>
                         <outlet property="composeMessageTextField" destination="Q64-vc-5sv" id="ANS-jS-VeJ"/>
@@ -280,7 +263,6 @@
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
                         <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="IwH-b7-Kq7"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="tct-zn-lei"/>
-                        <outlet property="viewPostButton" destination="MGD-Z6-bca" id="7KQ-0K-piT"/>
                         <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="iVW-Fy-iAQ"/>
                     </connections>
                 </viewController>
@@ -305,15 +287,17 @@
                                 <rect key="frame" x="67" y="234" width="240" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L32-76-TEg" customClass="MDCRaisedButton">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L32-76-TEg" customClass="MDCRaisedButton">
                                         <rect key="frame" x="32" y="101" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="didTapCancelButton:" destination="0H4-vw-4U8" eventType="touchUpInside" id="Dpb-UK-G7N"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuN-QR-PsP" customClass="MDCRaisedButton">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuN-QR-PsP" customClass="MDCRaisedButton">
                                         <rect key="frame" x="141" y="101" width="83" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Suggest"/>
                                         <connections>
                                             <action selector="didTapSuggestButton:" destination="0H4-vw-4U8" eventType="touchUpInside" id="irP-a5-flu"/>
@@ -335,10 +319,6 @@
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="JuN-QR-PsP" firstAttribute="width" secondItem="L32-76-TEg" secondAttribute="width" id="DkN-ka-Ltt"/>
-                                    <constraint firstItem="JuN-QR-PsP" firstAttribute="height" secondItem="L32-76-TEg" secondAttribute="height" id="lem-93-ToV"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.74941138698630139" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -353,24 +333,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeX-vw-HYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4757.6000000000004" y="1924.5877061469266"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="P6P-Fi-UAu">
-            <objects>
-                <navigationController storyboardIdentifier="conversationNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1zM-8s-jXT" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wz8-2g-NWd">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Bdl-9U-zBf" kind="relationship" relationship="rootViewController" id="iF2-K0-TNW"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tX1-TA-Dlm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2885.5999999999999" y="1924.5877061469266"/>
         </scene>
     </scenes>
     <resources>

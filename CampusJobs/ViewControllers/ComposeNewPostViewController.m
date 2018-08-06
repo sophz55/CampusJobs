@@ -13,15 +13,20 @@
 #import "FeedViewController.h"
 #import "SegueConstants.h"
 #import "Alert.h"
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Utils.h"
 
 @interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (weak, nonatomic) IBOutlet UIButton *editLocationButton;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *titleTextField;
 
 @property (strong, nonatomic) MDCTextInputControllerUnderline *titleTextFieldController;
 @property (strong, nonatomic) MDCTextInputControllerUnderline *descriptionTextFieldController;
+
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (strong, nonatomic) UIBarButtonItem *cancelButton;
+@property (strong, nonatomic) UIBarButtonItem *postButton;
 @end
 
 @implementation ComposeNewPostViewController
@@ -54,12 +59,28 @@
 #pragma mark - Custom Configurations
 
 - (void)configureIntialView {
+    [self configureNavigationBar];
     [self configureTextFields];
     if (self.post) {
         [self configureWithExistingPost];
     } else {
         [self configureForNewPost];
     }
+}
+
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    self.navigationItem.leftBarButtonItem = self.cancelButton;
+    
+    self.postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapPostButton:)];
+    self.navigationItem.rightBarButtonItem = self.postButton;
+    
+    self.title = @"NEW POST";
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 - (void)configureTextFields {
@@ -99,14 +120,14 @@
         [self.editLocationButton setTitle:@"Pin Point Your Location" forState:UIControlStateNormal];
     }
     
-    [self.postButton setTitle:@"Update" forState:UIControlStateNormal];
+    [self.postButton setTitle:@"Update"];
 }
 
 - (void)configureForNewPost {
     self.locationAddressLabel.text = @"Please set a location for your task...";
     [self.editLocationButton setTitle:@"Pin Point Your Location" forState:UIControlStateNormal];
 
-    [self.postButton setTitle:@"Post" forState:UIControlStateNormal];
+    [self.postButton setTitle:@"Post"];
 }
 
 //Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user

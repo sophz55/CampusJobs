@@ -27,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.cancelButton sizeToFit];
+    [self.suggestButton sizeToFit];
+    self.delegate.showingSuggestViewController = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +41,9 @@
 
 - (IBAction)didTapCancelButton:(id)sender {
     self.suggestedPriceTextField.text = @"";
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.delegate.showingSuggestViewController = NO;
+    }];
 }
 
 - (IBAction)didTapSuggestButton:(id)sender {
@@ -48,6 +53,7 @@
             if (succeeded) {
                 weakSelf.suggestedPriceTextField.text = @"";
                 [weakSelf dismissViewControllerAnimated:YES completion: ^ {
+                    weakSelf.delegate.showingSuggestViewController = NO;
                     [weakSelf.delegate reloadData];
                 }];
             } else {

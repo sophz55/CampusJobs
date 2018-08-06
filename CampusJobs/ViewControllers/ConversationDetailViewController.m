@@ -17,6 +17,7 @@
 #import "SegueConstants.h"
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialAppBar.h>
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
 
@@ -24,7 +25,6 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
-@property (assign, nonatomic) BOOL showingSuggestViewController;
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *composeMessageTextField;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *suggestPriceButton;
@@ -33,16 +33,20 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *flagButton;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *sendMessageButton;
 @property (assign, nonatomic) CGFloat bottomViewHeight;
 @property (assign, nonatomic) CGFloat initialButtonHeight;
+@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
 @implementation ConversationDetailViewController
+
+@synthesize showingSuggestViewController;
 
 #pragma mark - Lifecycle
 
@@ -68,7 +72,7 @@
 
 - (void)reloadData {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    [self configureOptions];
+    
     [self.messagesCollectionView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -122,6 +126,11 @@
     self.initialButtonHeight = 58;
     self.bottomViewHeight = self.initialButtonHeight;
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
+    self.bottomView.backgroundColor = [Colors secondaryGreyLighterColor];
+    
+    [self setLocationSendMessageButton];
+    
+    [self configureOptions];
 }
 
 - (void)configureRefreshControl {
@@ -131,14 +140,24 @@
 }
 
 - (void)configureNavigatonBar {
-    // put other user's username label in navigation bar
-    UILabel *otherUserLabel = [[UILabel alloc] init];
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
     if (![self.conversation.post.title isEqualToString:@""]) {
-        otherUserLabel.text = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+        self.title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
     } else {
-        otherUserLabel.text = self.otherUser.username;
+        self.title = self.otherUser.username;
     }
-    self.navigationItem.titleView = otherUserLabel;
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = self.backButton;
+    self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.flagButton = [[UIBarButtonItem alloc] initWithTitle:@"Flag" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
+    
+    [Utils formatColorForAppBar:self.appBar];
+    
+    self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
 }
 
 #pragma mark - Configurations Based on State
@@ -146,10 +165,10 @@
 - (void)showByDelegate {
     if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
         [self.viewPostButton setEnabled:YES];
-        [self.viewPostButton setTintColor:nil];
+        self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
     } else {
         [self.viewPostButton setEnabled:NO];
-        [self.viewPostButton setTintColor:[UIColor clearColor]];
+        self.navigationItem.rightBarButtonItems = @[self.flagButton];
     }
 }
 
@@ -242,9 +261,6 @@
     
     CGFloat horizontalInset = 8;
     
-    CGFloat sendMessageButtonWidth = 70;
-    self.sendMessageButton.frame = CGRectMake(self.bottomView.frame.size.width - sendMessageButtonWidth, self.bottomViewHeight - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
-    
     if (showsSuggestPrice) {
         self.suggestPriceButton.hidden = NO;
         self.suggestPriceButton.frame = CGRectMake(0, self.bottomViewHeight - self.initialButtonHeight, 130, self.initialButtonHeight);
@@ -263,14 +279,23 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:YES];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:YES];
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:NO];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:NO];
     }
+}
+
+- (void)setLocationSendMessageButton {
+    CGFloat sendMessageButtonWidth = 70;
+    self.sendMessageButton.frame = CGRectMake(self.view.frame.size.width - sendMessageButtonWidth, self.view.frame.size.height - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
 }
 
 #pragma mark - IBAction
@@ -389,8 +414,7 @@
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
-        UINavigationController *postDetailsNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavigationController topViewController];
+        PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.post = self.conversation.post;
         postDetailsController.delegate = self;
     }

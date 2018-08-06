@@ -12,6 +12,11 @@
 #import "Conversation.h"
 #import "Alert.h"
 #import "SegueConstants.h"
+#import <MaterialComponents/MaterialAppBar.h>
+#import <MaterialComponents/MaterialAppBar+ColorThemer.h>
+#import "AppScheme.h"
+#import "Colors.h"
+#import "Utils.h"
 
 @interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource, ConversationDetailDelegate>
 
@@ -19,6 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (assign, nonatomic) int queryLimit; // number of conversations to load
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
@@ -37,6 +43,12 @@
     self.conversations = [[NSMutableArray alloc] init];
     
     [self configureRefreshControl];
+    
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    self.title = @"MESSAGES";
+    [Utils formatColorForAppBar:self.appBar];
 }
 
 - (void)configureRefreshControl {
@@ -118,8 +130,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
         ConversationTableViewCell *cell = sender;
-        UINavigationController *conversationNavigationController = [segue destinationViewController];
-        ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
+        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
         conversationDetailController.delegate = self;
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;
