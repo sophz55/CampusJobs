@@ -2,12 +2,12 @@
 //  TabBarViewController.h
 //  CampusJobs
 //
-//  Created by Sophia Khezri on 7/30/18.
+//  Created by Sophia Khezri on 8/6/18.
 //  Copyright © 2018 So What. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MDCTabBarViewController.h"
 
-@interface TabBarViewController : UIViewController
+@interface TabBarViewController : MDCTabBarViewController
 
 @end

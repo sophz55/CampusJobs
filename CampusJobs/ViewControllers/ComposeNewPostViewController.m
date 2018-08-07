@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDefinesPresentationContext:YES];
-    
     [self configureIntialView];
 }
     

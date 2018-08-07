@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Chat-->
+        <!--Conversations View Controller-->
         <scene sceneID="A1P-Fh-cch">
             <objects>
                 <viewController storyboardIdentifier="Chat" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6pg-MC-hWd" customClass="ConversationsViewController" sceneMemberID="viewController">
@@ -78,7 +78,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fy2-J7-KOG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="iconmonstr-speech-bubble-28-24" selectedImage="iconmonstr-speech-bubble-28-24" id="qMc-12-bYU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="conversationsTableView" destination="Yma-sh-hY5" id="frh-ZF-PbP"/>
@@ -335,7 +334,4 @@
             <point key="canvasLocation" x="4757.6000000000004" y="1924.5877061469266"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="iconmonstr-speech-bubble-28-24" width="24" height="24"/>
-    </resources>
 </document>
