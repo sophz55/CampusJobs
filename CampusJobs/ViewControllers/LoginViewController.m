@@ -41,6 +41,7 @@
 }
 
 - (void)configureTextFields {
+    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
     CGFloat textFieldWidth = 300;
     CGFloat textFieldHeight = 50;
     CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
@@ -50,10 +51,14 @@
     self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
     self.usernameField.delegate = self;
     self.usernameFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameField];
+    self.usernameField.font=robotoCondensed;
+    self.usernameFieldController.inlinePlaceholderFont=robotoCondensed;
     
     self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
     self.passwordField.delegate = self;
     self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
+    self.passwordField.font=robotoCondensed;
+    self.passwordFieldController.inlinePlaceholderFont=robotoCondensed;
     
 }
 
@@ -63,7 +68,6 @@
 
 - (void)formatColors {
     [Format addBlueGradientToView:self.view];
-    
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     self.titleLabel.textColor = colorScheme.onSurfaceColor;
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
