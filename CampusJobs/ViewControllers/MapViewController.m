@@ -72,8 +72,8 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    if([self.nextButton.title isEqualToString:@"Save"]){
-        [self performSegueWithIdentifier:backToProfileSegue sender:nil];
+    if(self.currentUser[@"desiredRadius"]){
+        [self dismissViewControllerAnimated:YES completion:nil];
     } else{
         [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
     }
@@ -117,7 +117,7 @@
         self.radiusSliderBar.value=[self.currentUser[@"desiredRadius"] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
         self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
-        [self.nextButton setTitle:@"Save"];
+        [self.nextButton setTitle:@"SAVE"];
     }
 }
 

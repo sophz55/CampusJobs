@@ -52,7 +52,6 @@
         _colorScheme.secondaryColor = [Colors primaryBlueColor];
         _colorScheme.onSecondaryColor = [UIColor whiteColor];
         _colorScheme.surfaceColor = [Colors primaryBlueLightColor];
-        _colorScheme.onSurfaceColor = [UIColor whiteColor];
         _colorScheme.backgroundColor = [Colors secondaryGreyLightColor];
         _colorScheme.onBackgroundColor = [Colors secondaryGreyTextColor];
         _colorScheme.errorColor =

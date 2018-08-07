@@ -25,8 +25,8 @@
 #import "ComposeNewPostViewController.h"
 
 @interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate> {
-        CLLocationCoordinate2D geoPointToCoord;
-    }
+    CLLocationCoordinate2D geoPointToCoord;
+}
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) Conversation *conversation;
@@ -254,7 +254,6 @@
 
 #pragma mark - Private Methods
 - (void)findConversation {
-    
     // create query to access "author" key within a conversation's post
     PFQuery *postsQuery = [PFQuery queryWithClassName:@"Post"];
     [postsQuery whereKey:@"author" equalTo:self.post.author];
@@ -264,7 +263,7 @@
     [conversationsQuery includeKey:@"post"];
     [conversationsQuery whereKey:@"post" matchesQuery:postsQuery];
     [conversationsQuery whereKey:@"post" equalTo:self.post];
-    
+
     [conversationsQuery includeKey: @"seeker"];
     [conversationsQuery whereKey:@"seeker" equalTo:self.user];
     

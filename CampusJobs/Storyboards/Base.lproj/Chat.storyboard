@@ -120,6 +120,8 @@
                         <viewLayoutGuide key="safeArea" id="fy2-J7-KOG"/>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="conversationsTableView" destination="Yma-sh-hY5" id="frh-ZF-PbP"/>
                         <outlet property="noConversationsLabel" destination="AyJ-Ao-Jxo" id="P8S-0u-Lpk"/>

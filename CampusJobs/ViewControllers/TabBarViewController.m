@@ -10,62 +10,74 @@
 #import "FeedViewController.h"
 #import "ConversationsViewController.h"
 #import "MainProfileViewController.h"
+#import "MaterialBottomNavigation.h"
 #import "Colors.h"
+#import "MaterialBottomNavigation+ColorThemer.h"
+#import "AppScheme.h"
 
-@interface TabBarViewController () <MDCTabBarControllerDelegate>
-@property (strong,nonatomic) MDCTabBar *tabBar;
+@interface TabBarViewController () <MDCBottomNavigationBarDelegate>
 @end
 
 @implementation TabBarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTabBar];
-    // Do any additional setup after loading the view.
-}
-
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-    return UIBarPositionBottom;
+    [self initBottomNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)initTabBar{
+- (void)initBottomNavigationBar{
+    NSString * feedIcon=@"iconmonstr-home-4-24";
+    NSString * messagesIcon=@"iconmonstr-speech-bubble-28-24";
+    NSString * profileIcon=@"iconmonstr-user-2-24";
+    CGFloat tabBarHeight=60;
+    CGFloat viewHeight=607;
+    
     //initialize tab bar
-    MDCTabBar *tabBar = [[MDCTabBar alloc] initWithFrame:self.view.bounds];
-    self.tabBar.delegate = self;
+    MDCBottomNavigationBar *navigationBar = [[MDCBottomNavigationBar alloc] initWithFrame:self.view.bounds];
+    navigationBar.delegate = self;
     //delcare tab bar items
-    tabBar.items = @[
-                     [[UITabBarItem alloc] initWithTitle:@"FEED" image:[UIImage imageNamed:@"iconmonstr-home-4-24"] tag:0],
-                     [[UITabBarItem alloc] initWithTitle:@"CHAT" image:[UIImage imageNamed:@"iconmonstr-speech-bubble-28-24"] tag:1], [[UITabBarItem alloc] initWithTitle:@"PROFILE" image:[UIImage imageNamed:@"iconmonstr-user-2-24"] tag:2],
-                     ];
-    tabBar.itemAppearance = MDCTabBarItemAppearanceTitledImages;
-    tabBar.autoresizingMask =
+    navigationBar.items = @[
+                            [[UITabBarItem alloc] initWithTitle:@"FEED" image:[UIImage imageNamed:feedIcon] tag:0],
+                            [[UITabBarItem alloc] initWithTitle:@"CHAT" image:[UIImage imageNamed:messagesIcon] tag:1],
+                            [[UITabBarItem alloc] initWithTitle:@"PROFILE" image:[UIImage imageNamed:profileIcon] tag:2]
+                            ];
+    navigationBar.autoresizingMask =
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-    [tabBar sizeToFit];
-    tabBar.frame=CGRectMake(0, 623-tabBar.frame.size.height, self.view.frame.size.width, tabBar.frame.size.height);
+    [navigationBar sizeToFit];
+    navigationBar.frame=CGRectMake(0, viewHeight, self.view.frame.size.width, tabBarHeight);
     
     //set view controllers for each selected tab
     FeedViewController *tab1 = [self.storyboard instantiateViewControllerWithIdentifier:@"feed"];
     ConversationsViewController *tab2 = [self.storyboard instantiateViewControllerWithIdentifier:@"Chat"];
     MainProfileViewController *tab3 = [self.storyboard instantiateViewControllerWithIdentifier:@"mainProfileViewController"];
-    
-    //format tab bar
-    tabBar.tintColor=[Colors primaryOrangeColor];
-    tabBar.backgroundColor=[Colors secondaryGreyLightColor];
-    
     NSArray *viewControllers = [NSArray arrayWithObjects:tab1, tab2, tab3, nil];
     self.viewControllers=viewControllers;
     self.selectedViewController=viewControllers[0];
+    [self.view addSubview:navigationBar];
     
-    self.tabBar = tabBar;
-    [self.view addSubview:self.tabBar];
-    
-    
+    //format navigation bar colors and font
+    navigationBar.barTintColor=[Colors secondaryGreyLighterColor];
+    navigationBar.itemTitleFont=[UIFont fontWithName:@"RobotoCondensed-Regular" size:10];
+    navigationBar.selectedItemTintColor=[UIColor grayColor];
 }
+
+//bottomNavigationBar delegate
+- (void)bottomNavigationBar:(nonnull MDCBottomNavigationBar *)bottomNavigationBar
+              didSelectItem:(id)item{
+    NSLog(@"%@", bottomNavigationBar.selectedItem);
+    if(bottomNavigationBar.selectedItem==bottomNavigationBar.items[0]){
+        self.selectedViewController=self.viewControllers[0];
+    } else if(bottomNavigationBar.selectedItem==bottomNavigationBar.items[1]){
+        self.selectedViewController=self.viewControllers[1];
+    } else{
+        self.selectedViewController=self.viewControllers[2];
+    }
+}
+
 
 /*
  #pragma mark - Navigation
