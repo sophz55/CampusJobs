@@ -141,7 +141,7 @@
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[@"desiredRadius"];
     floatRadius=[self.userRadius floatValue];
-    self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
+    self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.2f MILES",floatRadius];
 }
 
 //Displays the background color

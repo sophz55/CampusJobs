@@ -86,6 +86,10 @@
     }];
 }
 
+- (IBAction)didTapAway:(id)sender {
+    [self.view endEditing:YES];
+}
+
 /*
 #pragma mark - Navigation
 

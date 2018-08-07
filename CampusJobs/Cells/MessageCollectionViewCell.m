@@ -10,6 +10,9 @@
 #import "Alert.h"
 #import "ConversationDetailViewController.h"
 #import "Colors.h"
+#import "Format.h"
+#import <MaterialComponents/MaterialTypography.h>
+#import "AppScheme.h"
 
 @implementation MessageCollectionViewCell
 
@@ -20,11 +23,9 @@
     self.maxHeight = maxHeight;
     self.viewWidth = viewWidth;
     self.messageTextView.text = message.text;
-    if (message.isSystemMessage) {
-        self.messageTextView.font = [UIFont italicSystemFontOfSize:16];
-    } else {
-        self.messageTextView.font = [UIFont systemFontOfSize:16];
-    }
+    
+    [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
+    
     [self configureCellLayout];
     [self toggleShowButtonStackView];
 }
@@ -33,10 +34,21 @@
     NSString *messageText = self.message.text;
     self.messageTextView.userInteractionEnabled = NO;
     
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    if (self.message.isSystemMessage) {
+        self.messageTextView.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 16];
+    } else {
+        self.messageTextView.font = typographyScheme.subtitle1;
+    }
+    
     // setting frame for message text view
     CGSize boundedSize = CGSizeMake(self.maxWidth, self.maxHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: self.messageTextView.font} context:nil];
+    
+    CGFloat imageWidth = 40;
+    CGFloat horizontalImageInset = 8;
+    CGFloat verticalImageInset = 8;
     
     CGFloat horizontalTextInset = 8;
     CGFloat verticalTextInset = 8;
@@ -46,14 +58,20 @@
     CGSize bubbleViewSize = CGSizeMake((textViewSize.width + 2 * horizontalTextInset), (textViewSize.height + 2 * verticalTextInset));
     
     if (![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        self.textBubbleView.frame = CGRectMake(horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
+        self.senderProfileImageView.hidden = NO;
+        self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, verticalImageInset, imageWidth, imageWidth);
+        CGFloat imageInset = horizontalImageInset + imageWidth;
+        
+        self.textBubbleView.frame = CGRectMake(imageInset + horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
         self.textBubbleView.backgroundColor = [Colors secondaryGreyLightColor];
         self.textBubbleView.alpha = 0.3;
         self.messageTextView.textColor = [UIColor blackColor];
     } else {
+        self.senderProfileImageView.hidden = YES;
+        
         self.textBubbleView.frame = CGRectMake(self.viewWidth - bubbleViewSize.width - horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
         self.textBubbleView.alpha = 1;
-        self.textBubbleView.backgroundColor = [UIColor colorWithRed:0.00 green:0.50 blue:1.00 alpha:1.00];
+        self.textBubbleView.backgroundColor = [Colors primaryBlueDarkColor];
         self.messageTextView.textColor = [UIColor whiteColor];
     }
     

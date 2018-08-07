@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface Format : NSObject
 
@@ -25,5 +27,9 @@
 + (void)formatFlatButton:(MDCButton *)button;
 
 + (void)centerHorizontalView:(UIView *)view inView:(UIView *)outerView;
+
++ (void)centerVerticalView:(UIView *)view inView:(UIView *)outerView;
+
++ (void)formatProfilePictureForUser:(PFUser *)user withView:(PFImageView *)view;
 
 @end

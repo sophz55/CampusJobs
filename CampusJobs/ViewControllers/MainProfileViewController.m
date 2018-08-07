@@ -165,23 +165,8 @@
 
 //Helper method
 - (void)formatPic {
-    //Create a circle for profile picture
     [Format centerHorizontalView:self.profilePicture inView:self.view];
-    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-    self.profilePicture.clipsToBounds = YES;
-    
-    //Placeholder for profile picture while waiting for load
-    self.profilePicture.image = [UIImage imageNamed:@"image_placeholder"];
-    
-    //format profile picture border
-    self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
-    self.profilePicture.layer.borderWidth=2.0;
-    
-    //set profile picture (if there is one already selected)
-    if(self.currentUser[@"profileImageFile"]){
-        self.profilePicture.file = self.currentUser[@"profileImageFile"];
-        [self.profilePicture loadInBackground];
-    }
+    [Format formatProfilePictureForUser:self.currentUser withView:self.profilePicture];
 }
 
 - (void)formatButtons {

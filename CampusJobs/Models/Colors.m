@@ -31,7 +31,7 @@
     return [UIColor colorWithRed:0.74 green:0.74 blue:0.74 alpha:1.0];
 }
 +(UIColor *)secondaryGreyDarkColor{
-    return [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];
+    return [UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1.0];
 }
 +(UIColor *)secondaryGreyTextColor{
     return [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:1.0];

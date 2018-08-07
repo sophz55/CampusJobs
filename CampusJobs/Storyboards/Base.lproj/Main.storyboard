@@ -245,7 +245,11 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="hLk-IL-UG2"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Zvk-Oj-tm9" appends="YES" id="vSC-AZ-lUS"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="goU-Ur-IEU" id="quC-VI-U5V"/>
@@ -255,6 +259,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uve-JR-0eJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Zvk-Oj-tm9">
+                    <connections>
+                        <action selector="didTapAway:" destination="Pzf-3z-BOP" id="dwT-s3-xWg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4512.8000000000002" y="424.13793103448279"/>
         </scene>

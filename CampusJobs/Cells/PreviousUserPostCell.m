@@ -8,6 +8,7 @@
 
 #import "PreviousUserPostCell.h"
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
+#import "DateTools.h"
 #import "AppScheme.h"
 
 @implementation PreviousUserPostCell
@@ -45,6 +46,14 @@
         self.takerLabel.text=[NSString stringWithFormat:@"Completed by: %@", previousPost.taker.username];
     }
     
+    //Format the date (date the post was posted on)
+    NSDateFormatter * formatter= [[NSDateFormatter alloc] init];
+    formatter.dateFormat=@"E MMM d HH:mm:ss Z y";
+    formatter.dateStyle= NSDateFormatterShortStyle;
+    formatter.timeStyle= NSDateFormatterNoStyle;
+    NSDate * createdAt= self.post.createdAt;
+    NSString * timeAgo= [NSDate shortTimeAgoSinceDate:createdAt];
+    self.dateLabel.text= timeAgo;
 }
 
 @end

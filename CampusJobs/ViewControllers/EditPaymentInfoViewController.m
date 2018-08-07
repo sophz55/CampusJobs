@@ -87,13 +87,17 @@
 - (void)populateFieldsWithExistingInformation {
     if (self.user[@"card"]) {
         Card *card = self.user[@"card"];
-        self.nameField.text = card.billingName;
-        self.cardNumberField.text = card.cardNumber;
-        self.expDateField.text = card.expDate;
-        self.securityCodeField.text = card.securityCode;
-        self.addressLine1Field.text = card.addressLine1;
-        self.addressLine2Field.text = card.addressLine2;
-        self.zipcodeField.text = card.cityStateZip;
+        [card fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
+            if (fetchedCard) {
+                self.nameField.text = card.billingName;
+                self.cardNumberField.text = card.cardNumber;
+                self.expDateField.text = card.expDate;
+                self.securityCodeField.text = card.securityCode;
+                self.addressLine1Field.text = card.addressLine1;
+                self.addressLine2Field.text = card.addressLine2;
+                self.zipcodeField.text = card.cityStateZip;
+            }
+        }];
     } else {
         self.nameField.text = self.user[@"name"];
     }

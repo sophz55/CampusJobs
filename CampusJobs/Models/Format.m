@@ -9,7 +9,6 @@
 #import "Format.h"
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
-#import "Colors.h"
 #import <MaterialComponents/MaterialAppBar+ColorThemer.h>
 #import <MaterialComponents/MaterialAppBar+TypographyThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
@@ -83,6 +82,33 @@
 + (void)centerHorizontalView:(UIView *)view inView:(UIView *)outerView {
     CGFloat originx = (outerView.frame.size.width - view.frame.size.width)/2;
     view.frame = CGRectMake(originx, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+}
+
++ (void)centerVerticalView:(UIView *)view inView:(UIView *)outerView {
+    CGFloat originy = (outerView.frame.size.height - view.frame.size.height)/2;
+    view.frame = CGRectMake(view.frame.origin.x, originy, view.frame.size.width, view.frame.size.height);
+}
+
++ (void)formatProfilePictureForUser:(PFUser *)user withView:(PFImageView *)view {
+    view.layer.cornerRadius = view.frame.size.width / 2;
+    view.clipsToBounds = YES;
+    
+    //Placeholder for profile picture while waiting for load
+    view.image = [UIImage imageNamed:@"image_placeholder"];
+    
+    //format profile picture border
+    view.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
+    view.layer.borderWidth=2.0;
+    
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+        if (user) {
+            //set profile picture (if there is one already selected)
+            if(user[@"profileImageFile"]){
+                view.file = user[@"profileImageFile"];
+                [view loadInBackground];
+            }
+        }
+    }];
 }
 
 @end

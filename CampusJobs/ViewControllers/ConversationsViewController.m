@@ -25,6 +25,8 @@
 @property (assign, nonatomic) int queryLimit; // number of conversations to load
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MDCAppBar *appBar;
+@property (weak, nonatomic) IBOutlet UIView *noConversationsView;
+@property (weak, nonatomic) IBOutlet UILabel *noConversationsLabel;
 
 @end
 
@@ -38,12 +40,23 @@
     self.conversationsTableView.delegate = self;
     self.conversationsTableView.dataSource = self;
     
-    self.conversationsTableView.rowHeight = 100;
+    self.conversationsTableView.rowHeight = 80;
     
     self.conversations = [[NSMutableArray alloc] init];
     
-    [self configureRefreshControl];
+    //placeholder view while table data loads
+    self.noConversationsView.hidden = NO;
+    self.noConversationsView.frame = self.view.frame;
+    self.noConversationsView.backgroundColor = [Colors secondaryGreyLighterColor];
+    self.noConversationsLabel.text = @"LOADING MESSAGES...";
+    self.noConversationsLabel.textColor = [Colors secondaryGreyColor];
+    [self.noConversationsLabel setTextAlignment:NSTextAlignmentCenter];
     
+    [self configureNavigationBar];
+    [self configureRefreshControl];
+}
+
+- (void)configureNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -70,9 +83,11 @@
     [userConversationsQuery includeKey:@"messages"];
     [userConversationsQuery includeKey:@"post"];
     [userConversationsQuery includeKey:@"post.author.username"];
+    [userConversationsQuery includeKey:@"post.author.profileImageFile"];
     [userConversationsQuery includeKey:@"post.taker"];
     [userConversationsQuery includeKey:@"seeker"];
     [userConversationsQuery includeKey:@"seeker.username"];
+    [userConversationsQuery includeKey:@"seeker.profileImageFile"];
     userConversationsQuery.limit = self.queryLimit;
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
@@ -82,6 +97,13 @@
             self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];
             [self.refreshControl endRefreshing];
+            if (self.conversations.count > 0) {
+                self.noConversationsView.hidden = YES;
+            } else {
+                self.noConversationsView.hidden = NO;
+                self.noConversationsLabel.text = @"You have no conversations. Click the \"MESSAGE\" button on a post from the feed tab to start chatting!";
+                [self.noConversationsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
         }
     }];
 }

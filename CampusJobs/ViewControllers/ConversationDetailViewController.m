@@ -18,6 +18,8 @@
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialAppBar.h>
+#import <MaterialComponents/MaterialTypography.h>
+#import "AppScheme.h"
 #import "Format.h"
 
 @interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
@@ -61,7 +63,14 @@
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
     [self configureInitialView];
+    [self configureLayout];
     [self reloadData];
+    [self refreshOnTimer];
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    [self scrollToBottom];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,55 +81,53 @@
 #pragma mark - Public Methods
 
 - (void)reloadData {
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    
     [self.messagesCollectionView reloadData];
     [self.refreshControl endRefreshing];
+}
+
+- (void)refreshOnTimer {
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
 }
 
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    [self configureBottomViewShowingSuggestPriceButton:NO];
+    [self reformatBottomView];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    [self configureOptions];
+    [self reformatBottomView];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView isEqual:self.composeMessageTextField.textView]) {
         if ([textView.text isEqualToString:@""]) {
-            self.composeMessageTextField.placeholder = @"New Message...";
+            self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
         } else {
             self.composeMessageTextField.placeholder = @"";
             if ([self.composeMessageTextField.text isEqualToString:@""]) {
                 self.composeMessageTextField.minimumLines = 1;
             }
         }
-        [textView sizeToFit];
-        [self.composeMessageTextField sizeToFit];
         
-        CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
-        self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
-        [Utils animateView:self.bottomView withDistance:distance up:YES];
-        [self configureBottomViewShowingSuggestPriceButton:NO];
+        [self reformatBottomView];
     }
 }
 
 #pragma mark - Initial Configurations
 
 - (void)configureInitialView {
-    [self configureRefreshControl];
     [self configureNavigatonBar];
-    [self showByDelegate];
+    [self configureRefreshControl];
     self.showingSuggestViewController = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.composeMessageTextField.textView.delegate = self;
-    self.composeMessageTextField.placeholder = @"New Message...";
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    self.composeMessageTextField.textView.font = typographyScheme.subtitle1;
+    self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
     self.composeMessageTextField.minimumLines = 1;
     
     self.initialButtonHeight = 58;
@@ -128,9 +135,35 @@
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
     self.bottomView.backgroundColor = [Colors secondaryGreyLighterColor];
     
-    [self setLocationSendMessageButton];
+    self.view.backgroundColor = self.bottomView.backgroundColor;
+    
+    [self setLocationBottomButtons];
     
     [self configureOptions];
+}
+
+- (void)setLocationBottomButtons {
+    [Format formatFlatButton:self.sendMessageButton];
+    self.sendMessageButton.frame = CGRectMake(self.view.frame.size.width - self.sendMessageButton.frame.size.width, self.view.frame.size.height - self.initialButtonHeight, self.sendMessageButton.frame.size.width, self.initialButtonHeight);
+    
+    [Format formatFlatButton:self.suggestPriceButton];
+    self.suggestPriceButton.frame = CGRectMake(0, self.sendMessageButton.frame.origin.y, self.suggestPriceButton.frame.size.width, self.sendMessageButton.frame.size.height);
+}
+
+- (void)configureLayout {
+    CGFloat originY = self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height;
+    self.messagesCollectionView.frame = CGRectMake(0, originY, self.view.frame.size.width, self.bottomView.frame.origin.y - originY);
+    
+    [self scrollToBottom];
+}
+
+- (void)scrollToBottom {
+    CGFloat collectionViewContentHeight = self.messagesCollectionView.contentSize.height;
+    CGFloat collectionViewFrameHeightAfterInserts = self.messagesCollectionView.frame.size.height - (self.messagesCollectionView.contentInset.top + self.messagesCollectionView.contentInset.bottom);
+    
+    if (collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
+        [self.messagesCollectionView setContentOffset:CGPointMake(0, self.messagesCollectionView.contentSize.height - self.messagesCollectionView.frame.size.height) animated:NO];
+    }
 }
 
 - (void)configureRefreshControl {
@@ -149,7 +182,7 @@
     self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
     [Format formatBarButton:self.viewPostButton];
     self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFlagButton:)];
-    self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
+    [self showByDelegate];
     
     NSString *title;
     if (![self.conversation.post.title isEqualToString:@""]) {
@@ -261,11 +294,10 @@
 
 - (void)configureBottomViewShowingSuggestPriceButton:(BOOL)showsSuggestPrice {
     
-    CGFloat horizontalInset = 8;
+    CGFloat horizontalInset = 0;
     
     if (showsSuggestPrice) {
         self.suggestPriceButton.hidden = NO;
-        self.suggestPriceButton.frame = CGRectMake(0, self.bottomViewHeight - self.initialButtonHeight, 130, self.initialButtonHeight);
         
         CGFloat composeMessageOriginX = self.suggestPriceButton.frame.origin.x + self.suggestPriceButton.frame.size.width + horizontalInset;
         self.composeMessageTextField.textView.frame = CGRectMake(composeMessageOriginX, 0, self.sendMessageButton.frame.origin.x - composeMessageOriginX, self.bottomViewHeight);
@@ -273,10 +305,19 @@
         
     } else {
         self.suggestPriceButton.hidden = YES;
+        self.composeMessageTextField.textView.frame = CGRectMake(0, 0, self.sendMessageButton.frame.origin.x - horizontalInset, self.bottomViewHeight);
         
-        self.composeMessageTextField.textView.frame = CGRectMake(horizontalInset, 0, self.sendMessageButton.frame.origin.x - horizontalInset, self.bottomViewHeight);
         self.composeMessageTextField.frame = self.composeMessageTextField.textView.frame;
     }
+}
+
+- (void)reformatBottomView {
+    [self.composeMessageTextField.textView sizeToFit];
+    [self.composeMessageTextField sizeToFit];
+    
+    CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
+    self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
+    [Utils animateView:self.bottomView withDistance:distance up:YES];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -284,6 +325,8 @@
         CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
         [Utils animateView:self.bottomView withDistance:keyboardHeight up:YES];
         [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:YES];
+        [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:YES];
+        [self configureLayout];
     }
 }
 
@@ -292,12 +335,9 @@
         CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
         [Utils animateView:self.bottomView withDistance:keyboardHeight up:NO];
         [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:NO];
+        [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:NO];
+        [self configureLayout];
     }
-}
-
-- (void)setLocationSendMessageButton {
-    CGFloat sendMessageButtonWidth = 70;
-    self.sendMessageButton.frame = CGRectMake(self.view.frame.size.width - sendMessageButtonWidth, self.view.frame.size.height - self.initialButtonHeight, sendMessageButtonWidth, self.initialButtonHeight);
 }
 
 #pragma mark - IBAction
@@ -330,7 +370,8 @@
             if (didSendMessage) {
                 weakSelf.composeMessageTextField.text = @"";
                 [weakSelf textViewDidChange:weakSelf.composeMessageTextField.textView];
-                [weakSelf.messagesCollectionView reloadData];
+                [weakSelf reloadData];
+                [weakSelf scrollToBottom];
             } else {
                 [Alert callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
@@ -399,7 +440,8 @@
     // estimate frame size based on message text
     CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: typographyScheme.subtitle1} context:nil];
     
     // show/hide the accept/decline suggested price buttons
     CGFloat buttonsStackViewAllowance = 0;

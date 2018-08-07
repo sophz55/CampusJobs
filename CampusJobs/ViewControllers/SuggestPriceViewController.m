@@ -11,12 +11,19 @@
 #import "ConversationDetailViewController.h"
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialTypography.h>
+#import "Colors.h"
+#import "AppScheme.h"
+#import "Format.h"
 
 @interface SuggestPriceViewController ()
 
 @property (weak, nonatomic) IBOutlet MDCTextField *suggestedPriceTextField;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *suggestButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *popUpView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -30,6 +37,35 @@
     [self.cancelButton sizeToFit];
     [self.suggestButton sizeToFit];
     self.delegate.showingSuggestViewController = YES;
+    
+    self.backgroundView.frame = self.view.bounds;
+    self.backgroundView.backgroundColor = [Colors secondaryGreyDarkColor];
+    self.backgroundView.alpha = .8;
+    
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    self.popUpView.layer.cornerRadius = 10;
+    self.popUpView.clipsToBounds = YES;
+    self.popUpView.alpha = 1;
+    [Format centerHorizontalView:self.popUpView inView:self.view];
+    
+    self.titleLabel.frame = CGRectMake(0, self.popUpView.frame.origin.y + 10, 0, 0);
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    self.titleLabel.text = @"SUGGEST A PRICE";
+    self.titleLabel.font = typographyScheme.headline6;
+    [self.titleLabel sizeToFit];
+    [Format centerHorizontalView:self.titleLabel inView:self.view];
+    
+    self.suggestedPriceTextField.frame = CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 6, 80, 50);
+    [Format centerHorizontalView:self.suggestedPriceTextField inView:self.view];
+    
+    [Format formatRaisedButton:self.cancelButton];
+    [Format formatRaisedButton:self.suggestButton];
+    CGFloat buttonWidth = MAX(self.cancelButton.frame.size.width, self.suggestButton.frame.size.width);
+    CGFloat buttonHeight = self.cancelButton.frame.size.height;
+    CGFloat inset = (self.popUpView.frame.size.width - 2 * buttonWidth) / 3;
+    self.cancelButton.frame = CGRectMake(inset, self.popUpView.frame.size.height - inset - buttonHeight, buttonWidth, buttonHeight);
+    self.suggestButton.frame = CGRectMake(self.popUpView.frame.size.width - buttonWidth - inset, self.cancelButton.frame.origin.y, buttonWidth, buttonHeight);
 }
 
 - (void)didReceiveMemoryWarning {
