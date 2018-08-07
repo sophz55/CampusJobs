@@ -20,7 +20,7 @@ NSString *const backToProfileSegue = @"backToProfileSegue";
 #pragma mark - feed segues
 NSString *const feedToLogoutSegue = @"logoutSegue";
 NSString *const nearbyPostingsToPostDetailsSegue = @"cellToPostDetailsSegue";
-NSString *const yourPostingsToComposePostSegue = @"composeNewPostSegue";
+NSString *const feedToComposePostSegue = @"composeNewPostSegue";
 NSString *const yourPostingsToPostDetailsSegue = @"yourPostingsToDetailSegue";
 NSString *const postDetailsToMessageSegue = @"chatSegue";
 NSString *const postDetailsToEditPostSegue = @"postDetailsToEditPostSegue";

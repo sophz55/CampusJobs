@@ -36,15 +36,20 @@
 + (void)formatAppBar:(MDCAppBar *)appBar withTitle:(NSString *)title {
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     [MDCAppBarColorThemer applySemanticColorScheme:colorScheme toAppBar:appBar];
-    appBar.navigationBar.backgroundColor = [Colors primaryBlueColor];
+    appBar.navigationBar.backgroundColor = colorScheme.secondaryColor;
     appBar.headerViewController.headerView.backgroundColor = appBar.navigationBar.backgroundColor;
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
-    [MDCAppBarTypographyThemer applyTypographyScheme:typographyScheme toAppBar:appBar];
     
     appBar.navigationBar.title = [title uppercaseString];
-    appBar.navigationBar.titleTextColor = [UIColor whiteColor];
-    appBar.navigationBar.titleFont = typographyScheme.body1;
+    appBar.navigationBar.titleTextColor = colorScheme.onSecondaryColor;
+    appBar.navigationBar.titleFont = typographyScheme.headline4;
+}
+
++ (void)formatBarButton:(UIBarButtonItem *)button {
+    [button setTitle:[button.title uppercaseString]];
+    [button setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    button.width = 0.0f;
 }
 
 + (void)formatRaisedButton:(MDCButton *)button {
@@ -64,12 +69,14 @@
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
                                                    toButton:button];
+    [button setTitleColor:[Colors secondaryGreyTextColor] forState:UIControlStateNormal];
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     [button setTitleFont:typographyScheme.button forState:UIControlStateNormal];
     
     button.layer.cornerRadius=5.0;
     [button setTitle:[button.titleLabel.text uppercaseString] forState:UIControlStateNormal];
+    
     [button sizeToFit];
 }
 

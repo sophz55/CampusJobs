@@ -58,10 +58,6 @@
     }];
 }
 
-- (IBAction)didTapComposeButton:(id)sender {
-    [self performSegueWithIdentifier:yourPostingsToComposePostSegue sender:nil];
-}
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PreviousUserPostCell * previousUserPostCell=[tableView dequeueReusableCellWithIdentifier:@"PreviousUserPostCell" forIndexPath:indexPath];
     Post * post=self.previousPostsArray[indexPath.row];
@@ -129,6 +125,7 @@
     if ([segue.identifier isEqualToString:yourPostingsToPostDetailsSegue]) {
         PreviousUserPostCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.previousPostTableView indexPathForCell:tappedCell];
+        [self.previousPostTableView deselectRowAtIndexPath:indexPath animated:YES];
         Post *post = self.previousPostsArray[indexPath.row];
         PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.delegate = self;

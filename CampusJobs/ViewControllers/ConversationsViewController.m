@@ -129,6 +129,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
         ConversationTableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.conversationsTableView indexPathForCell:cell];
+        [self.conversationsTableView deselectRowAtIndexPath:indexPath animated:YES];
         ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
         conversationDetailController.delegate = self;
         conversationDetailController.otherUser = cell.otherUser;

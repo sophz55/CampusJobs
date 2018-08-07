@@ -74,9 +74,11 @@
     [self.appBar addSubviewsToParent];
     
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    [Format formatBarButton:self.cancelButton];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     
     self.postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapPostButton:)];
+    [Format formatBarButton:self.postButton];
     self.navigationItem.rightBarButtonItem = self.postButton;
     
     [Format formatAppBar:self.appBar withTitle:@"NEW POST"];
@@ -119,7 +121,10 @@
         [self.editLocationButton setTitle:@"Pin Point Your Location" forState:UIControlStateNormal];
     }
     
+    [Format formatAppBar:self.appBar withTitle:@"Your Posting"];
     [self.postButton setTitle:@"Update"];
+    [Format formatBarButton:self.postButton];
+    self.navigationItem.rightBarButtonItem = self.postButton;
 }
 
 - (void)configureForNewPost {

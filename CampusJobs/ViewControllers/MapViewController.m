@@ -51,6 +51,7 @@
     [self.appBar addSubviewsToParent];
     
     self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
+    [Format formatBarButton:self.nextButton];
     self.navigationItem.rightBarButtonItem = self.nextButton;
     
     [Format formatAppBar:self.appBar withTitle:@"CHOOSE A RADIUS"];

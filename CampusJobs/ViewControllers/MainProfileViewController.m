@@ -42,16 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentUser=[PFUser currentUser];
-    [self configureNavigationBar];
-    [self setMainPageLabels];
-    [self formatViewLayout];
-    self.buttonScheme = [[MDCButtonScheme alloc] init];
-    [self formatPic];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    [self formatButtons];
+    [self configureLayout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,20 +57,38 @@
     [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
 }
 
+- (void)configureLayout {
+    [self configureNavigationBar];
+    [self setMainPageLabels];
+    [self formatPic];
+    self.buttonScheme = [[MDCButtonScheme alloc] init];
+    [self formatButtons];
+
+    self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 85, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
+    
+    self.editProfPicButton.frame = CGRectMake(self.editProfPicButton.frame.origin.x, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 4, self.editProfPicButton.frame.size.width, self.editProfPicButton.frame.size.height);
+    
+    self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 4, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
+    self.usernameLabel.frame = CGRectMake(self.usernameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height + 2, self.usernameLabel.frame.size.width, self.usernameLabel.frame.size.height);
+    self.emailLabel.frame = CGRectMake(self.emailLabel.frame.origin.x, self.usernameLabel.frame.origin.y + self.usernameLabel.frame.size.height + 2, self.emailLabel.frame.size.width, self.emailLabel.frame.size.height);
+    
+    [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y];
+}
+
 //Helper method
-- (void)formatViewLayout{
+- (void)formatBackgroundAtHeight:(CGFloat)height {
     //Format top view
-    self.topView.frame=CGRectMake(0,0, self.view.frame.size.width, 320);
+    self.topView.frame=CGRectMake(0, 75, self.view.frame.size.width, height-75);
     NSMutableArray *topColors = [NSMutableArray array];
-    [topColors addObject:[Colors primaryBlueLightColor]];
     [topColors addObject:[Colors primaryBlueColor]];
+    [topColors addObject:[Colors primaryBlueLightColor]];
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
-    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.size.height-50, self.view.frame.size.width * 2, 100);
+    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, height-50, self.view.frame.size.width * 2, 100);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
-    self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
+    self.roundedEdgeView.backgroundColor=[Colors primaryBlueLightColor];
     
     //format bottom view
     NSMutableArray *bottomColors = [NSMutableArray array];
@@ -129,14 +138,35 @@
 //Helper method
 - (void)setMainPageLabels{
     //set labels
+    self.nameLabel.text=self.currentUser[@"name"];
     self.usernameLabel.text=self.currentUser.username;
     self.emailLabel.text=self.currentUser.email;
-    self.nameLabel.text=self.currentUser[@"name"];
+    
+    //format labels
+    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+    self.nameLabel.font = typographyScheme.headline5;
+    self.usernameLabel.font = typographyScheme.headline6;
+    self.emailLabel.font = typographyScheme.headline6;
+    
+    id<MDCColorScheming> colorScheme = [[AppScheme sharedInstance] colorScheme];
+    self.nameLabel.textColor = colorScheme.onSecondaryColor;
+    self.usernameLabel.textColor = self.nameLabel.textColor;
+    self.emailLabel.textColor = self.nameLabel.textColor;
+    
+    [self.nameLabel sizeToFit];
+    [self.usernameLabel sizeToFit];
+    [self.emailLabel sizeToFit];
+    
+    //Center labels
+    [Format centerHorizontalView:self.nameLabel inView:self.view];
+    [Format centerHorizontalView:self.usernameLabel inView:self.view];
+    [Format centerHorizontalView:self.emailLabel inView:self.view];
 }
 
 //Helper method
 - (void)formatPic {
     //Create a circle for profile picture
+    [Format centerHorizontalView:self.profilePicture inView:self.view];
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
     self.profilePicture.clipsToBounds = YES;
     
@@ -165,11 +195,10 @@
     self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
     
     [Format formatRaisedButton:self.editPaymentInfoButton];
-    self.editPaymentInfoButton.backgroundColor = [Colors secondaryGreyLightColor];
+    self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     
     [Format formatRaisedButton:self.editDesiredRadiusButton];
-    self.editDesiredRadiusButton.backgroundColor = [Colors secondaryGreyLightColor];
-    
+    self.editDesiredRadiusButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     
     //Center bottom view buttons
     [Format centerHorizontalView:self.editPersonalSettingsButton inView:self.view];
@@ -177,9 +206,9 @@
     [Format centerHorizontalView:self.editDesiredRadiusButton inView:self.view];
     
     //Change button shadow to selected orange
-    self.editPersonalSettingsButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
-    self.editPaymentInfoButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
-    self.editDesiredRadiusButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
+    self.editPersonalSettingsButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
+    self.editPaymentInfoButton.layer.shadowColor = self.editPersonalSettingsButton.layer.shadowColor;
+    self.editDesiredRadiusButton.layer.shadowColor = self.editPersonalSettingsButton.layer.shadowColor;
 }
 
 /*

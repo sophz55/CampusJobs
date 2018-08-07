@@ -57,9 +57,11 @@
     [self.appBar addSubviewsToParent];
     
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    [Format formatBarButton:self.cancelButton];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     
     self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSaveButton:)];
+    [Format formatBarButton:self.saveButton];
     self.navigationItem.rightBarButtonItem = self.saveButton;
     
     [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
