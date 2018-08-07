@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *yourPostingsContainer;
 @property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
 @property (strong, nonatomic) UIBarButtonItem *logoutButton;
+@property (strong, nonatomic) UIBarButtonItem *composeButton;
 
 @end
 
@@ -31,6 +32,7 @@
     [self.appBar addSubviewsToParent];
     
     self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(didTapLogoutButton:)];
+    [Format formatBarButton:self.logoutButton];
     self.navigationItem.leftBarButtonItem = self.logoutButton;
     [Format formatAppBar:self.appBar withTitle:@"SEIZE"];
 }
@@ -58,6 +60,10 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         [self performSegueWithIdentifier:feedToLogoutSegue sender:nil];
     }];
+}
+
+- (IBAction)didTapComposeButton:(id)sender {
+    [self performSegueWithIdentifier:feedToComposePostSegue sender:nil];
 }
 
 /*

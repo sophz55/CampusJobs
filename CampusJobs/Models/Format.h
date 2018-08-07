@@ -18,6 +18,8 @@
 
 + (void)formatAppBar:(MDCAppBar *)appBar withTitle:(NSString *)title;
 
++ (void)formatBarButton:(UIBarButtonItem *)button;
+
 + (void)formatRaisedButton:(MDCButton *)button;
 
 + (void)formatFlatButton:(MDCButton *)button;

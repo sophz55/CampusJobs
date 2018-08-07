@@ -97,15 +97,14 @@
             if ([self.composeMessageTextField.text isEqualToString:@""]) {
                 self.composeMessageTextField.minimumLines = 1;
             }
-            
-            [textView sizeToFit];
-            [self.composeMessageTextField sizeToFit];
-            
-            CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
-            self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
-            [Utils animateView:self.bottomView withDistance:distance up:YES];
-            [self configureBottomViewShowingSuggestPriceButton:NO];
         }
+        [textView sizeToFit];
+        [self.composeMessageTextField sizeToFit];
+        
+        CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
+        self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
+        [Utils animateView:self.bottomView withDistance:distance up:YES];
+        [self configureBottomViewShowingSuggestPriceButton:NO];
     }
 }
 
@@ -148,7 +147,8 @@
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
     self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
-    self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    [Format formatBarButton:self.viewPostButton];
+    self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFlagButton:)];
     self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
     
     NSString *title;
@@ -320,12 +320,16 @@
     [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
 }
 
+- (IBAction)didTapFlagButton:(id)sender {
+}
+
 - (IBAction)didTapSendMessage:(id)sender {
     if (![self.composeMessageTextField.text isEqualToString:@""]) {
         __unsafe_unretained typeof(self) weakSelf = self;
         [self.conversation addToConversationWithMessageText:self.composeMessageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
             if (didSendMessage) {
                 weakSelf.composeMessageTextField.text = @"";
+                [weakSelf textViewDidChange:weakSelf.composeMessageTextField.textView];
                 [weakSelf.messagesCollectionView reloadData];
             } else {
                 [Alert callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];

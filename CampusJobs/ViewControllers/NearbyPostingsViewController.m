@@ -165,6 +165,7 @@
         NSIndexPath *indexPath = [self.nearbyPostTableView indexPathForCell:tappedCell];
         Post *singlePost = self.nearbyPostingsArray[indexPath.row];
         PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
+        [self.nearbyPostTableView deselectRowAtIndexPath:indexPath animated:YES];
         postDetailsViewController.delegate = self;
         postDetailsViewController.post = singlePost;
     }

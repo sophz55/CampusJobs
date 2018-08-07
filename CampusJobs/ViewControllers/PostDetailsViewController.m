@@ -143,6 +143,7 @@
     self.navigationItem.leftBarButtonItem = self.backButton;
     
     self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
+    [Format formatBarButton:self.editButton];
     self.navigationItem.rightBarButtonItem = self.editButton;
     
     NSString *title;

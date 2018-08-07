@@ -48,9 +48,11 @@
     [self.appBar addSubviewsToParent];
     
     self.clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(didTapClearButton:)];
+    [Format formatBarButton:self.clearButton];
     self.navigationItem.leftBarButtonItem = self.clearButton;
     
     self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSaveButton:)];
+    [Format formatBarButton:self.saveButton];
     self.navigationItem.rightBarButtonItem = self.saveButton;
     
     [Format formatAppBar:self.appBar withTitle:@"ADD LOCATION"];

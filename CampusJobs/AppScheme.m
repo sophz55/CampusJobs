@@ -50,7 +50,7 @@
         _colorScheme.primaryColor = [Colors primaryOrangeColor];
         _colorScheme.onPrimaryColor = [Colors secondaryGreyTextColor];
         _colorScheme.secondaryColor = [Colors primaryBlueColor];
-        _colorScheme.onSecondaryColor = [Colors secondaryGreyTextColor];
+        _colorScheme.onSecondaryColor = [UIColor whiteColor];
         _colorScheme.surfaceColor = [Colors primaryBlueLightColor];
         _colorScheme.backgroundColor = [Colors secondaryGreyLightColor];
         _colorScheme.onBackgroundColor = [Colors secondaryGreyTextColor];
