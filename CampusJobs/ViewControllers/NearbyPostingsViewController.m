@@ -108,7 +108,7 @@
     roundedCellView.layer.cornerRadius=3.0;
     //adding shadow
     roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
-    roundedCellView.layer.shadowOpacity=0.4;
+    roundedCellView.layer.shadowOpacity=0.3;
     roundedCellView.layer.shadowRadius=1.0;
     roundedCellView.clipsToBounds = false;
     roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
