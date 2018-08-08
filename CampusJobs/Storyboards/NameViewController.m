@@ -40,10 +40,13 @@
     //assign current user username to the textfield
     
     self.UsernameField.text = self.user.username;
+    
     self.emailField.text = self.user.email;
-    self.passwordField.text = self.user.password;
+    
+    self.nameField.text=self.user.parseClassName;
     
     
+    // newUser[@"name"] = self.nameField.text;
    /* newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;*/
     

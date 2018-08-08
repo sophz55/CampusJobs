@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialTextFields.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
@@ -33,5 +34,7 @@
 + (void)formatProfilePictureForUser:(PFUser *)user withView:(PFImageView *)view;
 
 + (void)configurePlaceholderView:(UIView *)view withLabel:(UILabel *)label;
+
++ (void)formatTextFieldController:(MDCTextInputControllerBase *)controller withNormalColor:(UIColor *)color;
 
 @end

@@ -33,13 +33,16 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MDCTabBar"];
-    }
         
+        
+ /////////////////////////////////
 //        [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:27.0/255.0 green:65.0/255.0 blue:113.0/255.0 alpha:1.0]];
 //
 //        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:27.0/255.0 green:65.0/255.0 blue:113.0/255.0 alpha:1.0]}];
 //
 //        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:27.0/255.0 green:65.0/255.0 blue:113.0/255.0 alpha:1.0]];
+        
+    }
     
     return YES;
 }

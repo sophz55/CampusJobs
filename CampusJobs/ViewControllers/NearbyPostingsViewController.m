@@ -50,9 +50,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self displayRadius];
-    [self fetchNearbyPosts];
-    [self.nearbyPostTableView reloadData];
+//    [self displayRadius];
+//    [self fetchNearbyPosts];
+//    [self.nearbyPostTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

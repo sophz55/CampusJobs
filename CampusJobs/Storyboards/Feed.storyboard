@@ -554,7 +554,7 @@
         <!--MDCTabBar-->
         <scene sceneID="yAI-7C-oCQ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="tabBarController" storyboardName="Main" referencedIdentifier="MDCTabBar" id="BK2-fp-JBD" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="MDCTabBar" storyboardName="Main" referencedIdentifier="MDCTabBar" id="BK2-fp-JBD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkH-f7-dQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4008" y="3237"/>
