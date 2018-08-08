@@ -11,6 +11,9 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 #import "Utils.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
+#import "Format.h"
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
@@ -19,6 +22,8 @@
 @property (strong, nonatomic) PFUser * currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
 @property (strong, nonatomic) NSNumber * userRadius;
+@property (weak, nonatomic) IBOutlet UIView *noNearbyPostingsView;
+@property (weak, nonatomic) IBOutlet UILabel *noNearbyPostingsLabel;
 
 @end
 
@@ -26,16 +31,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-    [self fetchNearbyPosts];
-    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
-    self.nearbyPostTableView.rowHeight=75;
+    
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    
+    [self addRefreshControl];
+    [self displayBackgroundColor];
     [self displayRadius];
     
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self displayRadius];
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +77,14 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
+            if (posts.count > 0) {
+                self.noNearbyPostingsView.hidden = YES;
+            } else {
+                self.noNearbyPostingsView.hidden = NO;
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
+                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
@@ -85,7 +110,37 @@
     nearbyPostCell.post=post;
     [nearbyPostCell setNearbyPost:post];
     return nearbyPostCell;
-    
+}
+
+//Visual formatting for each cell
+//Creates spaces in between the cells, creates round corners, adds cell shadow and cell color
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.nearbyPostTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.nearbyPostTableView.rowHeight=75;
+    cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
+    //initializes white rounded cell
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 105)];
+    CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
+    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
+    roundedCellView.layer.masksToBounds=false;
+    //add border color
+    roundedCellView.layer.borderWidth=.5;
+    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
+    //rounded edges
+    roundedCellView.layer.cornerRadius=3.0;
+    //adding shadow
+    roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
+    roundedCellView.layer.shadowOpacity=0.3;
+    roundedCellView.layer.shadowRadius=1.0;
+    roundedCellView.clipsToBounds = false;
+    roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
+    //adds rounded cell to each cell content view
+    [cell.contentView addSubview:roundedCellView];
+    [cell.contentView sendSubviewToBack:roundedCellView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 115;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -108,19 +163,31 @@
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[@"desiredRadius"];
     floatRadius=[self.userRadius floatValue];
-    self.radiusLabel.text=[NSString stringWithFormat:@"%.2f",floatRadius];
+    self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.2f MILES",floatRadius];
+}
+
+//Displays the background color
+- (void)displayBackgroundColor{
+    self.view.backgroundColor=[Colors secondaryGreyLighterColor];
+    self.nearbyPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
+}
+
+- (void)addRefreshControl{
+    UIRefreshControl * refreshControl=[[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
 }
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]){
-        UITableViewCell * tappedCell=sender;
-        NSIndexPath *indexPath=[self.nearbyPostTableView indexPathForCell:tappedCell];
-        Post * singlePost=self.nearbyPostingsArray[indexPath.row];
-        UINavigationController *nearbyNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsViewController = (PostDetailsViewController *)[nearbyNavigationController topViewController];
+    if ([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.nearbyPostTableView indexPathForCell:tappedCell];
+        Post *singlePost = self.nearbyPostingsArray[indexPath.row];
+        PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
+        [self.nearbyPostTableView deselectRowAtIndexPath:indexPath animated:YES];
         postDetailsViewController.delegate = self;
         postDetailsViewController.post = singlePost;
     }

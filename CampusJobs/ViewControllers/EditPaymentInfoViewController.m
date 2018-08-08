@@ -9,23 +9,37 @@
 #import "EditPaymentInfoViewController.h"
 #import <Parse/Parse.h>
 #import "Card.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
 #import "SignUpViewController.h"
+#import <MaterialComponents/MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialTextFields+ColorThemer.h>
+#import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import <MaterialComponents/MaterialAppBar.h>
+#import "Format.h"
+#import "AppScheme.h"
 
 @interface EditPaymentInfoViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *cardNumberField;
-@property (weak, nonatomic) IBOutlet UITextField *expDateField;
-@property (weak, nonatomic) IBOutlet UITextField *securityCodeField;
-@property (weak, nonatomic) IBOutlet UITextField *addressLine1Field;
-@property (weak, nonatomic) IBOutlet UITextField *addressLine2Field;
-@property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
-@property (strong, nonatomic) PFUser *user;
+@property (weak, nonatomic) IBOutlet MDCTextField *nameField;
+@property (weak, nonatomic) IBOutlet MDCTextField *cardNumberField;
+@property (weak, nonatomic) IBOutlet MDCTextField *expDateField;
+@property (weak, nonatomic) IBOutlet MDCTextField *securityCodeField;
+@property (weak, nonatomic) IBOutlet MDCTextField *addressLine1Field;
+@property (weak, nonatomic) IBOutlet MDCTextField *addressLine2Field;
+@property (weak, nonatomic) IBOutlet MDCTextField *zipcodeField;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *expDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *securityCodeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *pageTitleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
-@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) MDCAppBar *appBar;
+
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *skipButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
 
 @end
 
@@ -38,6 +52,8 @@
     // Do any additional setup after loading the view.
     self.user = [PFUser currentUser];
     [self populateFieldsWithExistingInformation];
+    [self configureNavigationBar];
+    [self formatColors];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,29 +70,59 @@
 
 - (void)configureViewByDelegate {
     if ([self.delegate isKindOfClass:[SignUpViewController class]]) {
-        self.pageTitleLabel.text = [NSString stringWithFormat:@"Welcome, %@! Enter Payment Card Information", self.user.username];
-        self.saveButton.titleLabel.text = @"Add Card";
-        [Utils showButton:self.skipButton];
+        [self setTitle:@"Add a Payment Card"];
+        [self.saveButton setTitle:@"Add Card" forState:UIControlStateNormal];
+        self.skipButton.hidden = NO;
     } else {
-        self.pageTitleLabel.text = @"Edit Debit or Credit Card Information";
-        self.saveButton.titleLabel.text = @"Update";
-        [Utils hideButton:self.skipButton];
+        [self setTitle:@"Edit Debit or Credit Card Information"];
+        [self.saveButton setTitle:@"Update" forState:UIControlStateNormal];
+        self.skipButton.hidden = YES;
     }
+    
+    [self.cancelButton sizeToFit];
+    [self.skipButton sizeToFit];
+    [self.saveButton sizeToFit];
 }
 
 - (void)populateFieldsWithExistingInformation {
     if (self.user[@"card"]) {
         Card *card = self.user[@"card"];
-        self.nameField.text = card.billingName;
-        self.cardNumberField.text = card.cardNumber;
-        self.expDateField.text = card.expDate;
-        self.securityCodeField.text = card.securityCode;
-        self.addressLine1Field.text = card.addressLine1;
-        self.addressLine2Field.text = card.addressLine2;
-        self.zipcodeField.text = card.cityStateZip;
+        [card fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
+            if (fetchedCard) {
+                self.nameField.text = card.billingName;
+                self.cardNumberField.text = card.cardNumber;
+                self.expDateField.text = card.expDate;
+                self.securityCodeField.text = card.securityCode;
+                self.addressLine1Field.text = card.addressLine1;
+                self.addressLine2Field.text = card.addressLine2;
+                self.zipcodeField.text = card.cityStateZip;
+            }
+        }];
     } else {
         self.nameField.text = self.user[@"name"];
     }
+}
+
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    [Format formatAppBar:self.appBar withTitle:@""];
+}
+
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
+- (void)formatColors {
+    [Format addGreyGradientToView:self.view];
+    
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.cancelButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.skipButton];
+    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme toButton:self.saveButton];
 }
 
 #pragma mark - IBAction
@@ -115,15 +161,15 @@
                             [self dismissViewControllerAnimated:YES completion:nil];
                         }
                     } else {
-                        [Utils callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
+                        [Alert callAlertWithTitle:@"Error saving card to user" alertMessage:[NSString stringWithFormat:@"%@", errorSavingUser] viewController:self];
                     }
                 }];
             } else {
-                [Utils callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
+                [Alert callAlertWithTitle:@"Error saving card" alertMessage:[NSString stringWithFormat:@"%@", errorSavingCard] viewController:self];
             }
         }];
     } else {
-        [Utils callAlertWithTitle:@"Could not save card info" alertMessage:@"Some required fields are blank!" viewController:self];
+        [Alert callAlertWithTitle:@"Could not save card info" alertMessage:@"Some required fields are blank!" viewController:self];
     }
 }
 

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Message.h"
 #import "Conversation.h"
+#import <MaterialComponents/MaterialButtons.h>
+#import <ParseUI/ParseUI.h>
 
 @protocol MessageCollectionViewCellDelegate
 - (void)reloadData;
@@ -17,9 +19,12 @@
 @interface MessageCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) id <MessageCollectionViewCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet PFImageView *senderProfileImageView;
 @property (weak, nonatomic) IBOutlet UIView *textBubbleView;
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonsStackView;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *acceptButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *declineButton;
 @property (strong, nonatomic) Message *message;
 @property (strong, nonatomic) Conversation *conversation;
 @property (assign, nonatomic) CGFloat maxWidth;

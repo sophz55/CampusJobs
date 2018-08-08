@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "Colors.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @protocol PostDetailsDelegate
 
@@ -20,10 +22,6 @@
 
 @property (strong, nonatomic) UIViewController <PostDetailsDelegate> *delegate;
 @property (strong, nonatomic) Post * post;
-@property (weak, nonatomic) IBOutlet UILabel *titleDetailsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationDetailsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionDetailsLabel;
 
 -(void)setDetailsPost:(Post *)post;
 

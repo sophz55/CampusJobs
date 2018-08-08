@@ -8,32 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import <MaterialComponents/MaterialAppBar.h>
 
-@protocol UtilsDelegate
-
-- (void) confirmationAlertHandler:(BOOL)response;
-
-@end
 
 @interface Utils : NSObject
 
-@property (strong, nonatomic) UIViewController <UtilsDelegate> *delegate;
-
-+ (void)callAlertWithTitle:(NSString *)title alertMessage:(NSString *)message viewController:(UIViewController *)controller;
-
-+ (void)callConfirmationWithTitle:(NSString *)title confirmationMessage:(NSString *)message yesActionTitle:(NSString *)yesTitle noActionTitle:(NSString *)noTitle viewController:(UIViewController<UtilsDelegate> *)controller;
-
 + (void)animateView:(UIView *)view withDistance:(CGFloat)distance up:(BOOL)up;
 
-+ (void)showButton:(UIButton *)button;
-+ (void)showButton:(UIButton *)button withText:(NSString *)text;
-+ (void)hideButton:(UIButton *)button;
-
-+ (void)showBarButton:(UIBarButtonItem *)button;
-+ (void)hideBarButton:(UIBarButtonItem *)button;
-
 + (double)calculateDistance:(PFGeoPoint *)postLocation betweenUserandPost:(PFGeoPoint *)userLocation;
-
-
 
 @end

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 #import "Conversation.h"
 
 @interface ConversationTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet PFImageView *otherUserProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *otherUserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messagePreviewLabel;

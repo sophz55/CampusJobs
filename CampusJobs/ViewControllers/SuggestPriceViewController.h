@@ -11,7 +11,10 @@
 #import <Parse/Parse.h>
 
 @protocol SuggestPriceDelegate
+
+@property (assign, nonatomic) BOOL showingSuggestViewController;
 - (void)reloadData;
+
 @end
 
 @interface SuggestPriceViewController : UIViewController

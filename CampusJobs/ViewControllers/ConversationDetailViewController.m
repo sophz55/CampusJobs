@@ -13,31 +13,43 @@
 #import "ConversationsViewController.h"
 #import "Message.h"
 #import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
+#import <MaterialComponents/MaterialTextFields.h>
+#import <MaterialComponents/MaterialButtons.h>
+#import <MaterialComponents/MaterialAppBar.h>
+#import <MaterialComponents/MaterialTypography.h>
+#import "AppScheme.h"
+#import "Format.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
-@property (assign, nonatomic) BOOL showingSuggestViewController;
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
-@property (weak, nonatomic) IBOutlet UITextField *composeMessageTextField;
-@property (weak, nonatomic) IBOutlet UIButton *suggestPriceButton;
+@property (weak, nonatomic) IBOutlet MDCMultilineTextField *composeMessageTextField;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *suggestPriceButton;
 @property (weak, nonatomic) IBOutlet UIView *inProgressOptionsView;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelJobButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
-@property (weak, nonatomic) IBOutlet UIButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *flagButton;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UIView *composeMessageView;
-@property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *sendMessageButton;
+@property (assign, nonatomic) CGFloat bottomViewHeight;
+@property (assign, nonatomic) CGFloat initialButtonHeight;
+@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
 @implementation ConversationDetailViewController
+
+@synthesize showingSuggestViewController;
 
 #pragma mark - Lifecycle
 
@@ -51,7 +63,14 @@
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
     [self configureInitialView];
+    [self configureLayout];
     [self reloadData];
+    [self refreshOnTimer];
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    [self scrollToBottom];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,27 +81,89 @@
 #pragma mark - Public Methods
 
 - (void)reloadData {
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
-    [self configureOptions];
     [self.messagesCollectionView reloadData];
     [self.refreshControl endRefreshing];
+}
+
+- (void)refreshOnTimer {
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self reformatBottomView];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self reformatBottomView];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView isEqual:self.composeMessageTextField.textView]) {
+        if ([textView.text isEqualToString:@""]) {
+            self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
+        } else {
+            self.composeMessageTextField.placeholder = @"";
+            if ([self.composeMessageTextField.text isEqualToString:@""]) {
+                self.composeMessageTextField.minimumLines = 1;
+            }
+        }
+        
+        [self reformatBottomView];
+    }
 }
 
 #pragma mark - Initial Configurations
 
 - (void)configureInitialView {
-    [self configureRefreshControl];
     [self configureNavigatonBar];
-    [self showByDelegate];
+    [self configureRefreshControl];
     self.showingSuggestViewController = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    CGFloat horizontalViewInset = 8;
-    CGFloat verticalViewInset = 8;
-    CGSize bottomViewSize = CGSizeMake(self.view.frame.size.width - 2 * horizontalViewInset, 30);
-    self.bottomView.frame = CGRectMake(horizontalViewInset, self.view.frame.size.height - bottomViewSize.height - verticalViewInset, bottomViewSize.width, bottomViewSize.height);
+    self.composeMessageTextField.textView.delegate = self;
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    self.composeMessageTextField.textView.font = typographyScheme.subtitle1;
+    self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
+    self.composeMessageTextField.minimumLines = 1;
+    
+    self.initialButtonHeight = 58;
+    self.bottomViewHeight = self.initialButtonHeight;
+    self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
+    self.bottomView.backgroundColor = [Colors secondaryGreyLighterColor];
+    
+    self.view.backgroundColor = self.bottomView.backgroundColor;
+    
+    [self setLocationBottomButtons];
+    
+    [self configureOptions];
+}
+
+- (void)setLocationBottomButtons {
+    [Format formatFlatButton:self.sendMessageButton];
+    self.sendMessageButton.frame = CGRectMake(self.view.frame.size.width - self.sendMessageButton.frame.size.width, self.view.frame.size.height - self.initialButtonHeight, self.sendMessageButton.frame.size.width, self.initialButtonHeight);
+    
+    [Format formatFlatButton:self.suggestPriceButton];
+    self.suggestPriceButton.frame = CGRectMake(0, self.sendMessageButton.frame.origin.y, self.suggestPriceButton.frame.size.width, self.sendMessageButton.frame.size.height);
+}
+
+- (void)configureLayout {
+    CGFloat originY = self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height;
+    self.messagesCollectionView.frame = CGRectMake(0, originY, self.view.frame.size.width, self.bottomView.frame.origin.y - originY);
+    
+    [self scrollToBottom];
+}
+
+- (void)scrollToBottom {
+    CGFloat collectionViewContentHeight = self.messagesCollectionView.contentSize.height;
+    CGFloat collectionViewFrameHeightAfterInserts = self.messagesCollectionView.frame.size.height - (self.messagesCollectionView.contentInset.top + self.messagesCollectionView.contentInset.bottom);
+    
+    if (collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
+        [self.messagesCollectionView setContentOffset:CGPointMake(0, self.messagesCollectionView.contentSize.height - self.messagesCollectionView.frame.size.height) animated:NO];
+    }
 }
 
 - (void)configureRefreshControl {
@@ -92,25 +173,42 @@
 }
 
 - (void)configureNavigatonBar {
-    // put other user's username label in navigation bar
-    UILabel *otherUserLabel = [[UILabel alloc] init];
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = self.backButton;
+    self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    [Format formatBarButton:self.viewPostButton];
+    self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFlagButton:)];
+    [self showByDelegate];
+    
+    NSString *title;
     if (![self.conversation.post.title isEqualToString:@""]) {
-        otherUserLabel.text = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
+        title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
     } else {
-        otherUserLabel.text = self.otherUser.username;
+        title = [NSString stringWithFormat:@"%@ - UNTITLED POST", self.otherUser.username];
     }
-    self.navigationItem.titleView = otherUserLabel;
+    [Format formatAppBar:self.appBar withTitle:title];
+    
+    self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
+}
+
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
 }
 
 #pragma mark - Configurations Based on State
 
 - (void)showByDelegate {
     if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
-        self.backButton.title = @"Back to messages";
-        [Utils showBarButton:self.viewPostButton];
+        [self.viewPostButton setEnabled:YES];
+        self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
     } else {
-        self.backButton.title = @"Back to posting";
-        [Utils hideBarButton:self.viewPostButton];
+        [self.viewPostButton setEnabled:NO];
+        self.navigationItem.rightBarButtonItems = @[self.flagButton];
     }
 }
 
@@ -200,35 +298,50 @@
 }
 
 - (void)configureBottomViewShowingSuggestPriceButton:(BOOL)showsSuggestPrice {
-
+    
+    CGFloat horizontalInset = 0;
+    
     if (showsSuggestPrice) {
-        [self.suggestPriceButton setHidden:NO];
-        self.suggestPriceButton.frame = CGRectMake(0, 0, 100, self.bottomView.frame.size.height);
+        self.suggestPriceButton.hidden = NO;
         
-        CGFloat composeMessageViewWidth = self.bottomView.frame.size.width - self.suggestPriceButton.frame.size.width - 8;
-        self.composeMessageView.frame = CGRectMake(self.bottomView.frame.size.width - composeMessageViewWidth, 0, composeMessageViewWidth, self.bottomView.frame.size.height);
+        CGFloat composeMessageOriginX = self.suggestPriceButton.frame.origin.x + self.suggestPriceButton.frame.size.width + horizontalInset;
+        self.composeMessageTextField.textView.frame = CGRectMake(composeMessageOriginX, 0, self.sendMessageButton.frame.origin.x - composeMessageOriginX, self.bottomViewHeight);
+        self.composeMessageTextField.frame = self.composeMessageTextField.textView.frame;
         
     } else {
-        [self.suggestPriceButton setHidden:YES];
-        self.suggestPriceButton.frame = CGRectMake(0, 0, 0, self.bottomView.frame.size.height);
+        self.suggestPriceButton.hidden = YES;
+        self.composeMessageTextField.textView.frame = CGRectMake(0, 0, self.sendMessageButton.frame.origin.x - horizontalInset, self.bottomViewHeight);
         
-        self.composeMessageView.frame = CGRectMake(0, 0, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
+        self.composeMessageTextField.frame = self.composeMessageTextField.textView.frame;
     }
+}
+
+- (void)reformatBottomView {
+    [self.composeMessageTextField.textView sizeToFit];
+    [self.composeMessageTextField sizeToFit];
     
-    CGFloat sendMessageButtonWidth = 40;
-    self.sendMessageButton.frame = CGRectMake(self.composeMessageView.frame.size.width - sendMessageButtonWidth, 0, sendMessageButtonWidth, self.composeMessageView.frame.size.height);
-    self.composeMessageTextField.frame = CGRectMake(0, 0, self.composeMessageView.frame.size.width - sendMessageButtonWidth - 4, self.composeMessageView.frame.size.height);
+    CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
+    self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
+    [Utils animateView:self.bottomView withDistance:distance up:YES];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:YES];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:YES];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:YES];
+        [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:YES];
+        [self configureLayout];
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     if (!self.showingSuggestViewController) {
-        [Utils animateView:self.bottomView withDistance:[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height up:NO];
+        CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [Utils animateView:self.bottomView withDistance:keyboardHeight up:NO];
+        [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:NO];
+        [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:NO];
+        [self configureLayout];
     }
 }
 
@@ -252,15 +365,20 @@
     [self performSegueWithIdentifier:messagesToPostDetailsSegue sender:nil];
 }
 
+- (IBAction)didTapFlagButton:(id)sender {
+}
+
 - (IBAction)didTapSendMessage:(id)sender {
     if (![self.composeMessageTextField.text isEqualToString:@""]) {
         __unsafe_unretained typeof(self) weakSelf = self;
         [self.conversation addToConversationWithMessageText:self.composeMessageTextField.text withSender:self.user withReceiver:self.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
             if (didSendMessage) {
                 weakSelf.composeMessageTextField.text = @"";
-                [weakSelf.messagesCollectionView reloadData];
+                [weakSelf textViewDidChange:weakSelf.composeMessageTextField.textView];
+                [weakSelf reloadData];
+                [weakSelf scrollToBottom];
             } else {
-                [Utils callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+                [Alert callAlertWithTitle:@"Error sending message" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
             }
         }];
     }
@@ -273,17 +391,11 @@
 
 - (IBAction)didTapCancelJobButton:(id)sender {
     __unsafe_unretained typeof(self) weakSelf = self;
-    [self.conversation.post cancelJobWithCompletion:^(BOOL didCancelJob, NSError *error) {
+    [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
         if (didCancelJob) {
-            [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
-                if (didSendMessage) {
-                    [weakSelf reloadData];
-                } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
-                }
-            }];
+            [weakSelf reloadData];
         } else {
-            [Utils callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+            [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
         }
     }];
 }
@@ -296,11 +408,11 @@
                 if (didSendMessage) {
                     [weakSelf reloadData];
                 } else {
-                    [Utils callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
+                    [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
             }];
         } else {
-            [Utils callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+            [Alert callAlertWithTitle:@"Error Registering Job as Complete" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
         }
     }];
 }
@@ -333,7 +445,8 @@
     // estimate frame size based on message text
     CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: typographyScheme.subtitle1} context:nil];
     
     // show/hide the accept/decline suggested price buttons
     CGFloat buttonsStackViewAllowance = 0;
@@ -354,8 +467,7 @@
         suggestPriceController.conversation = self.conversation;
         suggestPriceController.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:messagesToPostDetailsSegue]) {
-        UINavigationController *postDetailsNavigationController = [segue destinationViewController];
-        PostDetailsViewController *postDetailsController = (PostDetailsViewController *)[postDetailsNavigationController topViewController];
+        PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.post = self.conversation.post;
         postDetailsController.delegate = self;
     }

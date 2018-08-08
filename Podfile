@@ -9,6 +9,8 @@ target 'CampusJobs' do
   pod 'Parse'
   pod 'ParseUI'
   pod 'ChameleonFramework'
+  pod 'MaterialComponents'
+  pod 'DateTools'
 
   target 'CampusJobsTests' do
     inherit! :search_paths

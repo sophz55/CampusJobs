@@ -10,8 +10,13 @@
 #import "ConversationTableViewCell.h"
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "Utils.h"
+#import "Alert.h"
 #import "SegueConstants.h"
+#import <MaterialComponents/MaterialAppBar.h>
+#import <MaterialComponents/MaterialAppBar+ColorThemer.h>
+#import "AppScheme.h"
+#import "Colors.h"
+#import "Format.h"
 
 @interface ConversationsViewController () <UITableViewDelegate, UITableViewDataSource, ConversationDetailDelegate>
 
@@ -19,6 +24,9 @@
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (assign, nonatomic) int queryLimit; // number of conversations to load
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (weak, nonatomic) IBOutlet UIView *noConversationsView;
+@property (weak, nonatomic) IBOutlet UILabel *noConversationsLabel;
 
 @end
 
@@ -32,11 +40,28 @@
     self.conversationsTableView.delegate = self;
     self.conversationsTableView.dataSource = self;
     
-    self.conversationsTableView.rowHeight = 100;
+    self.conversationsTableView.rowHeight = 80;
     
     self.conversations = [[NSMutableArray alloc] init];
     
+    self.noConversationsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noConversationsView withLabel:self.noConversationsLabel];
+    self.noConversationsLabel.text = @"LOADING MESSAGES...";
+    
+    [self configureNavigationBar];
     [self configureRefreshControl];
+}
+
+- (void)configureNavigationBar {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    [self.appBar addSubviewsToParent];
+    [Format formatAppBar:self.appBar withTitle:@"MESSAGES"];
+}
+
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
 }
 
 - (void)configureRefreshControl {
@@ -59,18 +84,27 @@
     [userConversationsQuery includeKey:@"messages"];
     [userConversationsQuery includeKey:@"post"];
     [userConversationsQuery includeKey:@"post.author.username"];
+    [userConversationsQuery includeKey:@"post.author.profileImageFile"];
     [userConversationsQuery includeKey:@"post.taker"];
     [userConversationsQuery includeKey:@"seeker"];
     [userConversationsQuery includeKey:@"seeker.username"];
+    [userConversationsQuery includeKey:@"seeker.profileImageFile"];
     userConversationsQuery.limit = self.queryLimit;
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
         if (error != nil) {
-            [Utils callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
             self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
             [self.conversationsTableView reloadData];
             [self.refreshControl endRefreshing];
+            if (self.conversations.count > 0) {
+                self.noConversationsView.hidden = YES;
+            } else {
+                self.noConversationsView.hidden = NO;
+                self.noConversationsLabel.text = @"You have no conversations. Click the \"MESSAGE\" button on a post from the feed tab to start chatting!";
+                [self.noConversationsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
         }
     }];
 }
@@ -118,8 +152,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:conversationsToMessagesSegue]) {
         ConversationTableViewCell *cell = sender;
-        UINavigationController *conversationNavigationController = [segue destinationViewController];
-        ConversationDetailViewController *conversationDetailController = (ConversationDetailViewController *)[conversationNavigationController topViewController];
+        NSIndexPath *indexPath = [self.conversationsTableView indexPathForCell:cell];
+        [self.conversationsTableView deselectRowAtIndexPath:indexPath animated:YES];
+        ConversationDetailViewController *conversationDetailController = [segue destinationViewController];
         conversationDetailController.delegate = self;
         conversationDetailController.otherUser = cell.otherUser;
         conversationDetailController.conversation = cell.conversation;

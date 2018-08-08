@@ -20,7 +20,7 @@ extern NSString *const backToProfileSegue;
 #pragma mark - feed segues
 extern NSString *const feedToLogoutSegue;
 extern NSString *const nearbyPostingsToPostDetailsSegue;
-extern NSString *const yourPostingsToComposePostSegue;
+extern NSString *const feedToComposePostSegue;
 extern NSString *const yourPostingsToPostDetailsSegue;
 extern NSString *const postDetailsToMessageSegue;
 extern NSString *const postDetailsToEditPostSegue;
