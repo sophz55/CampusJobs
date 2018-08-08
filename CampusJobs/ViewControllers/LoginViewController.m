@@ -24,11 +24,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
-@property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
-@property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
+@property (strong, nonatomic) MDCTextInputControllerFilled *usernameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerFilled *passwordFieldController;
 
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *loginButton;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *signUpButton;
+@property (weak, nonatomic) IBOutlet MDCButton *forgotPasswordButton;
 
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
@@ -40,6 +41,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.usernameFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameField];
+    self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
+    
     [self formatColors];
     [self formatTypography];
     [self configureLayout];
@@ -60,20 +65,20 @@
 
 - (void)formatColors {
     [Format addBlueGradientToView:self.view];
-    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
-    self.titleLabel.textColor = [UIColor whiteColor];
+    UIColor *textColor = [UIColor whiteColor];
     
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.usernameFieldController];
-    self.usernameField.textColor = [UIColor whiteColor];
-    self.usernameFieldController.inlinePlaceholderColor = [UIColor whiteColor];
-
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.passwordFieldController];
-    self.passwordField.textColor = [UIColor whiteColor];
-    self.passwordFieldController.inlinePlaceholderColor = [UIColor whiteColor];
-
+    self.titleLabel.textColor = textColor;
+    
+    [Format formatTextFieldController:self.usernameFieldController withNormalColor:[UIColor whiteColor]];
+    self.usernameField.textColor = textColor;
+    
+    [Format formatTextFieldController:self.passwordFieldController withNormalColor:[UIColor whiteColor]];
+    self.passwordField.textColor = textColor;
+    
     [Format formatRaisedButton:self.loginButton];
+    
+    [Format formatFlatButton:self.forgotPasswordButton];
+    [self.forgotPasswordButton setTitleColor:[Colors secondaryGreyLighterColor] forState:UIControlStateNormal];
     
     self.accountLabel.textColor = [UIColor whiteColor];
     [Format formatFlatButton:self.signUpButton];
@@ -87,12 +92,13 @@
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
     self.usernameField.placeholderLabel.font = typographyScheme.subtitle1;
-    self.usernameFieldController.inlinePlaceholderFont = self.usernameField.placeholderLabel.font;
-    self.usernameField.placeholderLabel.text = @"USERNAME";
+    self.usernameField.placeholder = @"USERNAME";
     
     self.passwordField.placeholderLabel.font = typographyScheme.subtitle1;
-    self.passwordFieldController.inlinePlaceholderFont = self.passwordField.placeholderLabel.font;
-    self.passwordField.placeholderLabel.text = @"PASSWORD";
+    self.passwordField.placeholder = @"PASSWORD";
+    
+    [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16] forState:UIControlStateNormal];
+    [self.forgotPasswordButton sizeToFit];
     
     self.accountLabel.font = typographyScheme.body1;
 }
@@ -104,29 +110,31 @@
     
     CGFloat textFieldWidth = 300;
     CGFloat textFieldHeight = 50;
+    CGFloat cornerRadius = 5;
     
-    CGFloat topTextFieldOriginY = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10;
+    CGFloat topTextFieldOriginY = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 30;
     CGFloat verticalSpace = textFieldHeight + 20;
     
     self.usernameField.frame = CGRectMake(0, topTextFieldOriginY, textFieldWidth, textFieldHeight);
+    self.usernameField.layer.cornerRadius = cornerRadius;
     [Format centerHorizontalView:self.usernameField inView:self.view];
-    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
     
     self.passwordField.frame = CGRectMake(self.usernameField.frame.origin.x, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
-    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
+    self.passwordField.layer.cornerRadius = cornerRadius;
     
-    [Format centerHorizontalView:self.signUpButton inView:self.view];
+    self.loginButton.frame = CGRectMake(0, topTextFieldOriginY + 2 * verticalSpace, textFieldWidth, textFieldHeight);
+    [Format centerHorizontalView:self.loginButton inView:self.view];
     
-    CGFloat space = 8;
+    self.forgotPasswordButton.frame = CGRectMake(0, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 10, self.forgotPasswordButton.frame.size.width, self.forgotPasswordButton.frame.size.height);
+    [Format centerHorizontalView:self.forgotPasswordButton inView:self.view];
+    
     CGFloat verticalInset = 24;
-    CGFloat height = self.accountLabel.frame.size.height;
-    self.signUpView.backgroundColor = [UIColor clearColor];
     [self.accountLabel sizeToFit];
     [self.signUpButton sizeToFit];
-    self.signUpView.frame = CGRectMake(0, self.view.frame.size.height - height - verticalInset, self.accountLabel.frame.size.width + space + self.signUpButton.frame.size.width, height);
-    [Format centerHorizontalView:self.signUpView inView:self.view];
-    self.accountLabel.frame = CGRectMake(0, 0, self.accountLabel.frame.size.width, self.signUpView.frame.size.height);
-    self.signUpButton.frame = CGRectMake(self.signUpView.frame.size.width - self.signUpButton.frame.size.width, 0, self.signUpButton.frame.size.width, self.signUpView.frame.size.height);
+    self.signUpButton.frame = CGRectMake(0, self.view.frame.size.height - self.signUpButton.frame.size.height - verticalInset, self.signUpButton.frame.size.width, self.signUpButton.frame.size.height);
+    [Format centerHorizontalView:self.signUpButton inView:self.view];
+    self.accountLabel.frame = CGRectMake(0, self.signUpButton.frame.origin.y - self.accountLabel.frame.size.height - 8, self.accountLabel.frame.size.width, self.accountLabel.frame.size.height);
+    [Format centerHorizontalView:self.accountLabel inView:self.view];
 }
 
 - (IBAction)didTapLogin:(id)sender {

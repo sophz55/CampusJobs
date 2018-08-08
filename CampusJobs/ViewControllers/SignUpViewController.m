@@ -48,6 +48,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
+    self.emailFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.emailField];
+    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
+    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
+    
     [self formatColors];
     [self formatTypography];
     [self configureLayout];
@@ -69,28 +75,21 @@
 - (void)formatColors {
     [Format addBlueGradientToView:self.view];
     
-    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
-    self.titleLabel.textColor = [UIColor whiteColor];
+    UIColor *textColor = [UIColor whiteColor];
     
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.nameFieldController];
-    self.nameField.textColor = [UIColor whiteColor];
-    self.nameField.placeholderLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.textColor = textColor;
     
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.emailFieldController];
-    self.emailField.textColor = [UIColor whiteColor];
-    self.emailField.placeholderLabel.textColor = [UIColor whiteColor];
+    [Format formatTextFieldController:self.nameFieldController withNormalColor:textColor];
+    self.nameField.textColor = textColor;
     
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.usernameFieldController];
-    self.usernameField.textColor = [UIColor whiteColor];
-    self.usernameField.placeholderLabel.textColor = [UIColor whiteColor];
+    [Format formatTextFieldController:self.emailFieldController withNormalColor:textColor];
+    self.emailField.textColor = textColor;
     
-    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
-                                toTextInputController:self.passwordFieldController];
-    self.passwordField.textColor = [UIColor whiteColor];
-    self.passwordField.placeholderLabel.textColor = [UIColor whiteColor];
+    [Format formatTextFieldController:self.usernameFieldController withNormalColor:textColor];
+    self.usernameField.textColor = textColor;
+    
+    [Format formatTextFieldController:self.passwordFieldController withNormalColor:textColor];
+    self.passwordField.textColor = textColor;
     
     [Format formatRaisedButton:self.signUpButton];
     
@@ -106,16 +105,16 @@
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
     self.nameField.font = typographyScheme.subtitle1;
-    self.nameField.placeholderLabel.text = @"FULL NAME";
+    self.nameField.placeholder = @"FULL NAME";
     
     self.emailField.font = typographyScheme.subtitle1;
-    self.emailField.placeholderLabel.text = @"EMAIL";
+    self.emailField.placeholder = @"EMAIL";
     
     self.usernameField.font = typographyScheme.subtitle1;
-    self.usernameField.placeholderLabel.text = @"USERNAME";
+    self.usernameField.placeholder = @"USERNAME";
     
     self.passwordField.font = typographyScheme.subtitle1;
-    self.passwordField.placeholderLabel.text = @"PASSWORD";
+    self.passwordField.placeholder = @"PASSWORD";
     
     self.accountLabel.font = typographyScheme.body1;
 }
@@ -123,7 +122,7 @@
 - (void)configureLayout {
     
     [self.titleLabel sizeToFit];
-    self.titleLabel.frame = CGRectMake(0, 100, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
+    self.titleLabel.frame = CGRectMake(0, 80, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
     [Format centerHorizontalView:self.titleLabel inView:self.view];
     
     CGFloat textFieldWidth = 300;
@@ -134,29 +133,21 @@
     
     self.nameField.frame = CGRectMake(0, topTextFieldOriginY, textFieldWidth, textFieldHeight);
     [Format centerHorizontalView:self.nameField inView:self.view];
-    self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
     
     self.emailField.frame = CGRectMake(self.nameField.frame.origin.x, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
-    self.emailFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.emailField];
-    
     self.usernameField.frame = CGRectMake(self.nameField.frame.origin.x, topTextFieldOriginY + 2 * verticalSpace, textFieldWidth, textFieldHeight);
-    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
-    
     self.passwordField.frame = CGRectMake(self.nameField.frame.origin.x, topTextFieldOriginY + 3 * verticalSpace, textFieldWidth, textFieldHeight);
-    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
     
+    self.signUpButton.frame = CGRectMake(0, topTextFieldOriginY + 4 * verticalSpace + 10, textFieldWidth, textFieldHeight);
     [Format centerHorizontalView:self.signUpButton inView:self.view];
     
-    CGFloat space = 8;
     CGFloat verticalInset = 24;
-    CGFloat height = self.accountLabel.frame.size.height;
-    self.signInView.backgroundColor = [UIColor clearColor];
     [self.accountLabel sizeToFit];
     [self.signInButton sizeToFit];
-    self.signInView.frame = CGRectMake(0, self.view.frame.size.height - height - verticalInset, self.accountLabel.frame.size.width + space + self.signInButton.frame.size.width, height);
-    [Format centerHorizontalView:self.signInView inView:self.view];
-    self.accountLabel.frame = CGRectMake(0, 0, self.accountLabel.frame.size.width, self.signInView.frame.size.height);
-    self.signInButton.frame = CGRectMake(self.signInView.frame.size.width - self.signInButton.frame.size.width, 0, self.signInButton.frame.size.width, self.signInView.frame.size.height);
+    self.signInButton.frame = CGRectMake(0, self.view.frame.size.height - self.signInButton.frame.size.height - verticalInset, self.signInButton.frame.size.width, self.signInButton.frame.size.height);
+    [Format centerHorizontalView:self.signInButton inView:self.view];
+    self.accountLabel.frame = CGRectMake(0, self.signInButton.frame.origin.y - self.accountLabel.frame.size.height - 8, self.accountLabel.frame.size.width, self.accountLabel.frame.size.height);
+    [Format centerHorizontalView:self.accountLabel inView:self.view];
 }
 
 
@@ -187,7 +178,7 @@
             }
         }];
     } else {
-        [Alert callAlertWithTitle:@"Cannot Sign Up" alertMessage:@"No fields can be blank" viewController:self];
+        [Alert callAlertWithTitle:@"Couldn't Sign Up" alertMessage:@"All fields are required!" viewController:self];
     }
 }
 

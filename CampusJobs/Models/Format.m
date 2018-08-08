@@ -13,6 +13,8 @@
 #import <MaterialComponents/MaterialAppBar+TypographyThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+TypographyThemer.h>
+#import <MaterialComponents/MaterialTextFields+ColorThemer.h>
+#import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
 
 @implementation Format
@@ -69,6 +71,7 @@
     [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
                                                    toButton:button];
     [button setTitleColor:[Colors secondaryGreyTextColor] forState:UIControlStateNormal];
+    [button setInkColor:[Colors primaryBlueDarkColor]];
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     [button setTitleFont:typographyScheme.button forState:UIControlStateNormal];
@@ -118,6 +121,15 @@
     label.textColor = [Colors secondaryGreyColor];
     [label setTextAlignment:NSTextAlignmentCenter];
     label.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size:20];
+}
+
++ (void)formatTextFieldController:(MDCTextInputControllerBase *)controller withNormalColor:(UIColor *)color {
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:controller];
+    controller.inlinePlaceholderColor = color;
+    controller.normalColor = color;
+    controller.floatingPlaceholderNormalColor = color;
 }
 
 @end
