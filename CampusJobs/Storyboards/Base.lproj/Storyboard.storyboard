@@ -151,7 +151,7 @@
                                             <color key="titleColor" red="0.1069502011" green="0.25675839189999999" blue="0.44141468410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="services:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="yXD-zU-FgG"/>
+                                            <action selector="Jobs:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="Zsq-ZY-EKp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxO-oC-4QH">
@@ -161,9 +161,6 @@
                                         <state key="normal" title="Gallery">
                                             <color key="titleColor" red="0.1069502011" green="0.25675839189999999" blue="0.44141468410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="portfolio:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="B9k-Qs-a9F"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igt-y3-Hdc">
                                         <rect key="frame" x="0.0" y="105" width="343" height="43"/>
@@ -173,7 +170,7 @@
                                             <color key="titleColor" red="0.1069502011" green="0.25675839189999999" blue="0.44141468410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="aboutUs:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="pja-bJ-jkq"/>
+                                            <action selector="Bio:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="4Xx-AV-MxU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iH-Ba-qtG">
@@ -185,7 +182,6 @@
                                         </state>
                                         <connections>
                                             <action selector="Contact:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="EDm-tS-NH9"/>
-                                            <action selector="contactUs:" destination="HLO-E2-Tf5" eventType="touchUpInside" id="dZy-Il-ywm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2O-6h-wYr">
@@ -234,7 +230,7 @@
             </objects>
             <point key="canvasLocation" x="2126" y="4058"/>
         </scene>
-        <!--Services-->
+        <!--Jobs-->
         <scene sceneID="PLe-Xh-umX">
             <objects>
                 <tableViewController id="J7U-h3-CBl" customClass="ServicesTableViewController" sceneMemberID="viewController">
@@ -282,7 +278,7 @@
                             <outlet property="delegate" destination="J7U-h3-CBl" id="Y3W-Ee-MAs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Services" id="goI-nr-Ryc"/>
+                    <navigationItem key="navigationItem" title="Jobs" id="goI-nr-Ryc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQw-hZ-FNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,7 +339,7 @@
             </objects>
             <point key="canvasLocation" x="2126" y="4920"/>
         </scene>
-        <!--Portoflio-->
+        <!--Gallery-->
         <scene sceneID="4qG-Vq-hem">
             <objects>
                 <viewController id="8z2-30-eFN" customClass="PortfolioViewController" sceneMemberID="viewController">
@@ -414,7 +410,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="76U-4R-qna"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Portoflio" id="RNk-Ew-4lb"/>
+                    <navigationItem key="navigationItem" title="Gallery" id="RNk-Ew-4lb"/>
                     <connections>
                         <outlet property="button1" destination="tU3-JH-evK" id="naI-DL-s0R"/>
                         <outlet property="button2" destination="tnD-3J-T7c" id="aZd-Mi-ubs"/>
@@ -424,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOC-eo-GHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2345" y="3245"/>
+            <point key="canvasLocation" x="2393" y="3274"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="8M9-cF-EDb">
@@ -492,15 +488,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nab-Lr-n4h">
-                                <rect key="frame" x="16" y="192" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nab-Lr-n4h">
+                                <rect key="frame" x="16" y="192" width="45" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv8-7U-xOH">
-                                <rect key="frame" x="26" y="274" width="82" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv8-7U-xOH">
+                                <rect key="frame" x="26" y="274" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -556,10 +552,10 @@
                         <viewLayoutGuide key="safeArea" id="e6R-Za-IS6"/>
                     </view>
                     <connections>
-                        <outlet property="FirstNameField" destination="o38-SS-VRV" id="zek-c7-cNT"/>
-                        <outlet property="LastNameField" destination="Xgf-GI-Ti0" id="PsG-qd-z9s"/>
                         <outlet property="Save" destination="euo-d1-Oee" id="I2E-YY-2xP"/>
                         <outlet property="UsernameField" destination="mZ2-mN-Ckp" id="t58-NU-sLe"/>
+                        <outlet property="emailField" destination="Xgf-GI-Ti0" id="GKF-X2-xuO"/>
+                        <outlet property="nameField" destination="o38-SS-VRV" id="ZaR-KU-6EN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BA6-Tu-Fv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -835,7 +831,7 @@
             </objects>
             <point key="canvasLocation" x="4332" y="3170"/>
         </scene>
-        <!--Contact Us-->
+        <!--Contact-->
         <scene sceneID="oQq-7I-5GD">
             <objects>
                 <viewController id="Oyy-Bd-sa9" customClass="ContactViewController" sceneMemberID="viewController">
@@ -867,16 +863,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6FQ-wd-9C6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact Us" id="7yX-iN-hgh"/>
-                    <connections>
-                        <outlet property="label" destination="IVt-vx-Cg0" id="rxB-lQ-AFK"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Contact" id="7yX-iN-hgh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJq-1B-Kf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4076" y="4036"/>
         </scene>
-        <!--About Us-->
+        <!--Bio-->
         <scene sceneID="OQs-cJ-8ft">
             <objects>
                 <viewController id="LPB-4P-J61" sceneMemberID="viewController">
@@ -922,7 +915,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jEs-1i-xTS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="About Us" id="Ztz-OQ-MfH"/>
+                    <navigationItem key="navigationItem" title="Bio" id="Ztz-OQ-MfH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ni-jm-LXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -988,11 +981,11 @@
             </objects>
             <point key="canvasLocation" x="3094" y="4035"/>
         </scene>
-        <!--About Us-->
+        <!--Bio-->
         <scene sceneID="sz8-sB-jS4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R1o-RO-cv6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About Us" image="Tab2" id="wu6-zZ-rDP"/>
+                    <tabBarItem key="tabBarItem" title="Bio" image="Tab2" id="wu6-zZ-rDP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="EZB-sE-Zgs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1007,11 +1000,11 @@
             </objects>
             <point key="canvasLocation" x="3326" y="4920"/>
         </scene>
-        <!--Portfolio-->
+        <!--Gallery-->
         <scene sceneID="Oy8-yk-mLC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8PB-70-sJL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Portfolio" image="Tab4" id="S64-VG-dzC"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="Tab4" id="S64-VG-dzC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SrA-so-ZNa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1026,11 +1019,11 @@
             </objects>
             <point key="canvasLocation" x="1430" y="3274"/>
         </scene>
-        <!--Services-->
+        <!--Jobs-->
         <scene sceneID="O7k-Gl-Y5m">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j8j-sA-eNa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Services" image="Tab3" id="kZn-ou-nCP"/>
+                    <tabBarItem key="tabBarItem" title="Jobs" image="Tab3" id="kZn-ou-nCP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="c2r-Pd-I6c">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1065,10 +1058,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Tab1" width="16" height="16"/>
-        <image name="Tab2" width="16" height="16"/>
-        <image name="Tab3" width="16" height="16"/>
-        <image name="Tab4" width="16" height="16"/>
-        <image name="Tab5" width="16" height="16"/>
+        <image name="Tab1" width="30" height="30"/>
+        <image name="Tab2" width="30" height="30"/>
+        <image name="Tab3" width="30" height="30"/>
+        <image name="Tab4" width="30" height="30"/>
+        <image name="Tab5" width="30" height="30"/>
     </resources>
 </document>
