@@ -18,7 +18,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="RBa-6H-DGa">
             <objects>
-                <viewController storyboardIdentifier="MDCTabBar" id="VIl-MK-shG" customClass="TabBarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MDCTabBar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VIl-MK-shG" customClass="TabBarViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bbl-MN-Eu0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
