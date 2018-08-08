@@ -42,19 +42,23 @@
     
 }
 
-- (IBAction)portfolio:(id)sender {
+- (IBAction)Gallery:(id)sender:(id)sender {
     
     [(UITabBarController *) self.tabBarController setSelectedIndex:3];
     
     
 }
 
-- (IBAction)Bio:(id)sender:(id)sender {
+
+
+- (IBAction)Bio:(id)sender {
+    
     
     [(UITabBarController *) self.tabBarController setSelectedIndex:1];
     
-    
 }
+
+
 
 - (IBAction)Contact:(id)sender {
     
@@ -63,6 +67,8 @@
     
 }
 - (IBAction)Social:(id)sender {
+    
+      [(UITabBarController *) self.tabBarController setSelectedIndex:5];
 }
 
 @end

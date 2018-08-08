@@ -31,6 +31,18 @@
 		D3B67A912107BFC50042BD49 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A902107BFC50042BD49 /* Social.framework */; };
 		D3B67A942107C3D20042BD49 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B67A932107C3D20042BD49 /* SearchViewController.m */; };
 		D3B67A992107E6D30042BD49 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B67A982107E6D30042BD49 /* CoreData.framework */; };
+		D3D64E40211B68BF00F48F1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E2B211B68BF00F48F1A /* InfoPlist.strings */; };
+		D3D64E41211B68BF00F48F1A /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E2E211B68BF00F48F1A /* SimpleMessage.m */; };
+		D3D64E42211B68BF00F48F1A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E30211B68BF00F48F1A /* DetailViewController.m */; };
+		D3D64E43211B68BF00F48F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E32211B68BF00F48F1A /* Main.storyboard */; };
+		D3D64E44211B68BF00F48F1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E34211B68BF00F48F1A /* main.m */; };
+		D3D64E45211B68BF00F48F1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E36211B68BF00F48F1A /* Images.xcassets */; };
+		D3D64E46211B68BF00F48F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E37211B68BF00F48F1A /* AppDelegate.m */; };
+		D3D64E47211B68BF00F48F1A /* BackgroundFetchDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E38211B68BF00F48F1A /* BackgroundFetchDemo-Info.plist */; };
+		D3D64E48211B68BF00F48F1A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E39211B68BF00F48F1A /* MasterViewController.m */; };
+		D3D64E49211B68BF00F48F1A /* BackgroundFetchDemoTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E3C211B68BF00F48F1A /* BackgroundFetchDemoTests-Info.plist */; };
+		D3D64E4A211B68BF00F48F1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3D64E3D211B68BF00F48F1A /* InfoPlist.strings */; };
+		D3D64E4B211B68BF00F48F1A /* BackgroundFetchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D64E3F211B68BF00F48F1A /* BackgroundFetchDemoTests.m */; };
 		D3E5A15920FD545800891964 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15520FD545700891964 /* LoginViewController.m */; };
 		D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5A15720FD545800891964 /* SignUpViewController.m */; };
 		F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */; };
@@ -138,6 +150,23 @@
 		D3B67A922107C3D20042BD49 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		D3B67A932107C3D20042BD49 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		D3B67A982107E6D30042BD49 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3D64E2C211B68BF00F48F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D3D64E2D211B68BF00F48F1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D3D64E2E211B68BF00F48F1A /* SimpleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
+		D3D64E2F211B68BF00F48F1A /* BackgroundFetchDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BackgroundFetchDemo-Prefix.pch"; sourceTree = "<group>"; };
+		D3D64E30211B68BF00F48F1A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		D3D64E31211B68BF00F48F1A /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		D3D64E33211B68BF00F48F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D3D64E34211B68BF00F48F1A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3D64E35211B68BF00F48F1A /* SimpleMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMessage.h; sourceTree = "<group>"; };
+		D3D64E36211B68BF00F48F1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D3D64E37211B68BF00F48F1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D3D64E38211B68BF00F48F1A /* BackgroundFetchDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BackgroundFetchDemo-Info.plist"; sourceTree = "<group>"; };
+		D3D64E39211B68BF00F48F1A /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		D3D64E3A211B68BF00F48F1A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D3D64E3C211B68BF00F48F1A /* BackgroundFetchDemoTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BackgroundFetchDemoTests-Info.plist"; sourceTree = "<group>"; };
+		D3D64E3E211B68BF00F48F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D3D64E3F211B68BF00F48F1A /* BackgroundFetchDemoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundFetchDemoTests.m; sourceTree = "<group>"; };
 		D3E5A15520FD545700891964 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3E5A15620FD545700891964 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -273,6 +302,7 @@
 				59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B51BE74DA0F4FFAD537D3A1A /* Pods */ = {
@@ -288,13 +318,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D38B1727210B96B900EE5C8E /* BusinessApp */ = {
+		D38B1727210B96B900EE5C8E /* socila */ = {
 			isa = PBXGroup;
 			children = (
+				D3D64E2A211B68BF00F48F1A /* BackgroundFetchDemo */,
+				D3D64E3B211B68BF00F48F1A /* BackgroundFetchDemoTests */,
 				D38B18AC210EB8F6005E607F /* ViewController.h */,
 				D38B18AD210EB8F6005E607F /* ViewController.m */,
 			);
-			path = BusinessApp;
+			path = socila;
 			sourceTree = "<group>";
 		};
 		D38B18BE210EC624005E607F /* Services */ = {
@@ -315,10 +347,10 @@
 			children = (
 				D38B18D5210EC968005E607F /* SocialTableViewController.h */,
 				D38B18D6210EC968005E607F /* SocialTableViewController.m */,
+				D38B18DC210EC9AF005E607F /* SocialViewController.m */,
 				D38B18D8210EC993005E607F /* SocialTableViewCell.h */,
 				D38B18D9210EC993005E607F /* SocialTableViewCell.m */,
 				D38B18DB210EC9AF005E607F /* SocialViewController.h */,
-				D38B18DC210EC9AF005E607F /* SocialViewController.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -350,6 +382,37 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		D3D64E2A211B68BF00F48F1A /* BackgroundFetchDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D3D64E2B211B68BF00F48F1A /* InfoPlist.strings */,
+				D3D64E2D211B68BF00F48F1A /* AppDelegate.h */,
+				D3D64E2E211B68BF00F48F1A /* SimpleMessage.m */,
+				D3D64E2F211B68BF00F48F1A /* BackgroundFetchDemo-Prefix.pch */,
+				D3D64E30211B68BF00F48F1A /* DetailViewController.m */,
+				D3D64E31211B68BF00F48F1A /* MasterViewController.h */,
+				D3D64E32211B68BF00F48F1A /* Main.storyboard */,
+				D3D64E34211B68BF00F48F1A /* main.m */,
+				D3D64E35211B68BF00F48F1A /* SimpleMessage.h */,
+				D3D64E36211B68BF00F48F1A /* Images.xcassets */,
+				D3D64E37211B68BF00F48F1A /* AppDelegate.m */,
+				D3D64E38211B68BF00F48F1A /* BackgroundFetchDemo-Info.plist */,
+				D3D64E39211B68BF00F48F1A /* MasterViewController.m */,
+				D3D64E3A211B68BF00F48F1A /* DetailViewController.h */,
+			);
+			path = BackgroundFetchDemo;
+			sourceTree = "<group>";
+		};
+		D3D64E3B211B68BF00F48F1A /* BackgroundFetchDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3D64E3C211B68BF00F48F1A /* BackgroundFetchDemoTests-Info.plist */,
+				D3D64E3D211B68BF00F48F1A /* InfoPlist.strings */,
+				D3D64E3F211B68BF00F48F1A /* BackgroundFetchDemoTests.m */,
+			);
+			path = BackgroundFetchDemoTests;
+			sourceTree = "<group>";
+		};
 		F39E66E220EFE12800381BE7 = {
 			isa = PBXGroup;
 			children = (
@@ -358,7 +421,6 @@
 				F39E671120EFE12900381BE7 /* CampusJobsUITests */,
 				F39E66EC20EFE12800381BE7 /* Products */,
 				B51BE74DA0F4FFAD537D3A1A /* Pods */,
-				2ED8957605F6C946F37EFB97 /* Frameworks */,
 				FC8EA1AB2102578F0054C43D /* Recovered References */,
 				D38F03AD2101643500EE35D1 /* Recovered References */,
 			);
@@ -405,6 +467,7 @@
 		F39E671120EFE12900381BE7 /* CampusJobsUITests */ = {
 			isa = PBXGroup;
 			children = (
+				2ED8957605F6C946F37EFB97 /* Frameworks */,
 				F39E671220EFE12900381BE7 /* CampusJobsUITests.m */,
 				F39E671420EFE12900381BE7 /* Info.plist */,
 			);
@@ -525,7 +588,7 @@
 				F39E66F920EFE12900381BE7 /* LaunchScreen.storyboard */,
 				D38B18E0210FB1CF005E607F /* NameViewController.h */,
 				D38B18E1210FB1CF005E607F /* NameViewController.m */,
-				D38B1727210B96B900EE5C8E /* BusinessApp */,
+				D38B1727210B96B900EE5C8E /* socila */,
 				D38B18BE210EC624005E607F /* Services */,
 				D38B18C0210EC676005E607F /* Gallery */,
 				D38B18C1210EC69F005E607F /* Contact Us */,
@@ -658,11 +721,17 @@
 				F35E0B442118C15A00FAC63C /* RobotoCondensed-Italic.ttf in Resources */,
 				F3FD740421153589004BF81B /* Feed.storyboard in Resources */,
 				D306831B210FBF79003C2CB1 /* PaymentInfo.storyboard in Resources */,
+				D3D64E45211B68BF00F48F1A /* Images.xcassets in Resources */,
+				D3D64E40211B68BF00F48F1A /* InfoPlist.strings in Resources */,
+				D3D64E4A211B68BF00F48F1A /* InfoPlist.strings in Resources */,
 				D306831C210FBF79003C2CB1 /* Storyboard.storyboard in Resources */,
 				F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */,
 				F39E66FB20EFE12900381BE7 /* LaunchScreen.storyboard in Resources */,
 				F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */,
+				D3D64E43211B68BF00F48F1A /* Main.storyboard in Resources */,
+				D3D64E49211B68BF00F48F1A /* BackgroundFetchDemoTests-Info.plist in Resources */,
 				F32251F520FEA772003E4C08 /* Chat.storyboard in Resources */,
+				D3D64E47211B68BF00F48F1A /* BackgroundFetchDemo-Info.plist in Resources */,
 				F39E66F620EFE12900381BE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,14 +880,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31CC594211264F500C899B7 /* Alert.m in Sources */,
+				D3D64E46211B68BF00F48F1A /* AppDelegate.m in Sources */,
 				D38B18E6210FBE43005E607F /* ProfileViewController.m in Sources */,
 				D38B18DE210F80CB005E607F /* MainProfileViewController.m in Sources */,
 				D38B18DF210F80CB005E607F /* SegueConstants.m in Sources */,
 				D38B18D1210EC921005E607F /* ContactViewController.m in Sources */,
 				F359240620FFA8C20013FD61 /* ConversationDetailViewController.m in Sources */,
 				D38B18CA210EC891005E607F /* ServicesViewController.m in Sources */,
+				D3D64E4B211B68BF00F48F1A /* BackgroundFetchDemoTests.m in Sources */,
 				FC5B61FE20FE9A8B00050EA7 /* NearbyPostCell.m in Sources */,
+				D3D64E42211B68BF00F48F1A /* DetailViewController.m in Sources */,
 				F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */,
 				F338397F20FE9AA000364F86 /* ConversationsViewController.m in Sources */,
 				F39F4BF120FD14C000C11CD0 /* Conversation.m in Sources */,
@@ -827,7 +898,7 @@
 				D38B18D7210EC968005E607F /* SocialTableViewController.m in Sources */,
 				FCF9B1FB20FEAF340035051E /* PreviousUserPostCell.m in Sources */,
 				FC8EA1A5210151890054C43D /* MapViewController.m in Sources */,
-				FC5E1DC4211223D10088DDBE /* Colors.m in Sources */,
+				D3D64E48211B68BF00F48F1A /* MasterViewController.m in Sources */,
 				D38B18C4210EC850005E607F /* ServicesTableViewController.m in Sources */,
 				F39F4BEE20FD14A300C11CD0 /* Message.m in Sources */,
 				F3E55E5D2118CFB1001E03EF /* Format.m in Sources */,
@@ -836,8 +907,10 @@
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
 				F35E0B27211563F200FAC63C /* EditProfileViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
+				D3D64E41211B68BF00F48F1A /* SimpleMessage.m in Sources */,
 				D38B18DA210EC993005E607F /* SocialTableViewCell.m in Sources */,
 				D38B18E2210FB1CF005E607F /* NameViewController.m in Sources */,
+				D3D64E44211B68BF00F48F1A /* main.m in Sources */,
 				F312269B210A4E18004F4677 /* EditPaymentInfoViewController.m in Sources */,
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
 				F31226A1210A8582004F4677 /* Utils.m in Sources */,
@@ -906,6 +979,30 @@
 				D3068319210FBF57003C2CB1 /* Base */,
 			);
 			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+		D3D64E2B211B68BF00F48F1A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3D64E2C211B68BF00F48F1A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D3D64E32211B68BF00F48F1A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3D64E33211B68BF00F48F1A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D3D64E3D211B68BF00F48F1A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3D64E3E211B68BF00F48F1A /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		F31226A9210A995A004F4677 /* PaymentInfo.storyboard */ = {
@@ -1075,7 +1172,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1093,7 +1190,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T66NN72CYU;
+				DEVELOPMENT_TEAM = 6KUP3X2WBF;
 				INFOPLIST_FILE = CampusJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
