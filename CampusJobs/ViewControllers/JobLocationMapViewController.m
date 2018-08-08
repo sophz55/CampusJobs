@@ -58,6 +58,11 @@
     [Format formatAppBar:self.appBar withTitle:@"ADD LOCATION"];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 //Will check if the user already has a previously saved location (and it will reappear on the map)
 - (void)editSavedLocation:(PFGeoPoint *)enteredPoint{
     if(!(enteredPoint==nil)){

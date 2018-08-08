@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "Format.h"
 
 @interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
@@ -21,6 +22,8 @@
 @property (strong, nonatomic) PFUser * currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
 @property (strong, nonatomic) NSNumber * userRadius;
+@property (weak, nonatomic) IBOutlet UIView *noNearbyPostingsView;
+@property (weak, nonatomic) IBOutlet UILabel *noNearbyPostingsLabel;
 
 @end
 
@@ -33,10 +36,21 @@
     self.nearbyPostTableView.dataSource=self;
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    
     [self addRefreshControl];
     [self displayBackgroundColor];
     [self displayRadius];
     
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self displayRadius];
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
 }
@@ -63,6 +77,14 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
+            if (posts.count > 0) {
+                self.noNearbyPostingsView.hidden = YES;
+            } else {
+                self.noNearbyPostingsView.hidden = NO;
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
+                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){

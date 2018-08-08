@@ -67,6 +67,11 @@
     [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (IBAction)didTapCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

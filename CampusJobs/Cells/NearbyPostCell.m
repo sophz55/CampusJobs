@@ -39,13 +39,17 @@
     //initialize text for labels
     self.postUserLabel.text=post.author.username;
     self.postTitleLabel.text=[post.title uppercaseString];
+    if ([post.title isEqualToString:@""]) {
+        self.postTitleLabel.text = @"UNTITLED POST";
+    }
     self.postDescriptionLabel.text=post.summary;
     
     PFGeoPoint * postGeoPoint=post[@"location"];
     PFGeoPoint * userGeoPoint=post.author[@"currentLocation"];
     //Call Utils method to calculate distance between post location and user
     double miles=[Utils calculateDistance:postGeoPoint betweenUserandPost:userGeoPoint];
-    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.2f",miles];
+    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.2f miles",miles];
+    [self.postDistanceLabel sizeToFit];
     
     //Format the date (date the post was posted on)
     NSDateFormatter * formatter= [[NSDateFormatter alloc] init];

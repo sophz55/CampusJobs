@@ -71,7 +71,7 @@
         
         self.textBubbleView.frame = CGRectMake(self.viewWidth - bubbleViewSize.width - horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
         self.textBubbleView.alpha = 1;
-        self.textBubbleView.backgroundColor = [Colors primaryBlueDarkColor];
+        self.textBubbleView.backgroundColor = [Colors primaryBlueColor];
         self.messageTextView.textColor = [UIColor whiteColor];
     }
     

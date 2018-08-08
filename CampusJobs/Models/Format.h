@@ -32,4 +32,6 @@
 
 + (void)formatProfilePictureForUser:(PFUser *)user withView:(PFImageView *)view;
 
++ (void)configurePlaceholderView:(UIView *)view withLabel:(UILabel *)label;
+
 @end

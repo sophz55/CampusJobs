@@ -89,7 +89,7 @@
                                             <outlet property="otherUserLabel" destination="ETF-Qh-I2y" id="3gG-9G-kTC"/>
                                             <outlet property="otherUserProfileImageView" destination="eF6-zy-TuH" id="7fi-Ko-tRQ"/>
                                             <outlet property="postTitleLabel" destination="dEq-fK-Ggf" id="1AC-5V-flA"/>
-                                            <segue destination="Bdl-9U-zBf" kind="presentation" identifier="conversationsToDetailSegue" id="ScK-CC-Mvf"/>
+                                            <segue destination="Bdl-9U-zBf" kind="presentation" identifier="conversationsToDetailSegue" modalTransitionStyle="crossDissolve" id="ScK-CC-Mvf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -282,7 +282,7 @@
                                 <state key="normal" image="suggest"/>
                                 <connections>
                                     <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
-                                    <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" id="sKn-wY-Ouv"/>
+                                    <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="sKn-wY-Ouv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj" customClass="MDCFlatButton">
@@ -312,7 +312,7 @@
                         <outlet property="messagesCollectionView" destination="6mP-oN-Sb1" id="P12-N7-9D7"/>
                         <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="IwH-b7-Kq7"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="tct-zn-lei"/>
-                        <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" id="iVW-Fy-iAQ"/>
+                        <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" modalTransitionStyle="crossDissolve" id="iVW-Fy-iAQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>

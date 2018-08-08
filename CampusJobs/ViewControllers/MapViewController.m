@@ -57,6 +57,11 @@
     [Format formatAppBar:self.appBar withTitle:@"CHOOSE A RADIUS"];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 //Set default radius to 1 mile
 - (void)setDefaultRadius{
     self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f", self.radiusSliderBar.value];

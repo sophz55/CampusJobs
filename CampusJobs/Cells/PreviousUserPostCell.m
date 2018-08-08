@@ -33,6 +33,9 @@
 
     //set text for each field
     self.previousPostTitleLabel.text=[previousPost.title uppercaseString];
+    if ([previousPost.title isEqualToString:@""]) {
+        self.previousPostTitleLabel.text = @"UNTITLED POST";
+    }
     if(previousPost.postStatus==OPEN){
         self.statusLabel.text=@"Open Job";
         self.takerLabel.hidden=YES;

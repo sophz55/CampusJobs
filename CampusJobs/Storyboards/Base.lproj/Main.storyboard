@@ -74,7 +74,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Pzf-3z-BOP" kind="presentation" id="M56-EX-QtS"/>
+                                    <segue destination="Pzf-3z-BOP" kind="presentation" modalTransitionStyle="crossDissolve" id="M56-EX-QtS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EG-Wr-lL4" customClass="MDCRaisedButton">
@@ -87,7 +87,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="em5-BJ-2HZ" kind="presentation" identifier="editRadiusSegue" id="yVb-zS-7hm"/>
+                                    <segue destination="em5-BJ-2HZ" kind="presentation" identifier="editRadiusSegue" modalTransitionStyle="crossDissolve" id="yVb-zS-7hm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moT-Fg-V3J" customClass="MDCRaisedButton">
@@ -100,7 +100,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wpf-cF-Ljr" kind="presentation" id="uCh-Nc-CGV"/>
+                                    <segue destination="wpf-cF-Ljr" kind="presentation" modalTransitionStyle="crossDissolve" id="uCh-Nc-CGV"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REr-Qy-7hz">

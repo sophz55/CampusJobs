@@ -149,6 +149,11 @@
     self.navigationItem.rightBarButtonItem = self.postButton;
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (void)configureForNewPost {
     self.locationAddressLabel.text = @"Please set a location for your task";
     [self.editLocationButton setTitle:@"PIN POST LOCATION" forState:UIControlStateNormal];

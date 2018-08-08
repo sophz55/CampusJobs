@@ -44,13 +44,9 @@
     
     self.conversations = [[NSMutableArray alloc] init];
     
-    //placeholder view while table data loads
-    self.noConversationsView.hidden = NO;
-    self.noConversationsView.frame = self.view.frame;
-    self.noConversationsView.backgroundColor = [Colors secondaryGreyLighterColor];
+    self.noConversationsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noConversationsView withLabel:self.noConversationsLabel];
     self.noConversationsLabel.text = @"LOADING MESSAGES...";
-    self.noConversationsLabel.textColor = [Colors secondaryGreyColor];
-    [self.noConversationsLabel setTextAlignment:NSTextAlignmentCenter];
     
     [self configureNavigationBar];
     [self configureRefreshControl];
@@ -61,6 +57,11 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     [Format formatAppBar:self.appBar withTitle:@"MESSAGES"];
+}
+
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
 }
 
 - (void)configureRefreshControl {

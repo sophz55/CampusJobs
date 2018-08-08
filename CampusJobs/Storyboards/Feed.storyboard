@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="RobotoCondensed-Light.ttf">
-            <string>RobotoCondensed-Light</string>
+        <array key="RobotoCondensed-LightItalic.ttf">
+            <string>RobotoCondensed-LightItalic</string>
         </array>
         <array key="RobotoCondensed-Regular.ttf">
             <string>RobotoCondensed-Regular</string>
@@ -52,8 +52,8 @@
                                 <rect key="frame" x="0.0" y="75" width="375" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Nearby Postings"/>
-                                    <segment title="Your Postings"/>
+                                    <segment title="NEARBY POSTINGS"/>
+                                    <segment title="YOUR POSTINGS"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -70,8 +70,8 @@
                         <outlet property="nearbyPostingsContainer" destination="qN0-c9-OTv" id="bm4-90-UMe"/>
                         <outlet property="segmentedControl" destination="yXW-QA-wb4" id="Fkd-Jt-SsQ"/>
                         <outlet property="yourPostingsContainer" destination="qXd-UF-mgO" id="W3g-AX-uyw"/>
-                        <segue destination="2ff-kP-9pV" kind="presentation" identifier="logoutSegue" id="yOK-Ju-NbC"/>
-                        <segue destination="gfv-l9-1Bb" kind="presentation" identifier="composeNewPostSegue" id="Vn4-AL-oMl"/>
+                        <segue destination="2ff-kP-9pV" kind="presentation" identifier="logoutSegue" modalTransitionStyle="crossDissolve" id="yOK-Ju-NbC"/>
+                        <segue destination="gfv-l9-1Bb" kind="presentation" identifier="composeNewPostSegue" modalTransitionStyle="crossDissolve" id="Vn4-AL-oMl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8db-jv-fu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,8 +87,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYz-sO-Yq5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYz-sO-Yq5">
+                                <rect key="frame" x="0.0" y="76" width="375" height="531"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviousUserPostCell" rowHeight="96" id="Iyp-y6-fb6" customClass="PreviousUserPostCell">
@@ -133,34 +134,35 @@
                                             <outlet property="previousPostTitleLabel" destination="Apa-fT-gsg" id="1I0-Io-vhG"/>
                                             <outlet property="statusLabel" destination="hlr-qu-noy" id="mbl-zS-5Zm"/>
                                             <outlet property="takerLabel" destination="bk3-Fp-25r" id="3UP-I0-VaN"/>
-                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="yourPostingsToDetailSegue" id="kdN-ua-8ao"/>
+                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="yourPostingsToDetailSegue" modalTransitionStyle="crossDissolve" id="kdN-ua-8ao"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHV-9F-Tos">
-                                <rect key="frame" x="8" y="64" width="367" height="19"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlQ-Sn-WSO">
+                                <rect key="frame" x="0.0" y="-29" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="17"/>
-                                <state key="normal" title="COMPOSE POST">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapComposeButton:" destination="mQb-X1-xCt" eventType="touchUpInside" id="WMs-a2-tIH"/>
-                                    <segue destination="gfv-l9-1Bb" kind="presentation" identifier="composeNewPostSegue" id="daW-X4-LKS"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have no postings. Click the compose button above to get started!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUp-d5-JYb">
+                                        <rect key="frame" x="43" y="150" width="288" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Rn0-qE-rdT" firstAttribute="bottom" secondItem="ZYz-sO-Yq5" secondAttribute="bottom" id="EJE-zv-UfY"/>
-                            <constraint firstItem="ZYz-sO-Yq5" firstAttribute="leading" secondItem="Rn0-qE-rdT" secondAttribute="leading" id="Psb-M5-Th8"/>
-                            <constraint firstItem="ZYz-sO-Yq5" firstAttribute="top" secondItem="kEj-rP-uJU" secondAttribute="top" id="bwr-pq-Zdb"/>
-                            <constraint firstItem="ZYz-sO-Yq5" firstAttribute="centerX" secondItem="kEj-rP-uJU" secondAttribute="centerX" id="u6h-Lh-8E4"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Rn0-qE-rdT"/>
                     </view>
                     <size key="freeformSize" width="375" height="610"/>
+                    <connections>
+                        <outlet property="noPostingsLabel" destination="qUp-d5-JYb" id="cNF-mb-wtH"/>
+                        <outlet property="noPostingsView" destination="xlQ-Sn-WSO" id="791-dQ-vlE"/>
+                        <outlet property="previousPostTableView" destination="ZYz-sO-Yq5" id="qn7-bF-Fux"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fC5-Ws-vvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,8 +309,8 @@
                         <outlet property="postLocationMap" destination="kId-OF-6M8" id="iDU-f2-Caw"/>
                         <outlet property="titleDetailsLabel" destination="xlo-fv-Tjg" id="pJc-ez-p04"/>
                         <outlet property="userDetailsLabel" destination="r01-ou-N8r" id="LmX-16-CyS"/>
-                        <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" id="vzT-Vd-GfX"/>
-                        <segue destination="gfv-l9-1Bb" kind="presentation" identifier="postDetailsToEditPostSegue" id="2I9-0Y-5qo"/>
+                        <segue destination="7Ie-cC-sXo" kind="presentation" identifier="chatSegue" modalTransitionStyle="crossDissolve" id="vzT-Vd-GfX"/>
+                        <segue destination="gfv-l9-1Bb" kind="presentation" identifier="postDetailsToEditPostSegue" modalTransitionStyle="crossDissolve" id="2I9-0Y-5qo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dN-n2-Bca" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -332,7 +334,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ShG-hl-pRK" kind="presentation" identifier="composeToMapSegue" id="v54-Ee-BRq"/>
+                                    <segue destination="ShG-hl-pRK" kind="presentation" identifier="composeToMapSegue" modalTransitionStyle="crossDissolve" id="v54-Ee-BRq"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DCl-O9-MGS" customClass="MDCMultilineTextField">
@@ -396,7 +398,7 @@
                         <outlet property="postButton" destination="2ES-Rf-4sz" id="x4U-UH-imF"/>
                         <outlet property="postMapView" destination="bcl-aS-HvI" id="Rca-4y-z5g"/>
                         <outlet property="titleTextField" destination="x6R-Bj-2tb" id="y1u-VS-VeN"/>
-                        <segue destination="BK2-fp-JBD" kind="presentation" identifier="backToPersonalFeedSegue" id="aif-hz-NV1"/>
+                        <segue destination="BK2-fp-JBD" kind="presentation" identifier="backToPersonalFeedSegue" modalTransitionStyle="crossDissolve" id="aif-hz-NV1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXi-zC-zUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -453,7 +455,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ep7-nO-lLP">
-                                <rect key="frame" x="0.0" y="75" width="375" height="535"/>
+                                <rect key="frame" x="0.0" y="85" width="375" height="525"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -478,13 +480,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-e4-Xp1">
-                                                    <rect key="frame" x="234" y="16" width="45" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-UltraLight" family="Avenir Next Condensed" pointSize="19"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzg-ur-LTg">
                                                     <rect key="frame" x="14" y="38" width="139" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -499,10 +494,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTr-Ry-O0p">
-                                                    <rect key="frame" x="281" y="15" width="33" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsw-e4-Xp1">
+                                                    <rect key="frame" x="234" y="16" width="45" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="RobotoCondensed-Light" family="Roboto Condensed" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-UltraLight" family="Avenir Next Condensed" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -514,17 +509,31 @@
                                             <outlet property="postDistanceLabel" destination="Tsw-e4-Xp1" id="wIS-Ji-WpS"/>
                                             <outlet property="postTitleLabel" destination="RbX-3D-rXJ" id="tdh-Mm-y1c"/>
                                             <outlet property="postUserLabel" destination="mzg-ur-LTg" id="O2V-bx-ebJ"/>
-                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="cellToPostDetailsSegue" id="vrc-CX-ngk"/>
+                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="cellToPostDetailsSegue" modalTransitionStyle="crossDissolve" id="vrc-CX-ngk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POSTS WITHIN # MILES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vte-Md-p3x">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POSTS WITHIN # MILES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vte-Md-p3x">
                                 <rect key="frame" x="16" y="61" width="343" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-mA-eYx">
+                                <rect key="frame" x="0.0" y="-29" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No postings within # miles of you. Change your desired radius in settings to widen the scope!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-rZ-oIR">
+                                        <rect key="frame" x="59" y="150" width="257" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0EV-GM-jRl"/>
@@ -533,6 +542,8 @@
                     <size key="freeformSize" width="375" height="610"/>
                     <connections>
                         <outlet property="nearbyPostTableView" destination="ep7-nO-lLP" id="vAe-2J-ef6"/>
+                        <outlet property="noNearbyPostingsLabel" destination="1ji-rZ-oIR" id="0mB-EY-q0i"/>
+                        <outlet property="noNearbyPostingsView" destination="a2W-mA-eYx" id="nSP-Nl-1VJ"/>
                         <outlet property="radiusLabel" destination="Vte-Md-p3x" id="XCm-gu-BAr"/>
                     </connections>
                 </viewController>
@@ -550,7 +561,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="daW-X4-LKS"/>
+        <segue reference="2I9-0Y-5qo"/>
         <segue reference="vrc-CX-ngk"/>
     </inferredMetricsTieBreakers>
 </document>

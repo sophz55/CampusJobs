@@ -150,7 +150,7 @@
                         <outlet property="securityCodeLabel" destination="d9E-Or-Pp2" id="aV3-rH-kJd"/>
                         <outlet property="skipButton" destination="mLh-L1-fvO" id="zPr-my-2z4"/>
                         <outlet property="zipcodeField" destination="srv-KO-u8L" id="xxk-Gv-Sdk"/>
-                        <segue destination="kXg-Yt-TPU" kind="presentation" identifier="addCardToMapSegue" id="eCI-e1-mUt"/>
+                        <segue destination="kXg-Yt-TPU" kind="presentation" identifier="addCardToMapSegue" modalTransitionStyle="crossDissolve" id="eCI-e1-mUt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yx-oB-dnj" userLabel="First Responder" sceneMemberID="firstResponder"/>

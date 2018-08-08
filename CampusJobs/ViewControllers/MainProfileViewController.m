@@ -57,6 +57,11 @@
     [Format formatAppBar:self.appBar withTitle:@"YOUR PROFILE"];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (void)configureLayout {
     [self configureNavigationBar];
     [self setMainPageLabels];
@@ -80,15 +85,16 @@
     //Format top view
     self.topView.frame=CGRectMake(0, 75, self.view.frame.size.width, height-75);
     NSMutableArray *topColors = [NSMutableArray array];
+    [topColors addObject:[Colors primaryBlueDarkColor]];
     [topColors addObject:[Colors primaryBlueColor]];
-    [topColors addObject:[Colors primaryBlueLightColor]];
+//    [topColors addObject:[Colors primaryBlueLightColor]];
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
     self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, height-50, self.view.frame.size.width * 2, 100);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
-    self.roundedEdgeView.backgroundColor=[Colors primaryBlueLightColor];
+    self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
     
     //format bottom view
     NSMutableArray *bottomColors = [NSMutableArray array];

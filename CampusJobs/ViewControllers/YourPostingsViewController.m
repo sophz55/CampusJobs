@@ -10,11 +10,14 @@
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
 #import "Colors.h"
+#import "Format.h"
 #import <ChameleonFramework/Chameleon.h>
 
 @interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
 @property (strong, nonatomic) NSArray * previousPostsArray;
+@property (weak, nonatomic) IBOutlet UIView *noPostingsView;
+@property (weak, nonatomic) IBOutlet UILabel *noPostingsLabel;
 
 @end
 
@@ -28,6 +31,10 @@
     [self fetchUserPosts];
     [self addRefreshControl];
     [self displayBackgroundColor];
+    
+    self.noPostingsView.frame = self.view.frame;
+    [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
+    self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +57,14 @@
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray * previousPosts, NSError * error){
         if(previousPosts!=nil){
+            if (previousPosts.count > 0) {
+                self.noPostingsView.hidden = YES;
+            } else {
+                self.noPostingsView.hidden = NO;
+                self.noPostingsLabel.text = @"You have no postings. Click the compose button above to get started!";
+                [self.noPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            
             self.previousPostsArray=previousPosts;
             [self.previousPostTableView reloadData];
         } else{

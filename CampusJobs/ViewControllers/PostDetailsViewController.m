@@ -156,6 +156,11 @@
     [Format formatAppBar:self.appBar withTitle:title];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (void)configureAuthorView {
     [self.editButton setEnabled:YES];
     self.navigationItem.rightBarButtonItem = self.editButton;
@@ -209,6 +214,9 @@
     
     //set text
     self.titleDetailsLabel.text=[post.title uppercaseString];
+    if ([post.title isEqualToString:@""]) {
+        self.titleDetailsLabel.text = @"UNTITLED POST";
+    }
     self.descriptionDetailsLabel.text=post.summary;
     [self.descriptionDetailsLabel sizeToFit];
     self.locationDetailsLabel.text=post.locationAddress;

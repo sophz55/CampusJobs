@@ -26,7 +26,7 @@
 
 + (void)addBlueGradientToView:(UIView *)view {
     NSMutableArray *colors = [NSMutableArray array];
-    [colors addObject:[Colors primaryBlueLightColor]];
+    [colors addObject:[Colors primaryBlueDarkColor]];
     [colors addObject:[Colors primaryBlueColor]];
     [colors addObject:[Colors primaryBlueDarkColor]];
     view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:view.frame andColors:colors];
@@ -35,7 +35,7 @@
 + (void)formatAppBar:(MDCAppBar *)appBar withTitle:(NSString *)title {
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
     [MDCAppBarColorThemer applySemanticColorScheme:colorScheme toAppBar:appBar];
-    appBar.navigationBar.backgroundColor = colorScheme.secondaryColor;
+    appBar.navigationBar.backgroundColor = [Colors primaryBlueDarkColor];
     appBar.headerViewController.headerView.backgroundColor = appBar.navigationBar.backgroundColor;
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
@@ -109,6 +109,15 @@
             }
         }
     }];
+}
+
++ (void)configurePlaceholderView:(UIView *)view withLabel:(UILabel *)label{
+    //placeholder view while table data loads
+    view.hidden = NO;
+    view.backgroundColor = [Colors secondaryGreyLighterColor];
+    label.textColor = [Colors secondaryGreyColor];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    label.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size:20];
 }
 
 @end

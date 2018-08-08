@@ -111,6 +111,11 @@
     [Format formatAppBar:self.appBar withTitle:@""];
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (void)formatColors {
     [Format addGreyGradientToView:self.view];
     

@@ -188,11 +188,16 @@
     if (![self.conversation.post.title isEqualToString:@""]) {
         title = [NSString stringWithFormat:@"%@ - %@", self.otherUser.username, self.conversation.post.title];
     } else {
-        title = self.otherUser.username;
+        title = [NSString stringWithFormat:@"%@ - UNTITLED POST", self.otherUser.username];
     }
     [Format formatAppBar:self.appBar withTitle:title];
     
     self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
+}
+
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
 }
 
 #pragma mark - Configurations Based on State

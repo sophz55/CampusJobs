@@ -36,6 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.appBar.headerViewController;
+}
+
 - (void)configureNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
@@ -53,10 +58,12 @@
 }
 
 - (void)configureLayout {
-    self.segmentedControl.frame = CGRectMake(0, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width, self.segmentedControl.frame.size.height);
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"RobotoCondensed-Regular" size:14]} forState:UIControlStateNormal];
+    self.segmentedControl.frame = CGRectMake(-10, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width + 20, 30);
+    self.segmentedControl.tintColor = self.appBar.headerViewController.view.backgroundColor;
     
     CGFloat containerOriginY = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
-    CGFloat tabBarHeight = 20;
+    CGFloat tabBarHeight = 60;
     
     self.nearbyPostingsContainer.frame = CGRectMake(0, containerOriginY, self.view.frame.size.width, self.view.frame.size.height - containerOriginY - tabBarHeight);
     self.yourPostingsContainer.frame = self.nearbyPostingsContainer.frame;

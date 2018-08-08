@@ -14,19 +14,25 @@
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
+#import <MaterialComponents/MaterialAppBar.h>
 #import "AppScheme.h"
 #import "Format.h"
+#import "Colors.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
-@property (strong, nonatomic) MDCTextInputControllerFilled *usernameFieldController;
-@property (strong, nonatomic) MDCTextInputControllerFilled *passwordFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
 
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *loginButton;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *signUpButton;
+
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (weak, nonatomic) IBOutlet UILabel *accountLabel;
+@property (weak, nonatomic) IBOutlet UIView *signUpView;
 
 @end
 
@@ -35,49 +41,96 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self formatColors];
-    // Do any additional setup after loading the view.
-    
-    [self configureTextFields];
+    [self formatTypography];
+    [self configureLayout];
 }
 
-- (void)configureTextFields {
-    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
-    CGFloat textFieldWidth = 300;
-    CGFloat textFieldHeight = 50;
-    CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
-    CGFloat topTextFieldOriginY = 250;
-    CGFloat verticalSpace = textFieldHeight + 20;
-
-    self.usernameField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
-    self.usernameField.delegate = self;
-    self.usernameFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.usernameField];
-    self.usernameField.font=robotoCondensed;
-    self.usernameFieldController.inlinePlaceholderFont=robotoCondensed;
-    
-    self.passwordField.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
-    self.passwordField.delegate = self;
-    self.passwordFieldController = [[MDCTextInputControllerFilled alloc] initWithTextInput:self.passwordField];
-    self.passwordField.font=robotoCondensed;
-    self.passwordFieldController.inlinePlaceholderFont=robotoCondensed;
-    
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)didTapLogin:(id)sender {
-    [self loginUser];
+//automatically style status bar
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    self.appBar = [[MDCAppBar alloc] init];
+    [self addChildViewController:_appBar.headerViewController];
+    self.appBar.headerViewController.headerView.backgroundColor = [Colors primaryBlueDarkColor];
+    return self.appBar.headerViewController;
 }
 
 - (void)formatColors {
     [Format addBlueGradientToView:self.view];
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
-    self.titleLabel.textColor = colorScheme.onSurfaceColor;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.usernameFieldController];
+    self.usernameField.textColor = [UIColor whiteColor];
+    self.usernameFieldController.inlinePlaceholderColor = [UIColor whiteColor];
+
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.passwordFieldController];
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.loginButton];
-    [MDCTextButtonColorThemer applySemanticColorScheme:colorScheme
-                                              toButton:self.signUpButton];
+    self.passwordField.textColor = [UIColor whiteColor];
+    self.passwordFieldController.inlinePlaceholderColor = [UIColor whiteColor];
+
+    [Format formatRaisedButton:self.loginButton];
+    
+    self.accountLabel.textColor = [UIColor whiteColor];
+    [Format formatFlatButton:self.signUpButton];
+    [self.signUpButton setTitleColor:[Colors primaryOrangeColor] forState:UIControlStateNormal];
+}
+
+- (void)formatTypography {
+    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+    
+    self.titleLabel.font = typographyScheme.headline2;
+    self.titleLabel.text = [self.titleLabel.text uppercaseString];
+    
+    self.usernameField.placeholderLabel.font = typographyScheme.subtitle1;
+    self.usernameFieldController.inlinePlaceholderFont = self.usernameField.placeholderLabel.font;
+    self.usernameField.placeholderLabel.text = @"USERNAME";
+    
+    self.passwordField.placeholderLabel.font = typographyScheme.subtitle1;
+    self.passwordFieldController.inlinePlaceholderFont = self.passwordField.placeholderLabel.font;
+    self.passwordField.placeholderLabel.text = @"PASSWORD";
+    
+    self.accountLabel.font = typographyScheme.body1;
+}
+
+- (void)configureLayout {
+    [self.titleLabel sizeToFit];
+    self.titleLabel.frame = CGRectMake(0, 100, self.titleLabel.frame.size.width, self.titleLabel.frame.size.height);
+    [Format centerHorizontalView:self.titleLabel inView:self.view];
+    
+    CGFloat textFieldWidth = 300;
+    CGFloat textFieldHeight = 50;
+    
+    CGFloat topTextFieldOriginY = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10;
+    CGFloat verticalSpace = textFieldHeight + 20;
+    
+    self.usernameField.frame = CGRectMake(0, topTextFieldOriginY, textFieldWidth, textFieldHeight);
+    [Format centerHorizontalView:self.usernameField inView:self.view];
+    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
+    
+    self.passwordField.frame = CGRectMake(self.usernameField.frame.origin.x, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
+    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
+    
+    [Format centerHorizontalView:self.signUpButton inView:self.view];
+    
+    CGFloat space = 8;
+    CGFloat verticalInset = 24;
+    CGFloat height = self.accountLabel.frame.size.height;
+    self.signUpView.backgroundColor = [UIColor clearColor];
+    [self.accountLabel sizeToFit];
+    [self.signUpButton sizeToFit];
+    self.signUpView.frame = CGRectMake(0, self.view.frame.size.height - height - verticalInset, self.accountLabel.frame.size.width + space + self.signUpButton.frame.size.width, height);
+    [Format centerHorizontalView:self.signUpView inView:self.view];
+    self.accountLabel.frame = CGRectMake(0, 0, self.accountLabel.frame.size.width, self.signUpView.frame.size.height);
+    self.signUpButton.frame = CGRectMake(self.signUpView.frame.size.width - self.signUpButton.frame.size.width, 0, self.signUpButton.frame.size.width, self.signUpView.frame.size.height);
+}
+
+- (IBAction)didTapLogin:(id)sender {
+    [self loginUser];
 }
 
 - (void)loginUser {
@@ -95,10 +148,6 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
 }

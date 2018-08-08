@@ -40,6 +40,9 @@
     [Format formatProfilePictureForUser:self.otherUser withView:self.otherUserProfileImageView];
     
     self.postTitleLabel.text = [conversation.post.title uppercaseString];
+    if ([conversation.post.title isEqualToString:@""]) {
+        self.postTitleLabel.text = @"UNTITLED POST";
+    }
     self.postTitleLabel.font = typographyScheme.overline;
     
     Message *lastMessage = [conversation.messages lastObject];
