@@ -14,6 +14,7 @@
 #import "Colors.h"
 #import "MaterialBottomNavigation+ColorThemer.h"
 #import "AppScheme.h"
+#import "StringConstants.h"
 
 @interface TabBarViewController () <MDCBottomNavigationBarDelegate>
 @end
@@ -61,7 +62,7 @@
     
     //format navigation bar colors and font
     navigationBar.barTintColor=[Colors secondaryGreyLighterColor];
-    navigationBar.itemTitleFont=[UIFont fontWithName:@"RobotoCondensed-Regular" size:10];
+    navigationBar.itemTitleFont=[UIFont fontWithName:regularFontName size:10];
     navigationBar.selectedItemTintColor=[UIColor grayColor];
 }
 

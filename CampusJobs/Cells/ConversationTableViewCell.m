@@ -11,6 +11,7 @@
 #import "Format.h"
 #import "AppScheme.h"
 #import <MaterialComponents/MaterialTypography.h>
+#import "StringConstants.h"
 
 @implementation ConversationTableViewCell
 
@@ -48,7 +49,7 @@
     Message *lastMessage = [conversation.messages lastObject];
     
     if (lastMessage.isSystemMessage) {
-        self.messagePreviewLabel.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 16];
+        self.messagePreviewLabel.font = [UIFont fontWithName:lightItalicFontName size: 16];
     } else {
         self.messagePreviewLabel.font = typographyScheme.subtitle1;
     }

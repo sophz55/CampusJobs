@@ -17,6 +17,7 @@
 #import "Alert.h"
 #import "Utils.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Format.h"
 
 #import "ConversationDetailViewController.h"
@@ -201,10 +202,10 @@
 
 - (void)setDetailsPost:(Post *)post{
     //set fonts
-    self.titleDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:24];
-    self.descriptionDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 18];
-    self.locationDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
-    self.userDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Light" size:24];
+    self.titleDetailsLabel.font=[UIFont fontWithName:regularFontName size:24];
+    self.descriptionDetailsLabel.font=[UIFont fontWithName:lightItalicFontName size: 18];
+    self.locationDetailsLabel.font=[UIFont fontWithName:regularFontName size:18];
+    self.userDetailsLabel.font=[UIFont fontWithName:lightFontName size:24];
     
     //set color
     self.titleDetailsLabel.textColor=[UIColor blackColor];

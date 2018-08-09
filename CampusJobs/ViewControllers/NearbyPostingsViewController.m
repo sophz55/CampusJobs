@@ -34,11 +34,8 @@
     
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
-    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     
-    self.noNearbyPostingsView.frame = self.view.bounds;
-    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
-    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     
     [self addRefreshControl];
     [self displayBackgroundColor];
@@ -50,9 +47,18 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self displayRadius];
-//    [self fetchNearbyPosts];
-//    [self.nearbyPostTableView reloadData];
+        
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    
+    CGFloat verticalInset = 8;
+    self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
+    self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
+    
+    [self displayRadius];
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,14 +83,6 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
-            if (posts.count > 0) {
-                self.noNearbyPostingsView.hidden = YES;
-            } else {
-                self.noNearbyPostingsView.hidden = NO;
-                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
-                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
-            }
-            
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
@@ -97,6 +95,15 @@
                     [self.nearbyPostingsArray addObject:currPost];
                 }
             }
+            
+            if (self.nearbyPostingsArray.count > 0) {
+                self.noNearbyPostingsView.hidden = YES;
+            } else {
+                self.noNearbyPostingsView.hidden = NO;
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
+                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            
             [self.nearbyPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);

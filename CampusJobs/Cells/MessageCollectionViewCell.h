@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *senderProfileImageView;
 @property (weak, nonatomic) IBOutlet UIView *textBubbleView;
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
-@property (weak, nonatomic) IBOutlet UIStackView *buttonsStackView;
+@property (weak, nonatomic) IBOutlet UIView *suggestedPriceOptionButtonsView;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *acceptButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *declineButton;
 @property (strong, nonatomic) Message *message;

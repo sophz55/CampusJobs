@@ -16,6 +16,7 @@
 #import <MaterialComponents/MaterialTextFields+ColorThemer.h>
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
+#import "StringConstants.h"
 
 @implementation Format
 
@@ -120,7 +121,7 @@
     view.backgroundColor = [Colors secondaryGreyLighterColor];
     label.textColor = [Colors secondaryGreyColor];
     [label setTextAlignment:NSTextAlignmentCenter];
-    label.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size:20];
+    label.font = [UIFont fontWithName:lightItalicFontName size:20];
 }
 
 + (void)formatTextFieldController:(MDCTextInputControllerBase *)controller withNormalColor:(UIColor *)color {

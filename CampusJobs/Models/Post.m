@@ -78,7 +78,7 @@
                 otherUser = self.taker;
             }
             
-            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%@. This job is now in progress - please coordinate how you would like to proceed!", user.username, price] withSender:user withReceiver:otherUser withCompletion:completion];
+            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ accepted the price $%@. This job is now in progress!", user.username, price] withSender:user withReceiver:otherUser withCompletion:completion];
         }
     }];
 }
@@ -98,7 +98,7 @@
                 otherUser = self.taker;
             }
             
-            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job. Please coordinate further to proceed!", user.username] withSender:user withReceiver:otherUser withCompletion:completion];
+            [(Conversation *)conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ canceled the job.", user.username] withSender:user withReceiver:otherUser withCompletion:completion];
         }
     }];
 }

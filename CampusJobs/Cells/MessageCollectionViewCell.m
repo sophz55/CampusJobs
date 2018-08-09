@@ -13,6 +13,7 @@
 #import "Format.h"
 #import <MaterialComponents/MaterialTypography.h>
 #import "AppScheme.h"
+#import "StringConstants.h"
 
 @implementation MessageCollectionViewCell
 
@@ -24,10 +25,8 @@
     self.viewWidth = viewWidth;
     self.messageTextView.text = message.text;
     
-    [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
-    
     [self configureCellLayout];
-    [self toggleShowButtonStackView];
+    [self toggleShowSuggestedPriceOptionButtonsView];
 }
 
 - (void)configureCellLayout {
@@ -36,7 +35,7 @@
     
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     if (self.message.isSystemMessage) {
-        self.messageTextView.font = [UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 16];
+        self.messageTextView.font = [UIFont fontWithName:lightItalicFontName size: 16];
     } else {
         self.messageTextView.font = typographyScheme.subtitle1;
     }
@@ -46,7 +45,7 @@
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
     CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: self.messageTextView.font} context:nil];
     
-    CGFloat imageWidth = 40;
+    CGFloat imageWidth = 33;
     CGFloat horizontalImageInset = 8;
     CGFloat verticalImageInset = 8;
     
@@ -60,6 +59,7 @@
     if (![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         self.senderProfileImageView.hidden = NO;
         self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, verticalImageInset, imageWidth, imageWidth);
+        [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
         CGFloat imageInset = horizontalImageInset + imageWidth;
         
         self.textBubbleView.frame = CGRectMake(imageInset + horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
@@ -79,12 +79,28 @@
     self.messageTextView.frame = CGRectMake(self.textBubbleView.frame.origin.x + horizontalTextInset, self.textBubbleView.frame.origin.y + verticalTextInset, textViewSize.width, textViewSize.height);
 }
 
-- (void)toggleShowButtonStackView {
+- (void)toggleShowSuggestedPriceOptionButtonsView {
     if (self.conversation.post.postStatus == OPEN && self.message[@"suggestedPrice"] && ![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        self.buttonsStackView.frame = CGRectMake(self.textBubbleView.frame.origin.x + self.textBubbleView.frame.size.width * .1, self.textBubbleView.frame.origin.y + self.textBubbleView.frame.size.height + 5, self.textBubbleView.frame.size.width * .8, 30);
-        [self.buttonsStackView setHidden:NO];
+        
+        [Format formatRaisedButton:self.acceptButton];
+        [Format formatRaisedButton:self.declineButton];
+        UIFont *buttonFont = [UIFont fontWithName:boldFontName size:10];
+        [self.acceptButton setTitleFont:buttonFont forState:UIControlStateNormal];
+        [self.declineButton setTitleFont:buttonFont forState:UIControlStateNormal];
+        [self.acceptButton sizeToFit];
+        [self.declineButton sizeToFit];
+        CGFloat buttonWidth = MAX(self.acceptButton.frame.size.width, self.declineButton.frame.size.width);
+        
+        CGFloat buttonsViewWidth = 2 * buttonWidth + 8;
+        CGFloat buttonsViewOriginX = (self.textBubbleView.frame.size.width - buttonsViewWidth)/2 + self.textBubbleView.frame.origin.x;
+        self.suggestedPriceOptionButtonsView.backgroundColor = [UIColor clearColor];
+        self.suggestedPriceOptionButtonsView.frame = CGRectMake(buttonsViewOriginX, self.textBubbleView.frame.origin.y + self.textBubbleView.frame.size.height + 5, buttonsViewWidth, 30);
+        
+        self.acceptButton.frame = CGRectMake(0, 0, buttonWidth, self.suggestedPriceOptionButtonsView.frame.size.height);
+        self.declineButton.frame = CGRectMake(self.suggestedPriceOptionButtonsView.frame.size.width - buttonWidth, 0, buttonWidth, self.suggestedPriceOptionButtonsView.frame.size.height);
+        [self.suggestedPriceOptionButtonsView setHidden:NO];
     } else {
-        [self.buttonsStackView setHidden:YES];
+        [self.suggestedPriceOptionButtonsView setHidden:YES];
     }
 }
 
@@ -122,7 +138,7 @@
     [self.message removeObjectForKey:@"suggestedPrice"];
     [self.message saveInBackgroundWithBlock:^(BOOL saved, NSError *error) {
         if (saved) {
-            [self.buttonsStackView setHidden:YES];
+            [self.suggestedPriceOptionButtonsView setHidden:YES];
         } else {
             [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)self.delegate];
         }
