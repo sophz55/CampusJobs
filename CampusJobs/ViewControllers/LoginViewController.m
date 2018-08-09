@@ -87,15 +87,18 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+     UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
     
     self.titleLabel.font = typographyScheme.headline2;
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
     self.usernameField.placeholderLabel.font = typographyScheme.subtitle1;
     self.usernameField.placeholder = @"USERNAME";
+    self.usernameField.font=robotoCondensed;
     
     self.passwordField.placeholderLabel.font = typographyScheme.subtitle1;
     self.passwordField.placeholder = @"PASSWORD";
+     self.passwordField.font=robotoCondensed;
     
     [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16] forState:UIControlStateNormal];
     [self.forgotPasswordButton sizeToFit];
@@ -148,7 +151,7 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            [Alert callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Login Failed" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:loginToFeedSegue sender:nil];

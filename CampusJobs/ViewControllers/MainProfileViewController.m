@@ -179,7 +179,7 @@
     self.editProfPicButton.layer.cornerRadius=3.0;
     self.editProfPicButton.layer.backgroundColor=[[Colors secondaryGreyLightColor]CGColor];
     
-    //Add rounded edges, typography, color theme to bottom view buttons
+    //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
     self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
     [Format formatRaisedButton:self.editPaymentInfoButton];
