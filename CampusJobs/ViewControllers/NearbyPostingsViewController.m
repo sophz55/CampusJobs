@@ -52,7 +52,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self displayRadius];
-
+    
     CGFloat verticalInset = 8;
     self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
     self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
@@ -103,7 +103,6 @@
                     [self.nearbyPostingsArray addObject:currPost];
                 }
             }
-            
             if (self.nearbyPostingsArray.count > 0) {
                 self.noNearbyPostingsView.hidden = YES;
             } else {

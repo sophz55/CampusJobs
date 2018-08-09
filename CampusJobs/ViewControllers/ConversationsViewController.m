@@ -129,9 +129,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConversationCell" forIndexPath:indexPath];
-    
     Conversation *conversation = self.conversations[indexPath.row];
-    
     [cell configureCellWithConversation:conversation];
     
     return cell;

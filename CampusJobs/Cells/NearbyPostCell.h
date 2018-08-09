@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "ParseUI.h"
 
 @interface NearbyPostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postTitleLabel;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postDistanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (strong, nonatomic) Post * post;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 
 -(void) setNearbyPost:(Post *)post;
 
