@@ -137,8 +137,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.composeMessageTextField.textView.delegate = self;
+    self.composeMessageTextField.textView.font = [UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
-    self.composeMessageTextField.textView.font = typographyScheme.subtitle1;
     self.composeMessageTextField.placeholderLabel.font = typographyScheme.subtitle1;
     self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
     self.composeMessageTextField.minimumLines = 1;

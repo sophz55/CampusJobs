@@ -50,11 +50,9 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    
     self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
     [Format formatBarButton:self.nextButton];
     self.navigationItem.rightBarButtonItem = self.nextButton;
-    
     [Format formatAppBar:self.appBar withTitle:@"CHOOSE A RADIUS"];
 }
 
@@ -65,7 +63,7 @@
 
 //Set default radius to 1 mile
 - (void)setDefaultRadius{
-    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f", self.radiusSliderBar.value];
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f", self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
     [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:desiredRadius];
 }
@@ -102,7 +100,7 @@
 }
 
 - (IBAction)slideBarValueChanged:(id)sender {
-    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f",self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
 }
 
@@ -122,7 +120,7 @@
     if (self.currentUser[desiredRadius]){
         self.radiusSliderBar.value=[self.currentUser[desiredRadius] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
-        self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
+        self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f",self.radiusSliderBar.value];
         [self.nextButton setTitle:@"SAVE"];
     }
 }

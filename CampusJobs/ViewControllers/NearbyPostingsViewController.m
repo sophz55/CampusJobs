@@ -32,16 +32,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
-    
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-    
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self addRefreshControl];
     [self displayBackgroundColor];
-    [self displayRadius];
-    
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
     
@@ -52,7 +51,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    [self displayRadius];
+
     CGFloat verticalInset = 8;
     self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
     self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
@@ -84,6 +84,13 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * posts, NSError*error){
         if (posts != nil) {
+            if (posts.count > 0) {
+                self.noNearbyPostingsView.hidden = YES;
+            } else {
+                self.noNearbyPostingsView.hidden = NO;
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.0f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
+                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
@@ -117,6 +124,12 @@
     Post * post=self.nearbyPostingsArray[indexPath.row];
     nearbyPostCell.post=post;
     [nearbyPostCell setNearbyPost:post];
+    //adding shadow
+    nearbyPostCell.layer.shadowOffset=CGSizeMake(0, 0);
+    nearbyPostCell.layer.shadowOpacity=0.3;
+    nearbyPostCell.layer.shadowRadius=1.0;
+    nearbyPostCell.clipsToBounds = false;
+    nearbyPostCell.layer.shadowColor=[[UIColor blackColor]CGColor];
     return nearbyPostCell;
 }
 
@@ -136,12 +149,6 @@
     roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
     roundedCellView.layer.cornerRadius=3.0;
-    //adding shadow
-    roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
-    roundedCellView.layer.shadowOpacity=0.3;
-    roundedCellView.layer.shadowRadius=1.0;
-    roundedCellView.clipsToBounds = false;
-    roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];
@@ -171,7 +178,7 @@
     self.currentUser=[PFUser currentUser];
     self.userRadius=self.currentUser[desiredRadius];
     floatRadius=[self.userRadius floatValue];
-    self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.2f MILES",floatRadius];
+    self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.1f MILES",floatRadius];
 }
 
 //Displays the background color

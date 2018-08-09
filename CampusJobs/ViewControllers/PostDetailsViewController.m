@@ -123,16 +123,6 @@
     } else {
         self.cancelButton.hidden = YES;
     }
-    
-    [Format formatRaisedButton:self.cancelButton];
-    [Format centerHorizontalView:self.cancelButton inView:self.view];
-    
-    [Format formatRaisedButton:self.messageButton];
-    [Format centerHorizontalView:self.messageButton inView:self.view];
-    
-    [Format formatRaisedButton:self.deleteButton];
-    [Format centerHorizontalView:self.deleteButton inView:self.view];
-    
 }
 
 - (void)configureNavigatonBar {
