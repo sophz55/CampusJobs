@@ -17,6 +17,8 @@
 @property (weak, nonatomic) NSString *securityCode;
 @property (weak, nonatomic) NSString *addressLine1;
 @property (weak, nonatomic) NSString *addressLine2;
-@property (weak, nonatomic) NSString *cityStateZip;
+@property (weak, nonatomic) NSString *zipcode;
+@property (weak, nonatomic) NSString *state;
+@property (weak, nonatomic) NSString *city;
 
 @end

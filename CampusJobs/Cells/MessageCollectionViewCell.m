@@ -129,7 +129,7 @@
         if (succeeded) {
             [weakSelf removeSuggestedPrice];
         } else {
-            [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
+            [Alert callAlertWithTitle:@"Something's wrong." alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }
     }];
 }
@@ -140,7 +140,7 @@
         if (saved) {
             [self.suggestedPriceOptionButtonsView setHidden:YES];
         } else {
-            [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)self.delegate];
+            [Alert callAlertWithTitle:@"Something's wrong." alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)self.delegate];
         }
     }];
 }

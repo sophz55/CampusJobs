@@ -112,7 +112,7 @@
     UIFont * robotoCondensed=[UIFont fontWithName:regularFontName size:18];
     UIFont * robotoBold=[UIFont fontWithName:boldFontName size:18];
     self.titleTextField.textView.delegate = self;
-    self.titleTextField.placeholder = @"Title";
+    self.titleTextField.placeholder = @"TITLE";
     self.titleTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
     [self.titleTextField sizeToFit];
     self.titleTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.titleTextField];
@@ -121,7 +121,7 @@
     
     //format description text field
     self.descriptionTextField.textView.delegate = self;
-    self.descriptionTextField.placeholder = @"Description";
+    self.descriptionTextField.placeholder = @"DESCRIPTION";
     self.descriptionTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
     [self.descriptionTextField sizeToFit];
     self.descriptionTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.descriptionTextField];

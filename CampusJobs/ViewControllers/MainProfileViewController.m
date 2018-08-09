@@ -19,7 +19,6 @@
 #import "AppScheme.h"
 #import "Format.h"
 
-
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -27,7 +26,7 @@
 @property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIView *roundedEdgeView;
-@property (weak, nonatomic) IBOutlet MDCFlatButton *editProfPicButton;
+@property (weak, nonatomic) IBOutlet UIButton *editProfPicButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
@@ -47,7 +46,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureNavigationBar {
@@ -66,32 +64,33 @@
     [self configureNavigationBar];
     [self setMainPageLabels];
     [self formatPic];
-    self.buttonScheme = [[MDCButtonScheme alloc] init];
     [self formatButtons];
-
-    self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 85, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
+    self.buttonScheme = [[MDCButtonScheme alloc] init];
     
-    self.editProfPicButton.frame = CGRectMake(self.editProfPicButton.frame.origin.x, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 4, self.editProfPicButton.frame.size.width, self.editProfPicButton.frame.size.height);
+    CGFloat editButtonWidth = 120;
+    CGFloat editButtonHeight = 20;
+    CGFloat centerButton=(self.view.frame.size.width - self.editProfPicButton.frame.size.width)/2;
     
-    self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 4, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
+    self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 76, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
+    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth, editButtonHeight);
+    self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 10, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
     self.usernameLabel.frame = CGRectMake(self.usernameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height + 2, self.usernameLabel.frame.size.width, self.usernameLabel.frame.size.height);
     self.emailLabel.frame = CGRectMake(self.emailLabel.frame.origin.x, self.usernameLabel.frame.origin.y + self.usernameLabel.frame.size.height + 2, self.emailLabel.frame.size.width, self.emailLabel.frame.size.height);
-    
-    [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y];
+    [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y-10];
 }
+
 
 //Helper method
 - (void)formatBackgroundAtHeight:(CGFloat)height {
     //Format top view
-    self.topView.frame=CGRectMake(0, 75, self.view.frame.size.width, height-75);
+    self.topView.frame=CGRectMake(0, 75, self.view.frame.size.width, height-20);
     NSMutableArray *topColors = [NSMutableArray array];
     [topColors addObject:[Colors primaryBlueDarkColor]];
     [topColors addObject:[Colors primaryBlueColor]];
-//    [topColors addObject:[Colors primaryBlueLightColor]];
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
-    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, height-50, self.view.frame.size.width * 2, 100);
+    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.origin.y + self.topView.frame.size.height - 50, self.view.frame.size.width * 2, 100);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
     self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
@@ -134,7 +133,6 @@
         return nil;
     }
     NSData * imageData =UIImagePNGRepresentation(image);
-    
     if(!imageData){
         return nil;
     }
@@ -175,19 +173,17 @@
     [Format formatProfilePictureForUser:self.currentUser withView:self.profilePicture];
 }
 
+//called in main configuration
 - (void)formatButtons {
     //Edit profile picture button
-    self.editProfPicButton.layer.borderWidth=.25f;
-    [Format formatFlatButton:self.editProfPicButton];
-    [Format centerHorizontalView:self.editProfPicButton inView:self.view];
+    self.editProfPicButton.layer.cornerRadius=3.0;
+    self.editProfPicButton.layer.backgroundColor=[[Colors secondaryGreyLightColor]CGColor];
     
-    //Add rounded edges, typography, color theme to bottom view buttons
+    //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
     self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
-    
     [Format formatRaisedButton:self.editPaymentInfoButton];
     self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
-    
     [Format formatRaisedButton:self.editDesiredRadiusButton];
     self.editDesiredRadiusButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     
@@ -198,18 +194,13 @@
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
-    self.editPaymentInfoButton.layer.shadowColor = self.editPersonalSettingsButton.layer.shadowColor;
-    self.editDesiredRadiusButton.layer.shadowColor = self.editPersonalSettingsButton.layer.shadowColor;
+    self.editPaymentInfoButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
+    self.editDesiredRadiusButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
+    self.editProfPicButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
+    
+    [self.editPaymentInfoButton sizeToFit];
+    [self.editDesiredRadiusButton sizeToFit];
+    [self.editPersonalSettingsButton sizeToFit];
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- //    Get the new view controller using [segue destinationViewController].
- //    Pass the selected object to the new view controller.
- }
- */
 
 @end

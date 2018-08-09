@@ -16,7 +16,9 @@
 @dynamic securityCode;
 @dynamic addressLine1;
 @dynamic addressLine2;
-@dynamic cityStateZip;
+@dynamic zipcode;
+@dynamic state;
+@dynamic city;
 
 // conforming to PFSubclassing protocol
 + (nonnull NSString *) parseClassName{

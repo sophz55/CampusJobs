@@ -306,7 +306,12 @@
     [self configureBottomViewShowingSuggestPriceButton:NO];
     
     [self.inProgressOptionsView setHidden:NO];
-    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@!", self.conversation.post.price];
+    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 70);
+    
+    [self.inProgressButtonsStackView setHidden:NO];
+    
+    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@", self.conversation.post.price];
+
     
     [self.cancelJobButton setHidden:NO];
     // show/hide job completed button, since only want post's author to state when job completed
@@ -327,7 +332,7 @@
     
     [self.inProgressOptionsView setHidden:NO];
     
-    self.jobStatusProgressLabel.text = @"Sorry, this job has been taken by another user!";
+    self.jobStatusProgressLabel.text = @"Sorry, this job has been taken by another user.";
     [self configureOptionsView];
 }
 
@@ -340,8 +345,9 @@
     [self.inProgressOptionsView setHidden:NO];
     self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
-    self.jobStatusProgressLabel.text = @"This job is already in progress with another user!";
+    self.jobStatusProgressLabel.text = @"This job is already in progress with another user.";
     [self configureOptionsView];
+
 }
 
 - (void)configureClosedAppearance {
@@ -353,8 +359,9 @@
     [self.inProgressOptionsView setHidden:NO];
     self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
-    self.jobStatusProgressLabel.text = @"This job has been completed, but feel free to keep chatting!";
+    self.jobStatusProgressLabel.text = @"This job has been completed.";
     [self configureOptionsView];
+
 }
 
 - (void)configureBottomViewShowingSuggestPriceButton:(BOOL)showsSuggestPrice {
@@ -471,7 +478,7 @@
                 if (didSendMessage) {
                     [weakSelf reloadData];
                 } else {
-                    [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
+                    [Alert callAlertWithTitle:@"Something's wrong." alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
             }];
         } else {

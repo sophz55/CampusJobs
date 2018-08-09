@@ -12,19 +12,24 @@
 #import "Format.h"
 #import "Alert.h"
 #import <Parse/Parse.h>
+#import "Colors.h"
+#import "AppScheme.h"
+#import "MaterialTextFields+ColorThemer.h"
 
-@interface EditProfileViewController ()
+@interface EditProfileViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) PFUser *user;
-
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (strong, nonatomic) UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) UIBarButtonItem *saveButton;
-
 @property (weak, nonatomic) IBOutlet MDCTextField *nameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *usernameField;
 @property (weak, nonatomic) IBOutlet MDCTextField *emailField;
 @property (weak, nonatomic) IBOutlet MDCTextField *passwordField;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *nameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *emailFieldController;
+@property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
 
 @end
 
@@ -32,16 +37,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.user = [PFUser currentUser];
-    
     [self configureNavigationBar];
+    [self configureTextFieldControllers];
+    [self configureTextFields];
     [self populateFieldsWithExistingInformation];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)populateFieldsWithExistingInformation {
@@ -49,6 +53,14 @@
     self.usernameField.text = self.user.username;
     self.emailField.text = self.user.email;
     self.passwordField.text = self.user.password;
+}
+
+//initializes all text field controllers
+- (void)configureTextFieldControllers{
+    self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
+    self.usernameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.usernameField];
+    self.emailFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.emailField];
+    self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
 }
 
 - (void)configureNavigationBar {
@@ -81,7 +93,6 @@
     self.user.username = self.usernameField.text;
     self.user.email = self.emailField.text;
     self.user.password = self.passwordField.text;
-    
     [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *error) {
         if (didSaveUser) {
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -95,14 +106,68 @@
     [self.view endEditing:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//formats font within text fields
+- (void)formatTextFieldTypography{
+    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
+    UIFont * robotoBold=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
+    //name field
+    self.nameField.placeholderLabel.text = @"FULL NAME";
+    self.nameField.placeholderLabel.font=robotoBold;
+    self.nameFieldController.inlinePlaceholderFont=robotoBold;
+    self.nameField.font=robotoCondensed;
+    
+    //username field
+    self.usernameField.placeholderLabel.text=@"USERNAME";
+    self.usernameField.placeholderLabel.font=robotoBold;
+    self.usernameFieldController.inlinePlaceholderFont=robotoBold;
+    self.usernameField.font=robotoCondensed;
+    
+    //email field
+    self.emailField.placeholderLabel.text=@"EMAIL";
+    self.emailField.placeholderLabel.font=robotoBold;
+    self.emailFieldController.inlinePlaceholderFont=robotoBold;
+    self.emailField.font=robotoCondensed;
+    
+    //password field
+    self.passwordField.placeholderLabel.text=@"PASSWORD";
+    self.passwordField.placeholderLabel.font=robotoBold;
+    self.passwordFieldController.inlinePlaceholderFont=robotoBold;
+    self.passwordField.font=robotoCondensed;
 }
-*/
+
+//formats color scheme within text fields and main background
+- (void)formatTextFieldColors{
+    id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    self.view.backgroundColor=[Colors secondaryGreyLighterColor];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.nameFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.usernameFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.emailFieldController];
+    [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
+                                toTextInputController:self.passwordFieldController];
+}
+//formats full text field with frame, color, and font
+- (void)configureTextFields{
+    [self formatTextFieldTypography];
+    [self formatTextFieldColors];
+    
+    CGFloat textFieldWidth = 320;
+    CGFloat textFieldHeight = 50;
+    CGFloat textFieldOriginX = (self.view.frame.size.width - textFieldWidth)/2;
+    CGFloat textFieldOriginY = 140;
+    CGFloat verticalSpace = textFieldHeight + 25;
+    
+    self.nameField.frame=CGRectMake(textFieldOriginX, textFieldOriginY, textFieldWidth, textFieldHeight);
+    self.usernameField.frame=CGRectMake(textFieldOriginX, textFieldOriginY+verticalSpace, textFieldWidth, textFieldHeight);
+    self.emailField.frame=CGRectMake(textFieldOriginX, textFieldOriginY+(verticalSpace*2), textFieldWidth, textFieldHeight);
+    self.passwordField.frame=CGRectMake(textFieldOriginX, textFieldOriginY+(verticalSpace*3), textFieldWidth, textFieldHeight);
+    
+    [self.nameField sizeToFit];
+    [self.usernameField sizeToFit];
+    [self.emailField sizeToFit];
+    [self.passwordField sizeToFit];
+}
 
 @end

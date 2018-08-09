@@ -61,7 +61,6 @@
         // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
         _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
         
-        
         // current font: RobotoCondensed. Change fonts in StringConstants.h
         _typographyScheme.headline1 = [UIFont fontWithName:lightFontName size:96.0];
         _typographyScheme.headline2 = [UIFont fontWithName:lightFontName size:60.0];
@@ -76,7 +75,6 @@
         _typographyScheme.caption = [UIFont fontWithName:boldFontName size:14.0];
         _typographyScheme.button = [UIFont fontWithName:regularFontName size:16.0];
         _typographyScheme.overline = [UIFont fontWithName:regularFontName size:18.0];
-        
         
         // Create a button scheme based off our custom colors and typography
         _buttonScheme = [[MDCButtonScheme alloc] init];
