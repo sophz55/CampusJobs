@@ -73,7 +73,7 @@
         _typographyScheme.headline5 = [UIFont fontWithName:regularFont size:24.0];
         _typographyScheme.headline6 = [UIFont fontWithName:boldFont size:20.0];
         _typographyScheme.subtitle1 = [UIFont fontWithName:boldFont size:16.0];
-        _typographyScheme.subtitle2 = [UIFont fontWithName:boldFont size:14.0];
+        _typographyScheme.subtitle2 = [UIFont fontWithName:lightFont size:16.0];
         _typographyScheme.body1 = [UIFont fontWithName:regularFont size:16.0];
         _typographyScheme.body2 = [UIFont fontWithName:regularFont size:14.0];
         _typographyScheme.caption = [UIFont fontWithName:boldFont size:14.0];

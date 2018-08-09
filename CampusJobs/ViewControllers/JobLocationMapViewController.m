@@ -19,6 +19,7 @@
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (strong, nonatomic) UIBarButtonItem *clearButton;
 @property (strong, nonatomic) UIBarButtonItem *saveButton;
+@property (nonatomic,assign) NSInteger * zoomToUserLocation;
 @end
 
 @implementation JobLocationMapViewController
@@ -32,13 +33,16 @@
     [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
     [self editSavedLocation:self.prevPost.savedLocation];
-    
     [self configureNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    self.zoomToUserLocation=0;
 }
 
 
@@ -76,10 +80,10 @@
 
 //Will only auto-zoom into user's location once
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation*)userLocation {
-    static dispatch_once_t useOnce;
-    dispatch_once(&useOnce, ^{
+    if(self.zoomToUserLocation==0){
         [self.jobPostingMapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
-    });
+        self.zoomToUserLocation++;
+    }
 }
 
 //Action method for when user double taps desired location (adds pin)

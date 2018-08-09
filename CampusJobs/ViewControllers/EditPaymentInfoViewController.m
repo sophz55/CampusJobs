@@ -124,18 +124,18 @@
 
 //Configures the frame of payment buttons when an account is first created
 - (void)configureButtonsNewCard{
-    CGFloat cancelButtonOriginX=self.cardNumberField.frame.origin.x-10;
+    CGFloat cancelButtonOriginX=self.cardNumberField.frame.origin.x;
     CGFloat cancelButtonOriginY=self.cancelButton.frame.origin.y;
-    CGFloat cancelButtonWidth=(self.view.frame.size.width/3)-40;
+    CGFloat cancelButtonWidth=(self.cardNumberField.frame.size.width)/3-5;
     CGFloat cancelButtonHeight=self.cancelButton.frame.size.height;
-    CGFloat skipButtonOriginX=self.cancelButton.frame.origin.x+ self.cancelButton.frame.size.width+10;
+    CGFloat skipButtonOriginX=cancelButtonOriginX+cancelButtonWidth+10;
     CGFloat skipButtonOriginY=self.skipButton.frame.origin.y;
-    CGFloat skipButtonWidth=self.cancelButton.frame.size.width;
-    CGFloat skipButtonHeight=self.cancelButton.frame.size.height;
-    CGFloat saveButtonOriginX=self.skipButton.frame.size.width+self.skipButton.frame.origin.x+10;
-    CGFloat saveButtonOriginY=self.skipButton.frame.origin.y;
-    CGFloat saveButtonWidth=self.cancelButton.frame.size.width;
-    CGFloat saveButtonHeight=self.cancelButton.frame.size.height;
+    CGFloat skipButtonWidth=cancelButtonWidth;
+    CGFloat skipButtonHeight=cancelButtonHeight;
+    CGFloat saveButtonOriginX=skipButtonWidth+skipButtonOriginX+10;
+    CGFloat saveButtonOriginY=skipButtonOriginY;
+    CGFloat saveButtonWidth=cancelButtonWidth;
+    CGFloat saveButtonHeight=cancelButtonHeight;
     
     self.cancelButton.frame=CGRectMake(cancelButtonOriginX,cancelButtonOriginY,cancelButtonWidth, cancelButtonHeight);
     self.skipButton.frame=CGRectMake(skipButtonOriginX, skipButtonOriginY,skipButtonWidth, skipButtonHeight);
@@ -144,21 +144,21 @@
 
 //Configures the frame of buttons when payment info is being edited
 - (void)configureButtonsEditing{
-    CGFloat cancelButtonWidth=(self.view.frame.size.width/2)-80;
+    CGFloat cancelButtonWidth=(self.view.frame.size.width/2)-60;
     CGFloat cancelButtonOriginY=self.cancelButton.frame.origin.y;
     CGFloat cancelButtonHeight=self.cancelButton.frame.size.height;
     CGFloat saveButtonOriginY=self.saveButton.frame.origin.y;
     CGFloat saveButtonHeight=self.saveButton.frame.size.height;
     
-    self.cancelButton.frame=CGRectMake(60,cancelButtonOriginY, cancelButtonWidth, cancelButtonHeight);
+    self.cancelButton.frame=CGRectMake(50,cancelButtonOriginY, cancelButtonWidth, cancelButtonHeight);
     self.saveButton.frame=CGRectMake(80+cancelButtonWidth, saveButtonOriginY, cancelButtonWidth, saveButtonHeight);
 }
 
 //initialize button fonts
 - (void)configureButtonTypography{
-    [self.saveButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:16] forState:UIControlStateNormal];
-    [self.skipButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:16] forState:UIControlStateNormal];
-    [self.cancelButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:16] forState:UIControlStateNormal];
+    [self.saveButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:12] forState:UIControlStateNormal];
+    [self.skipButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:12] forState:UIControlStateNormal];
+    [self.cancelButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:12] forState:UIControlStateNormal];
 }
 
 - (void)configureNavigationBar {

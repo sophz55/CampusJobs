@@ -28,8 +28,8 @@
     
     //set fonts
     self.previousPostTitleLabel.font=typographyScheme.overline;
-    self.statusLabel.font=typographyScheme.subtitle1;
-    self.dateLabel.font=typographyScheme.subtitle1;
+    self.statusLabel.font=typographyScheme.subtitle2;
+    self.dateLabel.font=typographyScheme.subtitle2;
 
     //set text for each field
     self.previousPostTitleLabel.text=[previousPost.title uppercaseString];
