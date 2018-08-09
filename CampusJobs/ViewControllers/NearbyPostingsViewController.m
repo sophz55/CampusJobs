@@ -10,6 +10,7 @@
 #import "NearbyPostCell.h"
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Utils.h"
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
@@ -43,14 +44,14 @@
     
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
+    
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-        
-    self.noNearbyPostingsView.frame = self.view.bounds;
-    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
-    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     
     CGFloat verticalInset = 8;
     self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
@@ -68,12 +69,12 @@
 - (void)fetchNearbyPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     //convert desired radius into a double
-    NSNumber* desiredRadius =self.currentUser[@"desiredRadius"];
+    NSNumber *desiredRadius = self.currentUser[@"desiredRadius"];
     double desiredRadiusDouble=[desiredRadius doubleValue];
     
     [query orderByDescending:@"createdAt"];
     //user's current location
-    PFGeoPoint * currentLocation =self.currentUser[@"currentLocation"];
+    PFGeoPoint *currentLocation = self.currentUser[@"currentLocation"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
     [query includeKey:@"summary"];
@@ -168,7 +169,7 @@
 - (void)displayRadius{
     float floatRadius;
     self.currentUser=[PFUser currentUser];
-    self.userRadius=self.currentUser[@"desiredRadius"];
+    self.userRadius=self.currentUser[desiredRadius];
     floatRadius=[self.userRadius floatValue];
     self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.2f MILES",floatRadius];
 }

@@ -139,6 +139,7 @@
     self.composeMessageTextField.textView.delegate = self;
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     self.composeMessageTextField.textView.font = typographyScheme.subtitle1;
+    self.composeMessageTextField.placeholderLabel.font = typographyScheme.subtitle1;
     self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
     self.composeMessageTextField.minimumLines = 1;
     
@@ -308,11 +309,8 @@
     [self.inProgressOptionsView setHidden:NO];
     self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 70);
     
-    [self.inProgressButtonsStackView setHidden:NO];
-    
-    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@", self.conversation.post.price];
+    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@.", self.conversation.post.price];
 
-    
     [self.cancelJobButton setHidden:NO];
     // show/hide job completed button, since only want post's author to state when job completed
     if ([self.user.objectId isEqualToString:self.conversation.post.author.objectId]) {
@@ -455,8 +453,12 @@
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
-    self.showingSuggestViewController = YES;
-    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+    if ([self.user.objectId isEqualToString:self.conversation.post.author.objectId] && self.user[paymentCard]) {
+        self.showingSuggestViewController = YES;
+        [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+    } else {
+        
+    }
 }
 
 - (IBAction)didTapCancelJobButton:(id)sender {

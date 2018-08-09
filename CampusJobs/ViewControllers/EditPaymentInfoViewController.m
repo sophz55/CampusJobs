@@ -18,6 +18,7 @@
 #import <MaterialComponents/MaterialButtons+ColorThemer.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import "Format.h"
+#import "StringConstants.h"
 #import "AppScheme.h"
 #import "Colors.h"
 
@@ -89,8 +90,8 @@
 }
 
 - (void)populateFieldsWithExistingInformation {
-    if (self.user[@"card"]) {
-        Card *card = self.user[@"card"];
+    if (self.user[paymentCard]) {
+        Card *card = self.user[paymentCard];
         [card fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
             if (fetchedCard) {
                 self.nameField.text = card.billingName;
@@ -105,7 +106,7 @@
             }
         }];
     } else {
-        self.nameField.text = self.user[@"name"];
+        self.nameField.text = self.user[fullName];
     }
 }
 //initializes all text field controllers
@@ -275,8 +276,8 @@
 
 - (IBAction)didTapSaveButton:(id)sender {
     Card *card;
-    if (self.user[@"card"]) {
-        card = self.user[@"card"];
+    if (self.user[paymentCard]) {
+        card = self.user[paymentCard];
     } else {
         card = [[Card alloc] init];
     }
@@ -293,8 +294,8 @@
     if (![self.nameField.text isEqualToString:@""] && ![self.cardNumberField.text isEqualToString:@""] && ![self.expDateField.text isEqualToString:@""] && ![self.securityCodeField.text isEqualToString:@""] && ![self.addressLine1Field.text isEqualToString:@""] && ![self.zipcodeField.text isEqualToString:@""]){
         [card saveInBackgroundWithBlock:^(BOOL didSaveCard, NSError *errorSavingCard) {
             if (didSaveCard) {
-                if (!self.user[@"card"]) {
-                    self.user[@"card"] = card;
+                if (!self.user[paymentCard]) {
+                    self.user[paymentCard] = card;
                 }
                 [self.user saveInBackgroundWithBlock:^(BOOL didSaveUser, NSError *errorSavingUser) {
                     if (didSaveUser) {

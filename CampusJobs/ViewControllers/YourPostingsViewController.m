@@ -32,21 +32,21 @@
     [self fetchUserPosts];
     [self addRefreshControl];
     [self displayBackgroundColor];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
     self.noPostingsView.frame = self.view.frame;
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     self.previousPostTableView.frame = self.view.frame;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of/Users/szheng/Desktop/CampusJobs/CampusJobs/Models/Post.h any resources that can be recreated.
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)reloadData {

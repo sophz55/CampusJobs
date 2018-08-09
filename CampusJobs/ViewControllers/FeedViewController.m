@@ -88,9 +88,11 @@
     switch(segment.selectedSegmentIndex) {
         case 0:
             self.yourPostingsContainer.hidden=NO;
+            self.nearbyPostingsContainer.hidden=YES;
             break;
         case 1:
             self.yourPostingsContainer.hidden=YES;
+            self.nearbyPostingsContainer.hidden=NO;
             break;
         default:
             break;

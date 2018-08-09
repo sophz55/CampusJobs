@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Format.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
@@ -66,18 +67,18 @@
 - (void)setDefaultRadius{
     self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f", self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
-    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
+    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:desiredRadius];
 }
 
 - (IBAction)didTapNextButton:(id)sender {
-    self.currentUser[@"currentLocation"]=[PFGeoPoint geoPointWithLocation:self.userLocation];
-    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
+    self.currentUser[currentLocation]=[PFGeoPoint geoPointWithLocation:self.userLocation];
+    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:desiredRadius];
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(!succeeded){
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    if(self.currentUser[@"desiredRadius"]){
+    if(self.currentUser[desiredRadius]){
         [self dismissViewControllerAnimated:YES completion:nil];
     } else{
         [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
@@ -118,8 +119,8 @@
 
 //check if the user has already set a radius and is now editing it
 - (void)checkEditing{
-    if (self.currentUser[@"desiredRadius"]){
-        self.radiusSliderBar.value=[self.currentUser[@"desiredRadius"] floatValue];
+    if (self.currentUser[desiredRadius]){
+        self.radiusSliderBar.value=[self.currentUser[desiredRadius] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
         self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
         [self.nextButton setTitle:@"SAVE"];

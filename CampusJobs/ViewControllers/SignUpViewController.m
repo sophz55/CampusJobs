@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "Alert.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Card.h"
 #import "EditPaymentInfoViewController.h"
 #import <MaterialComponents/MaterialButtons.h>
@@ -160,15 +161,11 @@
     newUser.username = self.usernameField.text;
     newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
-    newUser[@"name"] = self.nameField.text;
-    newUser[@"address"] = @"";
-    newUser[@"profileImageFile"] = [self getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
-    newUser[@"venmoHandle"] = @"";
-    newUser[@"rating"] = @5; // out of five stars
-    newUser[@"numberJobsCompleted"] = @0; // number of jobs completed as job taker
-    // user also has a key @"card", of class Card, that saves credit/debit card info
+    newUser[fullName] = self.nameField.text;
+    newUser[profileImageFile] = [self getPFFileFromImage:[UIImage imageNamed:@"image_placeholder"]];
+    newUser[numberJobsCompleted] = @0; // number of jobs completed as job taker
     
-    if (![newUser.email isEqual:@""] && ![newUser[@"name"] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
+    if (![newUser.email isEqual:@""] && ![newUser[fullName] isEqual:@""] && ![newUser.username isEqual:@""] && ![newUser.password isEqual:@""]) {
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {

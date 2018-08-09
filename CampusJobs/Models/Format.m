@@ -50,7 +50,8 @@
 
 + (void)formatBarButton:(UIBarButtonItem *)button {
     [button setTitle:[button.title uppercaseString]];
-    [button setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    [button setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: typographyScheme.button, NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     button.width = 0.0f;
 }
 
@@ -107,8 +108,8 @@
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (user) {
             //set profile picture (if there is one already selected)
-            if(user[@"profileImageFile"]){
-                view.file = user[@"profileImageFile"];
+            if(user[profileImageFile]){
+                view.file = user[profileImageFile];
                 [view loadInBackground];
             }
         }

@@ -285,25 +285,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fec-Cr-NAq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="69i-eg-8sw">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="yWn-VD-vsT">
-                            <connections>
-                                <action selector="didTapBackButton:" destination="yWq-Xd-JjF" id="Mau-Xx-NUe"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Tee-7c-GnR">
-                            <connections>
-                                <action selector="didTapEditButton:" destination="yWq-Xd-JjF" id="Q4C-ix-ocj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <size key="freeformSize" width="375" height="623"/>
                     <connections>
-                        <outlet property="backButton" destination="yWn-VD-vsT" id="dVD-aG-zJb"/>
                         <outlet property="cancelButton" destination="bbm-Qz-9QJ" id="UWP-Na-HNV"/>
                         <outlet property="deleteButton" destination="OYg-NL-uyE" id="KmQ-sm-CGG"/>
                         <outlet property="descriptionDetailsLabel" destination="u1f-Gi-wCp" id="aoB-wE-s7k"/>
-                        <outlet property="editButton" destination="Tee-7c-GnR" id="BDd-UV-T5b"/>
                         <outlet property="locationDetailsLabel" destination="OIW-L9-NEa" id="B2k-Fe-Raq"/>
                         <outlet property="messageButton" destination="WpY-Uq-maF" id="u10-iA-O59"/>
                         <outlet property="postLocationMap" destination="kId-OF-6M8" id="iDU-f2-Caw"/>
@@ -416,7 +402,7 @@
             <objects>
                 <viewController id="ShG-hl-pRK" customClass="JobLocationMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pzV-br-hDd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-QR-Y3v">
@@ -561,7 +547,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vn4-AL-oMl"/>
+        <segue reference="2I9-0Y-5qo"/>
         <segue reference="kdN-ua-8ao"/>
     </inferredMetricsTieBreakers>
 </document>

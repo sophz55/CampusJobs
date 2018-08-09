@@ -13,6 +13,7 @@
 #import "Alert.h"
 #import <Parse/Parse.h>
 #import "Colors.h"
+#import "StringConstants.h"
 #import "AppScheme.h"
 #import "MaterialTextFields+ColorThemer.h"
 
@@ -49,7 +50,7 @@
 }
 
 - (void)populateFieldsWithExistingInformation {
-    self.nameField.text = self.user[@"name"];
+    self.nameField.text = self.user[fullName];
     self.usernameField.text = self.user.username;
     self.emailField.text = self.user.email;
     self.passwordField.text = self.user.password;
@@ -89,7 +90,7 @@
 }
 
 - (IBAction)didTapSaveButton:(id)sender {
-    self.user[@"name"] = self.nameField.text;
+    self.user[fullName] = self.nameField.text;
     self.user.username = self.usernameField.text;
     self.user.email = self.emailField.text;
     self.user.password = self.passwordField.text;
