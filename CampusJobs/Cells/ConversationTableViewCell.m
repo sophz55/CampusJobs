@@ -51,7 +51,7 @@
     if (lastMessage.isSystemMessage) {
         self.messagePreviewLabel.font = [UIFont fontWithName:lightItalicFontName size: 16];
     } else {
-        self.messagePreviewLabel.font = typographyScheme.subtitle1;
+        self.messagePreviewLabel.font = [UIFont fontWithName:lightFontName size:16];
     }
 
     self.messagePreviewLabel.text = lastMessage[@"text"];

@@ -101,21 +101,26 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
+    UIFont *fontName = [UIFont fontWithName:boldFontName size:16];
     
     self.titleLabel.font = typographyScheme.headline2;
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
     self.nameField.font = typographyScheme.subtitle1;
     self.nameField.placeholder = @"FULL NAME";
+    self.nameFieldController.inlinePlaceholderFont = fontName;
     
     self.emailField.font = typographyScheme.subtitle1;
     self.emailField.placeholder = @"EMAIL";
+    self.emailFieldController.inlinePlaceholderFont = fontName;
     
     self.usernameField.font = typographyScheme.subtitle1;
     self.usernameField.placeholder = @"USERNAME";
+    self.usernameFieldController.inlinePlaceholderFont = fontName;
     
     self.passwordField.font = typographyScheme.subtitle1;
     self.passwordField.placeholder = @"PASSWORD";
+    self.passwordFieldController.inlinePlaceholderFont = fontName;
     
     self.accountLabel.font = typographyScheme.body1;
 }

@@ -33,11 +33,10 @@
     NSString *messageText = self.message.text;
     self.messageTextView.userInteractionEnabled = NO;
     
-    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     if (self.message.isSystemMessage) {
-        self.messageTextView.font = [UIFont fontWithName:lightItalicFontName size: 16];
+        self.messageTextView.font = [UIFont fontWithName:italicFontName size: 16];
     } else {
-        self.messageTextView.font = typographyScheme.subtitle1;
+        self.messageTextView.font = [UIFont fontWithName:regularFontName size: 16];
     }
     
     // setting frame for message text view

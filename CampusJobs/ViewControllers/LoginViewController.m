@@ -56,6 +56,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    MDCTextField *field = (MDCTextField *)textField;
+    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+    field.placeholderLabel.font = typographyScheme.subtitle1;
+}
+
 //automatically style status bar
 - (UIViewController *)childViewControllerForStatusBarStyle {
     self.appBar = [[MDCAppBar alloc] init];
@@ -88,7 +94,7 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
-     UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
+    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
     
     self.titleLabel.font = typographyScheme.headline2;
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
