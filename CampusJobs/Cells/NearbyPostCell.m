@@ -12,6 +12,7 @@
 #import "DateTools.h"
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
+#import "Colors.h"
 
 @implementation NearbyPostCell
 
@@ -60,6 +61,12 @@
     NSString * timeAgo= [NSDate shortTimeAgoSinceDate:createdAt];
     self.postDateLabel.text= timeAgo;
     
+    //set profile picture
+    self.profilePicture.layer.cornerRadius= self.profilePicture.frame.size.width / 2;
+    self.profilePicture.clipsToBounds = YES;
+    self.profilePicture.file=post.author[@"profileImageFile"];
+    self.profilePicture.layer.borderWidth=1.5;
+    self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
 }
 
 
