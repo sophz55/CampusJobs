@@ -184,23 +184,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pdQ-rB-l6f">
-                                                    <rect key="frame" x="124" y="177" width="94" height="27"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l84-Lh-e98">
+                                                    <rect key="frame" x="0.0" y="169" width="338" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-nm-H5i" customClass="MDCRaisedButton">
-                                                            <rect key="frame" x="0.0" y="0.0" width="43" height="27"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="Accept">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="didTapAccept:" destination="RsE-B9-ecx" eventType="touchUpInside" id="ths-NB-h4N"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-zD-WXo" customClass="MDCRaisedButton">
-                                                            <rect key="frame" x="51" y="0.0" width="43" height="27"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-zD-WXo" customClass="MDCRaisedButton">
+                                                            <rect key="frame" x="200" y="8" width="43" height="27"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="Decline">
@@ -210,19 +200,29 @@
                                                                 <action selector="didTapDecline:" destination="RsE-B9-ecx" eventType="touchUpInside" id="LlF-Ar-Jql"/>
                                                             </connections>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-nm-H5i" customClass="MDCRaisedButton">
+                                                            <rect key="frame" x="112" y="8" width="43" height="27"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title="Accept">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="didTapAccept:" destination="RsE-B9-ecx" eventType="touchUpInside" id="ths-NB-h4N"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="IgL-zD-WXo" firstAttribute="width" secondItem="eRL-nm-H5i" secondAttribute="width" id="mkJ-hv-070"/>
-                                                    </constraints>
-                                                </stackView>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <connections>
                                             <outlet property="acceptButton" destination="eRL-nm-H5i" id="Pzl-co-ceI"/>
-                                            <outlet property="buttonsStackView" destination="pdQ-rB-l6f" id="lCv-Ge-nJt"/>
                                             <outlet property="declineButton" destination="IgL-zD-WXo" id="6cb-Ic-MYN"/>
                                             <outlet property="messageTextView" destination="UJ4-L7-1GI" id="GlS-mD-yqo"/>
                                             <outlet property="senderProfileImageView" destination="lJp-iH-vdT" id="AfG-ZD-Xy0"/>
+                                            <outlet property="suggestedPriceOptionButtonsView" destination="l84-Lh-e98" id="Dg4-cS-gbP"/>
                                             <outlet property="textBubbleView" destination="BOP-pb-Hkd" id="Kty-d9-j3L"/>
                                         </connections>
                                     </collectionViewCell>
@@ -239,28 +239,24 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PZE-un-SDH">
-                                        <rect key="frame" x="8" y="25.5" width="190" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-GW-2II" customClass="MDCRaisedButton">
+                                        <rect key="frame" x="8" y="29" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-GW-2II" customClass="MDCRaisedButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Cancel Job"/>
-                                                <connections>
-                                                    <action selector="didTapCancelJobButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="K9r-JK-R9v"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-eA-fcq" customClass="MDCRaisedButton">
-                                                <rect key="frame" x="85" y="0.0" width="105" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Job Completed"/>
-                                                <connections>
-                                                    <action selector="didTapJobCompletedButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="g7K-HC-hGZ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Cancel Job"/>
+                                        <connections>
+                                            <action selector="didTapCancelJobButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="K9r-JK-R9v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-eA-fcq" customClass="MDCRaisedButton">
+                                        <rect key="frame" x="107" y="29" width="105" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Job Completed"/>
+                                        <connections>
+                                            <action selector="didTapJobCompletedButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="g7K-HC-hGZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="0.60100064212328763" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -269,28 +265,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q64-vc-5sv" customClass="MDCMultilineTextField">
-                                        <rect key="frame" x="127" y="1" width="196" height="32"/>
+                                        <rect key="frame" x="89" y="4" width="196" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1" customClass="MDCFlatButton">
-                                <rect key="frame" x="177" y="322" width="20" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="suggest"/>
-                                <connections>
-                                    <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
-                                    <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="sKn-wY-Ouv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-FP-sFj" customClass="MDCFlatButton">
                                 <rect key="frame" x="299" y="632" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="didTapSendMessage:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="DXt-xH-4qi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-t8-Ew1" customClass="MDCFlatButton">
+                                <rect key="frame" x="16" y="634" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="suggest"/>
+                                <connections>
+                                    <action selector="didTapSuggestPriceButton:" destination="Bdl-9U-zBf" eventType="touchUpInside" id="8Se-3G-c2Q"/>
+                                    <segue destination="0H4-vw-4U8" kind="presentation" identifier="suggestPriceModalSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="sKn-wY-Ouv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -305,7 +301,6 @@
                         <outlet property="bottomView" destination="fpS-qz-gNA" id="STW-e5-efk"/>
                         <outlet property="cancelJobButton" destination="VgO-GW-2II" id="fjz-sS-TA0"/>
                         <outlet property="composeMessageTextField" destination="Q64-vc-5sv" id="ANS-jS-VeJ"/>
-                        <outlet property="inProgressButtonsStackView" destination="PZE-un-SDH" id="Ox2-2W-aB3"/>
                         <outlet property="inProgressOptionsView" destination="sy6-BY-QPx" id="OfT-0i-e5U"/>
                         <outlet property="jobCompletedButton" destination="TNg-eA-fcq" id="4yE-wk-rhJ"/>
                         <outlet property="jobStatusProgressLabel" destination="oTc-Hy-Kce" id="wIr-Gs-7fy"/>

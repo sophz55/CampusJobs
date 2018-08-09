@@ -72,6 +72,7 @@
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3C1F277211B6D4F00B4D588 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = F31CC593211264F500C899B7 /* Alert.m */; };
 		F3C1F278211B6D4F00B4D588 /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5E1DC3211223D10088DDBE /* Colors.m */; };
+		F3C1F27B211B80DD00B4D588 /* StringConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F27A211B80DD00B4D588 /* StringConstants.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
 		F3E55E5D2118CFB1001E03EF /* Format.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E55E5C2118CFB1001E03EF /* Format.m */; };
 		F3FD740421153589004BF81B /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396B1F72113ADFE0099E623 /* Feed.storyboard */; };
@@ -224,6 +225,8 @@
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
+		F3C1F279211B80DD00B4D588 /* StringConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringConstants.h; sourceTree = "<group>"; };
+		F3C1F27A211B80DD00B4D588 /* StringConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringConstants.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		F3E55E5A2118C2A5001E03EF /* Apache License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				F31226A0210A8582004F4677 /* Utils.m */,
 				F31226A3210A8927004F4677 /* SegueConstants.h */,
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
+				F3C1F279211B80DD00B4D588 /* StringConstants.h */,
+				F3C1F27A211B80DD00B4D588 /* StringConstants.m */,
 				F31CC592211264F500C899B7 /* Alert.h */,
 				F31CC593211264F500C899B7 /* Alert.m */,
 				FC5E1DC2211223D10088DDBE /* Colors.h */,
@@ -917,6 +922,7 @@
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
 				D38B18CD210EC8AE005E607F /* PortfolioViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
+				F3C1F27B211B80DD00B4D588 /* StringConstants.m in Sources */,
 				F396B1FB2113B2260099E623 /* AppScheme.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				D38B18DD210EC9AF005E607F /* SocialViewController.m in Sources */,

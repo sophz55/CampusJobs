@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray * previousPostsArray;
 @property (weak, nonatomic) IBOutlet UIView *noPostingsView;
 @property (weak, nonatomic) IBOutlet UILabel *noPostingsLabel;
+@property (assign, nonatomic) CGFloat frameOriginY;
 
 @end
 
@@ -34,6 +35,12 @@
     self.noPostingsView.frame = self.view.frame;
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.previousPostTableView.frame = self.view.frame;
 }
 
 - (void)didReceiveMemoryWarning {

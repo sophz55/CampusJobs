@@ -21,6 +21,7 @@
 #import "MaterialButtons+ColorThemer.h"
 #import "AppScheme.h"
 #import <MapKit/MapKit.h>
+#import "StringConstants.h"
 
 @interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>{
     CLLocationCoordinate2D savedLocationCoordinate;
@@ -108,8 +109,8 @@
     CGFloat verticalSpace = textFieldHeight + 20;
     
     //format title text field
-    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
-    UIFont * robotoBold=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
+    UIFont * robotoCondensed=[UIFont fontWithName:regularFontName size:18];
+    UIFont * robotoBold=[UIFont fontWithName:boldFontName size:18];
     self.titleTextField.textView.delegate = self;
     self.titleTextField.placeholder = @"TITLE";
     self.titleTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);

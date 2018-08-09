@@ -18,6 +18,7 @@
 #import "AppScheme.h"
 #import "Format.h"
 #import "Colors.h"
+#import "StringConstants.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -100,7 +101,7 @@
     self.passwordField.placeholder = @"PASSWORD";
      self.passwordField.font=robotoCondensed;
     
-    [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16] forState:UIControlStateNormal];
+    [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:lightItalicFontName size:16] forState:UIControlStateNormal];
     [self.forgotPasswordButton sizeToFit];
     
     self.accountLabel.font = typographyScheme.body1;

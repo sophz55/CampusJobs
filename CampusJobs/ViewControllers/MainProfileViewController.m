@@ -11,6 +11,7 @@
 #import "ParseUI.h"
 #import "Colors.h"
 #import "Utils.h"
+#import "StringConstants.h"
 #import <ChameleonFramework/Chameleon.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import "MaterialButtons+ButtonThemer.h"
@@ -119,7 +120,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.profilePicture setImage:editedImage];
     PFUser *user= PFUser.currentUser;
-    user[@"profileImageFile"]=[self getPFFileFromImage:editedImage];
+    user[profileImageFile]=[self getPFFileFromImage:editedImage];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(!succeeded){
             NSLog(@"%@", error.localizedDescription);
@@ -142,7 +143,7 @@
 //Helper method
 - (void)setMainPageLabels{
     //set labels
-    self.nameLabel.text=self.currentUser[@"name"];
+    self.nameLabel.text=self.currentUser[fullName];
     self.usernameLabel.text=self.currentUser.username;
     self.emailLabel.text=self.currentUser.email;
     

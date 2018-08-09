@@ -10,6 +10,7 @@
 #import "NearbyPostCell.h"
 #import "PostDetailsViewController.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Utils.h"
 #import "Colors.h"
 #import <ChameleonFramework/Chameleon.h>
@@ -37,16 +38,28 @@
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self addRefreshControl];
     [self displayBackgroundColor];
-    [self displayRadius];
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
+    
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self displayRadius];
+
+    CGFloat verticalInset = 8;
+    self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
+    self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
+    
+    [self displayRadius];
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,12 +69,12 @@
 - (void)fetchNearbyPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     //convert desired radius into a double
-    NSNumber* desiredRadius =self.currentUser[@"desiredRadius"];
+    NSNumber *desiredRadius = self.currentUser[@"desiredRadius"];
     double desiredRadiusDouble=[desiredRadius doubleValue];
     
     [query orderByDescending:@"createdAt"];
     //user's current location
-    PFGeoPoint * currentLocation =self.currentUser[@"currentLocation"];
+    PFGeoPoint *currentLocation = self.currentUser[@"currentLocation"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
     [query includeKey:@"summary"];
@@ -78,7 +91,6 @@
                 self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.0f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
-            
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
@@ -91,6 +103,15 @@
                     [self.nearbyPostingsArray addObject:currPost];
                 }
             }
+            
+            if (self.nearbyPostingsArray.count > 0) {
+                self.noNearbyPostingsView.hidden = YES;
+            } else {
+                self.noNearbyPostingsView.hidden = NO;
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
+                [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+            
             [self.nearbyPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -155,7 +176,7 @@
 - (void)displayRadius{
     float floatRadius;
     self.currentUser=[PFUser currentUser];
-    self.userRadius=self.currentUser[@"desiredRadius"];
+    self.userRadius=self.currentUser[desiredRadius];
     floatRadius=[self.userRadius floatValue];
     self.radiusLabel.text=[NSString stringWithFormat:@"POSTS WITHIN %.1f MILES",floatRadius];
 }

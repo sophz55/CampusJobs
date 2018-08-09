@@ -85,7 +85,7 @@
         <!--Your Postings View Controller-->
         <scene sceneID="rGG-8w-huQ">
             <objects>
-                <viewController id="mQb-X1-xCt" customClass="YourPostingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="yourPostings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mQb-X1-xCt" customClass="YourPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEj-rP-uJU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,25 +288,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fec-Cr-NAq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="69i-eg-8sw">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="yWn-VD-vsT">
-                            <connections>
-                                <action selector="didTapBackButton:" destination="yWq-Xd-JjF" id="Mau-Xx-NUe"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Tee-7c-GnR">
-                            <connections>
-                                <action selector="didTapEditButton:" destination="yWq-Xd-JjF" id="Q4C-ix-ocj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <size key="freeformSize" width="375" height="623"/>
                     <connections>
-                        <outlet property="backButton" destination="yWn-VD-vsT" id="dVD-aG-zJb"/>
                         <outlet property="cancelButton" destination="bbm-Qz-9QJ" id="UWP-Na-HNV"/>
                         <outlet property="deleteButton" destination="OYg-NL-uyE" id="KmQ-sm-CGG"/>
                         <outlet property="descriptionDetailsLabel" destination="u1f-Gi-wCp" id="aoB-wE-s7k"/>
-                        <outlet property="editButton" destination="Tee-7c-GnR" id="BDd-UV-T5b"/>
                         <outlet property="locationDetailsLabel" destination="OIW-L9-NEa" id="B2k-Fe-Raq"/>
                         <outlet property="messageButton" destination="WpY-Uq-maF" id="u10-iA-O59"/>
                         <outlet property="postLocationMap" destination="kId-OF-6M8" id="iDU-f2-Caw"/>
@@ -452,13 +438,13 @@
         <!--Nearby Postings View Controller-->
         <scene sceneID="aZC-zz-e8g">
             <objects>
-                <viewController id="QfN-nh-tUT" customClass="NearbyPostingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="nearbyPostings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QfN-nh-tUT" customClass="NearbyPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cDV-f0-gNg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ep7-nO-lLP">
-                                <rect key="frame" x="0.0" y="85" width="375" height="525"/>
+                                <rect key="frame" x="0.0" y="85" width="375" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -524,7 +510,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-mA-eYx">
-                                <rect key="frame" x="0.0" y="-29" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No postings within # miles of you. Change your desired radius in settings to widen the scope." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-rZ-oIR">
@@ -542,7 +528,7 @@
                         <viewLayoutGuide key="safeArea" id="0EV-GM-jRl"/>
                     </view>
                     <navigationItem key="navigationItem" id="Tr8-Cf-G9m"/>
-                    <size key="freeformSize" width="375" height="610"/>
+                    <size key="freeformSize" width="375" height="623"/>
                     <connections>
                         <outlet property="nearbyPostTableView" destination="ep7-nO-lLP" id="vAe-2J-ef6"/>
                         <outlet property="noNearbyPostingsLabel" destination="1ji-rZ-oIR" id="0mB-EY-q0i"/>
@@ -552,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7k-rq-13U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="1767.616191904048"/>
+            <point key="canvasLocation" x="936.79999999999995" y="1767.1664167916044"/>
         </scene>
         <!--MDCTabBar-->
         <scene sceneID="yAI-7C-oCQ">
@@ -565,6 +551,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2I9-0Y-5qo"/>
-        <segue reference="vrc-CX-ngk"/>
+        <segue reference="kdN-ua-8ao"/>
     </inferredMetricsTieBreakers>
 </document>
