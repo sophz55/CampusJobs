@@ -537,10 +537,10 @@
             </objects>
             <point key="canvasLocation" x="936.79999999999995" y="1767.1664167916044"/>
         </scene>
-        <!--MDCTabBar-->
+        <!--Main-->
         <scene sceneID="yAI-7C-oCQ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MDCTabBar" storyboardName="Main" referencedIdentifier="MDCTabBar" id="BK2-fp-JBD" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" id="BK2-fp-JBD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkH-f7-dQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4008" y="3237"/>
@@ -548,6 +548,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2I9-0Y-5qo"/>
-        <segue reference="kdN-ua-8ao"/>
+        <segue reference="vrc-CX-ngk"/>
     </inferredMetricsTieBreakers>
 </document>

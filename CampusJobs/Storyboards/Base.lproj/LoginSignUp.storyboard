@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="410" y="363"/>
         </scene>
-        <!--MDCTabBar-->
+        <!--BottomNavigationBar-->
         <scene sceneID="ISJ-Ds-SZq">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MDCTabBar" id="jEt-fT-LpR" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BottomNavigationBar" id="jEt-fT-LpR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daO-ch-swx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1166" y="216"/>
@@ -283,10 +283,10 @@
             </objects>
             <point key="canvasLocation" x="-327" y="363"/>
         </scene>
-        <!--MDCTabBar-->
+        <!--BottomNavigationBar-->
         <scene sceneID="Emv-qf-C3i">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MDCTabBar" id="dkE-a4-TIu" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BottomNavigationBar" id="dkE-a4-TIu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSl-uc-xUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1072" y="-407"/>
