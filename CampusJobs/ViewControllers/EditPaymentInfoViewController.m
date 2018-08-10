@@ -21,6 +21,7 @@
 #import "StringConstants.h"
 #import "AppScheme.h"
 #import "Colors.h"
+#import "MapViewController.h"
 
 @interface EditPaymentInfoViewController ()
 @property (weak, nonatomic) IBOutlet MDCTextField *nameField;
@@ -41,10 +42,8 @@
 @property (strong, nonatomic) IBOutlet MDCTextInputControllerUnderline *zipcodeFieldController;
 @property (strong, nonatomic) IBOutlet MDCTextInputControllerUnderline *stateFieldController;
 @property (strong, nonatomic) IBOutlet MDCTextInputControllerUnderline *cityFieldController;
-
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) MDCAppBar *appBar;
-
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *saveButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *skipButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
@@ -88,7 +87,6 @@
         [self configureButtonsEditing];
     }
 }
-
 - (void)populateFieldsWithExistingInformation {
     if (self.user[paymentCard]) {
         Card *card = self.user[paymentCard];
@@ -109,6 +107,7 @@
         self.nameField.text = self.user[fullName];
     }
 }
+
 //initializes all text field controllers
 - (void)configureTextFieldControllers{
     self.nameFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.nameField];
@@ -325,4 +324,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:addCardToMapSegue]) {
+        MapViewController *mapvc = [segue destinationViewController];
+        mapvc.vc = self;
+    }
+}
 @end
