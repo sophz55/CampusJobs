@@ -4,6 +4,7 @@ PODS:
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - DateTools (2.0.0)
+  - Masonry (1.1.0)
   - MaterialComponents (55.5.0):
     - MaterialComponents/ActivityIndicator (= 55.5.0)
     - "MaterialComponents/ActivityIndicator+ColorThemer (= 55.5.0)"
@@ -452,6 +453,7 @@ PODS:
 DEPENDENCIES:
   - ChameleonFramework
   - DateTools
+  - Masonry
   - MaterialComponents
   - Parse
   - ParseUI
@@ -462,6 +464,7 @@ SPEC REPOS:
     - Bolts
     - ChameleonFramework
     - DateTools
+    - Masonry
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -476,6 +479,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MaterialComponents: 68cc8d56b82799b087240c0e5e48f6a2ab0587ee
   MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
@@ -486,6 +490,6 @@ SPEC CHECKSUMS:
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
   RateView: d4d12e9bb76dc23a77a56f4e5c5fb530a3f3f998
 
-PODFILE CHECKSUM: 812e1800a09f92905b1cd27fd3d0d5e96c08af4f
+PODFILE CHECKSUM: 278a5c55affe219c48afbe65c50532c2a89a2120
 
 COCOAPODS: 1.5.3

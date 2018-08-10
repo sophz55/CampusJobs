@@ -14,6 +14,8 @@
 #import "Format.h"
 #import "NSDate+DateTools.h"
 #import "SegueConstants.h"
+#import "Masonry.h"
+#import "StringConstants.h"
 
 @interface JobCompletedViewController ()
 @property (weak, nonatomic) IBOutlet PFImageView *takerProfileImageView;
@@ -23,6 +25,7 @@
 @property (strong, nonatomic) RateView *rateView;
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet MDCButton *nextButton;
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 
 @end
 
@@ -30,11 +33,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self configureTopNavigationBar];
-    [self configureRateView];
-    [self configureLayout];
+    [self formatViews];
     [self populateViews];
+    [self configureLayout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,24 +49,34 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-
+    
     [Format formatAppBar:self.appBar withTitle:@"JOB COMPLETED"];
 }
 
 - (void)populateViews {
-    [Format formatProfilePictureForUser:self.otherUser withView:self.takerProfileImageView];
     self.usernameLabel.text = [NSString stringWithFormat:@"%@",self.otherUser.username];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSDate *completedAtDate = self.post.completedDate;
+    self.completedDateLabel.text = self.post.completedDateString;
     
-    // Configure output format
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterNoStyle;
+    self.priceLabel.text = [NSString stringWithFormat:@"Completed for $%@", self.post.price];
+}
+
+- (void)formatViews {
+    UIFont *font = [UIFont fontWithName:regularFontName size:20];
     
-    self.completedDateLabel.text = [formatter stringFromDate:completedAtDate];
+    self.usernameLabel.font = font;
+    self.completedDateLabel.font = self.usernameLabel.font;
+    self.priceLabel.font = self.usernameLabel.font;
+    self.rateLabel.font = self.usernameLabel.font;
     
-    self.priceLabel.text = [NSString stringWithFormat:@"$%@", self.post.price];
+    [self.usernameLabel sizeToFit];
+    [self.completedDateLabel sizeToFit];
+    [self.priceLabel sizeToFit];
+    [self.rateLabel sizeToFit];
+    
+    [self configureRateView];
+    
+    [Format formatRaisedButton:self.nextButton];
 }
 
 - (void)configureRateView {
@@ -76,23 +89,50 @@
 }
 
 - (void) configureLayout {
-    self.takerProfileImageView.frame = CGRectMake(0, 120, 100, 100);
-    [Format centerHorizontalView:self.takerProfileImageView inView:self.view];
     
-    self.usernameLabel.frame = CGRectMake(0, 240, 100, 30);
-    [Format centerHorizontalView:self.usernameLabel inView:self.view];
+    CGFloat verticalSpacing = 10;
+    CGFloat sectionSpacing = 4 * verticalSpacing;
     
-    self.completedDateLabel.frame = CGRectMake(0, 280, 100, 30);
-    [Format centerHorizontalView:self.completedDateLabel inView:self.view];
+    CGFloat width = 120;
+    self.takerProfileImageView.frame = CGRectMake(0, 0, width, width);
+    [self.takerProfileImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.appBar.headerViewController.view.mas_bottom).with.offset(sectionSpacing);
+        id diameter = @120;
+        make.width.equalTo(diameter);
+        make.height.equalTo(diameter);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+    [Format formatProfilePictureForUser:self.otherUser withView:self.takerProfileImageView];
     
-    self.priceLabel.frame = CGRectMake(0, 320, 100, 30);
-    [Format centerHorizontalView:self.priceLabel inView:self.view];
+    [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.takerProfileImageView.mas_bottom).with.offset(verticalSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
     
-    self.rateView.frame = CGRectMake(0, 360, self.rateView.frame.size.width, self.rateView.frame.size.height);
-    [Format centerHorizontalView:self.rateView inView:self.view];
+    [self.completedDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.usernameLabel.mas_bottom).with.offset(verticalSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
     
-    self.nextButton.frame = CGRectMake(0, 420, 100, 30);
-    [Format centerHorizontalView:self.nextButton inView:self.view];
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.completedDateLabel.mas_bottom).with.offset(verticalSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+    
+    [self.rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.priceLabel.mas_bottom).with.offset(sectionSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+    
+    [self.rateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.rateLabel.mas_bottom).with.offset(verticalSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+    
+    [self.nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.rateView.mas_bottom).with.offset(sectionSpacing);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
 }
 
 - (IBAction)didTapNextButton:(id)sender {
@@ -100,13 +140,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

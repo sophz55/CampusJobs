@@ -12,6 +12,7 @@ target 'CampusJobs' do
   pod 'MaterialComponents'
   pod 'DateTools'
   pod 'RateView'
+  pod 'Masonry'
 
   target 'CampusJobsTests' do
     inherit! :search_paths

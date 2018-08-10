@@ -20,6 +20,7 @@
 @dynamic taker;
 @dynamic conversation;
 @dynamic completedDate;
+@dynamic completedDateString;
 @dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is closed
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
@@ -109,6 +110,11 @@
     
     NSDate *now = [NSDate date];
     self.completedDate = now;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    self.completedDateString = [formatter stringFromDate:now];
     
     [self saveInBackgroundWithBlock:completion];
 }

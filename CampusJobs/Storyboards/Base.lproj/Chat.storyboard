@@ -181,6 +181,13 @@
                                     <action selector="didTapNextButton:" destination="cTe-jF-u5s" eventType="touchUpInside" id="BuH-vk-qIF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RATE YOUR TRANSACTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYn-KD-85z">
+                                <rect key="frame" x="157" y="434" width="217" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="NjK-MO-CVW"/>
@@ -189,6 +196,7 @@
                         <outlet property="completedDateLabel" destination="ulY-lk-qtf" id="eLL-5X-KR2"/>
                         <outlet property="nextButton" destination="Hb9-Ce-lU0" id="MAV-34-KGK"/>
                         <outlet property="priceLabel" destination="hMc-py-JZP" id="A1H-I9-7Am"/>
+                        <outlet property="rateLabel" destination="pYn-KD-85z" id="Uz2-bC-fbI"/>
                         <outlet property="takerProfileImageView" destination="hwp-kz-ExH" id="b6b-PO-84t"/>
                         <outlet property="usernameLabel" destination="OvL-RA-iFF" id="Dsw-gb-rOw"/>
                         <segue destination="AXj-ir-wau" kind="presentation" identifier="jobCompletedToTabBarSegue" id="huJ-TQ-fFl"/>
