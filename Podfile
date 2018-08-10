@@ -11,6 +11,7 @@ target 'CampusJobs' do
   pod 'ChameleonFramework'
   pod 'MaterialComponents'
   pod 'DateTools'
+  pod 'RateView'
 
   target 'CampusJobsTests' do
     inherit! :search_paths

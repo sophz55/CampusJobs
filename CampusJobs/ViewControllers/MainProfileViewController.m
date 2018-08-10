@@ -49,7 +49,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -62,7 +62,7 @@
 }
 
 - (void)configureLayout {
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self setMainPageLabels];
     [self formatPic];
     [self formatButtons];

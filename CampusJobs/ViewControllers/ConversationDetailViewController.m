@@ -22,8 +22,9 @@
 #import <MaterialComponents/MaterialTypography.h>
 #import "AppScheme.h"
 #import "Format.h"
+#import "JobCompletedViewController.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate, AlertDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -101,6 +102,19 @@
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
 }
 
+- (void)confirmationAlertHandler:(BOOL)response {
+    if (response) {
+        __unsafe_unretained typeof(self) weakSelf = self;
+        [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
+            if (didCancelJob) {
+                [weakSelf reloadData];
+            } else {
+                [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+            }
+        }];
+    }
+}
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -129,7 +143,7 @@
 #pragma mark - Initial Configurations
 
 - (void)configureInitialView {
-    [self configureNavigatonBar];
+    [self configureTopNavigationBar];
     [self configureRefreshControl];
     self.showingSuggestViewController = NO;
     
@@ -232,7 +246,7 @@
     [self.messagesCollectionView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void)configureNavigatonBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -462,14 +476,8 @@
 }
 
 - (IBAction)didTapCancelJobButton:(id)sender {
-    __unsafe_unretained typeof(self) weakSelf = self;
-    [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
-        if (didCancelJob) {
-            [weakSelf reloadData];
-        } else {
-            [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
-        }
-    }];
+    NSString *confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for $%@.", self.conversation.post.price];
+    [Alert callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
 }
 
 - (IBAction)didTapJobCompletedButton:(id)sender {
@@ -479,6 +487,7 @@
             [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
                 if (didSendMessage) {
                     [weakSelf reloadData];
+                    [weakSelf performSegueWithIdentifier:messagesToJobCompletedSegue sender:nil];
                 } else {
                     [Alert callAlertWithTitle:@"Something's wrong." alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
@@ -548,6 +557,10 @@
         PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.post = self.conversation.post;
         postDetailsController.delegate = self;
+    } else if ([segue.identifier isEqualToString:messagesToJobCompletedSegue]) {
+        JobCompletedViewController *jobCompletedController = [segue destinationViewController];
+        jobCompletedController.post = self.conversation.post;
+        jobCompletedController.otherUser = self.otherUser;
     }
 }
 

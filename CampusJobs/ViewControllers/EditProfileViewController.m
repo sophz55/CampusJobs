@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.user = [PFUser currentUser];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureTextFieldControllers];
     [self configureTextFields];
     [self populateFieldsWithExistingInformation];
@@ -64,7 +64,7 @@
     self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];

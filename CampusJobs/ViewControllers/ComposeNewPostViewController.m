@@ -79,7 +79,7 @@
 #pragma mark - Custom Configurations
 
 - (void)configureIntialView {
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureTextFields];
     if (self.post) {
         [self configureWithExistingPost];
@@ -88,7 +88,7 @@
     }
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];

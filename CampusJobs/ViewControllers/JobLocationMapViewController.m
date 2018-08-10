@@ -33,7 +33,7 @@
     [self.jobPostingMapView addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
     [self editSavedLocation:self.prevPost.savedLocation];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +46,7 @@
 }
 
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];

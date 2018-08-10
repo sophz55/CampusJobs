@@ -76,18 +76,19 @@
     
     self.textBubbleView.layer.cornerRadius = 15;
     self.messageTextView.frame = CGRectMake(self.textBubbleView.frame.origin.x + horizontalTextInset, self.textBubbleView.frame.origin.y + verticalTextInset, textViewSize.width, textViewSize.height);
+    
+    [Format formatRaisedButton:self.acceptButton];
+    [Format formatRaisedButton:self.declineButton];
+    UIFont *buttonFont = [UIFont fontWithName:boldFontName size:12];
+    [self.acceptButton setTitleFont:buttonFont forState:UIControlStateNormal];
+    [self.declineButton setTitleFont:buttonFont forState:UIControlStateNormal];
+    [self.acceptButton sizeToFit];
+    [self.declineButton sizeToFit];
 }
 
 - (void)toggleShowSuggestedPriceOptionButtonsView {
     if (self.conversation.post.postStatus == OPEN && self.message[@"suggestedPrice"] && ![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
         
-        [Format formatRaisedButton:self.acceptButton];
-        [Format formatRaisedButton:self.declineButton];
-        UIFont *buttonFont = [UIFont fontWithName:boldFontName size:10];
-        [self.acceptButton setTitleFont:buttonFont forState:UIControlStateNormal];
-        [self.declineButton setTitleFont:buttonFont forState:UIControlStateNormal];
-        [self.acceptButton sizeToFit];
-        [self.declineButton sizeToFit];
         CGFloat buttonWidth = MAX(self.acceptButton.frame.size.width, self.declineButton.frame.size.width);
         
         CGFloat buttonsViewWidth = 2 * buttonWidth + 8;

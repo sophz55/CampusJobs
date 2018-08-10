@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     self.currentUser=[PFUser currentUser];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -46,7 +46,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];

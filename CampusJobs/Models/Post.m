@@ -9,6 +9,7 @@
 #import "Post.h"
 #import "Conversation.h"
 #import "Alert.h"
+#import "NSDate+DateTools.h"
 
 @implementation Post
 
@@ -105,9 +106,11 @@
 
 - (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
     self.postStatus = CLOSED;
-    [self saveInBackgroundWithBlock:completion];
     
-    // TO DO: complete payment
+    NSDate *now = [NSDate date];
+    self.completedDate = now;
+    
+    [self saveInBackgroundWithBlock:completion];
 }
 
 - (void)deletePostAndConversationsWithCompletion:(PFBooleanResultBlock _Nullable)completion {

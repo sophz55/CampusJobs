@@ -59,7 +59,7 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     [self populateFieldsWithExistingInformation];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureAllButtonsAndTextFields];
 }
 
@@ -162,7 +162,7 @@
     [self.cancelButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-Bold" size:12] forState:UIControlStateNormal];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
