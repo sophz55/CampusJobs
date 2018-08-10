@@ -12,6 +12,7 @@
 #import "SegueConstants.h"
 #import "StringConstants.h"
 #import "Format.h"
+#import "EditPaymentInfoViewController.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -76,7 +77,8 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    if(self.currentUser[desiredRadius]){
+    
+    if (![self.vc isKindOfClass:[EditPaymentInfoViewController class]]){
         [self dismissViewControllerAnimated:YES completion:nil];
     } else{
         [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
@@ -133,7 +135,6 @@
 }
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

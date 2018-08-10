@@ -94,18 +94,19 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
-    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
-    
-    self.titleLabel.font = typographyScheme.headline2;
+
+    self.titleLabel.font = [UIFont fontWithName:lightFontName size:60];
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
-    self.usernameField.placeholderLabel.font = typographyScheme.subtitle1;
+    self.usernameField.placeholderLabel.font = [UIFont fontWithName:boldFontName size:16];
     self.usernameField.placeholder = @"USERNAME";
-    self.usernameField.font=robotoCondensed;
+    self.usernameFieldController.inlinePlaceholderFont=[UIFont fontWithName:boldFontName size:16];
+    self.usernameField.font=[UIFont fontWithName:regularFontName size:18];
     
     self.passwordField.placeholderLabel.font = typographyScheme.subtitle1;
     self.passwordField.placeholder = @"PASSWORD";
-     self.passwordField.font=robotoCondensed;
+    self.passwordFieldController.inlinePlaceholderFont=[UIFont fontWithName:boldFontName size:16];
+    self.passwordField.font=[UIFont fontWithName:regularFontName size:18];
     
     [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:lightItalicFontName size:16] forState:UIControlStateNormal];
     [self.forgotPasswordButton sizeToFit];

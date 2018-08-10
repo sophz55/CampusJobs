@@ -158,6 +158,8 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="cb3-l9-yfE"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="desiredRadiusLabel" destination="BNp-Ml-iCs" id="jwD-Qm-FOr"/>
                         <outlet property="mapView" destination="iY9-No-Dwv" id="awB-rd-uas"/>

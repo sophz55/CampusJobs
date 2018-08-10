@@ -11,5 +11,6 @@
 
 @interface MapViewController : UIViewController
 
+@property (strong, nonatomic) UIViewController *vc;
 
 @end
