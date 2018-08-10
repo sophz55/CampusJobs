@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="410" y="363"/>
         </scene>
-        <!--BottomNavigationBar-->
+        <!--Main-->
         <scene sceneID="ISJ-Ds-SZq">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BottomNavigationBar" id="jEt-fT-LpR" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" id="jEt-fT-LpR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daO-ch-swx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1166" y="216"/>
@@ -285,16 +285,17 @@
             </objects>
             <point key="canvasLocation" x="-327" y="363"/>
         </scene>
-        <!--BottomNavigationBar-->
+        <!--Main-->
         <scene sceneID="Emv-qf-C3i">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="BottomNavigationBar" id="dkE-a4-TIu" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" id="dkE-a4-TIu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSl-uc-xUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1072" y="-407"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9Pl-YX-qjA"/>
+        <segue reference="mRI-GG-uwh"/>
+        <segue reference="1CD-3G-1S5"/>
     </inferredMetricsTieBreakers>
 </document>

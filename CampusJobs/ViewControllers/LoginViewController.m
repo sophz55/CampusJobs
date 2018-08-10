@@ -56,6 +56,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    MDCTextField *field = (MDCTextField *)textField;
+    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+    field.placeholderLabel.font = typographyScheme.subtitle1;
+}
+
 //automatically style status bar
 - (UIViewController *)childViewControllerForStatusBarStyle {
     self.appBar = [[MDCAppBar alloc] init];
@@ -88,7 +94,7 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
-    
+
     self.titleLabel.font = [UIFont fontWithName:lightFontName size:60];
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
