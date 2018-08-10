@@ -21,6 +21,7 @@
 #import "MaterialButtons+ColorThemer.h"
 #import "AppScheme.h"
 #import <MapKit/MapKit.h>
+#import "StringConstants.h"
 
 @interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>{
     CLLocationCoordinate2D savedLocationCoordinate;
@@ -78,7 +79,7 @@
 #pragma mark - Custom Configurations
 
 - (void)configureIntialView {
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureTextFields];
     if (self.post) {
         [self configureWithExistingPost];
@@ -87,7 +88,7 @@
     }
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -108,10 +109,10 @@
     CGFloat verticalSpace = textFieldHeight + 20;
     
     //format title text field
-    UIFont * robotoCondensed=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
-    UIFont * robotoBold=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
+    UIFont * robotoCondensed=[UIFont fontWithName:regularFontName size:18];
+    UIFont * robotoBold=[UIFont fontWithName:boldFontName size:18];
     self.titleTextField.textView.delegate = self;
-    self.titleTextField.placeholder = @"Title";
+    self.titleTextField.placeholder = @"TITLE";
     self.titleTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY, textFieldWidth, textFieldHeight);
     [self.titleTextField sizeToFit];
     self.titleTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.titleTextField];
@@ -120,7 +121,7 @@
     
     //format description text field
     self.descriptionTextField.textView.delegate = self;
-    self.descriptionTextField.placeholder = @"Description";
+    self.descriptionTextField.placeholder = @"DESCRIPTION";
     self.descriptionTextField.textView.frame = CGRectMake(textFieldOriginX, topTextFieldOriginY + verticalSpace, textFieldWidth, textFieldHeight);
     [self.descriptionTextField sizeToFit];
     self.descriptionTextFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.descriptionTextField];

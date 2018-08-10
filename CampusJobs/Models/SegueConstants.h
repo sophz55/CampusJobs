@@ -33,7 +33,9 @@ extern NSString *const composePostToMapSegue;
 #pragma mark - conversation segues
 extern NSString *const messagesToSuggestPriceSegue;
 extern NSString *const messagesToPostDetailsSegue;
+extern NSString *const messagesToJobCompletedSegue;
 extern NSString *const conversationsToMessagesSegue;
+extern NSString *const jobCompletedToTabBarSegue;
 
 #pragma mark - user profile segues
 

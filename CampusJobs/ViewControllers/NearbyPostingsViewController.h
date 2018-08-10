@@ -10,7 +10,7 @@
 
 @interface NearbyPostingsViewController : UIViewController
 
--(void) fetchNearbyPosts;
--(void) displayRadius;
+- (void)fetchNearbyPosts;
+- (void)displayRadius;
 
 @end

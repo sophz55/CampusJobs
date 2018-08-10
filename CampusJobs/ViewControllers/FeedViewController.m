@@ -12,6 +12,8 @@
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialTypography.h>
 #import "Format.h"
+#import "StringConstants.h"
+#import "NearbyPostingsViewController.h"
 
 @interface FeedViewController ()
 @property(nonatomic, strong) MDCAppBar *appBar;
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
 @property (strong, nonatomic) UIBarButtonItem *logoutButton;
 @property (strong, nonatomic) UIBarButtonItem *composeButton;
+@property (strong, nonatomic) UIViewController *nearbyPostingsViewController;
+@property (strong, nonatomic) UIViewController *yourPostingsViewController;
 
 @end
 
@@ -27,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureLayout];
 }
 
@@ -41,7 +45,7 @@
     return self.appBar.headerViewController;
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -58,15 +62,25 @@
 }
 
 - (void)configureLayout {
-    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"RobotoCondensed-Regular" size:14]} forState:UIControlStateNormal];
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:regularFontName size:14]} forState:UIControlStateNormal];
     self.segmentedControl.frame = CGRectMake(-10, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width + 20, 30);
     self.segmentedControl.tintColor = self.appBar.headerViewController.view.backgroundColor;
     
     CGFloat containerOriginY = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
-    CGFloat tabBarHeight = 60;
+    CGFloat tabBarHeight = 75;
     
-    self.nearbyPostingsContainer.frame = CGRectMake(0, containerOriginY, self.view.frame.size.width, self.view.frame.size.height - containerOriginY - tabBarHeight);
+    self.nearbyPostingsContainer.frame = CGRectMake(0, containerOriginY + 55, self.view.frame.size.width, self.view.frame.size.height - containerOriginY - tabBarHeight);
     self.yourPostingsContainer.frame = self.nearbyPostingsContainer.frame;
+    
+    self.nearbyPostingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"nearbyPostings"];
+    [self addChildViewController:self.nearbyPostingsViewController];
+    [self.nearbyPostingsViewController.view setFrame:self.nearbyPostingsContainer.frame];
+    [self.nearbyPostingsViewController didMoveToParentViewController:self];
+    
+    self.yourPostingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"yourPostings"];
+    [self addChildViewController:self.yourPostingsViewController];
+    [self.yourPostingsViewController.view setFrame:self.yourPostingsContainer.frame];
+    [self.yourPostingsViewController didMoveToParentViewController:self];
 }
 
 - (IBAction)segmentedControlIndexChanged:(id)sender {
@@ -74,9 +88,11 @@
     switch(segment.selectedSegmentIndex) {
         case 0:
             self.yourPostingsContainer.hidden=NO;
+            self.nearbyPostingsContainer.hidden=YES;
             break;
         case 1:
             self.yourPostingsContainer.hidden=YES;
+            self.nearbyPostingsContainer.hidden=NO;
             break;
         default:
             break;

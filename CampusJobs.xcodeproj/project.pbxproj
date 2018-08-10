@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */; };
+		68FD9CB9109C988E9924ABF5 /* libPods-CampusJobs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C806C0CDA283EAB83BDC05C /* libPods-CampusJobs.a */; };
 		95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */; };
 		B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */; };
+		B553F683BFB2BEDA5B356AED /* libPods-CampusJobsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9DA355DF18C3F3E4D625A03 /* libPods-CampusJobsTests.a */; };
+		BA32DA9EC0097B34CB2DBCDB /* libPods-CampusJobsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B02012261CABA5CA00A5B6B /* libPods-CampusJobsUITests.a */; };
 		D306831B210FBF79003C2CB1 /* PaymentInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3068315210FBF49003C2CB1 /* PaymentInfo.storyboard */; };
 		D306831C210FBF79003C2CB1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3068318210FBF57003C2CB1 /* Storyboard.storyboard */; };
 		D31566C6210A86C900E5C414 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31566C5210A86C900E5C414 /* HomeViewController.m */; };
@@ -77,6 +80,9 @@
 		F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */; };
 		F3C1F277211B6D4F00B4D588 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = F31CC593211264F500C899B7 /* Alert.m */; };
 		F3C1F278211B6D4F00B4D588 /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5E1DC3211223D10088DDBE /* Colors.m */; };
+		F3C1F27B211B80DD00B4D588 /* StringConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F27A211B80DD00B4D588 /* StringConstants.m */; };
+		F3C1F27E211CC31300B4D588 /* BottomNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F27D211CC31300B4D588 /* BottomNavigationBarViewController.m */; };
+		F3C1F28A211D0E3500B4D588 /* JobCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F289211D0E3500B4D588 /* JobCompletedViewController.m */; };
 		F3DE3CF521064BCD008A536E /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */; };
 		F3E55E5D2118CFB1001E03EF /* Format.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E55E5C2118CFB1001E03EF /* Format.m */; };
 		F3FD740421153589004BF81B /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396B1F72113ADFE0099E623 /* Feed.storyboard */; };
@@ -86,7 +92,6 @@
 		FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3120FD47DF00034CC4 /* YourPostingsViewController.m */; };
 		FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */; };
 		FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */; };
-		FC8395412118FE9B00C9E739 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8395402118FE9B00C9E739 /* TabBarViewController.m */; };
 		FC8EA1A5210151890054C43D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8EA1A4210151890054C43D /* MapViewController.m */; };
 		FC8EA1AA21024AE60054C43D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EA1A921024AE60054C43D /* MapKit.framework */; };
 		FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD51ACC21092BCC002A5B2C /* JobLocationMapViewController.m */; };
@@ -111,8 +116,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C806C0CDA283EAB83BDC05C /* libPods-CampusJobs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE65D414E7AC633E6910BA3 /* Pods-CampusJobsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.release.xcconfig"; sourceTree = "<group>"; };
 		1ADAE6FC0657CE3ECDAF80A7 /* Pods-CampusJobs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobs/Pods-CampusJobs.debug.xcconfig"; sourceTree = "<group>"; };
+		3B02012261CABA5CA00A5B6B /* libPods-CampusJobsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E1136D26BA5B29970F9C4C /* libPods-CampusJobs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C5EBBD5DE4F8C6302B1D04 /* libPods-CampusJobsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		686D45B7A17687051617033E /* Pods-CampusJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsTests/Pods-CampusJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +188,7 @@
 		D3E5A15720FD545800891964 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		D3E5A15820FD545800891964 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E2EF0A3DE1BD1C22A5290BBB /* Pods-CampusJobsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusJobsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusJobsUITests/Pods-CampusJobsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9DA355DF18C3F3E4D625A03 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED565AC89183BED45B9DBD13 /* libPods-CampusJobsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CampusJobsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPaymentInfoViewController.h; sourceTree = "<group>"; };
 		F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPaymentInfoViewController.m; sourceTree = "<group>"; };
@@ -235,6 +243,12 @@
 		F39F4BF020FD14C000C11CD0 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestPriceViewController.h; sourceTree = "<group>"; };
 		F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestPriceViewController.m; sourceTree = "<group>"; };
+		F3C1F279211B80DD00B4D588 /* StringConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringConstants.h; sourceTree = "<group>"; };
+		F3C1F27A211B80DD00B4D588 /* StringConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringConstants.m; sourceTree = "<group>"; };
+		F3C1F27C211CC31300B4D588 /* BottomNavigationBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomNavigationBarViewController.h; sourceTree = "<group>"; };
+		F3C1F27D211CC31300B4D588 /* BottomNavigationBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomNavigationBarViewController.m; sourceTree = "<group>"; };
+		F3C1F288211D0E3500B4D588 /* JobCompletedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobCompletedViewController.h; sourceTree = "<group>"; };
+		F3C1F289211D0E3500B4D588 /* JobCompletedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobCompletedViewController.m; sourceTree = "<group>"; };
 		F3DE3CF321064BCD008A536E /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
 		F3DE3CF421064BCD008A536E /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
 		F3E55E5A2118C2A5001E03EF /* Apache License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
@@ -256,8 +270,6 @@
 		FC6C7E3420FD4D5600034CC4 /* ComposeNewPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeNewPostViewController.m; sourceTree = "<group>"; };
 		FC6C7E3620FD51B600034CC4 /* PostDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailsViewController.h; sourceTree = "<group>"; };
 		FC6C7E3720FD51B600034CC4 /* PostDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailsViewController.m; sourceTree = "<group>"; };
-		FC83953F2118FE9B00C9E739 /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		FC8395402118FE9B00C9E739 /* TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		FC8EA1A3210151890054C43D /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		FC8EA1A4210151890054C43D /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		FC8EA1A921024AE60054C43D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -277,6 +289,7 @@
 				D3B67A8F2107BF920042BD49 /* Accounts.framework in Frameworks */,
 				FC8EA1AA21024AE60054C43D /* MapKit.framework in Frameworks */,
 				0B5AB4027DA2B42F5338E581 /* libPods-CampusJobs.a in Frameworks */,
+				68FD9CB9109C988E9924ABF5 /* libPods-CampusJobs.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0FCB683D11A5C99E545A4DC /* libPods-CampusJobsTests.a in Frameworks */,
+				B553F683BFB2BEDA5B356AED /* libPods-CampusJobsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B6920A3CEF6FA0A0C1AD56 /* libPods-CampusJobsUITests.a in Frameworks */,
+				BA32DA9EC0097B34CB2DBCDB /* libPods-CampusJobsUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +340,16 @@
 				85FB2DA46A125E1C89B8188E /* Pods-CampusJobsUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B7E98B1A328BB84E619AF1B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C806C0CDA283EAB83BDC05C /* libPods-CampusJobs.a */,
+				E9DA355DF18C3F3E4D625A03 /* libPods-CampusJobsTests.a */,
+				3B02012261CABA5CA00A5B6B /* libPods-CampusJobsUITests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D38B1727210B96B900EE5C8E /* socila */ = {
@@ -454,6 +479,7 @@
 				B51BE74DA0F4FFAD537D3A1A /* Pods */,
 				FC8EA1AB2102578F0054C43D /* Recovered References */,
 				D38F03AD2101643500EE35D1 /* Recovered References */,
+				B7E98B1A328BB84E619AF1B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -520,6 +546,8 @@
 				F31226A0210A8582004F4677 /* Utils.m */,
 				F31226A3210A8927004F4677 /* SegueConstants.h */,
 				F31226A4210A8927004F4677 /* SegueConstants.m */,
+				F3C1F279211B80DD00B4D588 /* StringConstants.h */,
+				F3C1F27A211B80DD00B4D588 /* StringConstants.m */,
 				F31CC592211264F500C899B7 /* Alert.h */,
 				F31CC593211264F500C899B7 /* Alert.m */,
 				FC5E1DC2211223D10088DDBE /* Colors.h */,
@@ -595,14 +623,16 @@
 				F359240520FFA8C20013FD61 /* ConversationDetailViewController.m */,
 				F3AE9F732102A1CF007BB53A /* SuggestPriceViewController.h */,
 				F3AE9F742102A1CF007BB53A /* SuggestPriceViewController.m */,
-				FC29BF47210A913B00CB81DC /* MainProfileViewController.h */,
 				FC29BF48210A913B00CB81DC /* MainProfileViewController.m */,
+				FC29BF47210A913B00CB81DC /* MainProfileViewController.h */,
 				F3122699210A4E18004F4677 /* EditPaymentInfoViewController.h */,
 				F312269A210A4E18004F4677 /* EditPaymentInfoViewController.m */,
 				F35E0B25211563F200FAC63C /* EditProfileViewController.h */,
 				F35E0B26211563F200FAC63C /* EditProfileViewController.m */,
-				FC83953F2118FE9B00C9E739 /* TabBarViewController.h */,
-				FC8395402118FE9B00C9E739 /* TabBarViewController.m */,
+				F3C1F27C211CC31300B4D588 /* BottomNavigationBarViewController.h */,
+				F3C1F27D211CC31300B4D588 /* BottomNavigationBarViewController.m */,
+				F3C1F288211D0E3500B4D588 /* JobCompletedViewController.h */,
+				F3C1F289211D0E3500B4D588 /* JobCompletedViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -942,6 +972,7 @@
 				F338398620FE9B2300364F86 /* ConversationTableViewCell.m in Sources */,
 				D3D64E5D211B921D00F48F1A /* main.m in Sources */,
 				FC6C7E3820FD51B600034CC4 /* PostDetailsViewController.m in Sources */,
+				F3C1F28A211D0E3500B4D588 /* JobCompletedViewController.m in Sources */,
 				F35E0B27211563F200FAC63C /* EditProfileViewController.m in Sources */,
 				FC6C7E2F20FD47D500034CC4 /* NearbyPostingsViewController.m in Sources */,
 				D3D64E41211B68BF00F48F1A /* SimpleMessage.m in Sources */,
@@ -951,16 +982,17 @@
 				F3AE9F752102A1CF007BB53A /* SuggestPriceViewController.m in Sources */,
 				F31226A1210A8582004F4677 /* Utils.m in Sources */,
 				FCD51ACE21092BCD002A5B2C /* JobLocationMapViewController.m in Sources */,
+				F3C1F27E211CC31300B4D588 /* BottomNavigationBarViewController.m in Sources */,
 				F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */,
 				D3E5A15920FD545800891964 /* LoginViewController.m in Sources */,
 				D38B18CD210EC8AE005E607F /* PortfolioViewController.m in Sources */,
 				D3E5A15A20FD545800891964 /* SignUpViewController.m in Sources */,
+				F3C1F27B211B80DD00B4D588 /* StringConstants.m in Sources */,
 				F396B1FB2113B2260099E623 /* AppScheme.m in Sources */,
 				FC6C7E2B20FD26FB00034CC4 /* FeedViewController.m in Sources */,
 				D38B18DD210EC9AF005E607F /* SocialViewController.m in Sources */,
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				D38B18C7210EC86D005E607F /* ServicesTableViewCell.m in Sources */,
-				FC8395412118FE9B00C9E739 /* TabBarViewController.m in Sources */,
 				D38B18AE210EB8F6005E607F /* ViewController.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
@@ -1230,7 +1262,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1248,7 +1280,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.szheng1.CampusJobs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skhezri.CampusJobs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

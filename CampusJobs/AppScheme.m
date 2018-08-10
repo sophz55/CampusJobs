@@ -24,6 +24,7 @@
 
 #import "AppScheme.h"
 #import "Colors.h"
+#import "StringConstants.h"
 
 @implementation AppScheme {
     MDCSemanticColorScheme *_colorScheme;
@@ -59,6 +60,7 @@
         
         // Instantiate a MDCSemanticColorScheme object and modify it to our chosen colors
         _typographyScheme = [[MDCTypographyScheme alloc] initWithDefaults:MDCTypographySchemeDefaultsMaterial201804];
+
         //TODO: Add our custom fonts after this line
         NSString *lightFont = @"RobotoCondensed-Light";
         NSString *boldFont = @"RobotoCondensed-Bold";
@@ -72,14 +74,13 @@
         _typographyScheme.headline4 = [UIFont fontWithName:regularFont size:34.0];
         _typographyScheme.headline5 = [UIFont fontWithName:regularFont size:24.0];
         _typographyScheme.headline6 = [UIFont fontWithName:boldFont size:20.0];
-        _typographyScheme.subtitle1 = [UIFont fontWithName:lightFont size:16.0];
-        _typographyScheme.subtitle2 = [UIFont fontWithName:boldFont size:14.0];
+        _typographyScheme.subtitle1 = [UIFont fontWithName:boldFont size:16.0];
+        _typographyScheme.subtitle2 = [UIFont fontWithName:lightFont size:16.0];
         _typographyScheme.body1 = [UIFont fontWithName:regularFont size:16.0];
         _typographyScheme.body2 = [UIFont fontWithName:regularFont size:14.0];
         _typographyScheme.caption = [UIFont fontWithName:boldFont size:14.0];
         _typographyScheme.button = [UIFont fontWithName:regularFont size:16.0];
         _typographyScheme.overline = [UIFont fontWithName:regularFont size:18.0];
-        
         
         // Create a button scheme based off our custom colors and typography
         _buttonScheme = [[MDCButtonScheme alloc] init];

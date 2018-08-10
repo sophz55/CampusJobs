@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray * previousPostsArray;
 @property (weak, nonatomic) IBOutlet UIView *noPostingsView;
 @property (weak, nonatomic) IBOutlet UILabel *noPostingsLabel;
+@property (assign, nonatomic) CGFloat frameOriginY;
 
 @end
 
@@ -31,15 +32,19 @@
     [self fetchUserPosts];
     [self addRefreshControl];
     [self displayBackgroundColor];
-    
     self.noPostingsView.frame = self.view.frame;
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.previousPostTableView.frame = self.view.frame;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of/Users/szheng/Desktop/CampusJobs/CampusJobs/Models/Post.h any resources that can be recreated.
 }
 
 - (void)reloadData {
@@ -78,6 +83,12 @@
     Post * post=self.previousPostsArray[indexPath.row];
     previousUserPostCell.previousPost=post;
     [previousUserPostCell setPreviousPost:post];
+    //adds shadow property
+    previousUserPostCell.layer.shadowOffset=CGSizeMake(0, 0);
+    previousUserPostCell.layer.shadowOpacity=0.3;
+    previousUserPostCell.layer.shadowRadius=1.0;
+    previousUserPostCell.clipsToBounds = false;
+    previousUserPostCell.layer.shadowColor=[[UIColor blackColor]CGColor];
     return previousUserPostCell;
 }
 
@@ -96,12 +107,6 @@
     roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
     roundedCellView.layer.cornerRadius=3.0;
-    //adds shadow property
-    roundedCellView.layer.shadowOffset=CGSizeMake(0, 0);
-    roundedCellView.layer.shadowOpacity=0.3;
-    roundedCellView.layer.shadowRadius=1.0;
-    roundedCellView.clipsToBounds = false;
-    roundedCellView.layer.shadowColor=[[UIColor blackColor]CGColor];
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];
@@ -133,7 +138,7 @@
     self.view.backgroundColor=[Colors secondaryGreyLighterColor];
     self.previousPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
 }
-
+   
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

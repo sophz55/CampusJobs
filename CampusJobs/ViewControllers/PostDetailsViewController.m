@@ -17,6 +17,7 @@
 #import "Alert.h"
 #import "Utils.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Format.h"
 
 #import "ConversationDetailViewController.h"
@@ -35,6 +36,7 @@
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (strong, nonatomic) UIBarButtonItem *backButton;
 @property (strong, nonatomic) UIBarButtonItem *editButton;
+@property (strong, nonatomic) UIBarButtonItem *flagButton;
 
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *messageButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *deleteButton;
@@ -105,7 +107,7 @@
 }
 
 - (void)configureInitialView {
-    [self configureNavigatonBar];
+    [self configureTopNavigationBar];
     [self formatColors];
     
     [self setDetailsPost:self.post];
@@ -121,19 +123,9 @@
     } else {
         self.cancelButton.hidden = YES;
     }
-    
-    [Format formatRaisedButton:self.cancelButton];
-    [Format centerHorizontalView:self.cancelButton inView:self.view];
-    
-    [Format formatRaisedButton:self.messageButton];
-    [Format centerHorizontalView:self.messageButton inView:self.view];
-    
-    [Format formatRaisedButton:self.deleteButton];
-    [Format centerHorizontalView:self.deleteButton inView:self.view];
-    
 }
 
-- (void)configureNavigatonBar {
+- (void)configureTopNavigationBar {
     
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
@@ -142,15 +134,25 @@
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
     
-    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
-    [Format formatBarButton:self.editButton];
-    self.navigationItem.rightBarButtonItem = self.editButton;
-    
     NSString *title;
     if (self.userIsAuthor) {
         title = @"Your Posting";
+        
+        self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
+        [Format formatBarButton:self.editButton];
+        self.navigationItem.rightBarButtonItem = self.editButton;
+        
+        [self.editButton setEnabled:YES];
+        [self.flagButton setEnabled:NO];
     } else {
         title = [NSString stringWithFormat:@"%@'s Posting", self.post.author.username];
+        
+        self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFlagButton:)];
+        [Format formatBarButton:self.flagButton];
+        self.navigationItem.rightBarButtonItem = self.flagButton;
+        
+        [self.editButton setEnabled:NO];
+        [self.flagButton setEnabled:YES];
     }
     
     [Format formatAppBar:self.appBar withTitle:title];
@@ -192,19 +194,16 @@
         [self.messageButton setTitle:@"Message" forState:UIControlStateNormal];
     }
     
-    [self.editButton setEnabled:NO];
-    self.navigationItem.rightBarButtonItem = nil;
     self.deleteButton.hidden = YES;
-    
     self.userDetailsLabel.text = [NSString stringWithFormat: @"%@", self.post.author.username];
 }
 
 - (void)setDetailsPost:(Post *)post{
     //set fonts
-    self.titleDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:24];
-    self.descriptionDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-LightItalic" size: 18];
-    self.locationDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:18];
-    self.userDetailsLabel.font=[UIFont fontWithName:@"RobotoCondensed-Light" size:24];
+    self.titleDetailsLabel.font=[UIFont fontWithName:regularFontName size:24];
+    self.descriptionDetailsLabel.font=[UIFont fontWithName:lightItalicFontName size: 18];
+    self.locationDetailsLabel.font=[UIFont fontWithName:regularFontName size:18];
+    self.userDetailsLabel.font=[UIFont fontWithName:lightFontName size:24];
     
     //set color
     self.titleDetailsLabel.textColor=[UIColor blackColor];
@@ -242,6 +241,9 @@
     }
 }
 
+- (IBAction)didTapFlagButton:(id)sender {
+}
+
 - (IBAction)didTapDeleteButton:(id)sender {
     if (self.userIsAuthor && self.post.postStatus == OPEN) {
         [Alert callConfirmationWithTitle:@"Are you sure you want to delete this post?" confirmationMessage:@"This cannot be undone." yesActionTitle:@"Delete" noActionTitle:@"Cancel" viewController:self];
@@ -254,7 +256,7 @@
         if (self.userIsAuthor) {
             confirmationMessage = [NSString stringWithFormat:@"It is currently in progress with %@ for $%@.", self.post.taker.username, self.post.price];
         } else {
-            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for %@.", self.post.price];
+            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for $%@.", self.post.price];
         }
         [Alert callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
     }

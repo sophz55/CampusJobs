@@ -447,6 +447,7 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - RateView (1.2)
 
 DEPENDENCIES:
   - ChameleonFramework
@@ -454,6 +455,7 @@ DEPENDENCIES:
   - MaterialComponents
   - Parse
   - ParseUI
+  - RateView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -468,6 +470,7 @@ SPEC REPOS:
     - MotionTransitioning
     - Parse
     - ParseUI
+    - RateView
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -481,7 +484,8 @@ SPEC CHECKSUMS:
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
+  RateView: d4d12e9bb76dc23a77a56f4e5c5fb530a3f3f998
 
-PODFILE CHECKSUM: da713929a182b7683dd28365798663ba256e3352
+PODFILE CHECKSUM: 812e1800a09f92905b1cd27fd3d0d5e96c08af4f
 
 COCOAPODS: 1.5.3

@@ -12,6 +12,7 @@
 #import "DateTools.h"
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
+#import "Colors.h"
 
 @implementation NearbyPostCell
 
@@ -32,9 +33,9 @@
     //initialize fonts for labels
     self.postTitleLabel.font=typographyScheme.overline;
     self.postUserLabel.font=typographyScheme.headline6;
-    self.postDescriptionLabel.font=typographyScheme.subtitle1;
-    self.postDateLabel.font=typographyScheme.subtitle1;
-    self.postDistanceLabel.font=typographyScheme.subtitle1;
+    self.postDescriptionLabel.font=typographyScheme.subtitle2;
+    self.postDateLabel.font=typographyScheme.subtitle2;
+    self.postDistanceLabel.font=typographyScheme.subtitle2;
     
     //initialize text for labels
     self.postUserLabel.text=post.author.username;
@@ -48,7 +49,7 @@
     PFGeoPoint * userGeoPoint=post.author[@"currentLocation"];
     //Call Utils method to calculate distance between post location and user
     double miles=[Utils calculateDistance:postGeoPoint betweenUserandPost:userGeoPoint];
-    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.2f miles",miles];
+    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.1f miles",miles];
     [self.postDistanceLabel sizeToFit];
     
     //Format the date (date the post was posted on)
@@ -60,6 +61,12 @@
     NSString * timeAgo= [NSDate shortTimeAgoSinceDate:createdAt];
     self.postDateLabel.text= timeAgo;
     
+    //set profile picture
+    self.profilePicture.layer.cornerRadius= self.profilePicture.frame.size.width / 2;
+    self.profilePicture.clipsToBounds = YES;
+    self.profilePicture.file=post.author[@"profileImageFile"];
+    self.profilePicture.layer.borderWidth=1.5;
+    self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
 }
 
 

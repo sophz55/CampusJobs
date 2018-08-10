@@ -33,7 +33,9 @@ NSString *const composePostToMapSegue = @"composeToMapSegue";
 #pragma mark - conversation segues
 NSString *const messagesToSuggestPriceSegue = @"suggestPriceModalSegue";
 NSString *const messagesToPostDetailsSegue = @"messageToPostSegue";
+NSString *const messagesToJobCompletedSegue = @"messagesToJobCompletedSegue";
 NSString *const conversationsToMessagesSegue = @"conversationsToDetailSegue";
+NSString *const jobCompletedToTabBarSegue = @"jobCompletedToTabBarSegue";
 
 #pragma mark - user profile segues
 

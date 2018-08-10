@@ -48,11 +48,11 @@
     [Format configurePlaceholderView:self.noConversationsView withLabel:self.noConversationsLabel];
     self.noConversationsLabel.text = @"LOADING MESSAGES...";
     
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureRefreshControl];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -129,9 +129,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConversationCell" forIndexPath:indexPath];
-    
     Conversation *conversation = self.conversations[indexPath.row];
-    
     [cell configureCellWithConversation:conversation];
     
     return cell;

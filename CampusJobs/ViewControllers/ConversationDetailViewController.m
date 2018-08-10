@@ -15,35 +15,41 @@
 #import "Utils.h"
 #import "Alert.h"
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import <MaterialComponents/MaterialTextFields.h>
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import <MaterialComponents/MaterialTypography.h>
 #import "AppScheme.h"
 #import "Format.h"
+#import "JobCompletedViewController.h"
 
-@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate>
+@interface ConversationDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, MessageCollectionViewCellDelegate, SuggestPriceDelegate, PostDetailsDelegate, UITextViewDelegate, AlertDelegate>
 
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) CGFloat maxCellWidth;
 @property (assign, nonatomic) CGFloat maxCellHeight;
+@property (strong, nonatomic) Message *lastMessageSent;
+@property (assign, nonatomic) CGFloat messagesCollectionViewFrameHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
+
+@property (strong, nonatomic) MDCAppBar *appBar;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *viewPostButton;
+@property (strong, nonatomic) UIBarButtonItem *flagButton;
+
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet MDCFlatButton *sendMessageButton;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *composeMessageTextField;
 @property (weak, nonatomic) IBOutlet MDCFlatButton *suggestPriceButton;
+@property (assign, nonatomic) CGFloat bottomViewHeight;
+@property (assign, nonatomic) CGFloat initialButtonHeight;
+
 @property (weak, nonatomic) IBOutlet UIView *inProgressOptionsView;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelJobButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *jobCompletedButton;
 @property (weak, nonatomic) IBOutlet UILabel *jobStatusProgressLabel;
-@property (weak, nonatomic) IBOutlet UIStackView *inProgressButtonsStackView;
-@property (strong, nonatomic) UIBarButtonItem *backButton;
-@property (strong, nonatomic) UIBarButtonItem *viewPostButton;
-@property (strong, nonatomic) UIBarButtonItem *flagButton;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet MDCFlatButton *sendMessageButton;
-@property (assign, nonatomic) CGFloat bottomViewHeight;
-@property (assign, nonatomic) CGFloat initialButtonHeight;
-@property (strong, nonatomic) MDCAppBar *appBar;
 
 @end
 
@@ -63,13 +69,17 @@
     self.maxCellHeight = self.messagesCollectionView.frame.size.height * 3; // arbitrary large max message text view height
     
     [self configureInitialView];
-    [self configureLayout];
     [self reloadData];
     [self refreshOnTimer];
-    
+    [self scrollToBottom];
+    if (self.conversation.messages.count > 0) {
+        self.lastMessageSent = self.conversation.messages[self.conversation.messages.count - 1];
+    }
+    self.messagesCollectionViewFrameHeight = self.messagesCollectionView.frame.size.height;
 }
 
 - (void)viewDidLayoutSubviews {
+    self.messagesCollectionViewFrameHeight = 0;
     [self scrollToBottom];
 }
 
@@ -82,11 +92,27 @@
 
 - (void)reloadData {
     [self.messagesCollectionView reloadData];
+    [self configureByStatusAndUsers];
+    [self scrollToBottom];
+    [self reformatBottomView];
     [self.refreshControl endRefreshing];
 }
 
 - (void)refreshOnTimer {
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
+}
+
+- (void)confirmationAlertHandler:(BOOL)response {
+    if (response) {
+        __unsafe_unretained typeof(self) weakSelf = self;
+        [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
+            if (didCancelJob) {
+                [weakSelf reloadData];
+            } else {
+                [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
+            }
+        }];
+    }
 }
 
 #pragma mark - UITextViewDelegate
@@ -117,7 +143,7 @@
 #pragma mark - Initial Configurations
 
 - (void)configureInitialView {
-    [self configureNavigatonBar];
+    [self configureTopNavigationBar];
     [self configureRefreshControl];
     self.showingSuggestViewController = NO;
     
@@ -125,12 +151,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.composeMessageTextField.textView.delegate = self;
+    self.composeMessageTextField.textView.font = [UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
-    self.composeMessageTextField.textView.font = typographyScheme.subtitle1;
+    self.composeMessageTextField.placeholderLabel.font = typographyScheme.subtitle1;
     self.composeMessageTextField.placeholder = @"NEW MESSAGE...";
     self.composeMessageTextField.minimumLines = 1;
     
-    self.initialButtonHeight = 58;
+    self.initialButtonHeight = 60;
     self.bottomViewHeight = self.initialButtonHeight;
     self.bottomView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomViewHeight, self.view.frame.size.width, 500);
     self.bottomView.backgroundColor = [Colors secondaryGreyLighterColor];
@@ -139,7 +166,49 @@
     
     [self setLocationBottomButtons];
     
-    [self configureOptions];
+    [self configureByStatusAndUsers];
+}
+
+- (void)configureOptionsView {
+    CGFloat horizontalInset = 8;
+    CGFloat verticalInset = 8;
+    
+    self.inProgressOptionsView.backgroundColor = [Colors primaryBlueLightColor];
+    self.jobStatusProgressLabel.font = [UIFont fontWithName:italicFontName size:16];
+    self.jobStatusProgressLabel.text = [self.jobStatusProgressLabel.text uppercaseString];
+    self.jobStatusProgressLabel.textColor = [Colors secondaryGreyTextColor];
+    [self.jobStatusProgressLabel sizeToFit];
+    self.jobStatusProgressLabel.frame = CGRectMake(0, verticalInset, self.jobStatusProgressLabel.frame.size.width, self.jobStatusProgressLabel.frame.size.height);
+    [Format centerHorizontalView:self.jobStatusProgressLabel inView:self.inProgressOptionsView];
+    
+    UIFont *buttonFont = [UIFont fontWithName:lightFontName size:14];
+    
+    [Format formatRaisedButton:self.cancelJobButton];
+    [self.cancelJobButton setBackgroundColor:[Colors primaryBlueDarkColor] forState:UIControlStateNormal];
+    [self.cancelJobButton setTitleFont:buttonFont forState:UIControlStateNormal];
+    [self.cancelJobButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.cancelJobButton sizeToFit];
+    
+    if (self.jobCompletedButton.hidden && self.cancelJobButton.hidden) {
+        self.inProgressOptionsView.frame = CGRectMake(0, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width, self.jobStatusProgressLabel.frame.size.height + 2 * verticalInset);
+    } else if (self.jobCompletedButton.hidden) {
+        self.cancelJobButton.frame = CGRectMake(self.inProgressOptionsView.frame.size.width - self.cancelJobButton.frame.size.width - horizontalInset, verticalInset, self.cancelJobButton.frame.size.width, self.cancelJobButton.frame.size.height);
+        self.inProgressOptionsView.frame = CGRectMake(0, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width, self.cancelJobButton.frame.origin.y + self.cancelJobButton.frame.size.height + verticalInset);
+        self.jobStatusProgressLabel.frame = CGRectMake(horizontalInset, 0, self.jobStatusProgressLabel.frame.size.width, self.inProgressOptionsView.frame.size.height);
+    } else {
+        [Format formatRaisedButton:self.jobCompletedButton];
+        [self.jobCompletedButton setBackgroundColor:self.cancelJobButton.backgroundColor forState:UIControlStateNormal];
+        [self.jobCompletedButton setTitleFont:buttonFont forState:UIControlStateNormal];
+        [self.jobCompletedButton setTitleColor:self.cancelJobButton.currentTitleColor forState:UIControlStateNormal];
+        [self.jobCompletedButton sizeToFit];
+    
+        CGFloat buttonWidth = MAX(self.cancelJobButton.frame.size.width, self.jobCompletedButton.frame.size.width);
+        CGFloat buttonHeight = self.cancelJobButton.frame.size.height;
+        CGFloat space = 8;
+        self.cancelJobButton.frame = CGRectMake((self.inProgressOptionsView.frame.size.width - 2 * buttonWidth - space)/2, self.jobStatusProgressLabel.frame.origin.y + self.jobStatusProgressLabel.frame.size.height + 4, buttonWidth, buttonHeight);
+        self.jobCompletedButton.frame = CGRectMake(self.cancelJobButton.frame.origin.x + self.cancelJobButton.frame.size.width + space, self.cancelJobButton.frame.origin.y, buttonWidth, buttonHeight);
+        self.inProgressOptionsView.frame = CGRectMake(0, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width, self.cancelJobButton.frame.origin.y + self.cancelJobButton.frame.size.height + 8);
+    }
 }
 
 - (void)setLocationBottomButtons {
@@ -152,17 +221,22 @@
 
 - (void)configureLayout {
     CGFloat originY = self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height;
+    if (!self.inProgressOptionsView.hidden) {
+        originY += self.inProgressOptionsView.frame.size.height;
+    }
     self.messagesCollectionView.frame = CGRectMake(0, originY, self.view.frame.size.width, self.bottomView.frame.origin.y - originY);
-    
-    [self scrollToBottom];
 }
 
 - (void)scrollToBottom {
-    CGFloat collectionViewContentHeight = self.messagesCollectionView.contentSize.height;
-    CGFloat collectionViewFrameHeightAfterInserts = self.messagesCollectionView.frame.size.height - (self.messagesCollectionView.contentInset.top + self.messagesCollectionView.contentInset.bottom);
-    
-    if (collectionViewContentHeight > collectionViewFrameHeightAfterInserts) {
-        [self.messagesCollectionView setContentOffset:CGPointMake(0, self.messagesCollectionView.contentSize.height - self.messagesCollectionView.frame.size.height) animated:NO];
+    if (self.conversation.messages.count > 0 && (![self.lastMessageSent isEqual:self.conversation.messages[self.conversation.messages.count - 1]] || self.messagesCollectionViewFrameHeight != self.messagesCollectionView.frame.size.height)) {
+        CGFloat collectionViewContentHeight = self.messagesCollectionView.contentSize.height;
+        self.messagesCollectionViewFrameHeight = self.messagesCollectionView.frame.size.height;
+        CGFloat collectionViewFrameHeight = self.messagesCollectionViewFrameHeight;
+        
+        if (collectionViewContentHeight > collectionViewFrameHeight) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.conversation.messages.count - 1 inSection:0];
+            [self.messagesCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        }
     }
 }
 
@@ -172,7 +246,7 @@
     [self.messagesCollectionView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void)configureNavigatonBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
@@ -191,8 +265,6 @@
         title = [NSString stringWithFormat:@"%@ - UNTITLED POST", self.otherUser.username];
     }
     [Format formatAppBar:self.appBar withTitle:title];
-    
-    self.inProgressOptionsView.frame = CGRectMake(0, 75, self.view.frame.size.width, 50);
 }
 
 //automatically style status bar
@@ -212,7 +284,7 @@
     }
 }
 
-- (void)configureOptions {
+- (void)configureByStatusAndUsers {
     // show "suggest price" button or "job in progress" bar
     if (self.conversation.post.postStatus == OPEN) {
         [self configureOpenAppearance];
@@ -235,13 +307,14 @@
     } else {
         [self configureClosedAppearance];
     }
+    
+    [self configureLayout];
 }
 
 - (void)configureOpenAppearance {
     [self configureBottomViewShowingSuggestPriceButton:YES];
     
     [self.inProgressOptionsView setHidden:YES];
-    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 0);
 }
 
 - (void)configureInProgressAppearance {
@@ -250,67 +323,73 @@
     [self.inProgressOptionsView setHidden:NO];
     self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 70);
     
-    [self.inProgressButtonsStackView setHidden:NO];
-    
-    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@!", self.conversation.post.price];
-    
+    self.jobStatusProgressLabel.text = [NSString stringWithFormat:@"This job is now in progress for $%@.", self.conversation.post.price];
+
+    [self.cancelJobButton setHidden:NO];
     // show/hide job completed button, since only want post's author to state when job completed
     if ([self.user.objectId isEqualToString:self.conversation.post.author.objectId]) {
         [self.jobCompletedButton setHidden:NO];
     } else {
         [self.jobCompletedButton setHidden:YES];
     }
+    
+    [self configureOptionsView];
 }
 
 - (void)configureNotInvolvedUserAppearance {
     [self configureBottomViewShowingSuggestPriceButton:NO];
     
-    [self.inProgressButtonsStackView setHidden:YES];
+    [self.jobCompletedButton setHidden:YES];
+    [self.cancelJobButton setHidden:YES];
     
     [self.inProgressOptionsView setHidden:NO];
-    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 30);
     
-    self.jobStatusProgressLabel.text = @"Sorry, this job has been taken by another user!";
+    self.jobStatusProgressLabel.text = @"Sorry, this job has been taken by another user.";
+    [self configureOptionsView];
 }
 
 - (void)configureNotTakerAppearance {
     [self configureBottomViewShowingSuggestPriceButton:NO];
     
-    [self.inProgressButtonsStackView setHidden:YES];
+    [self.jobCompletedButton setHidden:YES];
+    [self.cancelJobButton setHidden:YES];
     
     [self.inProgressOptionsView setHidden:NO];
-    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 50);
     self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
-    self.jobStatusProgressLabel.text = @"This job is already in progress with another user!";
+    self.jobStatusProgressLabel.text = @"This job is already in progress with another user.";
+    [self configureOptionsView];
+
 }
 
 - (void)configureClosedAppearance {
     [self configureBottomViewShowingSuggestPriceButton:NO];
     
-    [self.inProgressButtonsStackView setHidden:YES];
+    [self.jobCompletedButton setHidden:YES];
+    [self.cancelJobButton setHidden:YES];
     
     [self.inProgressOptionsView setHidden:NO];
-    self.inProgressOptionsView.frame = CGRectMake(self.inProgressOptionsView.frame.origin.x, self.inProgressOptionsView.frame.origin.y, self.inProgressOptionsView.frame.size.width, 50);
     self.jobStatusProgressLabel.frame = CGRectMake(self.jobStatusProgressLabel.frame.origin.x, self.jobStatusProgressLabel.frame.origin.y, self.jobStatusProgressLabel.frame.size.width, 50);
     
-    self.jobStatusProgressLabel.text = @"This job has been completed, but feel free to keep chatting!";
+    self.jobStatusProgressLabel.text = @"This job has been completed.";
+    [self configureOptionsView];
+
 }
 
 - (void)configureBottomViewShowingSuggestPriceButton:(BOOL)showsSuggestPrice {
     
-    CGFloat horizontalInset = 0;
+    CGFloat horizontalInset = 16;
     
     if (showsSuggestPrice) {
         self.suggestPriceButton.hidden = NO;
         
-        CGFloat composeMessageOriginX = self.suggestPriceButton.frame.origin.x + self.suggestPriceButton.frame.size.width + horizontalInset;
+        CGFloat composeMessageOriginX = self.suggestPriceButton.frame.origin.x + self.suggestPriceButton.frame.size.width;
         self.composeMessageTextField.textView.frame = CGRectMake(composeMessageOriginX, 0, self.sendMessageButton.frame.origin.x - composeMessageOriginX, self.bottomViewHeight);
         self.composeMessageTextField.frame = self.composeMessageTextField.textView.frame;
         
     } else {
         self.suggestPriceButton.hidden = YES;
-        self.composeMessageTextField.textView.frame = CGRectMake(0, 0, self.sendMessageButton.frame.origin.x - horizontalInset, self.bottomViewHeight);
+        self.composeMessageTextField.textView.frame = CGRectMake(horizontalInset, 0, self.sendMessageButton.frame.origin.x - horizontalInset, self.bottomViewHeight);
         
         self.composeMessageTextField.frame = self.composeMessageTextField.textView.frame;
     }
@@ -323,6 +402,7 @@
     CGFloat distance = self.composeMessageTextField.frame.size.height - self.bottomViewHeight;
     self.bottomViewHeight = self.composeMessageTextField.frame.size.height;
     [Utils animateView:self.bottomView withDistance:distance up:YES];
+    [self configureLayout];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -332,6 +412,7 @@
         [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:YES];
         [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:YES];
         [self configureLayout];
+        [self scrollToBottom];
     }
 }
 
@@ -342,6 +423,7 @@
         [Utils animateView:self.sendMessageButton withDistance:keyboardHeight up:NO];
         [Utils animateView:self.suggestPriceButton withDistance:keyboardHeight up:NO];
         [self configureLayout];
+        [self scrollToBottom];
     }
 }
 
@@ -385,19 +467,17 @@
 }
 
 - (IBAction)didTapSuggestPriceButton:(id)sender {
-    self.showingSuggestViewController = YES;
-    [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+    if ([self.user.objectId isEqualToString:self.conversation.post.author.objectId] && self.user[paymentCard]) {
+        self.showingSuggestViewController = YES;
+        [self performSegueWithIdentifier:messagesToSuggestPriceSegue sender:nil];
+    } else {
+        
+    }
 }
 
 - (IBAction)didTapCancelJobButton:(id)sender {
-    __unsafe_unretained typeof(self) weakSelf = self;
-    [self.conversation.post cancelJobWithConversation:self.conversation withCompletion:^(BOOL didCancelJob, NSError *error) {
-        if (didCancelJob) {
-            [weakSelf reloadData];
-        } else {
-            [Alert callAlertWithTitle:@"Error Cancelling Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:weakSelf];
-        }
-    }];
+    NSString *confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for $%@.", self.conversation.post.price];
+    [Alert callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
 }
 
 - (IBAction)didTapJobCompletedButton:(id)sender {
@@ -407,8 +487,9 @@
             [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
                 if (didSendMessage) {
                     [weakSelf reloadData];
+                    [weakSelf performSegueWithIdentifier:messagesToJobCompletedSegue sender:nil];
                 } else {
-                    [Alert callAlertWithTitle:@"Something's wrong!" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
+                    [Alert callAlertWithTitle:@"Something's wrong." alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf];
                 }
             }];
         } else {
@@ -446,15 +527,21 @@
     CGSize boundedSize = CGSizeMake(self.maxCellWidth, self.maxCellHeight);
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
-    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: typographyScheme.subtitle1} context:nil];
+    UIFont *fontName;
+    if (message.isSystemMessage) {
+        fontName = [UIFont fontWithName:lightItalicFontName size: 16];
+    } else {
+        fontName = typographyScheme.subtitle1;
+    }
+    CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: fontName} context:nil];
     
     // show/hide the accept/decline suggested price buttons
-    CGFloat buttonsStackViewAllowance = 0;
+    CGFloat buttonsViewAllowance = 0;
     if (self.conversation.post.postStatus == OPEN && message[@"suggestedPrice"] && ![message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        buttonsStackViewAllowance = 40;
+        buttonsViewAllowance = 40;
     }
     
-    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + buttonsStackViewAllowance);
+    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + buttonsViewAllowance);
 }
 
 #pragma mark - Navigation
@@ -470,6 +557,10 @@
         PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.post = self.conversation.post;
         postDetailsController.delegate = self;
+    } else if ([segue.identifier isEqualToString:messagesToJobCompletedSegue]) {
+        JobCompletedViewController *jobCompletedController = [segue destinationViewController];
+        jobCompletedController.post = self.conversation.post;
+        jobCompletedController.otherUser = self.otherUser;
     }
 }
 

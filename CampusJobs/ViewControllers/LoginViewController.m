@@ -18,6 +18,7 @@
 #import "AppScheme.h"
 #import "Format.h"
 #import "Colors.h"
+#import "StringConstants.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -55,6 +56,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    MDCTextField *field = (MDCTextField *)textField;
+    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
+    field.placeholderLabel.font = typographyScheme.subtitle1;
+}
+
 //automatically style status bar
 - (UIViewController *)childViewControllerForStatusBarStyle {
     self.appBar = [[MDCAppBar alloc] init];
@@ -87,17 +94,21 @@
 
 - (void)formatTypography {
     id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
-    
-    self.titleLabel.font = typographyScheme.headline2;
+
+    self.titleLabel.font = [UIFont fontWithName:lightFontName size:60];
     self.titleLabel.text = [self.titleLabel.text uppercaseString];
     
-    self.usernameField.placeholderLabel.font = typographyScheme.subtitle1;
+    self.usernameField.placeholderLabel.font = [UIFont fontWithName:boldFontName size:16];
     self.usernameField.placeholder = @"USERNAME";
+    self.usernameFieldController.inlinePlaceholderFont=[UIFont fontWithName:boldFontName size:16];
+    self.usernameField.font=[UIFont fontWithName:regularFontName size:18];
     
     self.passwordField.placeholderLabel.font = typographyScheme.subtitle1;
     self.passwordField.placeholder = @"PASSWORD";
+    self.passwordFieldController.inlinePlaceholderFont=[UIFont fontWithName:boldFontName size:16];
+    self.passwordField.font=[UIFont fontWithName:regularFontName size:18];
     
-    [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16] forState:UIControlStateNormal];
+    [self.forgotPasswordButton setTitleFont:[UIFont fontWithName:lightItalicFontName size:16] forState:UIControlStateNormal];
     [self.forgotPasswordButton sizeToFit];
     
     self.accountLabel.font = typographyScheme.body1;
@@ -148,7 +159,7 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            [Alert callAlertWithTitle:@"Login Failed!" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
+            [Alert callAlertWithTitle:@"Login Failed" alertMessage:[NSString stringWithFormat:@"%@",error.localizedDescription] viewController:self];
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:loginToFeedSegue sender:nil];

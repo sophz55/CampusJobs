@@ -10,7 +10,9 @@
 #import <MapKit/MapKit.h>
 #import <MaterialComponents/MaterialAppBar.h>
 #import "SegueConstants.h"
+#import "StringConstants.h"
 #import "Format.h"
+#import "EditPaymentInfoViewController.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -27,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     self.currentUser=[PFUser currentUser];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -45,15 +47,13 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    
     self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
     [Format formatBarButton:self.nextButton];
     self.navigationItem.rightBarButtonItem = self.nextButton;
-    
     [Format formatAppBar:self.appBar withTitle:@"CHOOSE A RADIUS"];
 }
 
@@ -64,20 +64,21 @@
 
 //Set default radius to 1 mile
 - (void)setDefaultRadius{
-    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f", self.radiusSliderBar.value];
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f", self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
-    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
+    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:desiredRadius];
 }
 
 - (IBAction)didTapNextButton:(id)sender {
-    self.currentUser[@"currentLocation"]=[PFGeoPoint geoPointWithLocation:self.userLocation];
-    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:@"desiredRadius"];
+    self.currentUser[currentLocation]=[PFGeoPoint geoPointWithLocation:self.userLocation];
+    [self.currentUser setValue:[NSNumber numberWithFloat:self.radiusSliderBar.value] forKey:desiredRadius];
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(!succeeded){
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    if(self.currentUser[@"desiredRadius"]){
+    
+    if (![self.vc isKindOfClass:[EditPaymentInfoViewController class]]){
         [self dismissViewControllerAnimated:YES completion:nil];
     } else{
         [self performSegueWithIdentifier:mapToFeedSegue sender:nil];
@@ -101,7 +102,7 @@
 }
 
 - (IBAction)slideBarValueChanged:(id)sender {
-    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
+    self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f",self.radiusSliderBar.value];
     [self createBoundaryWithRadius:self.radiusSliderBar.value];
 }
 
@@ -118,10 +119,10 @@
 
 //check if the user has already set a radius and is now editing it
 - (void)checkEditing{
-    if (self.currentUser[@"desiredRadius"]){
-        self.radiusSliderBar.value=[self.currentUser[@"desiredRadius"] floatValue];
+    if (self.currentUser[desiredRadius]){
+        self.radiusSliderBar.value=[self.currentUser[desiredRadius] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
-        self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.2f",self.radiusSliderBar.value];
+        self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f",self.radiusSliderBar.value];
         [self.nextButton setTitle:@"SAVE"];
     }
 }
@@ -134,7 +135,6 @@
 }
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
