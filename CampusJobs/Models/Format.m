@@ -102,8 +102,8 @@
     view.image = [UIImage imageNamed:@"image_placeholder"];
     
     //format profile picture border
-    view.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
-    view.layer.borderWidth=2.0;
+    view.layer.borderColor = [[Colors primaryBlueColor] CGColor];
+    view.layer.borderWidth = view.frame.size.width * .03;
     
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (user) {

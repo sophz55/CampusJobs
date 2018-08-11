@@ -22,11 +22,13 @@
 #import "AppScheme.h"
 #import <MapKit/MapKit.h>
 #import "StringConstants.h"
+#import <Masonry.h>
 
 @interface ComposeNewPostViewController () <UITextViewDelegate, UITextFieldDelegate>{
     CLLocationCoordinate2D savedLocationCoordinate;
 }
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editLocationButton;
+@property (weak, nonatomic) IBOutlet MDCButton *useCurrentLocationButton;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet MDCMultilineTextField *titleTextField;
 
@@ -51,6 +53,9 @@
     [self configureIntialView];
     self.view.backgroundColor=[Colors secondaryGreyLighterColor];
     [self configureColors];
+    [self configureButtons];
+    [self configureLayout];
+    self.useCurrentLocationButton.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,13 +64,16 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (self.savedLocation) {
-        [self.postMapView setHidden:NO];
-        [self formatExistingMap];
+    if (!self.savedLocation || [self.savedLocation isEqual:[PFUser currentUser][currentLocation]]) {
+        self.savedLocation = [PFUser currentUser][currentLocation];
+        self.useCurrentLocationButton.hidden = YES;
     } else {
-        [self.postMapView setHidden:YES];
+        self.useCurrentLocationButton.hidden = NO;
     }
+    
+    [self formatMap];
 }
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
@@ -134,14 +142,13 @@
     self.descriptionTextField.text = self.post.summary;
     self.savedLocation = self.post.location;
     self.savedLocationAddress = self.post.locationAddress;
-    [self.postMapView setHidden:NO];
-    [self formatExistingMap];
+    [self formatMap];
     if (self.savedLocationAddress && ![self.savedLocationAddress isEqualToString:@""]) {
         self.locationAddressLabel.text = self.savedLocationAddress;
-        [self.editLocationButton setTitle:@"EDIT POST LOCATION" forState:UIControlStateNormal];
+        self.useCurrentLocationButton.hidden = NO;
     } else {
-        self.locationAddressLabel.text = @"Please set a location for your task";
-        [self.editLocationButton setTitle:@"PIN POST LOCATION" forState:UIControlStateNormal];
+        self.locationAddressLabel.text = @"Using your current location.";
+        self.useCurrentLocationButton.hidden = YES;
     }
     [Format formatAppBar:self.appBar withTitle:@"Your Posting"];
 
@@ -156,23 +163,39 @@
 }
 
 - (void)configureForNewPost {
-    self.locationAddressLabel.text = @"Please set a location for your task";
-    [self.editLocationButton setTitle:@"PIN POST LOCATION" forState:UIControlStateNormal];
-    self.postMapView.hidden=YES;
+    self.locationAddressLabel.text = @"Using your current location.";
     [self.postButton setTitle:@"Post"];
 }
 
 - (void)configureColors{
     id<MDCColorScheming> colorScheme = [AppScheme sharedInstance].colorScheme;
+    
     //Button color
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.editLocationButton];
+    [Format formatRaisedButton:self.editLocationButton];
+    [Format formatFlatButton:self.useCurrentLocationButton];
+    
     //text field colors
     self.titleTextField.textColor = colorScheme.onSurfaceColor;
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.titleTextFieldController];
     [MDCTextFieldColorThemer applySemanticColorScheme:colorScheme
                                 toTextInputController:self.descriptionTextFieldController];
+}
+
+- (void)configureButtons {
+    [self.editLocationButton setTitle:@"EDIT POST LOCATION" forState:UIControlStateNormal];
+    [self.editLocationButton sizeToFit];
+    
+    [self.useCurrentLocationButton setTitle:@"USE CURRENT LOCATION" forState:UIControlStateNormal];
+    [self.useCurrentLocationButton setTitleFont:[UIFont fontWithName:lightItalicFontName size:14] forState:UIControlStateNormal];
+    [self.useCurrentLocationButton sizeToFit];
+}
+
+- (void)configureLayout {
+    [self.useCurrentLocationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.editLocationButton.mas_bottom).with.offset(4);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
 }
 
 //Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user
@@ -185,15 +208,14 @@
         if(error==nil & placemarks.count>0){
             CLPlacemark * placemark=[placemarks firstObject];
             //formats the location label
-            self.locationAddressLabel.text= [NSString stringWithFormat:@" %@ %@, %@, %@, %@" ,placemark.subThoroughfare, placemark.thoroughfare, placemark.locality,placemark.administrativeArea,placemark.postalCode];
-            [self.editLocationButton setTitle:@"Edit Post Location" forState:UIControlStateNormal];
+            self.locationAddressLabel.text= [NSString stringWithFormat:@"%@ %@, %@, %@, %@", placemark.subThoroughfare, placemark.thoroughfare, placemark.locality,placemark.administrativeArea,placemark.postalCode];
         }
         self.savedLocationAddress = self.locationAddressLabel.text;
     }];
 }
 #pragma mark - Helper Method
 
-- (void)formatExistingMap{
+- (void)formatMap{
     //rounded edges
     self.postMapView.layer.cornerRadius=5.0;
     self.postMapView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
@@ -246,6 +268,13 @@
             }
         }];
     }
+}
+
+- (IBAction)didTapUseCurrentLocationButton:(id)sender {
+    self.savedLocation = [PFUser currentUser][@"currentLocation"];
+    [self formatMap];
+    self.locationAddressLabel.text = @"Using your current location.";
+    self.useCurrentLocationButton.hidden = YES;
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {

@@ -12,6 +12,7 @@
 #import <MaterialComponents/MaterialAppBar.h>
 #import "Format.h"
 #import "Alert.h"
+#import "StringConstants.h"
 
 @interface JobLocationMapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>{
     CLLocationCoordinate2D selectedUserCoordinate;
@@ -108,16 +109,18 @@
 //saves the user's desired post location to Parse
 - (IBAction)didTapSaveButton:(id)sender {
     ComposeNewPostViewController * composedPost=(ComposeNewPostViewController *)[self presentingViewController];
-    
-    NSLog(@"%lu",self.jobPostingMapView.annotations.count);
     if (self.jobPostingMapView.annotations.count == 0) {
         //displays alert if user tries to save without selecting a location
         [Alert callAlertWithTitle:@"Error" alertMessage:@"Please pin a location before saving." viewController:self];
     } else if (self.prevPost.savedLocation && !CLLocationCoordinate2DIsValid(selectedUserCoordinate)){
         //saves already existing location if user hasn't selected a new one
-        composedPost.savedLocation=self.prevPost.savedLocation;
+        if (![self.prevPost.savedLocation isEqual:[PFUser currentUser][currentLocation]]){
+            composedPost.savedLocation = self.prevPost.savedLocation;
+            [composedPost getAddressFromCoordinate:self.prevPost.savedLocation];
+        } else {
+            composedPost.savedLocation = nil;
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
-        [composedPost getAddressFromCoordinate:self.prevPost.savedLocation];
     } else {
         //saves desired location and will display on ComposeNewPostViewController
         PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
