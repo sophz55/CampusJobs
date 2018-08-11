@@ -44,26 +44,38 @@
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
     CGRect estimatedFrame = [messageText boundingRectWithSize:boundedSize options:options attributes:@{NSFontAttributeName: self.messageTextView.font} context:nil];
     
-    CGFloat imageWidth = 33;
-    CGFloat horizontalImageInset = 8;
-    CGFloat verticalImageInset = 8;
+    NSInteger nextIndex = ([self.conversation.messages indexOfObject:self.message] + 1);
+    NSInteger previousIndex = nextIndex - 2;
     
+    Message *previousMessage;
+    if (previousIndex >= 0) {
+        previousMessage = self.conversation.messages[previousIndex];
+    }
+    CGFloat verticalBubbleInset;
+    if (previousIndex < 0 || [previousMessage.sender.objectId isEqualToString:self.message.sender.objectId]) {
+        verticalBubbleInset = 4;
+    } else {
+        verticalBubbleInset = 12;
+    }
+
     CGFloat horizontalTextInset = 8;
     CGFloat verticalTextInset = 8;
     CGFloat horizontalBubbleInset = 4;
-    CGFloat verticalBubbleInset = 4;
     CGSize textViewSize = CGSizeMake(ceil(estimatedFrame.size.width) + 16, ceil(estimatedFrame.size.height));
     CGSize bubbleViewSize = CGSizeMake((textViewSize.width + 2 * horizontalTextInset), (textViewSize.height + 2 * verticalTextInset));
     
+    CGFloat imageWidth = 35;
+    CGFloat horizontalImageInset = 8;
+    CGFloat verticalImageInset = 2;
+    
     if (![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        NSInteger nextIndex = ([self.conversation.messages indexOfObject:self.message] + 1);
         Message *nextMessage;
         if (nextIndex < self.conversation.messages.count) {
             nextMessage = self.conversation.messages[nextIndex];
         }
         if (nextIndex == self.conversation.messages.count || [nextMessage.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
             self.senderProfileImageView.hidden = NO;
-            self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, bubbleViewSize.height - verticalImageInset - imageWidth, imageWidth, imageWidth);
+            self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, bubbleViewSize.height + verticalBubbleInset - verticalImageInset - imageWidth, imageWidth, imageWidth);
             [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
         } else {
             self.senderProfileImageView.hidden = YES;

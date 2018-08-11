@@ -541,7 +541,17 @@
         buttonsViewAllowance = 40;
     }
     
-    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + buttonsViewAllowance);
+    NSInteger previousIndex = ([self.conversation.messages indexOfObject:message] - 1);
+    Message *previousMessage;
+    if (previousIndex >= 0) {
+        previousMessage = self.conversation.messages[previousIndex];
+    }
+    CGFloat verticalBubbleAllowance = 0;
+    if (previousIndex >= 0 && ![previousMessage.sender.objectId isEqualToString:message.sender.objectId]) {
+        verticalBubbleAllowance = 8;
+    }
+
+    return CGSizeMake(collectionView.frame.size.width, ceil(estimatedFrame.size.height) + 20 + verticalBubbleAllowance + buttonsViewAllowance);
 }
 
 #pragma mark - Navigation
