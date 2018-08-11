@@ -56,11 +56,21 @@
     CGSize bubbleViewSize = CGSizeMake((textViewSize.width + 2 * horizontalTextInset), (textViewSize.height + 2 * verticalTextInset));
     
     if (![self.message.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
-        self.senderProfileImageView.hidden = NO;
-        self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, verticalImageInset, imageWidth, imageWidth);
-        [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
-        CGFloat imageInset = horizontalImageInset + imageWidth;
+        NSInteger nextIndex = ([self.conversation.messages indexOfObject:self.message] + 1);
+        Message *nextMessage;
+        if (nextIndex < self.conversation.messages.count) {
+            nextMessage = self.conversation.messages[nextIndex];
+        }
+        if (nextIndex == self.conversation.messages.count || [nextMessage.sender.objectId isEqualToString:[PFUser currentUser].objectId]) {
+            self.senderProfileImageView.hidden = NO;
+            self.senderProfileImageView.frame = CGRectMake(horizontalImageInset, bubbleViewSize.height - verticalImageInset - imageWidth, imageWidth, imageWidth);
+            [Format formatProfilePictureForUser:self.message.sender withView:self.senderProfileImageView];
+        } else {
+            self.senderProfileImageView.hidden = YES;
+        }
         
+        CGFloat imageInset = horizontalImageInset + imageWidth;
+
         self.textBubbleView.frame = CGRectMake(imageInset + horizontalBubbleInset, verticalBubbleInset, bubbleViewSize.width, bubbleViewSize.height);
         self.textBubbleView.backgroundColor = [Colors secondaryGreyLightColor];
         self.textBubbleView.alpha = 0.3;

@@ -75,6 +75,7 @@
     PFGeoPoint *currentLocation = self.currentUser[@"currentLocation"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
+    [query whereKey:@"author" notEqualTo:[PFUser currentUser]];
     [query includeKey:@"summary"];
     [query includeKey:@"postStatus"];
     [query includeKey:@"location"];
