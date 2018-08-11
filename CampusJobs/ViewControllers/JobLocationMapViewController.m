@@ -55,7 +55,7 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    self.cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cancel"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
     [Format formatBarButton:self.cancelButton];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     

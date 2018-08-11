@@ -253,7 +253,7 @@
     
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton:)];
     self.navigationItem.leftBarButtonItem = self.backButton;
-    self.viewPostButton = [[UIBarButtonItem alloc] initWithTitle:@"View Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
+    self.viewPostButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paper"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapViewPostButton:)];
     [Format formatBarButton:self.viewPostButton];
     self.flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFlagButton:)];
     [self showByDelegate];
@@ -277,7 +277,7 @@
 - (void)showByDelegate {
     if ([self.delegate isKindOfClass:[ConversationsViewController class]]) {
         [self.viewPostButton setEnabled:YES];
-        self.navigationItem.rightBarButtonItems = @[self.viewPostButton, self.flagButton];
+        self.navigationItem.rightBarButtonItems = @[self.flagButton, self.viewPostButton];
     } else {
         [self.viewPostButton setEnabled:NO];
         self.navigationItem.rightBarButtonItems = @[self.flagButton];

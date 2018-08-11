@@ -98,7 +98,7 @@
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    self.cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cancel"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
     [Format formatBarButton:self.cancelButton];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     self.postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(didTapPostButton:)];
@@ -214,6 +214,8 @@
 #pragma mark - Helper Method
 
 - (void)formatMap{
+    [self.postMapView setShowsUserLocation:YES];
+    
     //rounded edges
     self.postMapView.layer.cornerRadius=5.0;
     self.postMapView.layer.borderColor=[[Colors primaryBlueColor]CGColor];

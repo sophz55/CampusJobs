@@ -346,6 +346,8 @@
 }
 
 - (void)setMapWithAnnotation{
+    [self.postLocationMap setShowsUserLocation:YES];
+    
     //format map
     self.postLocationMap.layer.cornerRadius=5.0;
     self.postLocationMap.layer.borderColor=[[Colors primaryBlueColor]CGColor];
