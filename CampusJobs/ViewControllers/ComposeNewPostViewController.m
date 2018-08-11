@@ -259,7 +259,7 @@
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:composePostToMapSegue]){
         JobLocationMapViewController * jobViewController=[segue destinationViewController];
-        jobViewController.prevPost=self;
+        jobViewController.prevPost = self;
     }
 }
 
