@@ -125,6 +125,7 @@
         //saves desired location and will display on ComposeNewPostViewController
         PFGeoPoint * locationCoordGeoPoint =[PFGeoPoint geoPointWithLatitude:selectedUserCoordinate.latitude longitude:selectedUserCoordinate.longitude];
         composedPost.savedLocation=locationCoordGeoPoint;
+        [composedPost.postMapView removeAnnotations:composedPost.postMapView.annotations];
         [self dismissViewControllerAnimated:YES completion:nil];
         [composedPost getAddressFromCoordinate:composedPost.savedLocation];
     }

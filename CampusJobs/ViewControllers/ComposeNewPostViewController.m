@@ -39,8 +39,6 @@
 @property (strong, nonatomic) UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) UIBarButtonItem *postButton;
 
-@property (weak, nonatomic) IBOutlet MKMapView *postMapView;
-
 @end
 
 @implementation ComposeNewPostViewController
@@ -272,6 +270,7 @@
 
 - (IBAction)didTapUseCurrentLocationButton:(id)sender {
     self.savedLocation = [PFUser currentUser][@"currentLocation"];
+    [self.postMapView removeAnnotations:self.postMapView.annotations];
     [self formatMap];
     self.locationAddressLabel.text = @"Using your current location.";
     self.useCurrentLocationButton.hidden = YES;

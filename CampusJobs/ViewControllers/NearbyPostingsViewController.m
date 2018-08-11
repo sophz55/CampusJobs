@@ -37,16 +37,14 @@
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsView.frame = self.view.bounds;
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
     [self addRefreshControl];
     [self displayBackgroundColor];
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
-    
-    self.noNearbyPostingsView.frame = self.view.bounds;
-    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
-    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
 }
 
 - (void)viewDidAppear:(BOOL)animated {

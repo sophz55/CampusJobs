@@ -20,6 +20,7 @@
 @property (strong, nonatomic) PFGeoPoint * savedLocation;
 @property (strong, nonatomic) NSString * savedLocationAddress;
 @property (strong, nonatomic) Post *post;
+@property (weak, nonatomic) IBOutlet MKMapView *postMapView;
 
 - (void)getAddressFromCoordinate:(PFGeoPoint *)geoPointLocation;
 

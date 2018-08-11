@@ -59,15 +59,17 @@
     self.navigationItem.rightBarButtonItem = self.composeButton;
     
     [Format formatAppBar:self.appBar withTitle:@"SEIZE"];
+    self.view.backgroundColor = self.appBar.headerViewController.view.backgroundColor;
 }
 
 - (void)configureLayout {
     [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:regularFontName size:14]} forState:UIControlStateNormal];
-    self.segmentedControl.frame = CGRectMake(-10, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width + 20, 30);
-    self.segmentedControl.tintColor = self.appBar.headerViewController.view.backgroundColor;
+    self.segmentedControl.frame = CGRectMake(8, self.appBar.headerViewController.view.frame.origin.y + self.appBar.headerViewController.view.frame.size.height, self.view.frame.size.width - 16, 30);
+    self.segmentedControl.tintColor = [UIColor whiteColor];
+    self.segmentedControl.backgroundColor = self.view.backgroundColor;
     
-    CGFloat containerOriginY = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height;
-    CGFloat tabBarHeight = 75;
+    CGFloat containerOriginY = self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height + 8;
+    CGFloat tabBarHeight = 70;
     
     self.nearbyPostingsContainer.frame = CGRectMake(0, containerOriginY + 55, self.view.frame.size.width, self.view.frame.size.height - containerOriginY - tabBarHeight);
     self.yourPostingsContainer.frame = self.nearbyPostingsContainer.frame;
