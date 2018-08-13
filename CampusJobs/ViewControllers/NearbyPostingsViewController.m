@@ -16,7 +16,7 @@
 #import <ChameleonFramework/Chameleon.h>
 #import "Format.h"
 
-@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
+@interface NearbyPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *nearbyPostTableView;
 @property (retain, nonatomic) NSMutableArray * nearbyPostingsArray;
@@ -25,6 +25,8 @@
 @property (strong, nonatomic) NSNumber * userRadius;
 @property (weak, nonatomic) IBOutlet UIView *noNearbyPostingsView;
 @property (weak, nonatomic) IBOutlet UILabel *noNearbyPostingsLabel;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (retain, nonatomic) NSMutableArray * filteredNearbyPostingsArray;
 
 @end
 
@@ -32,18 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.nearbyPostTableView.delegate=self;
-    self.nearbyPostTableView.dataSource=self;
+    [self setDelegates];
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
+    self.filteredNearbyPostingsArray=[[NSMutableArray alloc]init];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
-    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-    [self addRefreshControl];
-    [self displayBackgroundColor];
-    [self fetchNearbyPosts];
-    [self.nearbyPostTableView reloadData];
-    
+    [self callViewDidLoadMethods];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
@@ -52,18 +49,23 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self displayRadius];
-    
-    CGFloat verticalInset = 8;
-    self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
-    self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
-    
     [self displayRadius];
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
+    
+    self.searchBar.frame=CGRectMake(0, 0, self.searchBar.frame.size.width, 45);
+    self.radiusLabel.frame=CGRectMake(0, 48, self.radiusLabel.frame.size.width, self.radiusLabel.frame.size.height);
+    self.nearbyPostTableView.frame=CGRectMake(0, 63, self.nearbyPostTableView.frame.size.width, self.nearbyPostTableView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setDelegates{
+    self.nearbyPostTableView.delegate=self;
+    self.nearbyPostTableView.dataSource=self;
+    self.searchBar.delegate=self;
 }
 
 - (void)fetchNearbyPosts{
@@ -88,10 +90,11 @@
                 self.noNearbyPostingsView.hidden = YES;
             } else {
                 self.noNearbyPostingsView.hidden = NO;
-                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.0f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
             self.nearbyPostingsArray=[[NSMutableArray alloc]init];
+            self.filteredNearbyPostingsArray=[[NSMutableArray alloc]init];
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
                 Post * currPost=[posts objectAtIndex:i];
@@ -103,11 +106,12 @@
                     [self.nearbyPostingsArray addObject:currPost];
                 }
             }
+            self.filteredNearbyPostingsArray=self.nearbyPostingsArray;
             if (self.nearbyPostingsArray.count > 0) {
                 self.noNearbyPostingsView.hidden = YES;
             } else {
                 self.noNearbyPostingsView.hidden = NO;
-                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.2f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
             
@@ -120,7 +124,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NearbyPostCell * nearbyPostCell=[tableView dequeueReusableCellWithIdentifier:@"NearbyPostCell" forIndexPath:indexPath];
-    Post * post=self.nearbyPostingsArray[indexPath.row];
+    Post * post=self.filteredNearbyPostingsArray[indexPath.row];
     nearbyPostCell.post=post;
     [nearbyPostCell setNearbyPost:post];
     //adding shadow
@@ -158,7 +162,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.nearbyPostingsArray.count;
+    return self.filteredNearbyPostingsArray.count;
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl{
@@ -192,6 +196,39 @@
     [self.nearbyPostTableView insertSubview:refreshControl atIndex:0];
 }
 
+-(void)searchBar:(UISearchBar *) searchBar textDidChange: (NSString *) searchText{
+    if(searchText.length!=0){
+        NSPredicate * predicate=[NSPredicate predicateWithBlock:^BOOL(Post * post, NSDictionary * bindings){
+            return[post[@"title"] containsString:searchText];
+        }];
+        self.filteredNearbyPostingsArray=[self.nearbyPostingsArray filteredArrayUsingPredicate:predicate];
+    } else{
+        self.filteredNearbyPostingsArray=self.nearbyPostingsArray;
+        [self.nearbyPostTableView reloadData];
+    }
+    [self.nearbyPostTableView reloadData];
+}
+
+- (void)changeSearchBarFont{
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"RobotoCondensed-Regular" size:17]];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.nearbyPostingsArray=self.nearbyPostingsArray;
+    [self.view endEditing:YES];
+    searchBar.text=@"";
+    [self.nearbyPostTableView reloadData];
+}
+
+//Helper method for view did load
+- (void)callViewDidLoadMethods{
+    [self addRefreshControl];
+    [self displayBackgroundColor];
+    [self fetchNearbyPosts];
+    [self.nearbyPostTableView reloadData];
+    [self changeSearchBarFont];
+}
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -199,7 +236,7 @@
     if ([segue.identifier isEqualToString:nearbyPostingsToPostDetailsSegue]) {
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.nearbyPostTableView indexPathForCell:tappedCell];
-        Post *singlePost = self.nearbyPostingsArray[indexPath.row];
+        Post *singlePost = self.filteredNearbyPostingsArray[indexPath.row];
         PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
         [self.nearbyPostTableView deselectRowAtIndexPath:indexPath animated:YES];
         postDetailsViewController.delegate = self;
