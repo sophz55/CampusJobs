@@ -34,8 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self setDelegates];
-    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
+    self.nearbyPostingsArray = [[NSMutableArray alloc] init];
     self.filteredNearbyPostingsArray=[[NSMutableArray alloc]init];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
@@ -46,19 +47,21 @@
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-    
+    self.noNearbyPostingsView.hidden = NO;
+    [self configureLoadingPlaceholder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self displayRadius];
-    [self displayRadius];
+    
+    CGFloat verticalInset = 4;
+    self.searchBar.frame=CGRectMake(0, 0, self.searchBar.frame.size.width, 45);
+    self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
+    self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
+    
     [self fetchNearbyPosts];
     [self.nearbyPostTableView reloadData];
-    
-    self.searchBar.frame=CGRectMake(0, 0, self.searchBar.frame.size.width, 45);
-    self.radiusLabel.frame=CGRectMake(0, 48, self.radiusLabel.frame.size.width, self.radiusLabel.frame.size.height);
-    self.nearbyPostTableView.frame=CGRectMake(0, 63, self.nearbyPostTableView.frame.size.width, self.nearbyPostTableView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +72,12 @@
     self.nearbyPostTableView.delegate=self;
     self.nearbyPostTableView.dataSource=self;
     self.searchBar.delegate=self;
+}
+
+- (void)configureLoadingPlaceholder {
+    self.noNearbyPostingsView.frame = self.view.bounds;
+    [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
 }
 
 - (void)fetchNearbyPosts{
@@ -115,7 +124,7 @@
                 self.noNearbyPostingsView.hidden = YES;
             } else {
                 self.noNearbyPostingsView.hidden = NO;
-                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
+                self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
             [self.nearbyPostTableView reloadData];
