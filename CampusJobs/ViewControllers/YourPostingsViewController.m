@@ -31,7 +31,7 @@
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
     [self.noPostingsLabel sizeToFit];
-    [Format centerVerticalView:self.noPostingsLabel inView:self.view];
+   self.noPostingsLabel.frame=CGRectMake(self.noPostingsLabel.frame.origin.x +33, self.noPostingsLabel.frame.origin.y, self.noPostingsLabel.frame.size.width, self.noPostingsLabel.frame.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated {

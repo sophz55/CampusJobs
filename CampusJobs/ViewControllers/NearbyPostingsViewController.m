@@ -70,7 +70,7 @@
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     [self.noNearbyPostingsLabel sizeToFit];
-    [Format centerVerticalView:self.noNearbyPostingsLabel inView:self.view];
+    self.noNearbyPostingsLabel.frame=CGRectMake(self.noNearbyPostingsLabel.frame.origin.x +33, self.noNearbyPostingsLabel.frame.origin.y, self.noNearbyPostingsLabel.frame.size.width, self.noNearbyPostingsLabel.frame.size.height);
 }
 
 - (void)fetchNearbyPosts{
