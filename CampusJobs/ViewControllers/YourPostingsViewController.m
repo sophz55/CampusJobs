@@ -13,11 +13,13 @@
 #import "Format.h"
 #import <ChameleonFramework/Chameleon.h>
 
-@interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
+@interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
 @property (strong, nonatomic) NSArray * previousPostsArray;
+@property (strong, nonatomic) NSArray * filteredPreviousPostsArray;
 @property (weak, nonatomic) IBOutlet UIView *noPostingsView;
 @property (weak, nonatomic) IBOutlet UILabel *noPostingsLabel;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (assign, nonatomic) CGFloat frameOriginY;
 
 @end
@@ -26,21 +28,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.previousPostTableView.delegate=self;
-    self.previousPostTableView.dataSource=self;
+    [self setDelegates];
     self.previousPostsArray=[[NSArray alloc]init];
-    [self fetchUserPosts];
-    [self addRefreshControl];
-    [self displayBackgroundColor];
-    self.noPostingsView.frame = self.view.frame;
+    self.filteredPreviousPostsArray=[[NSArray alloc]init];
+    [self callViewDidLoadMethods];
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.previousPostTableView.frame = self.view.frame;
+    self.searchBar.frame=CGRectMake(0, 0, self.searchBar.frame.size.width, 45);
+    self.previousPostTableView.frame = CGRectMake(0, 48, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +70,7 @@
             }
             
             self.previousPostsArray=previousPosts;
+            self.filteredPreviousPostsArray=self.previousPostsArray;
             [self.previousPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -117,7 +117,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.previousPostsArray.count;
+    return self.filteredPreviousPostsArray.count;
 }
 
 - (void)addRefreshControl{
@@ -133,12 +133,51 @@
     [refreshControl endRefreshing];
 }
 
+-(void)setDelegates{
+    self.previousPostTableView.delegate=self;
+    self.previousPostTableView.dataSource=self;
+    self.searchBar.delegate=self;
+}
+
 //Adds background color
 - (void)displayBackgroundColor{
     self.view.backgroundColor=[Colors secondaryGreyLighterColor];
     self.previousPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
 }
-   
+
+-(void) searchBar:(UISearchBar *) searchBar textDidChange: (NSString *) searchText{
+    if(searchText.length!=0){
+        NSPredicate * predicate=[NSPredicate predicateWithBlock:^BOOL(Post * post, NSDictionary * bindings){
+            return[post[@"title"] containsString:searchText];
+        }];
+        self.filteredPreviousPostsArray=[self.previousPostsArray filteredArrayUsingPredicate:predicate];
+    } else{
+        self.filteredPreviousPostsArray=self.previousPostsArray;
+    }
+    [self.previousPostTableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.filteredPreviousPostsArray=self.previousPostsArray;
+    [self.view endEditing:YES];
+    searchBar.text=@"";
+    [self.previousPostTableView reloadData];
+}
+
+//changes the font of the search bar text
+- (void)changeSearchBarFont{
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"RobotoCondensed-Regular" size:17]];
+}
+
+//Helper method for view did load
+- (void)callViewDidLoadMethods{
+    [self fetchUserPosts];
+    [self addRefreshControl];
+    [self changeSearchBarFont];
+    [self displayBackgroundColor];
+    self.noPostingsView.frame = self.view.frame;
+}
+
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

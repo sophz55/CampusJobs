@@ -87,11 +87,11 @@
             <objects>
                 <viewController storyboardIdentifier="yourPostings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mQb-X1-xCt" customClass="YourPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEj-rP-uJU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYz-sO-Yq5">
-                                <rect key="frame" x="0.0" y="76" width="375" height="531"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="567"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -143,11 +143,11 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlQ-Sn-WSO">
-                                <rect key="frame" x="0.0" y="-29" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="553" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have no postings. Click the compose button above to get started." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUp-d5-JYb">
-                                        <rect key="frame" x="43" y="120" width="288" height="54"/>
+                                        <rect key="frame" x="43" y="433" width="288" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -156,20 +156,27 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-tu-JRX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="Rn0-qE-rdT"/>
                     </view>
-                    <size key="freeformSize" width="375" height="610"/>
+                    <size key="freeformSize" width="375" height="623"/>
                     <connections>
                         <outlet property="noPostingsLabel" destination="qUp-d5-JYb" id="cNF-mb-wtH"/>
                         <outlet property="noPostingsView" destination="xlQ-Sn-WSO" id="791-dQ-vlE"/>
                         <outlet property="previousPostTableView" destination="ZYz-sO-Yq5" id="qn7-bF-Fux"/>
+                        <outlet property="searchBar" destination="TNN-tu-JRX" id="mMj-ak-KIV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fC5-Ws-vvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1960.8" y="1768.5157421289357"/>
+            <point key="canvasLocation" x="1960.8" y="1768.0659670164919"/>
         </scene>
         <!--conversationDetailViewController-->
         <scene sceneID="gYr-Q9-tBP">
@@ -453,7 +460,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ep7-nO-lLP">
-                                <rect key="frame" x="0.0" y="85" width="375" height="538"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="544"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -517,18 +524,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POSTS WITHIN # MILES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vte-Md-p3x">
-                                <rect key="frame" x="16" y="61" width="343" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-mA-eYx">
-                                <rect key="frame" x="0.0" y="61" width="375" height="276"/>
+                                <rect key="frame" x="16" y="400" width="343" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No postings within # miles of you. Change your desired radius in settings to widen the scope." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-rZ-oIR">
-                                        <rect key="frame" x="59" y="120" width="257" height="82"/>
+                                        <rect key="frame" x="48" y="73" width="257" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -537,6 +538,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aOB-P6-uYT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POSTS WITHIN # MILES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vte-Md-p3x">
+                                <rect key="frame" x="10" y="55" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="RobotoCondensed-LightItalic" family="Roboto Condensed" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0EV-GM-jRl"/>
@@ -548,6 +565,7 @@
                         <outlet property="noNearbyPostingsLabel" destination="1ji-rZ-oIR" id="0mB-EY-q0i"/>
                         <outlet property="noNearbyPostingsView" destination="a2W-mA-eYx" id="nSP-Nl-1VJ"/>
                         <outlet property="radiusLabel" destination="Vte-Md-p3x" id="XCm-gu-BAr"/>
+                        <outlet property="searchBar" destination="aOB-P6-uYT" id="9Sf-5C-WGO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7k-rq-13U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -565,6 +583,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2I9-0Y-5qo"/>
-        <segue reference="vrc-CX-ngk"/>
+        <segue reference="kdN-ua-8ao"/>
     </inferredMetricsTieBreakers>
 </document>
