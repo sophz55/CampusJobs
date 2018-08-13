@@ -14,15 +14,16 @@
 #import "Format.h"
 #import "StringConstants.h"
 #import "NearbyPostingsViewController.h"
+#import "YourPostingsViewController.h"
 
 @interface FeedViewController ()
 @property(nonatomic, strong) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *yourPostingsContainer;
 @property (weak, nonatomic) IBOutlet UIView *nearbyPostingsContainer;
-@property (strong, nonatomic) UIBarButtonItem *logoutButton;
+@property (strong, nonatomic) UIBarButtonItem *filterButton;
 @property (strong, nonatomic) UIBarButtonItem *composeButton;
-@property (strong, nonatomic) UIViewController *nearbyPostingsViewController;
-@property (strong, nonatomic) UIViewController *yourPostingsViewController;
+@property (strong, nonatomic) NearbyPostingsViewController *nearbyPostingsViewController;
+@property (strong, nonatomic) YourPostingsViewController *yourPostingsViewController;
 
 @end
 
@@ -50,9 +51,9 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(didTapLogoutButton:)];
-    [Format formatBarButton:self.logoutButton];
-    self.navigationItem.leftBarButtonItem = self.logoutButton;
+    self.filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(didTapFilterButton:)];
+    [Format formatBarButton:self.filterButton];
+    self.navigationItem.leftBarButtonItem = self.filterButton;
     
     self.composeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"compose"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapComposeButton:)];
     [Format formatBarButton:self.composeButton];
@@ -105,10 +106,7 @@
     }
 }
 
-- (IBAction)didTapLogoutButton:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        [self performSegueWithIdentifier:feedToLogoutSegue sender:nil];
-    }];
+- (IBAction)didTapFilterButton:(id)sender {
 }
 
 - (IBAction)didTapComposeButton:(id)sender {
@@ -118,11 +116,8 @@
 /*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+ */
 
 @end

@@ -11,4 +11,6 @@
 
 @interface YourPostingsViewController : UIViewController
 
+@property (strong, nonatomic) NSArray *previousPostsArray;
+
 @end

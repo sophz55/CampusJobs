@@ -18,9 +18,10 @@ NSString *const mapToFeedSegue = @"mapToTabBarSegue";
 NSString *const backToProfileSegue = @"backToProfileSegue";
 
 #pragma mark - feed segues
-NSString *const feedToLogoutSegue = @"logoutSegue";
-NSString *const nearbyPostingsToPostDetailsSegue = @"cellToPostDetailsSegue";
 NSString *const feedToComposePostSegue = @"composeNewPostSegue";
+NSString *const nearbyPostingsToSearchSegue = @"nearbyPostingsToSearchSegue";
+NSString *const yourPostingsToSearchSegue = @"yourPostingsToSearchSegue";
+NSString *const nearbyPostingsToPostDetailsSegue = @"cellToPostDetailsSegue";
 NSString *const yourPostingsToPostDetailsSegue = @"yourPostingsToDetailSegue";
 NSString *const postDetailsToMessageSegue = @"chatSegue";
 NSString *const postDetailsToEditPostSegue = @"postDetailsToEditPostSegue";
@@ -38,7 +39,6 @@ NSString *const conversationsToMessagesSegue = @"conversationsToDetailSegue";
 NSString *const jobCompletedToTabBarSegue = @"jobCompletedToTabBarSegue";
 
 #pragma mark - user profile segues
-
-
+NSString *const profileToLogoutSegue = @"logoutSegue";
 
 @end

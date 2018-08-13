@@ -13,4 +13,6 @@
 - (void)fetchNearbyPosts;
 - (void)displayRadius;
 
+@property (retain, nonatomic) NSMutableArray * nearbyPostingsArray;
+
 @end
