@@ -28,7 +28,7 @@
 @property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIView *roundedEdgeView;
-@property (weak, nonatomic) IBOutlet UIButton *editProfPicButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *editProfPicButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
@@ -36,6 +36,7 @@
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (strong, nonatomic) MDCButtonScheme* buttonScheme;
+
 
 @end
 
@@ -75,7 +76,7 @@
     CGFloat centerButton=(self.view.frame.size.width - self.editProfPicButton.frame.size.width)/2;
     
     self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 76, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
-    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth, editButtonHeight);
+    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth+5, editButtonHeight);
     self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 10, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
     self.usernameLabel.frame = CGRectMake(self.usernameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height + 2, self.usernameLabel.frame.size.width, self.usernameLabel.frame.size.height);
     self.emailLabel.frame = CGRectMake(self.emailLabel.frame.origin.x, self.usernameLabel.frame.origin.y + self.usernameLabel.frame.size.height + 2, self.emailLabel.frame.size.width, self.emailLabel.frame.size.height);
@@ -192,7 +193,9 @@
     
     //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
+    self.editProfPicButton.backgroundColor=[UIColor lightGrayColor];
     self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
+
     [Format formatRaisedButton:self.editPaymentInfoButton];
     self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     [Format formatRaisedButton:self.editDesiredRadiusButton];
@@ -212,10 +215,13 @@
     self.editDesiredRadiusButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.logoutButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.editProfPicButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
-    
-    [self.editPaymentInfoButton sizeToFit];
-    [self.editDesiredRadiusButton sizeToFit];
-    [self.editPersonalSettingsButton sizeToFit];
+    self.logoutButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
+
+    //set frame of all buttons
+    self.editPersonalSettingsButton.frame=CGRectMake(self.editPersonalSettingsButton.frame.origin.x, self.editPersonalSettingsButton.frame.origin.y, self.editPersonalSettingsButton.frame.size.width, self.editPersonalSettingsButton.frame.size.height-7);
+    self.editPaymentInfoButton.frame=CGRectMake(self.editPaymentInfoButton.frame.origin.x, self.editPaymentInfoButton.frame.origin.y -10, self.editPaymentInfoButton.frame.size.width, self.editPaymentInfoButton.frame.size.height-7);
+    self.editDesiredRadiusButton.frame=CGRectMake(self.editDesiredRadiusButton.frame.origin.x, self.editDesiredRadiusButton.frame.origin.y-20, self.editDesiredRadiusButton.frame.size.width, self.editDesiredRadiusButton.frame.size.height-7);
+    self.logoutButton.layer.frame=CGRectMake(self.logoutButton.frame.origin.x, self.logoutButton.frame.origin.y-30, self.logoutButton.frame.size.width, self.logoutButton.frame.size.height-7);
 }
 
 - (IBAction)didTapLogoutButton:(id)sender {

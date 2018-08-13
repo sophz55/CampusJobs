@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoTransparent" translatesAutoresizingMaskIntoConstraints="NO" id="HFW-5R-BZ6">
-                                <rect key="frame" x="69" y="274" width="237" height="119"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="HFW-5R-BZ6">
+                                <rect key="frame" x="69" y="274" width="225" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -33,6 +33,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoTransparent" width="512" height="512"/>
+        <image name="logoBlack" width="128" height="128"/>
     </resources>
 </document>

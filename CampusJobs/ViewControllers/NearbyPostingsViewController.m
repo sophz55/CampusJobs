@@ -48,8 +48,8 @@
     [self displayRadius];
     
     CGFloat verticalInset = 4;
-    self.radiusLabel.frame = CGRectMake(0, verticalInset, self.view.frame.size.width, 20);
-    self.searchButton.frame = CGRectMake(8, self.radiusLabel.frame.origin.y, self.searchButton.frame.size.width, self.radiusLabel.frame.size.height);
+    self.radiusLabel.frame = CGRectMake(10, verticalInset, self.radiusLabel.frame.size.width, 20);
+    self.searchButton.frame = CGRectMake(268, self.radiusLabel.frame.origin.y+2, self.searchButton.frame.size.width, self.radiusLabel.frame.size.height);
     self.nearbyPostTableView.frame = CGRectMake(0, self.radiusLabel.frame.size.height + 2 * verticalInset, self.view.frame.size.width, self.view.frame.size.height - self.radiusLabel.frame.size.height);
     
     [self fetchNearbyPosts];
