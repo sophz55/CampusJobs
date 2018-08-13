@@ -69,6 +69,8 @@
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    [self.noNearbyPostingsLabel sizeToFit];
+    [Format centerVerticalView:self.noNearbyPostingsLabel inView:self.view];
 }
 
 - (void)fetchNearbyPosts{
@@ -109,6 +111,8 @@
                 self.noNearbyPostingsView.hidden = NO;
                 self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+                [self.noNearbyPostingsLabel sizeToFit];
+                [Format centerVerticalView:self.noNearbyPostingsLabel inView:self.view];
             }
             [self.nearbyPostTableView reloadData];
         } else{

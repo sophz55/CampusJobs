@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "Conversation.h"
+#import <MaterialComponents/MaterialButtons.h>
 
 @interface ConversationTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *otherUserProfileImageView;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *messagePreviewLabel;
 @property (strong, nonatomic) PFUser *otherUser;
 @property (strong, nonatomic) Conversation *conversation;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 - (void)configureCellWithConversation:(Conversation *)conversation;
 

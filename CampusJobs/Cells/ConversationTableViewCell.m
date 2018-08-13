@@ -10,8 +10,8 @@
 #import "Colors.h"
 #import "Format.h"
 #import "AppScheme.h"
-#import <MaterialComponents/MaterialTypography.h>
 #import "StringConstants.h"
+#import <Masonry.h>
 
 @implementation ConversationTableViewCell
 
@@ -27,7 +27,6 @@
 }
 
 - (void)configureCellWithConversation:(Conversation *)conversation {
-    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     self.conversation = conversation;
 
     if ([[PFUser currentUser].objectId isEqualToString:conversation.post.author.objectId]) {
@@ -36,7 +35,7 @@
         self.otherUser = conversation.post.author;
     }
     self.otherUserLabel.text = self.otherUser.username;
-    self.otherUserLabel.font = typographyScheme.headline6;
+    self.otherUserLabel.font = [UIFont fontWithName:regularFontName size:18];
     
     [Format formatProfilePictureForUser:self.otherUser withView:self.otherUserProfileImageView];
     
@@ -44,17 +43,83 @@
     if ([conversation.post.title isEqualToString:@""]) {
         self.postTitleLabel.text = @"UNTITLED POST";
     }
-    self.postTitleLabel.font = typographyScheme.overline;
+    self.postTitleLabel.font = [UIFont fontWithName:boldFontName size:18];
     
     Message *lastMessage = [conversation.messages lastObject];
     
     if (lastMessage.isSystemMessage) {
         self.messagePreviewLabel.font = [UIFont fontWithName:lightItalicFontName size: 16];
     } else {
-        self.messagePreviewLabel.font = [UIFont fontWithName:lightFontName size:16];
+        self.messagePreviewLabel.font = [UIFont fontWithName:lightFontName size: 16];
     }
 
     self.messagePreviewLabel.text = lastMessage[@"text"];
+    
+    if (self.conversation.post.postStatus == OPEN) {
+        self.statusLabel.text = @"OPEN";
+    } else if ([[PFUser currentUser].objectId isEqualToString:self.conversation.post.author.objectId]) {
+        if ([self.otherUser.objectId isEqualToString:self.conversation.post.taker.objectId]) {
+            if (self.conversation.post.postStatus == IN_PROGRESS) {
+                self.statusLabel.text = @"IN PROGRESS";
+            } else {
+                self.statusLabel.text = @"COMPLETED";
+            }
+        } else {
+            if (self.conversation.post.postStatus == IN_PROGRESS) {
+                self.statusLabel.text = @"ACTIVE WITH ANOTHER USER";
+            } else {
+                self.statusLabel.text = @"COMPLETED WITH ANOTHER USER";
+            }
+        }
+    } else if ([[PFUser currentUser].objectId isEqualToString:self.conversation.post.taker.objectId]) {
+        if (self.conversation.post.postStatus == IN_PROGRESS) {
+            self.statusLabel.text = @"IN PROGRESS";
+        } else {
+            self.statusLabel.text = @"COMPLETED";
+        }
+    } else {
+        self.statusLabel.text = @"TAKEN BY ANOTHER USER";
+    }
+    
+    self.statusLabel.backgroundColor = [UIColor whiteColor];
+    self.statusLabel.layer.cornerRadius = 5;
+    self.statusLabel.layer.borderWidth = 1;
+    self.statusLabel.layer.borderColor = [[Colors primaryOrangeColor] CGColor];
+    self.statusLabel.font = [UIFont fontWithName:boldFontName size:10];
+    [self.statusLabel sizeToFit];
+    self.statusLabel.frame = CGRectMake(0, 0, self.statusLabel.frame.size.width + 20, 20);
+    
+    [self configureLayout];
+}
+
+- (void)configureLayout {
+    [self.otherUserProfileImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@8);
+        make.left.equalTo(@8);
+        make.width.equalTo(@60);
+        make.height.equalTo(@60);
+    }];
+    
+    [self.otherUserLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.otherUserProfileImageView.mas_top);
+        make.left.equalTo(self.otherUserProfileImageView.mas_right).with.offset(10);
+    }];
+    
+    [self.postTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.otherUserLabel.mas_top);
+        make.left.equalTo(self.otherUserLabel.mas_right).with.offset(10);
+    }];
+    
+    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.otherUserLabel.mas_bottom).with.offset(2);
+        make.left.equalTo(self.otherUserLabel.mas_left);
+    }];
+    
+    [self.messagePreviewLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.statusLabel.mas_bottom).with.offset(2);
+        make.left.equalTo(self.statusLabel.mas_left);
+        make.width.lessThanOrEqualTo(@250);
+    }];
 }
 
 @end

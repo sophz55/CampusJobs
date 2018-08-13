@@ -30,11 +30,13 @@
     [self callViewDidLoadMethods];
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
+    [self.noPostingsLabel sizeToFit];
+    [Format centerVerticalView:self.noPostingsLabel inView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.previousPostTableView.frame = CGRectMake(0, 48, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
+    self.previousPostTableView.frame = CGRectMake(0, 0, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +64,8 @@
                 self.noPostingsView.hidden = NO;
                 self.noPostingsLabel.text = @"You have no postings. Click the compose button above to get started!";
                 [self.noPostingsLabel setTextAlignment:NSTextAlignmentLeft];
+                [self.noPostingsLabel sizeToFit];
+                [Format centerVerticalView:self.noPostingsLabel inView:self.view];
             }
             
             self.previousPostsArray = previousPosts;

@@ -73,9 +73,9 @@
     self.profileViewContainer.frame = self.feedViewContainer.frame;
     
     //format navigation bar colors and font
-    self.navigationBar.barTintColor=[Colors secondaryGreyLighterColor];
-    self.navigationBar.itemTitleFont=[UIFont fontWithName:regularFontName size:10];
-    self.navigationBar.selectedItemTintColor=[UIColor grayColor];
+    self.navigationBar.barTintColor = [Colors secondaryGreyLighterColor];
+    self.navigationBar.itemTitleFont = [UIFont fontWithName:regularFontName size:10];
+    self.navigationBar.selectedItemTintColor = [Colors primaryBlueDarkColor];
     
     [self.navigationBar setSelectedItem:self.navigationBar.items[0]];
     [self bottomNavigationBar:self.navigationBar didSelectItem:self.navigationBar.selectedItem];
