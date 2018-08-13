@@ -150,7 +150,7 @@
     }
     [Format formatAppBar:self.appBar withTitle:@"Your Posting"];
 
-    [self.postButton setTitle:@"Update"];
+    self.postButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapPostButton:)];
     [Format formatBarButton:self.postButton];
     self.navigationItem.rightBarButtonItem = self.postButton;
 }

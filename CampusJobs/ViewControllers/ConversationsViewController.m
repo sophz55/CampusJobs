@@ -41,6 +41,7 @@
     self.conversationsTableView.dataSource = self;
     
     self.conversationsTableView.rowHeight = 80;
+    self.view.backgroundColor = [Colors secondaryGreyLighterColor];
     
     self.conversations = [[NSMutableArray alloc] init];
     

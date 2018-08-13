@@ -123,7 +123,10 @@
         self.radiusSliderBar.value=[self.currentUser[desiredRadius] floatValue];
         [self createBoundaryWithRadius:self.radiusSliderBar.value];
         self.desiredRadiusLabel.text=[NSString stringWithFormat:@"%.1f",self.radiusSliderBar.value];
-        [self.nextButton setTitle:@"SAVE"];
+        
+        self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(didTapNextButton:)];
+        [Format formatBarButton:self.nextButton];
+        self.navigationItem.rightBarButtonItem = self.nextButton;
     }
 }
 
