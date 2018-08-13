@@ -181,6 +181,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcK-8k-yRE" customClass="MDCRaisedButton">
+                                <rect key="frame" x="172" y="565" width="58" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="didTapLogoutButton:" destination="wdN-Nb-yf5" eventType="touchUpInside" id="mfB-AR-qP4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fvg-NP-EGz"/>
@@ -191,6 +200,7 @@
                         <outlet property="editPersonalSettingsButton" destination="BP5-Gf-FoD" id="tWh-dt-g1m"/>
                         <outlet property="editProfPicButton" destination="mQv-8q-MGR" id="59S-Wg-cfq"/>
                         <outlet property="emailLabel" destination="9bi-yH-seG" id="wLp-qS-Du8"/>
+                        <outlet property="logoutButton" destination="IcK-8k-yRE" id="WuV-n8-OGG"/>
                         <outlet property="nameLabel" destination="UtC-ow-XrI" id="wuA-8q-gc2"/>
                         <outlet property="profilePicture" destination="Olf-P0-lDi" id="rNz-Dy-PWl"/>
                         <outlet property="roundedEdgeView" destination="REr-Qy-7hz" id="wLQ-el-O9j"/>

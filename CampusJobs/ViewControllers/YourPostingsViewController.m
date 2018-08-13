@@ -34,7 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.previousPostTableView.frame = CGRectMake(0, 48, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
+    self.previousPostTableView.frame = CGRectMake(0, 0, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {

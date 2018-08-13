@@ -51,7 +51,7 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(didTapFilterButton:)];
+    self.filterButton=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"filter"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapFilterButton:)];
     [Format formatBarButton:self.filterButton];
     self.navigationItem.leftBarButtonItem = self.filterButton;
     
