@@ -28,7 +28,7 @@
 @property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIView *roundedEdgeView;
-@property (weak, nonatomic) IBOutlet UIButton *editProfPicButton;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *editProfPicButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
@@ -74,7 +74,7 @@
     CGFloat centerButton=(self.view.frame.size.width - self.editProfPicButton.frame.size.width)/2;
     
     self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 76, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
-    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth, editButtonHeight);
+    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth+5, editButtonHeight);
     self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 10, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
     self.usernameLabel.frame = CGRectMake(self.usernameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height + 2, self.usernameLabel.frame.size.width, self.usernameLabel.frame.size.height);
     self.emailLabel.frame = CGRectMake(self.emailLabel.frame.origin.x, self.usernameLabel.frame.origin.y + self.usernameLabel.frame.size.height + 2, self.emailLabel.frame.size.width, self.emailLabel.frame.size.height);
@@ -92,7 +92,7 @@
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
-    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.origin.y + self.topView.frame.size.height - 50, self.view.frame.size.width * 2, 100);
+    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.origin.y + self.topView.frame.size.height - 53, self.view.frame.size.width * 2, 100);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
     self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
@@ -182,6 +182,7 @@
     
     //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
+    self.editProfPicButton.backgroundColor=[UIColor lightGrayColor];
     self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
     [Format formatRaisedButton:self.editPaymentInfoButton];
     self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
