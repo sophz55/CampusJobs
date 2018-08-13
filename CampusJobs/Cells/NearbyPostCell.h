@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (strong, nonatomic) Post * post;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *milesLabel;
 
 -(void) setNearbyPost:(Post *)post;
 

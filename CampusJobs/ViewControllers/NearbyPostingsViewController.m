@@ -37,10 +37,10 @@
     [self setDelegates];
     self.nearbyPostingsArray = [[NSMutableArray alloc] init];
 
+    [self callViewDidLoadMethods];
+
     self.noNearbyPostingsView.hidden = NO;
     [self configureLoadingPlaceholder];
-    
-    [self callViewDidLoadMethods];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -124,7 +124,7 @@
     [nearbyPostCell setNearbyPost:post];
     
     [Format configureCellShadow:nearbyPostCell];
-    
+
     return nearbyPostCell;
 }
 
@@ -135,15 +135,12 @@
     self.nearbyPostTableView.rowHeight=75;
     cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
     //initializes white rounded cell
-    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 105)];
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 105)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
     roundedCellView.layer.masksToBounds=false;
-    //add border color
-    roundedCellView.layer.borderWidth=.5;
-    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
-    roundedCellView.layer.cornerRadius=3.0;
+    roundedCellView.layer.cornerRadius=5.0;
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];

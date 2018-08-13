@@ -63,6 +63,7 @@
     
     self.navigationBar.items = @[tabBarItem1, tabBarItem2, tabBarItem3];
     [self.navigationBar sizeToFit];
+    self.navigationBar.selectedItemTitleColor=[Colors primaryBlueDarkColor];
     
     CGSize navigationBarSize = [self.navigationBar sizeThatFits:self.view.bounds.size];
     self.navigationBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - navigationBarSize.height, navigationBarSize.width, navigationBarSize.height);

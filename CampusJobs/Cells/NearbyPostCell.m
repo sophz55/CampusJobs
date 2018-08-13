@@ -33,25 +33,18 @@
     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     
     //initialize fonts for labels
-    self.postTitleLabel.font=typographyScheme.overline;
-    self.postUserLabel.font=typographyScheme.headline6;
-    self.postDescriptionLabel.font=typographyScheme.subtitle2;
+    self.postTitleLabel.font=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
+    self.postUserLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
+    self.postDescriptionLabel.font=[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16];
     self.postDateLabel.font=typographyScheme.subtitle2;
-    self.postDistanceLabel.font=typographyScheme.subtitle2;
-    
-    //initialize text for labels
-    self.postUserLabel.text=post.author.username;
-    self.postTitleLabel.text=[post.title uppercaseString];
-    if ([post.title isEqualToString:@""]) {
-        self.postTitleLabel.text = @"UNTITLED POST";
-    }
-    self.postDescriptionLabel.text=post.summary;
-    
+    self.postDistanceLabel.font=[UIFont fontWithName: @"RobotoCondensed-Regular" size:18];
+    self.milesLabel.font=[UIFont fontWithName: @"RobotoCondensed-Regular" size:18];
+
     PFGeoPoint * postGeoPoint=post[@"location"];
     PFGeoPoint * userGeoPoint=post.author[@"currentLocation"];
     //Call Utils method to calculate distance between post location and user
     double miles=[Utils calculateDistance:postGeoPoint betweenUserandPost:userGeoPoint];
-    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.1f miles",miles];
+    self.postDistanceLabel.text=[NSString stringWithFormat:@"%.1f",miles];
     [self.postDistanceLabel sizeToFit];
     
     //Format the date (date the post was posted on)
@@ -61,7 +54,15 @@
     formatter.timeStyle= NSDateFormatterNoStyle;
     NSDate * createdAt= post.createdAt;
     NSString * timeAgo= [NSDate shortTimeAgoSinceDate:createdAt];
-    self.postDateLabel.text= timeAgo;
+    
+    //initialize text for labels
+    self.milesLabel.text=@"mi.";
+    self.postTitleLabel.text=[post.title uppercaseString];
+    if ([post.title isEqualToString:@""]) {
+        self.postTitleLabel.text = @"UNTITLED POST";
+    }
+    self.postDescriptionLabel.text=post.summary;
+    self.postUserLabel.text=[NSString stringWithFormat:@"%@ | %@",post.author.username,timeAgo];
     
     //set profile picture
     [Format formatProfilePictureForUser:post.author withView:self.profilePicture];
