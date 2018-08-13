@@ -13,6 +13,7 @@
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
 #import "Colors.h"
+#import "Format.h"
 
 @implementation NearbyPostCell
 
@@ -68,6 +69,7 @@
     [self.profilePicture loadInBackground];
     self.profilePicture.layer.borderWidth=1.5;
     self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
+    [Format formatProfilePictureForUser:post.author withView:self.profilePicture];
 }
 
 

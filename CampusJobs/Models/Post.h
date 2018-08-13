@@ -29,6 +29,7 @@ typedef enum {
 @property (strong, nonatomic) PFUser *taker;
 @property (strong, nonatomic) PFObject *conversation;
 @property (strong, nonatomic) NSDate *completedDate;
+@property (strong, nonatomic) NSString *completedDateString;
 @property (assign, nonatomic) status postStatus;
  // 0 if open, 1 if job is taken, 2 if job is closed
 

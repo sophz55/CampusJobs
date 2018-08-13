@@ -19,7 +19,8 @@
     return [UIColor colorWithRed:0.00 green:.43 blue:.70 alpha:1.0];
 }
 +(UIColor *)primaryBlueLightColor{
-    return [UIColor colorWithRed:.39 green:.80 blue:1.00 alpha:1.0];
+//    return [UIColor colorWithRed:.39 green:.80 blue:1.00 alpha:1.0];
+    return [UIColor colorWithRed:.77 green:.85 blue:.89 alpha:1.0];
 }
 +(UIColor *)primaryBlueTextColor{
     return [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.00];

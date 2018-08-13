@@ -107,7 +107,7 @@
 }
 
 - (void)configureInitialView {
-    [self configureNavigatonBar];
+    [self configureTopNavigationBar];
     [self formatColors];
     
     [self setDetailsPost:self.post];
@@ -125,7 +125,7 @@
     }
 }
 
-- (void)configureNavigatonBar {
+- (void)configureTopNavigationBar {
     
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
@@ -256,7 +256,7 @@
         if (self.userIsAuthor) {
             confirmationMessage = [NSString stringWithFormat:@"It is currently in progress with %@ for $%@.", self.post.taker.username, self.post.price];
         } else {
-            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for %@.", self.post.price];
+            confirmationMessage = [NSString stringWithFormat:@"It is currently in progress for $%@.", self.post.price];
         }
         [Alert callConfirmationWithTitle:@"Are you sure you want to cancel this job?" confirmationMessage:confirmationMessage yesActionTitle:@"Cancel job" noActionTitle:@"No, go back" viewController:self];
     }
@@ -346,6 +346,8 @@
 }
 
 - (void)setMapWithAnnotation{
+    [self.postLocationMap setShowsUserLocation:YES];
+    
     //format map
     self.postLocationMap.layer.cornerRadius=5.0;
     self.postLocationMap.layer.borderColor=[[Colors primaryBlueColor]CGColor];

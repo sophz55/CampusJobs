@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.user = [PFUser currentUser];
-    [self configureNavigationBar];
+    [self configureTopNavigationBar];
     [self configureTextFieldControllers];
     [self configureTextFields];
     [self populateFieldsWithExistingInformation];
@@ -64,12 +64,12 @@
     self.passwordFieldController = [[MDCTextInputControllerUnderline alloc] initWithTextInput:self.passwordField];
 }
 
-- (void)configureNavigationBar {
+- (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     
-    self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
+    self.cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cancel"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton:)];
     [Format formatBarButton:self.cancelButton];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     

@@ -140,6 +140,80 @@
             </objects>
             <point key="canvasLocation" x="3825" y="2328"/>
         </scene>
+        <!--Job Completed View Controller-->
+        <scene sceneID="TpS-dD-f97">
+            <objects>
+                <viewController id="cTe-jF-u5s" customClass="JobCompletedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1xS-mm-6wb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwp-kz-ExH" customClass="PFImageView">
+                                <rect key="frame" x="137" y="123" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvL-RA-iFF">
+                                <rect key="frame" x="148" y="243" width="79" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulY-lk-qtf">
+                                <rect key="frame" x="166" y="283" width="36" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMc-py-JZP">
+                                <rect key="frame" x="160" y="339" width="39" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-Ce-lU0" customClass="MDCButton">
+                                <rect key="frame" x="264" y="550" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="didTapNextButton:" destination="cTe-jF-u5s" eventType="touchUpInside" id="BuH-vk-qIF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RATE YOUR TRANSACTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYn-KD-85z">
+                                <rect key="frame" x="157" y="434" width="217" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NjK-MO-CVW"/>
+                    </view>
+                    <connections>
+                        <outlet property="completedDateLabel" destination="ulY-lk-qtf" id="eLL-5X-KR2"/>
+                        <outlet property="nextButton" destination="Hb9-Ce-lU0" id="MAV-34-KGK"/>
+                        <outlet property="priceLabel" destination="hMc-py-JZP" id="A1H-I9-7Am"/>
+                        <outlet property="rateLabel" destination="pYn-KD-85z" id="Uz2-bC-fbI"/>
+                        <outlet property="takerProfileImageView" destination="hwp-kz-ExH" id="b6b-PO-84t"/>
+                        <outlet property="usernameLabel" destination="OvL-RA-iFF" id="Dsw-gb-rOw"/>
+                        <segue destination="AXj-ir-wau" kind="presentation" identifier="jobCompletedToTabBarSegue" id="huJ-TQ-fFl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Bc-7M-Gae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4805.6000000000004" y="2327.5862068965521"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="SOp-hh-ESr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="AXj-ir-wau" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeP-nk-7jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5487" y="2426"/>
+        </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="JtB-1h-Yrn">
             <objects>
@@ -308,6 +382,7 @@
                         <outlet property="sendMessageButton" destination="ksf-FP-sFj" id="IwH-b7-Kq7"/>
                         <outlet property="suggestPriceButton" destination="PmZ-t8-Ew1" id="tct-zn-lei"/>
                         <segue destination="4L3-8b-uuT" kind="presentation" identifier="messageToPostSegue" modalTransitionStyle="crossDissolve" id="iVW-Fy-iAQ"/>
+                        <segue destination="cTe-jF-u5s" kind="presentation" identifier="messagesToJobCompletedSegue" id="E82-U9-9on"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ret-EE-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -384,35 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeX-vw-HYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4757.6000000000004" y="1924.5877061469266"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="qbP-8g-ZQq">
-            <objects>
-                <viewController id="LEL-IA-prp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VSz-4b-GLv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="qlL-EZ-9fT"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O78-Be-Vqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="3sd-vY-nja">
-            <objects>
-                <viewController id="0BU-VA-Kqh" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R3J-8R-YNV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dan-pt-lmb"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Di8-Xe-giL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
+            <point key="canvasLocation" x="4807" y="1376"/>
         </scene>
     </scenes>
     <resources>

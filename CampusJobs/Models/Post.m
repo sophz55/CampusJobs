@@ -9,6 +9,7 @@
 #import "Post.h"
 #import "Conversation.h"
 #import "Alert.h"
+#import "NSDate+DateTools.h"
 
 @implementation Post
 
@@ -19,6 +20,7 @@
 @dynamic taker;
 @dynamic conversation;
 @dynamic completedDate;
+@dynamic completedDateString;
 @dynamic postStatus; // 0 if open, 1 if job is taken, 2 if job is closed
 @dynamic photoFiles; //array of PFFiles
 @dynamic location;
@@ -105,9 +107,16 @@
 
 - (void)completeJobWithCompletion:(PFBooleanResultBlock _Nullable)completion{
     self.postStatus = CLOSED;
-    [self saveInBackgroundWithBlock:completion];
     
-    // TO DO: complete payment
+    NSDate *now = [NSDate date];
+    self.completedDate = now;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    self.completedDateString = [formatter stringFromDate:now];
+    
+    [self saveInBackgroundWithBlock:completion];
 }
 
 - (void)deletePostAndConversationsWithCompletion:(PFBooleanResultBlock _Nullable)completion {

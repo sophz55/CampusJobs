@@ -98,7 +98,7 @@
     self.previousPostTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
     //initializes white rounded cell
-    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 70)];
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 80)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
     roundedCellView.layer.masksToBounds=false;
@@ -113,7 +113,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return 90;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

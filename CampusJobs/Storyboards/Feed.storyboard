@@ -354,6 +354,14 @@
                                 <rect key="frame" x="0.0" y="315" width="375" height="232"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02O-AO-3PX" customClass="MDCButton">
+                                <rect key="frame" x="266" y="583" width="146" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use Current Location"/>
+                                <connections>
+                                    <action selector="didTapUseCurrentLocationButton:" destination="gfv-l9-1Bb" eventType="touchUpInside" id="GeZ-gv-LP1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -392,8 +400,9 @@
                         <outlet property="editLocationButton" destination="0aZ-vY-Xfy" id="z18-yQ-u0j"/>
                         <outlet property="locationAddressLabel" destination="NfB-dy-8yt" id="9Y0-bp-mKD"/>
                         <outlet property="postButton" destination="2ES-Rf-4sz" id="x4U-UH-imF"/>
-                        <outlet property="postMapView" destination="bcl-aS-HvI" id="Rca-4y-z5g"/>
+                        <outlet property="postMapView" destination="bcl-aS-HvI" id="RRl-Nv-d8u"/>
                         <outlet property="titleTextField" destination="x6R-Bj-2tb" id="y1u-VS-VeN"/>
+                        <outlet property="useCurrentLocationButton" destination="02O-AO-3PX" id="ynq-G2-nkB"/>
                         <segue destination="BK2-fp-JBD" kind="presentation" identifier="backToPersonalFeedSegue" modalTransitionStyle="crossDissolve" id="aif-hz-NV1"/>
                     </connections>
                 </viewController>

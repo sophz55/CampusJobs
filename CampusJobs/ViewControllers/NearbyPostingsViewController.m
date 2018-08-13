@@ -39,11 +39,14 @@
     self.filteredNearbyPostingsArray=[[NSMutableArray alloc]init];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
+    self.noNearbyPostingsView.frame = self.view.bounds;
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     [self callViewDidLoadMethods];
     self.noNearbyPostingsView.frame = self.view.bounds;
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
+    self.nearbyPostingsArray=[[NSMutableArray alloc]init];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,6 +82,7 @@
     PFGeoPoint *currentLocation = self.currentUser[@"currentLocation"];
     [query includeKey:@"title"];
     [query includeKey:@"author"];
+    [query whereKey:@"author" notEqualTo:[PFUser currentUser]];
     [query includeKey:@"summary"];
     [query includeKey:@"postStatus"];
     [query includeKey:@"location"];
