@@ -37,4 +37,6 @@
 
 + (void)formatTextFieldController:(MDCTextInputControllerBase *)controller withNormalColor:(UIColor *)color;
 
++ (void)configureCellShadow:(UITableViewCell *)cell;
+
 @end

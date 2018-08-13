@@ -19,6 +19,7 @@
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
 #import "Format.h"
+#import "SegueConstants.h"
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -31,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
+@property (strong, nonatomic) IBOutlet MDCButton *logoutButton;
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (strong, nonatomic) MDCButtonScheme* buttonScheme;
@@ -202,6 +204,12 @@
     [self.editPaymentInfoButton sizeToFit];
     [self.editDesiredRadiusButton sizeToFit];
     [self.editPersonalSettingsButton sizeToFit];
+}
+
+- (IBAction)didTapLogoutButton:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        [self performSegueWithIdentifier:profileToLogoutSegue sender:nil];
+    }];
 }
 
 @end

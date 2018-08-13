@@ -196,6 +196,7 @@
                         <outlet property="roundedEdgeView" destination="REr-Qy-7hz" id="wLQ-el-O9j"/>
                         <outlet property="topView" destination="P8e-QQ-g6a" id="QSF-QN-Op9"/>
                         <outlet property="usernameLabel" destination="NVe-9a-sYI" id="UuJ-H4-QIH"/>
+                        <segue destination="cNl-US-qhg" kind="presentation" identifier="logoutSegue" id="w2l-bG-Uas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJH-iR-C3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -209,6 +210,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LR1-0r-bEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4331" y="963"/>
+        </scene>
+        <!--LoginSignUp-->
+        <scene sceneID="RTz-v8-hNA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LoginSignUp" id="cNl-US-qhg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tgr-PV-9O8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4167" y="1309"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="ltb-ui-cMw">

@@ -14,6 +14,7 @@
 #import "AppScheme.h"
 #import "Colors.h"
 #import "Format.h"
+#import <Masonry.h>
 
 @implementation NearbyPostCell
 
@@ -63,14 +64,7 @@
     self.postDateLabel.text= timeAgo;
     
     //set profile picture
-    self.profilePicture.layer.cornerRadius= self.profilePicture.frame.size.width / 2;
-    self.profilePicture.clipsToBounds = YES;
-    self.profilePicture.file=post.author[@"profileImageFile"];
-    [self.profilePicture loadInBackground];
-    self.profilePicture.layer.borderWidth=1.5;
-    self.profilePicture.layer.borderColor=[[Colors primaryOrangeColor]CGColor];
     [Format formatProfilePictureForUser:post.author withView:self.profilePicture];
 }
-
 
 @end

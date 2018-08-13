@@ -18,9 +18,10 @@ extern NSString *const mapToFeedSegue;
 extern NSString *const backToProfileSegue;
 
 #pragma mark - feed segues
-extern NSString *const feedToLogoutSegue;
-extern NSString *const nearbyPostingsToPostDetailsSegue;
 extern NSString *const feedToComposePostSegue;
+extern NSString *const nearbyPostingsToSearchSegue;
+extern NSString *const yourPostingsToSearchSegue;
+extern NSString *const nearbyPostingsToPostDetailsSegue;
 extern NSString *const yourPostingsToPostDetailsSegue;
 extern NSString *const postDetailsToMessageSegue;
 extern NSString *const postDetailsToEditPostSegue;
@@ -38,5 +39,6 @@ extern NSString *const conversationsToMessagesSegue;
 extern NSString *const jobCompletedToTabBarSegue;
 
 #pragma mark - user profile segues
+extern NSString *const profileToLogoutSegue;
 
 @end

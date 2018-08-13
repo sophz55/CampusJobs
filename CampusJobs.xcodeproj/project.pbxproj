@@ -41,6 +41,7 @@
 		F35E0B442118C15A00FAC63C /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F35E0B3E2118C15A00FAC63C /* RobotoCondensed-Italic.ttf */; };
 		F37ADB8520FE8ABA004C593C /* LoginSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37ADB8320FE8ABA004C593C /* LoginSignUp.storyboard */; };
 		F3837B6C20FD5E37007CA1E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */; };
+		F3941AC02121FFBB00F6BD21 /* SearchPostingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3941ABF2121FFBB00F6BD21 /* SearchPostingsViewController.m */; };
 		F396B1FB2113B2260099E623 /* AppScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = F396B1FA2113B2260099E623 /* AppScheme.m */; };
 		F39E66F020EFE12800381BE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66EF20EFE12800381BE7 /* AppDelegate.m */; };
 		F39E66FE20EFE12900381BE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E66FD20EFE12900381BE7 /* main.m */; };
@@ -193,6 +194,8 @@
 		F35E0B3E2118C15A00FAC63C /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		F37ADB8420FE8ABA004C593C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginSignUp.storyboard; sourceTree = "<group>"; };
 		F3837B6B20FD5E37007CA1E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3941ABE2121FFBB00F6BD21 /* SearchPostingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPostingsViewController.h; sourceTree = "<group>"; };
+		F3941ABF2121FFBB00F6BD21 /* SearchPostingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPostingsViewController.m; sourceTree = "<group>"; };
 		F396B1F72113ADFE0099E623 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		F396B1F92113B2260099E623 /* AppScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppScheme.h; sourceTree = "<group>"; };
 		F396B1FA2113B2260099E623 /* AppScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppScheme.m; sourceTree = "<group>"; };
@@ -583,6 +586,8 @@
 				FC8EA1A4210151890054C43D /* MapViewController.m */,
 				FC6C7E2920FD26FB00034CC4 /* FeedViewController.h */,
 				FC6C7E2A20FD26FB00034CC4 /* FeedViewController.m */,
+				F3941ABE2121FFBB00F6BD21 /* SearchPostingsViewController.h */,
+				F3941ABF2121FFBB00F6BD21 /* SearchPostingsViewController.m */,
 				FC6C7E2D20FD47D500034CC4 /* NearbyPostingsViewController.h */,
 				FC6C7E2E20FD47D500034CC4 /* NearbyPostingsViewController.m */,
 				FC6C7E3020FD47DF00034CC4 /* YourPostingsViewController.h */,
@@ -946,6 +951,7 @@
 				FC6C7E3220FD47DF00034CC4 /* YourPostingsViewController.m in Sources */,
 				FC6C7E3520FD4D5600034CC4 /* ComposeNewPostViewController.m in Sources */,
 				F39F4BEB20FD147200C11CD0 /* Post.m in Sources */,
+				F3941AC02121FFBB00F6BD21 /* SearchPostingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

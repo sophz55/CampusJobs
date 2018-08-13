@@ -12,15 +12,14 @@
 #import "Colors.h"
 #import "Format.h"
 #import <ChameleonFramework/Chameleon.h>
+#import "SearchPostingsViewController.h"
 
-@interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate, UISearchBarDelegate>
+@interface YourPostingsViewController () <UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *previousPostTableView;
-@property (strong, nonatomic) NSArray * previousPostsArray;
-@property (strong, nonatomic) NSArray * filteredPreviousPostsArray;
 @property (weak, nonatomic) IBOutlet UIView *noPostingsView;
 @property (weak, nonatomic) IBOutlet UILabel *noPostingsLabel;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (assign, nonatomic) CGFloat frameOriginY;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 
 @end
 
@@ -29,8 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDelegates];
-    self.previousPostsArray=[[NSArray alloc]init];
-    self.filteredPreviousPostsArray=[[NSArray alloc]init];
+    self.previousPostsArray = [[NSMutableArray alloc] init];
     [self callViewDidLoadMethods];
     [Format configurePlaceholderView:self.noPostingsView withLabel:self.noPostingsLabel];
     self.noPostingsLabel.text = @"LOADING YOUR POSTINGS...";
@@ -38,7 +36,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.searchBar.frame=CGRectMake(0, 0, self.searchBar.frame.size.width, 45);
     self.previousPostTableView.frame = CGRectMake(0, 48, self.previousPostTableView.frame.size.width, self.previousPostTableView.frame.size.height);
 }
 
@@ -69,8 +66,7 @@
                 [self.noPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
             
-            self.previousPostsArray=previousPosts;
-            self.filteredPreviousPostsArray=self.previousPostsArray;
+            self.previousPostsArray = previousPosts;
             [self.previousPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -117,7 +113,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredPreviousPostsArray.count;
+    return self.previousPostsArray.count;
 }
 
 - (void)addRefreshControl{
@@ -136,7 +132,6 @@
 -(void)setDelegates{
     self.previousPostTableView.delegate=self;
     self.previousPostTableView.dataSource=self;
-    self.searchBar.delegate=self;
 }
 
 //Adds background color
@@ -145,35 +140,10 @@
     self.previousPostTableView.backgroundColor=[Colors secondaryGreyLighterColor];
 }
 
--(void) searchBar:(UISearchBar *) searchBar textDidChange: (NSString *) searchText{
-    if(searchText.length!=0){
-        NSPredicate * predicate=[NSPredicate predicateWithBlock:^BOOL(Post * post, NSDictionary * bindings){
-            return[post[@"title"] containsString:searchText];
-        }];
-        self.filteredPreviousPostsArray=[self.previousPostsArray filteredArrayUsingPredicate:predicate];
-    } else{
-        self.filteredPreviousPostsArray=self.previousPostsArray;
-    }
-    [self.previousPostTableView reloadData];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    self.filteredPreviousPostsArray=self.previousPostsArray;
-    [self.view endEditing:YES];
-    searchBar.text=@"";
-    [self.previousPostTableView reloadData];
-}
-
-//changes the font of the search bar text
-- (void)changeSearchBarFont{
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"RobotoCondensed-Regular" size:17]];
-}
-
 //Helper method for view did load
 - (void)callViewDidLoadMethods{
     [self fetchUserPosts];
     [self addRefreshControl];
-    [self changeSearchBarFont];
     [self displayBackgroundColor];
     self.noPostingsView.frame = self.view.frame;
 }
@@ -189,6 +159,10 @@
         PostDetailsViewController *postDetailsController = [segue destinationViewController];
         postDetailsController.delegate = self;
         postDetailsController.post = post;
+    } else if ([segue.identifier isEqualToString:yourPostingsToSearchSegue]) {
+        SearchPostingsViewController *searchViewController = [segue destinationViewController];
+        searchViewController.allPostingsArray = self.previousPostsArray;
+        searchViewController.isSearchingNearby = NO;
     }
 }
 
