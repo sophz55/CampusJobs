@@ -19,6 +19,7 @@
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "AppScheme.h"
 #import "Format.h"
+#import "StringConstants.h"
 
 @interface MainProfileViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -148,10 +149,9 @@
     self.emailLabel.text=self.currentUser.email;
     
     //format labels
-    id<MDCTypographyScheming> typographyScheme = [[AppScheme sharedInstance] typographyScheme];
-    self.nameLabel.font = typographyScheme.headline5;
-    self.usernameLabel.font = typographyScheme.headline6;
-    self.emailLabel.font = typographyScheme.headline6;
+    self.nameLabel.font = [UIFont fontWithName:boldFontName size:29];
+    self.usernameLabel.font =[UIFont fontWithName:regularFontName size:22];
+    self.emailLabel.font = [UIFont fontWithName:lightFontName size:18];
     
     id<MDCColorScheming> colorScheme = [[AppScheme sharedInstance] colorScheme];
     self.nameLabel.textColor = colorScheme.onSecondaryColor;

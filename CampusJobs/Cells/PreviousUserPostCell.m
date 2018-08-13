@@ -10,6 +10,7 @@
 #import <MaterialComponents/MaterialTextFields+TypographyThemer.h>
 #import "DateTools.h"
 #import "AppScheme.h"
+#import "StringConstants.h"
 
 @implementation PreviousUserPostCell
 
@@ -24,27 +25,27 @@
 }
 - (void)setPreviousPost:(Post *)previousPost{
     self.post=previousPost;
-     id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     
     //set fonts
-    self.previousPostTitleLabel.font=typographyScheme.overline;
-    self.statusLabel.font=typographyScheme.subtitle2;
-    self.dateLabel.font=typographyScheme.subtitle2;
-
+    self.previousPostTitleLabel.font=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
+    self.statusLabel.font=[UIFont fontWithName:boldFontName size:14];
+    self.takerLabel.font=[UIFont fontWithName:lightFontName size:15];
+    self.dateLabel.font=[UIFont fontWithName:lightFontName size:16];
+    
     //set text for each field
     self.previousPostTitleLabel.text=[previousPost.title uppercaseString];
     if ([previousPost.title isEqualToString:@""]) {
         self.previousPostTitleLabel.text = @"UNTITLED POST";
     }
     if(previousPost.postStatus==OPEN){
-        self.statusLabel.text=@"Open Job";
+        self.statusLabel.text=@"OPEN";
         self.takerLabel.hidden=YES;
     } else if(previousPost.postStatus==IN_PROGRESS){
-        self.statusLabel.text=@"Price Confirmed, Transaction In Progress";
+        self.statusLabel.text=@"IN PROGRESS";
         self.takerLabel.hidden=NO;
         self.takerLabel.text=[NSString stringWithFormat:@"Taken by: %@", previousPost.taker.username];
     } else{
-        self.statusLabel.text=@"Transaction Completed";
+        self.statusLabel.text=@"COMPLETED";
         self.takerLabel.hidden=NO;
         self.takerLabel.text=[NSString stringWithFormat:@"Completed by: %@", previousPost.taker.username];
     }

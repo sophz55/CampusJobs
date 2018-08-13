@@ -46,7 +46,7 @@
     [Format configurePlaceholderView:self.noNearbyPostingsView withLabel:self.noNearbyPostingsLabel];
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     self.nearbyPostingsArray=[[NSMutableArray alloc]init];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -118,7 +118,6 @@
                 self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope.", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
             }
-            
             [self.nearbyPostTableView reloadData];
         } else{
             NSLog(@"%@", error.localizedDescription);
@@ -134,7 +133,7 @@
     //adding shadow
     nearbyPostCell.layer.shadowOffset=CGSizeMake(0, 0);
     nearbyPostCell.layer.shadowOpacity=0.3;
-    nearbyPostCell.layer.shadowRadius=1.0;
+    nearbyPostCell.layer.shadowRadius=2.0;
     nearbyPostCell.clipsToBounds = false;
     nearbyPostCell.layer.shadowColor=[[UIColor blackColor]CGColor];
     return nearbyPostCell;
@@ -147,15 +146,12 @@
     self.nearbyPostTableView.rowHeight=75;
     cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
     //initializes white rounded cell
-    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 105)];
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 105)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
     roundedCellView.layer.masksToBounds=false;
-    //add border color
-    roundedCellView.layer.borderWidth=.5;
-    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
-    roundedCellView.layer.cornerRadius=3.0;
+    roundedCellView.layer.cornerRadius=5.0;
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];

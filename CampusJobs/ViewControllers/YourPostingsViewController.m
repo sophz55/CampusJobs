@@ -86,7 +86,7 @@
     //adds shadow property
     previousUserPostCell.layer.shadowOffset=CGSizeMake(0, 0);
     previousUserPostCell.layer.shadowOpacity=0.3;
-    previousUserPostCell.layer.shadowRadius=1.0;
+    previousUserPostCell.layer.shadowRadius=2.0;
     previousUserPostCell.clipsToBounds = false;
     previousUserPostCell.layer.shadowColor=[[UIColor blackColor]CGColor];
     return previousUserPostCell;
@@ -98,15 +98,12 @@
     self.previousPostTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
     //initializes white rounded cell
-    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, self.view.frame.size.width-10, 80)];
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(12, 10, self.view.frame.size.width-22, 80)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);
     roundedCellView.layer.masksToBounds=false;
-    //border color
-    roundedCellView.layer.borderWidth=0.3;
-    roundedCellView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
     //rounded edges
-    roundedCellView.layer.cornerRadius=3.0;
+    roundedCellView.layer.cornerRadius=5.0;
     //adds rounded cell to each cell content view
     [cell.contentView addSubview:roundedCellView];
     [cell.contentView sendSubviewToBack:roundedCellView];
