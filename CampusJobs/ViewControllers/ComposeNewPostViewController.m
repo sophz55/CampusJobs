@@ -62,7 +62,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!self.savedLocation || [self.savedLocation isEqual:[PFUser currentUser][currentLocation]]) {
+    if ([self.savedLocation isEqual:[PFUser currentUser][currentLocation]]) {
         self.savedLocation = [PFUser currentUser][currentLocation];
         self.useCurrentLocationButton.hidden = YES;
     } else {
@@ -143,9 +143,11 @@
     [self formatMap];
     if (self.savedLocationAddress && ![self.savedLocationAddress isEqualToString:@""]) {
         self.locationAddressLabel.text = self.savedLocationAddress;
+        self.editLocationButton.titleLabel.text = @"EDIT YOUR LOCATION";
         self.useCurrentLocationButton.hidden = NO;
     } else {
         self.locationAddressLabel.text = @"Using your current location.";
+        self.editLocationButton.titleLabel.text = @"EDIT YOUR LOCATION";
         self.useCurrentLocationButton.hidden = YES;
     }
     [Format formatAppBar:self.appBar withTitle:@"Your Posting"];
@@ -161,7 +163,8 @@
 }
 
 - (void)configureForNewPost {
-    self.locationAddressLabel.text = @"Using your current location.";
+    self.locationAddressLabel.text = @"Choose a location.";
+    self.editLocationButton.titleLabel.text = @"PIN POINT YOUR LOCATION";
     [self.postButton setTitle:@"Post"];
 }
 
@@ -181,9 +184,6 @@
 }
 
 - (void)configureButtons {
-    [self.editLocationButton setTitle:@"EDIT POST LOCATION" forState:UIControlStateNormal];
-    [self.editLocationButton sizeToFit];
-    
     [self.useCurrentLocationButton setTitle:@"USE CURRENT LOCATION" forState:UIControlStateNormal];
     [self.useCurrentLocationButton setTitleFont:[UIFont fontWithName:lightItalicFontName size:14] forState:UIControlStateNormal];
     [self.useCurrentLocationButton sizeToFit];
@@ -194,6 +194,8 @@
         make.top.equalTo(self.editLocationButton.mas_bottom).with.offset(4);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+    
+    [Format centerHorizontalView:self.editLocationButton inView:self.view];
 }
 
 //Uses a geocoder to convert the longitude and latitude of the pinned annotation into a readable address for the user
@@ -229,12 +231,19 @@
     self.postMapView.layer.shadowColor=[[UIColor blackColor]CGColor];
     
     //add pinned annotation
-    savedLocationCoordinate.latitude=self.savedLocation.latitude;
-    savedLocationCoordinate.longitude=self.savedLocation.longitude;
-    [self.postMapView setRegion:MKCoordinateRegionMake(savedLocationCoordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
-    MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
-    annotation.coordinate=savedLocationCoordinate;
-    [self.postMapView addAnnotation:annotation];
+    if (self.savedLocation) {
+        savedLocationCoordinate.latitude=self.savedLocation.latitude;
+        savedLocationCoordinate.longitude=self.savedLocation.longitude;
+        [self.postMapView setRegion:MKCoordinateRegionMake(savedLocationCoordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
+        MKPointAnnotation *annotation=[[MKPointAnnotation alloc]init];
+        annotation.coordinate=savedLocationCoordinate;
+        [self.postMapView addAnnotation:annotation];
+    } else {
+        PFGeoPoint *currentUserLocation = [PFUser currentUser][currentLocation];
+        savedLocationCoordinate.latitude = currentUserLocation.latitude;
+        savedLocationCoordinate.longitude = currentUserLocation.longitude;
+        [self.postMapView setRegion:MKCoordinateRegionMake(savedLocationCoordinate, MKCoordinateSpanMake(.09f, .09f)) animated:YES];
+    }
 }
 
 #pragma mark - IBAction
