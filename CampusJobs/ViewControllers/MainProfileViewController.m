@@ -32,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPersonalSettingsButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editPaymentInfoButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *editDesiredRadiusButton;
-@property (strong, nonatomic) IBOutlet MDCRaisedButton *logoutButton;
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (strong, nonatomic) MDCButtonScheme* buttonScheme;
@@ -84,13 +83,12 @@
     
     [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y - 60];
     
-    CGFloat topButtonOriginY = self.roundedEdgeView.frame.origin.y + self.roundedEdgeView.frame.size.height + 18;
+    CGFloat topButtonOriginY = self.roundedEdgeView.frame.origin.y + self.roundedEdgeView.frame.size.height + 28;
     CGFloat buttonHeight = self.editPersonalSettingsButton.frame.size.height;
-    CGFloat space = buttonHeight + 14;
+    CGFloat space = buttonHeight + 20;
     self.editPersonalSettingsButton.frame = CGRectMake(self.editPersonalSettingsButton.frame.origin.x, topButtonOriginY, self.editPersonalSettingsButton.frame.size.width, buttonHeight);
     self.editPaymentInfoButton.frame = CGRectMake(self.editPaymentInfoButton.frame.origin.x, topButtonOriginY + space, self.editPaymentInfoButton.frame.size.width, buttonHeight);
     self.editDesiredRadiusButton.frame = CGRectMake(self.editDesiredRadiusButton.frame.origin.x, topButtonOriginY + 2 * space, self.editDesiredRadiusButton.frame.size.width, buttonHeight);
-    self.logoutButton.frame = CGRectMake(self.logoutButton.frame.origin.x, topButtonOriginY + 3 * space, self.logoutButton.frame.size.width, buttonHeight);
 }
 
 
@@ -204,28 +202,18 @@
     self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     [Format formatRaisedButton:self.editDesiredRadiusButton];
     self.editDesiredRadiusButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
-    [Format formatRaisedButton:self.logoutButton];
-    self.logoutButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     
     //Center bottom view buttons
     [Format centerHorizontalView:self.editProfPicButton inView:self.view];
     [Format centerHorizontalView:self.editPersonalSettingsButton inView:self.view];
     [Format centerHorizontalView:self.editPaymentInfoButton inView:self.view];
     [Format centerHorizontalView:self.editDesiredRadiusButton inView:self.view];
-    [Format centerHorizontalView:self.logoutButton inView:self.view];
     
     //Change button shadow to selected orange
     self.editPersonalSettingsButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.editPaymentInfoButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.editDesiredRadiusButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
-    self.logoutButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.editProfPicButton.layer.shadowColor=[[Colors secondaryGreyDarkColor]CGColor];
-}
-
-- (IBAction)didTapLogoutButton:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        [self performSegueWithIdentifier:profileToLogoutSegue sender:nil];
-    }];
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "StringConstants.h"
 #import "AppScheme.h"
 #import "MaterialTextFields+ColorThemer.h"
+#import "SegueConstants.h"
 
 @interface EditProfileViewController () <UITextFieldDelegate>
 
@@ -31,6 +32,7 @@
 @property (strong, nonatomic) MDCTextInputControllerUnderline *usernameFieldController;
 @property (strong, nonatomic) MDCTextInputControllerUnderline *emailFieldController;
 @property (strong, nonatomic) MDCTextInputControllerUnderline *passwordFieldController;
+@property (weak, nonatomic) IBOutlet MDCRaisedButton *logoutButton;
 
 @end
 
@@ -43,6 +45,13 @@
     [self configureTextFieldControllers];
     [self configureTextFields];
     [self populateFieldsWithExistingInformation];
+    
+    
+    [Format formatRaisedButton:self.logoutButton];
+    self.logoutButton.backgroundColor = [Colors secondaryGreyLightColor];
+    [Format centerHorizontalView:self.logoutButton inView:self.view];
+    self.logoutButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +109,12 @@
         } else {
             [Alert callAlertWithTitle:@"Error Updating Profile" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         }
+    }];
+}
+
+- (IBAction)didTapLogoutButton:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        [self performSegueWithIdentifier:profileToLogoutSegue sender:nil];
     }];
 }
 

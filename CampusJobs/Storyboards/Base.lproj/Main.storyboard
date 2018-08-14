@@ -100,7 +100,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="17"/>
-                                <state key="normal" title="Edit Personal Settings">
+                                <state key="normal" title="Account Settings">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -181,15 +181,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcK-8k-yRE" customClass="MDCRaisedButton">
-                                <rect key="frame" x="172" y="565" width="58" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="didTapLogoutButton:" destination="wdN-Nb-yf5" eventType="touchUpInside" id="mfB-AR-qP4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fvg-NP-EGz"/>
@@ -206,7 +197,6 @@
                         <outlet property="roundedEdgeView" destination="REr-Qy-7hz" id="wLQ-el-O9j"/>
                         <outlet property="topView" destination="P8e-QQ-g6a" id="QSF-QN-Op9"/>
                         <outlet property="usernameLabel" destination="NVe-9a-sYI" id="UuJ-H4-QIH"/>
-                        <segue destination="cNl-US-qhg" kind="presentation" identifier="logoutSegue" id="w2l-bG-Uas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJH-iR-C3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -265,6 +255,16 @@
                                 <fontDescription key="fontDescription" name="RobotoCondensed-Bold" family="Roboto Condensed" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcK-8k-yRE" customClass="MDCRaisedButton">
+                                <rect key="frame" x="141" y="483" width="58" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="didTapLogoutButton:" destination="Pzf-3z-BOP" eventType="touchUpInside" id="h5C-sI-aAE"/>
+                                    <action selector="didTapLogoutButton:" destination="wdN-Nb-yf5" eventType="touchUpInside" id="mfB-AR-qP4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -275,9 +275,11 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="goU-Ur-IEU" id="quC-VI-U5V"/>
+                        <outlet property="logoutButton" destination="IcK-8k-yRE" id="bdp-vi-vgD"/>
                         <outlet property="nameField" destination="wiZ-5F-Ayp" id="SvS-xT-mDC"/>
                         <outlet property="passwordField" destination="BZL-3G-PDw" id="Q86-LD-hoP"/>
                         <outlet property="usernameField" destination="VTP-Ji-H8n" id="OQE-bD-XkB"/>
+                        <segue destination="cNl-US-qhg" kind="presentation" identifier="logoutSegue" id="yau-s5-eSb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uve-JR-0eJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
