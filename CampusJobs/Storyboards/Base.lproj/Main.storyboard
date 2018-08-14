@@ -148,7 +148,7 @@
                                 <rect key="frame" x="129" y="326" width="110" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="12"/>
-                                <state key="normal" title="EDIT PROFILE PIC">
+                                <state key="normal" title="EDIT PROFILE PICTURE">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

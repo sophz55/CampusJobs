@@ -71,21 +71,22 @@
     [self formatButtons];
     self.buttonScheme = [[MDCButtonScheme alloc] init];
     
-    CGFloat editButtonWidth = 120;
-    CGFloat editButtonHeight = 20;
-    CGFloat centerButton=(self.view.frame.size.width - self.editProfPicButton.frame.size.width)/2;
-    
     self.profilePicture.frame = CGRectMake(self.profilePicture.frame.origin.x, 76, self.profilePicture.frame.size.width, self.profilePicture.frame.size.height);
-    self.editProfPicButton.frame = CGRectMake(centerButton-5, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, editButtonWidth+5, editButtonHeight);
+    
+    self.editProfPicButton.frame = CGRectMake(0, self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 5, self.editProfPicButton.frame.size.width, 20);
+    [Format centerHorizontalView:self.editProfPicButton inView:self.view];
+    
     self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.editProfPicButton.frame.origin.y + self.editProfPicButton.frame.size.height + 10, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
+    
     self.usernameLabel.frame = CGRectMake(self.usernameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height + 2, self.usernameLabel.frame.size.width, self.usernameLabel.frame.size.height);
+    
     self.emailLabel.frame = CGRectMake(self.emailLabel.frame.origin.x, self.usernameLabel.frame.origin.y + self.usernameLabel.frame.size.height + 2, self.emailLabel.frame.size.width, self.emailLabel.frame.size.height);
     
-    [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y - 40];
+    [self formatBackgroundAtHeight:self.emailLabel.frame.origin.y - 60];
     
-    CGFloat topButtonOriginY = self.roundedEdgeView.frame.origin.y + self.roundedEdgeView.frame.size.height + 10;
+    CGFloat topButtonOriginY = self.roundedEdgeView.frame.origin.y + self.roundedEdgeView.frame.size.height + 18;
     CGFloat buttonHeight = self.editPersonalSettingsButton.frame.size.height;
-    CGFloat space = buttonHeight + 10;
+    CGFloat space = buttonHeight + 14;
     self.editPersonalSettingsButton.frame = CGRectMake(self.editPersonalSettingsButton.frame.origin.x, topButtonOriginY, self.editPersonalSettingsButton.frame.size.width, buttonHeight);
     self.editPaymentInfoButton.frame = CGRectMake(self.editPaymentInfoButton.frame.origin.x, topButtonOriginY + space, self.editPaymentInfoButton.frame.size.width, buttonHeight);
     self.editDesiredRadiusButton.frame = CGRectMake(self.editDesiredRadiusButton.frame.origin.x, topButtonOriginY + 2 * space, self.editDesiredRadiusButton.frame.size.width, buttonHeight);
@@ -103,7 +104,7 @@
     self.topView.backgroundColor=[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.topView.frame andColors:topColors];
     
     //format rounded view
-    self.roundedEdgeView.frame=CGRectMake(-self.view.frame.size.width/2, self.topView.frame.origin.y + self.topView.frame.size.height - 75, self.view.frame.size.width * 2, 150);
+    self.roundedEdgeView.frame = CGRectMake(-self.view.frame.size.width/2, self.topView.frame.origin.y + self.topView.frame.size.height - 75, self.view.frame.size.width * 2, 150);
     self.roundedEdgeView.layer.cornerRadius=self.roundedEdgeView.frame.size.width / 2;
     self.roundedEdgeView.clipsToBounds=YES;
     self.roundedEdgeView.backgroundColor=[Colors primaryBlueColor];
@@ -188,8 +189,11 @@
 //called in main configuration
 - (void)formatButtons {
     //Edit profile picture button
+    [Format formatRaisedButton:self.editProfPicButton];
     self.editProfPicButton.layer.cornerRadius=3.0;
     self.editProfPicButton.layer.backgroundColor=[[Colors secondaryGreyLightColor]CGColor];
+    [self.editProfPicButton setTitleFont:[UIFont fontWithName:regularFontName size:12] forState:UIControlStateNormal];
+    [self.editProfPicButton sizeToFit];
     
     //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
@@ -204,6 +208,7 @@
     self.logoutButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
     
     //Center bottom view buttons
+    [Format centerHorizontalView:self.editProfPicButton inView:self.view];
     [Format centerHorizontalView:self.editPersonalSettingsButton inView:self.view];
     [Format centerHorizontalView:self.editPaymentInfoButton inView:self.view];
     [Format centerHorizontalView:self.editDesiredRadiusButton inView:self.view];
@@ -214,14 +219,7 @@
     self.editPaymentInfoButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.editDesiredRadiusButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
     self.logoutButton.layer.shadowColor = [[Colors primaryOrangeColor]CGColor];
-    self.editProfPicButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
-    self.logoutButton.layer.shadowColor=[[Colors primaryOrangeColor]CGColor];
-
-    //set frame of all buttons
-    self.editPersonalSettingsButton.frame=CGRectMake(self.editPersonalSettingsButton.frame.origin.x, self.editPersonalSettingsButton.frame.origin.y, self.editPersonalSettingsButton.frame.size.width, self.editPersonalSettingsButton.frame.size.height-7);
-    self.editPaymentInfoButton.frame=CGRectMake(self.editPaymentInfoButton.frame.origin.x, self.editPaymentInfoButton.frame.origin.y -10, self.editPaymentInfoButton.frame.size.width, self.editPaymentInfoButton.frame.size.height-7);
-    self.editDesiredRadiusButton.frame=CGRectMake(self.editDesiredRadiusButton.frame.origin.x, self.editDesiredRadiusButton.frame.origin.y-20, self.editDesiredRadiusButton.frame.size.width, self.editDesiredRadiusButton.frame.size.height-7);
-    self.logoutButton.layer.frame=CGRectMake(self.logoutButton.frame.origin.x, self.logoutButton.frame.origin.y-30, self.logoutButton.frame.size.width, self.logoutButton.frame.size.height-7);
+    self.editProfPicButton.layer.shadowColor=[[Colors secondaryGreyDarkColor]CGColor];
 }
 
 - (IBAction)didTapLogoutButton:(id)sender {
