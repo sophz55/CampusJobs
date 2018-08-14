@@ -295,7 +295,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mRI-GG-uwh"/>
         <segue reference="1CD-3G-1S5"/>
     </inferredMetricsTieBreakers>
 </document>

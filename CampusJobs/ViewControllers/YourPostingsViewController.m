@@ -83,7 +83,7 @@
     [previousUserPostCell setPreviousPost:post];
     //adds shadow property
     previousUserPostCell.layer.shadowOffset=CGSizeMake(0, 0);
-    previousUserPostCell.layer.shadowOpacity=0.3;
+    previousUserPostCell.layer.shadowOpacity=0.5;
     previousUserPostCell.layer.shadowRadius=2.0;
     previousUserPostCell.clipsToBounds = false;
     previousUserPostCell.layer.shadowColor=[[UIColor blackColor]CGColor];
