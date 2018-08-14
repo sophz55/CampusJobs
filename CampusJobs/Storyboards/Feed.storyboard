@@ -131,6 +131,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="9Ap-OU-iOV" id="Pti-yU-r3t"/>
                                             <outlet property="previousPostTitleLabel" destination="Apa-fT-gsg" id="1I0-Io-vhG"/>
+                                            <outlet property="separatorView" destination="VRQ-Kw-wJL" id="ooe-7m-cLR"/>
                                             <outlet property="statusLabel" destination="hlr-qu-noy" id="mbl-zS-5Zm"/>
                                             <outlet property="takerLabel" destination="bk3-Fp-25r" id="3UP-I0-VaN"/>
                                             <segue destination="yWq-Xd-JjF" kind="presentation" identifier="yourPostingsToDetailSegue" modalTransitionStyle="crossDissolve" id="kdN-ua-8ao"/>
@@ -468,7 +469,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdu-4u-z8Q">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdu-4u-z8Q">
                                                     <rect key="frame" x="15" y="68" width="294" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNextCondensed-UltraLight" family="Avenir Next Condensed" pointSize="19"/>
@@ -514,6 +515,7 @@
                                             <outlet property="postTitleLabel" destination="RbX-3D-rXJ" id="tdh-Mm-y1c"/>
                                             <outlet property="postUserLabel" destination="mzg-ur-LTg" id="O2V-bx-ebJ"/>
                                             <outlet property="profilePicture" destination="OHd-fM-MKR" id="Snu-0F-xbR"/>
+                                            <outlet property="separatorView" destination="Jcx-cH-uDR" id="jIP-gy-vEj"/>
                                             <segue destination="yWq-Xd-JjF" kind="presentation" identifier="cellToPostDetailsSegue" modalTransitionStyle="crossDissolve" id="vrc-CX-ngk"/>
                                         </connections>
                                     </tableViewCell>

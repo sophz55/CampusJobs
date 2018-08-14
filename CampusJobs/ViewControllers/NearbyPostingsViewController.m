@@ -139,7 +139,7 @@
     self.nearbyPostTableView.rowHeight=75;
     cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
     //initializes white rounded cell
-    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 105)];
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 85)];
     CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
     roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
     roundedCellView.layer.masksToBounds=false;
@@ -151,7 +151,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 115;
+    return 95;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

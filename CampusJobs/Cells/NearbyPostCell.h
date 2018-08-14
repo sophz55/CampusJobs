@@ -19,6 +19,7 @@
 @property (strong, nonatomic) Post * post;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *milesLabel;
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
 
 -(void) setNearbyPost:(Post *)post;
 
