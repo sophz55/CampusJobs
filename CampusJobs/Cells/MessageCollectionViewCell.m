@@ -128,26 +128,36 @@
 }
 
 - (IBAction)didTapAccept:(id)sender {
-    [[PFUser currentUser][paymentCard] fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
-        if ([[PFUser currentUser][paymentCard] isValidCard]) {
-            PFUser *taker;
-            if ([self.message.sender.objectId isEqualToString:self.conversation.post.author.objectId]) {
-                taker = self.message.receiver;
+    if ([[PFUser currentUser].objectId isEqualToString:self.conversation.post.author.objectId] && [PFUser currentUser][paymentCard]) {
+        [[PFUser currentUser][paymentCard] fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
+            if ([[PFUser currentUser][paymentCard] isValidCard]) {
+                [self acceptJob];
             } else {
-                taker = self.message.sender;
+                [Alert callAlertWithTitle:@"Invalid Payment Card" alertMessage:@"Could not accept job. Please update your payment card info." viewController:self.delegate];
             }
-            
-            __unsafe_unretained typeof(self) weakSelf = self;
-            [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withConversation:self.conversation withCompletion:^(BOOL didUpdateJob, NSError *error) {
-                if (didUpdateJob) {
-                    [weakSelf removeSuggestedPrice];
-                    [weakSelf.delegate reloadData];
-                } else {
-                    [Alert callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
-                }
-            }];
+        }];
+    } else if ([[PFUser currentUser].objectId isEqualToString:self.conversation.post.author.objectId]) {
+        [Alert callAlertWithTitle:@"Invalid Payment Card" alertMessage:@"Could not accept job. Please update your payment card info." viewController:self.delegate];
+    } else {
+        [self acceptJob];
+    }
+}
+
+- (void)acceptJob {
+    PFUser *taker;
+    if ([self.message.sender.objectId isEqualToString:self.conversation.post.author.objectId]) {
+        taker = self.message.receiver;
+    } else {
+        taker = self.message.sender;
+    }
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
+    [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withConversation:self.conversation withCompletion:^(BOOL didUpdateJob, NSError *error) {
+        if (didUpdateJob) {
+            [weakSelf removeSuggestedPrice];
+            [weakSelf.delegate reloadData];
         } else {
-            [Alert callAlertWithTitle:@"Invalid Payment Card" alertMessage:@"Could not accept job. Please update your payment card info." viewController:self.delegate];
+            [Alert callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
         }
     }];
 }

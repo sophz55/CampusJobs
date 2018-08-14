@@ -30,13 +30,11 @@
 
 - (void)setNearbyPost:(Post *)post{
     _post=post;
-    id<MDCTypographyScheming> typographyScheme = [AppScheme sharedInstance].typographyScheme;
     
     //initialize fonts for labels
     self.postTitleLabel.font=[UIFont fontWithName:@"RobotoCondensed-Bold" size:18];
     self.postUserLabel.font=[UIFont fontWithName:@"RobotoCondensed-Regular" size:16];
     self.postDescriptionLabel.font=[UIFont fontWithName:@"RobotoCondensed-LightItalic" size:16];
-    self.postDateLabel.font=typographyScheme.subtitle2;
     self.postDistanceLabel.font=[UIFont fontWithName: @"RobotoCondensed-Regular" size:20];
     self.milesLabel.font=[UIFont fontWithName: @"RobotoCondensed-Regular" size:16];
 
@@ -65,6 +63,8 @@
     self.postUserLabel.text=[NSString stringWithFormat:@"%@ | %@",post.author.username,timeAgo];
     
     //set profile picture
+    CGFloat imageWidth = 45;
+    self.profilePicture.frame = CGRectMake(0, 0, imageWidth, imageWidth);
     [Format formatProfilePictureForUser:post.author withView:self.profilePicture];
     
     [self configureLayout];
@@ -102,12 +102,13 @@
     
     self.separatorView.frame = CGRectMake(cellWidth - 60, 10, 1, cellHeight - 10);
     
-    CGFloat verticalSpace = 0;
     CGFloat centerY = (cellHeight + verticalInset)/2;
     CGFloat labelOriginX = self.separatorView.frame.origin.x + self.separatorView.frame.size.width;
     CGFloat labelHeight = self.postDistanceLabel.frame.size.height;
-    self.postDistanceLabel.frame = CGRectMake(labelOriginX, centerY - verticalSpace/2 - labelHeight, cellWidth - labelOriginX - horizontalInset, labelHeight);
-    self.milesLabel.frame = CGRectMake(labelOriginX + 1, centerY + verticalSpace/2, self.postDistanceLabel.frame.size.width, self.milesLabel.frame.size.height);
+    self.postDistanceLabel.frame = CGRectMake(labelOriginX, centerY - labelHeight, cellWidth - labelOriginX - horizontalInset, labelHeight);
+    self.postDistanceLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.milesLabel.frame = CGRectMake(labelOriginX + 1, centerY, self.postDistanceLabel.frame.size.width, self.milesLabel.frame.size.height);
 }
 
 @end

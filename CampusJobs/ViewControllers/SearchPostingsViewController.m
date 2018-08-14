@@ -14,8 +14,10 @@
 #import "PreviousUserPostCell.h"
 #import <Masonry.h>
 #import "Utils.h"
+#import "SegueConstants.h"
+#import "PostDetailsViewController.h"
 
-@interface SearchPostingsViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SearchPostingsViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
 @property(nonatomic, strong) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -121,9 +123,25 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.searchedPostingsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.searchedPostingsTableView.rowHeight=75;
+    cell.layer.backgroundColor=[[UIColor clearColor]CGColor];
+    //initializes white rounded cell
+    UIView  *roundedCellView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 85)];
+    CGFloat colors[]={1.0, 1.0, 1.0, 1.0};
+    roundedCellView.layer.backgroundColor=CGColorCreate(CGColorSpaceCreateDeviceRGB(), colors);;
+    roundedCellView.layer.masksToBounds=false;
+    //rounded edges
+    roundedCellView.layer.cornerRadius=5.0;
+    //adds rounded cell to each cell content view
+    [cell.contentView addSubview:roundedCellView];
+    [cell.contentView sendSubviewToBack:roundedCellView];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isSearchingNearby) {
-        return 115;
+        return 95;
     } else {
         return 90;
     }
@@ -139,14 +157,22 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
+- (void)reloadData {
+    [self.searchedPostingsTableView reloadData];
+}
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:searchToPostDetailsSegue]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.searchedPostingsTableView indexPathForCell:tappedCell];
+        Post *singlePost = self.searchedPostingsArray[indexPath.row];
+        PostDetailsViewController *postDetailsViewController = [segue destinationViewController];
+        [self.searchedPostingsTableView deselectRowAtIndexPath:indexPath animated:YES];
+        postDetailsViewController.delegate = self;
+        postDetailsViewController.post = singlePost;
+    }
 }
-*/
 
 @end

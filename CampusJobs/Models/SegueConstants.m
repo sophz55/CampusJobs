@@ -26,6 +26,7 @@ NSString *const yourPostingsToPostDetailsSegue = @"yourPostingsToDetailSegue";
 NSString *const postDetailsToMessageSegue = @"chatSegue";
 NSString *const postDetailsToEditPostSegue = @"postDetailsToEditPostSegue";
 NSString *const postDetailsToMapSegue = @"detailsToMapSegue";
+NSString *const searchToPostDetailsSegue = @"searchToDetailsSegue";
 
 #pragma mark - compose post segues
 NSString *const composePostToFeedSegue = @"backToPersonalFeedSegue";

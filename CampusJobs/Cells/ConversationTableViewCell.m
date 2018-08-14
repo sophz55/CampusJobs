@@ -112,6 +112,7 @@
     }];
     
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.statusLabel removeConstraints:self.statusLabel.constraints];
         make.top.equalTo(self.otherUserLabel.mas_bottom).with.offset(2);
         make.left.equalTo(self.otherUserLabel.mas_left);
         make.width.equalTo(@(self.statusLabel.frame.size.width + 20));

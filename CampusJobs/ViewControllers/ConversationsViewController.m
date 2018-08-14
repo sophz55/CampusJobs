@@ -53,6 +53,17 @@
     [self configureRefreshControl];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self fetchConversations];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)configureTopNavigationBar {
     self.appBar = [[MDCAppBar alloc] init];
     [self addChildViewController:_appBar.headerViewController];
@@ -71,12 +82,6 @@
     [self.conversationsTableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self fetchConversations];
-}
-
 - (void)fetchConversations {
     PFQuery *userIsSeekerQuery = [self createUserIsSeekerQuery];
     PFQuery *userIsAuthorQuery = [self createUserIsAuthorQuery];
@@ -90,13 +95,19 @@
     [userConversationsQuery includeKey:@"seeker"];
     [userConversationsQuery includeKey:@"seeker.username"];
     [userConversationsQuery includeKey:@"seeker.profileImageFile"];
+    [userConversationsQuery orderByDescending:@"createdAt"];
     userConversationsQuery.limit = self.queryLimit;
     
     [userConversationsQuery findObjectsInBackgroundWithBlock:^(NSArray *conversations, NSError *error) {
         if (error != nil) {
             [Alert callAlertWithTitle:@"Error fetching conversations" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:self];
         } else {
-            self.conversations = [[NSMutableArray alloc] initWithArray:conversations];
+            self.conversations = [[NSMutableArray alloc] init];
+            for (Conversation *conversation in conversations) {
+                if (conversation.messages.count > 0) {
+                    [self.conversations addObject:conversation];
+                }
+            }
             [self.conversationsTableView reloadData];
             [self.refreshControl endRefreshing];
             if (self.conversations.count > 0) {
@@ -138,11 +149,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.conversations.count;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Navigation

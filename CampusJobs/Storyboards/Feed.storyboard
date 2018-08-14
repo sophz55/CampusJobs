@@ -622,15 +622,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-7S-HeP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-7S-HeP">
                                                     <rect key="frame" x="29" y="53" width="322" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-UltraLight" family="Avenir Next Condensed" pointSize="19"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amS-cC-7Vg">
-                                                    <rect key="frame" x="154" y="25" width="73" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNextCondensed-UltraLight" family="Avenir Next Condensed" pointSize="19"/>
                                                     <nil key="textColor"/>
@@ -655,12 +648,14 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="postDateLabel" destination="amS-cC-7Vg" id="WPc-G6-ysO"/>
-                                            <outlet property="postDescriptionLabel" destination="KSs-7S-HeP" id="N4V-Eq-DJm"/>
-                                            <outlet property="postDistanceLabel" destination="eNh-dq-glp" id="7UI-u6-lIz"/>
-                                            <outlet property="postTitleLabel" destination="bKH-ka-Tt3" id="obs-D1-QFI"/>
-                                            <outlet property="postUserLabel" destination="bcK-Vl-FA4" id="baM-Ha-ZtS"/>
-                                            <outlet property="profilePicture" destination="hfi-mF-IY1" id="Me1-lD-WIO"/>
+                                            <outlet property="milesLabel" destination="Nts-Rs-R3X" id="FD9-Ml-s0d"/>
+                                            <outlet property="postDescriptionLabel" destination="KSs-7S-HeP" id="c6Y-Ed-Isr"/>
+                                            <outlet property="postDistanceLabel" destination="eNh-dq-glp" id="m8i-T8-p0y"/>
+                                            <outlet property="postTitleLabel" destination="bKH-ka-Tt3" id="OlY-tU-8Y5"/>
+                                            <outlet property="postUserLabel" destination="bcK-Vl-FA4" id="M0p-BT-qVK"/>
+                                            <outlet property="profilePicture" destination="hfi-mF-IY1" id="61c-vl-rPr"/>
+                                            <outlet property="separatorView" destination="DXF-PB-mcz" id="q6A-KP-gAC"/>
+                                            <segue destination="yWq-Xd-JjF" kind="presentation" identifier="searchToDetailsSegue" modalTransitionStyle="crossDissolve" id="ceo-Ft-Mkh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -684,6 +679,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vn4-AL-oMl"/>
-        <segue reference="vrc-CX-ngk"/>
+        <segue reference="ceo-Ft-Mkh"/>
     </inferredMetricsTieBreakers>
 </document>
