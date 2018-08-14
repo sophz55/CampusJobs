@@ -83,11 +83,12 @@
     
     self.statusLabel.backgroundColor = [UIColor whiteColor];
     self.statusLabel.layer.cornerRadius = 5;
+    self.statusLabel.clipsToBounds = YES;
     self.statusLabel.layer.borderWidth = 1;
     self.statusLabel.layer.borderColor = [[Colors primaryOrangeColor] CGColor];
-    self.statusLabel.font = [UIFont fontWithName:boldFontName size:10];
+    self.statusLabel.font = [UIFont fontWithName:boldFontName size:12];
+    self.statusLabel.textAlignment = NSTextAlignmentCenter;
     [self.statusLabel sizeToFit];
-    self.statusLabel.frame = CGRectMake(0, 0, self.statusLabel.frame.size.width + 20, 20);
     
     [self configureLayout];
 }
@@ -113,12 +114,14 @@
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.otherUserLabel.mas_bottom).with.offset(2);
         make.left.equalTo(self.otherUserLabel.mas_left);
+        make.width.equalTo(@(self.statusLabel.frame.size.width + 20));
+        make.height.equalTo(@(self.statusLabel.frame.size.height + 4));
     }];
     
     [self.messagePreviewLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.statusLabel.mas_bottom).with.offset(2);
         make.left.equalTo(self.statusLabel.mas_left);
-        make.width.lessThanOrEqualTo(@250);
+        make.width.lessThanOrEqualTo(@275);
     }];
 }
 
