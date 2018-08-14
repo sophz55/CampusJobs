@@ -484,7 +484,7 @@
     __unsafe_unretained typeof(self) weakSelf = self;
     [self.conversation.post completeJobWithCompletion:^(BOOL didUpdateJob, NSError *error) {
         if (didUpdateJob) {
-            [weakSelf.conversation addToConversationWithSystemMessageWithText:[NSString stringWithFormat:@"%@ indicated that the job has been completed, and payment is on the way!", [PFUser currentUser].username] withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
+            [weakSelf.conversation addToConversationWithSystemMessageWithText:@"The job has been completed." withSender:[PFUser currentUser] withReceiver:weakSelf.otherUser withCompletion:^(BOOL didSendMessage, NSError *error) {
                 if (didSendMessage) {
                     [weakSelf reloadData];
                     [weakSelf performSegueWithIdentifier:messagesToJobCompletedSegue sender:nil];

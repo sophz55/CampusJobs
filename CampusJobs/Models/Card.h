@@ -21,4 +21,6 @@
 @property (weak, nonatomic) NSString *state;
 @property (weak, nonatomic) NSString *city;
 
+- (BOOL)isValidCard;
+
 @end

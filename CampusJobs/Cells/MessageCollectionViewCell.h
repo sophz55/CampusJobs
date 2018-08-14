@@ -18,7 +18,7 @@
 
 @interface MessageCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) id <MessageCollectionViewCellDelegate> delegate;
+@property (weak, nonatomic) UIViewController <MessageCollectionViewCellDelegate> *delegate;
 @property (weak, nonatomic) IBOutlet PFImageView *senderProfileImageView;
 @property (weak, nonatomic) IBOutlet UIView *textBubbleView;
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;

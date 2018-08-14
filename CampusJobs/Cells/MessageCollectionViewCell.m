@@ -14,6 +14,7 @@
 #import <MaterialComponents/MaterialTypography.h>
 #import "AppScheme.h"
 #import "StringConstants.h"
+#import "Card.h"
 
 @implementation MessageCollectionViewCell
 
@@ -127,20 +128,26 @@
 }
 
 - (IBAction)didTapAccept:(id)sender {
-    PFUser *taker;
-    if ([self.message.sender.objectId isEqualToString:self.conversation.post.author.objectId]) {
-        taker = self.message.receiver;
-    } else {
-        taker = self.message.sender;
-    }
-    
-    __unsafe_unretained typeof(self) weakSelf = self;
-    [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withConversation:self.conversation withCompletion:^(BOOL didUpdateJob, NSError *error) {
-        if (didUpdateJob) {
-            [weakSelf removeSuggestedPrice];
-            [weakSelf.delegate reloadData];
+    [[PFUser currentUser][paymentCard] fetchIfNeededInBackgroundWithBlock:^(PFObject *fetchedCard, NSError *error) {
+        if ([[PFUser currentUser][paymentCard] isValidCard]) {
+            PFUser *taker;
+            if ([self.message.sender.objectId isEqualToString:self.conversation.post.author.objectId]) {
+                taker = self.message.receiver;
+            } else {
+                taker = self.message.sender;
+            }
+            
+            __unsafe_unretained typeof(self) weakSelf = self;
+            [weakSelf.conversation.post acceptJobWithPrice:[NSNumber numberWithInt:weakSelf.message.suggestedPrice] withTaker:taker withConversation:self.conversation withCompletion:^(BOOL didUpdateJob, NSError *error) {
+                if (didUpdateJob) {
+                    [weakSelf removeSuggestedPrice];
+                    [weakSelf.delegate reloadData];
+                } else {
+                    [Alert callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
+                }
+            }];
         } else {
-            [Alert callAlertWithTitle:@"Error Accepting Job" alertMessage:[NSString stringWithFormat:@"%@", error.localizedDescription] viewController:(UIViewController *)weakSelf.delegate];
+            [Alert callAlertWithTitle:@"Invalid Payment Card" alertMessage:@"Could not accept job. Please update your payment card info." viewController:self.delegate];
         }
     }];
 }
