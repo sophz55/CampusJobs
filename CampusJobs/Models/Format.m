@@ -136,8 +136,8 @@
 
 + (void)configureCellShadow:(UITableViewCell *)cell {
     cell.layer.shadowOffset=CGSizeMake(0, 0);
-    cell.layer.shadowOpacity=0.3;
-    cell.layer.shadowRadius=1.0;
+    cell.layer.shadowOpacity=0.5;
+    cell.layer.shadowRadius=2.0;
     cell.clipsToBounds = false;
     cell.layer.shadowColor=[[UIColor blackColor] CGColor];
 }

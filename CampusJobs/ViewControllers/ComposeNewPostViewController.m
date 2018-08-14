@@ -219,14 +219,12 @@
     [self.postMapView setShowsUserLocation:YES];
     
     //rounded edges
-    self.postMapView.layer.cornerRadius=5.0;
-    self.postMapView.layer.borderColor=[[Colors primaryBlueColor]CGColor];
-    self.postMapView.layer.borderWidth=1.0;
+    self.postMapView.layer.cornerRadius=7.0;
     
     //add shadow
     self.postMapView.layer.shadowOffset=CGSizeMake(0, 0);
-    self.postMapView.layer.shadowOpacity=0.7;
-    self.postMapView.layer.shadowRadius=1.0;
+    self.postMapView.layer.shadowOpacity=0.6;
+    self.postMapView.layer.shadowRadius=3.0;
     self.postMapView.clipsToBounds = false;
     self.postMapView.layer.shadowColor=[[UIColor blackColor]CGColor];
     

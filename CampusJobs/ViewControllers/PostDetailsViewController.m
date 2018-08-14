@@ -349,14 +349,13 @@
     [self.postLocationMap setShowsUserLocation:YES];
     
     //format map
-    self.postLocationMap.layer.cornerRadius=5.0;
-    self.postLocationMap.layer.borderColor=[[Colors primaryBlueColor]CGColor];
-    self.postLocationMap.layer.borderWidth=1.0;
+    self.postLocationMap.layer.cornerRadius=7.0;
+
     
     //add shadow
     self.postLocationMap.layer.shadowOffset=CGSizeMake(0, 0);
-    self.postLocationMap.layer.shadowOpacity=0.7;
-    self.postLocationMap.layer.shadowRadius=1.0;
+    self.postLocationMap.layer.shadowOpacity=0.6;
+    self.postLocationMap.layer.shadowRadius=3.0;
     self.postLocationMap.clipsToBounds = false;
     self.postLocationMap.layer.shadowColor=[[UIColor blackColor]CGColor];
     
