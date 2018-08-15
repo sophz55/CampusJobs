@@ -108,7 +108,7 @@
     
     [self.postTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.otherUserLabel.mas_top);
-        make.left.equalTo(self.otherUserLabel.mas_right).with.offset(10);
+        make.left.equalTo(self.otherUserLabel.mas_right).with.offset(6);
     }];
     
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {

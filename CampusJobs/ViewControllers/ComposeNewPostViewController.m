@@ -48,12 +48,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDefinesPresentationContext:YES];
-    [self configureIntialView];
+    
     self.view.backgroundColor=[Colors secondaryGreyLighterColor];
+    [self configureIntialView];
     [self configureColors];
-    [self configureButtons];
-    [self configureLayout];
     self.useCurrentLocationButton.hidden = YES;
+    self.editLocationButton.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,12 +62,17 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([self.savedLocation isEqual:[PFUser currentUser][currentLocation]]) {
-        self.savedLocation = [PFUser currentUser][currentLocation];
-        self.useCurrentLocationButton.hidden = YES;
+    if (!self.savedLocation) {
+        [self.editLocationButton setTitle:@"PIN POINT YOUR LOCATION" forState:UIControlStateNormal];
     } else {
-        self.useCurrentLocationButton.hidden = NO;
+        [self.editLocationButton setTitle:@"EDIT YOUR LOCATION" forState:UIControlStateNormal];
     }
+    
+    self.useCurrentLocationButton.hidden = [self.savedLocation isEqual:[PFUser currentUser][currentLocation]];
+    
+    [self configureButtons];
+    [self configureLayout];
+    self.editLocationButton.hidden = NO;
     
     [self formatMap];
 }
@@ -143,11 +148,9 @@
     [self formatMap];
     if (self.savedLocationAddress && ![self.savedLocationAddress isEqualToString:@""]) {
         self.locationAddressLabel.text = self.savedLocationAddress;
-        self.editLocationButton.titleLabel.text = @"EDIT YOUR LOCATION";
         self.useCurrentLocationButton.hidden = NO;
     } else {
         self.locationAddressLabel.text = @"Using your current location.";
-        self.editLocationButton.titleLabel.text = @"EDIT YOUR LOCATION";
         self.useCurrentLocationButton.hidden = YES;
     }
     [Format formatAppBar:self.appBar withTitle:@"Your Posting"];
@@ -164,7 +167,6 @@
 
 - (void)configureForNewPost {
     self.locationAddressLabel.text = @"Choose a location.";
-    self.editLocationButton.titleLabel.text = @"PIN POINT YOUR LOCATION";
     [self.postButton setTitle:@"Post"];
 }
 
@@ -195,6 +197,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
+    [self.editLocationButton sizeToFit];
     [Format centerHorizontalView:self.editLocationButton inView:self.view];
 }
 
@@ -283,6 +286,9 @@
     [self formatMap];
     self.locationAddressLabel.text = @"Using your current location.";
     self.useCurrentLocationButton.hidden = YES;
+    [self.editLocationButton setTitle:@"EDIT YOUR LOCATION" forState:UIControlStateNormal];
+    [self.editLocationButton sizeToFit];
+    [Format centerHorizontalView:self.editLocationButton inView:self.view];
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
