@@ -39,7 +39,6 @@
 
     [self callViewDidLoadMethods];
 
-    self.noNearbyPostingsView.hidden = NO;
     [self configureLoadingPlaceholder];
 }
 
@@ -71,6 +70,7 @@
     self.noNearbyPostingsLabel.text = @"LOADING NEARBY POSTINGS...";
     [self.noNearbyPostingsLabel sizeToFit];
     self.noNearbyPostingsLabel.frame=CGRectMake(self.noNearbyPostingsLabel.frame.origin.x +33, self.noNearbyPostingsLabel.frame.origin.y, self.noNearbyPostingsLabel.frame.size.width, self.noNearbyPostingsLabel.frame.size.height);
+    self.noNearbyPostingsView.hidden = NO;
 }
 
 - (void)fetchNearbyPosts{
@@ -112,7 +112,7 @@
                 self.noNearbyPostingsLabel.text = [NSString stringWithFormat:@"No postings within %.1f miles of you. Change your desired radius in settings to widen the scope!", [self.userRadius floatValue]];
                 [self.noNearbyPostingsLabel setTextAlignment:NSTextAlignmentLeft];
                 [self.noNearbyPostingsLabel sizeToFit];
-                [Format centerVerticalView:self.noNearbyPostingsLabel inView:self.view];
+                [Format centerHorizontalView:self.noNearbyPostingsLabel inView:self.view];
             }
             [self.nearbyPostTableView reloadData];
         } else{
