@@ -96,9 +96,9 @@
             //Loop through all of the posts in order to filter by the desired radius
             for(int i=0; i<[posts count];i++){
                 Post * currPost=[posts objectAtIndex:i];
-                PFGeoPoint * postGeoPoint=currPost[@"location"];
+                PFGeoPoint * postGeoPoint = currPost[@"location"];
                 //calculate distance between post location and user location
-                double calculatedDistance=[Utils calculateDistance:postGeoPoint betweenUserandPost:currentLocation];
+                double calculatedDistance = [Utils calculateDistance:postGeoPoint betweenUserandPost:currentLocation];
                 //if the calculated distance (miles) is less than the desired radius, add to postings array
                 if(calculatedDistance <= desiredRadiusDouble){
                     [self.nearbyPostingsArray addObject:currPost];

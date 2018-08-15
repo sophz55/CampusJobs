@@ -39,7 +39,7 @@
     self.milesLabel.font=[UIFont fontWithName: @"RobotoCondensed-Regular" size:16];
 
     PFGeoPoint * postGeoPoint=post[@"location"];
-    PFGeoPoint * userGeoPoint=post.author[@"currentLocation"];
+    PFGeoPoint * userGeoPoint=[PFUser currentUser][@"currentLocation"];
     //Call Utils method to calculate distance between post location and user
     double miles=[Utils calculateDistance:postGeoPoint betweenUserandPost:userGeoPoint];
     self.postDistanceLabel.text=[NSString stringWithFormat:@"%.1f",miles];
