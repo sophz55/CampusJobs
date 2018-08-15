@@ -16,6 +16,7 @@
 #import "Utils.h"
 #import "SegueConstants.h"
 #import "PostDetailsViewController.h"
+#import "StringConstants.h"
 
 @interface SearchPostingsViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PostDetailsDelegate>
 
@@ -40,6 +41,7 @@
     self.searchedPostingsArray = [[NSMutableArray alloc] init];
     
     self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"SEARCH POSTS AND USERS...";
     [self changeSearchBarFont];
 
     [self configureTopNavigationBar];
@@ -79,27 +81,36 @@
 
 #pragma mark - UISearchBar
 
--(void)searchBar:(UISearchBar *) searchBar textDidChange: (NSString *) searchText{
-    if(searchText.length!=0){
+- (void)searchBar:(UISearchBar *) searchBar textDidChange: (NSString *) searchText{
+    if(searchText.length != 0){
         NSPredicate *predicate=[NSPredicate predicateWithBlock:^BOOL(Post *post, NSDictionary *bindings){
-            return[post[@"title"] containsString:searchText];
+            NSString *title = [post[@"title"] uppercaseString];
+            PFUser *author = post[@"author"];
+            NSString *username = [author.username uppercaseString];
+            NSString *searchTextUppercase = [searchText uppercaseString];
+            return ([title containsString:searchTextUppercase] || [username containsString:searchTextUppercase]);
         }];
         self.searchedPostingsArray = [[NSMutableArray alloc] initWithArray:[self.allPostingsArray filteredArrayUsingPredicate:predicate]];
     } else {
-        self.searchedPostingsArray = self.allPostingsArray;
+        [self.searchedPostingsArray removeAllObjects];
     }
     [self.searchedPostingsTableView reloadData];
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+}
+
 //changes the font of the search bar text
 - (void)changeSearchBarFont{
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"RobotoCondensed-Regular" size:17]];
+    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setFont:[UIFont fontWithName:regularFontName size:17]];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    self.searchedPostingsArray = self.allPostingsArray;
+    [self.searchedPostingsArray removeAllObjects];
     [self.view endEditing:YES];
-    searchBar.text=@"";
+    searchBar.text = @"";
+    searchBar.showsCancelButton = NO;
     [self.searchedPostingsTableView reloadData];
 }
 

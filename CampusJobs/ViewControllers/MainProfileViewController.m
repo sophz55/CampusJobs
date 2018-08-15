@@ -188,15 +188,14 @@
 - (void)formatButtons {
     //Edit profile picture button
     [Format formatRaisedButton:self.editProfPicButton];
-    self.editProfPicButton.layer.cornerRadius=3.0;
-    self.editProfPicButton.layer.backgroundColor=[[Colors secondaryGreyLightColor]CGColor];
+    self.editProfPicButton.layer.cornerRadius = 3.0;
+    self.editProfPicButton.backgroundColor = [Colors secondaryGreyLightColor];
     [self.editProfPicButton setTitleFont:[UIFont fontWithName:regularFontName size:12] forState:UIControlStateNormal];
     [self.editProfPicButton sizeToFit];
     
     //color theme to bottom view buttons
     [Format formatRaisedButton:self.editPersonalSettingsButton];
-    self.editProfPicButton.backgroundColor=[UIColor lightGrayColor];
-    self.editPersonalSettingsButton.backgroundColor = [Colors secondaryGreyLightColor];
+    self.editPersonalSettingsButton.backgroundColor = self.editProfPicButton.backgroundColor;
 
     [Format formatRaisedButton:self.editPaymentInfoButton];
     self.editPaymentInfoButton.backgroundColor = self.editPersonalSettingsButton.backgroundColor;
