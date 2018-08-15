@@ -68,7 +68,7 @@
             if (self.conversation.post.postStatus == IN_PROGRESS) {
                 self.statusLabel.text = @"ACTIVE WITH ANOTHER USER";
             } else {
-                self.statusLabel.text = @"COMPLETED WITH ANOTHER USER";
+                self.statusLabel.text = @"COMPLETED BY ANOTHER USER";
             }
         }
     } else if ([[PFUser currentUser].objectId isEqualToString:self.conversation.post.taker.objectId]) {

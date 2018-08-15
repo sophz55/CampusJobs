@@ -579,7 +579,7 @@
         <!--Search Postings View Controller-->
         <scene sceneID="Y68-XO-YJB">
             <objects>
-                <viewController id="njk-XU-GRZ" customClass="SearchPostingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchPostingsViewController" id="njk-XU-GRZ" customClass="SearchPostingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zA-Ir-s2B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -594,7 +594,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4oA-Dp-S4a">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="487"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -675,7 +675,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4a1-gR-l9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3136.8000000000002" y="1787.8560719640182"/>
+            <point key="canvasLocation" x="3136.5" y="1787.5"/>
         </scene>
     </scenes>
     <resources>

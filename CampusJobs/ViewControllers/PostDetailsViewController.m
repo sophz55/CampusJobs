@@ -41,7 +41,6 @@
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *messageButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *deleteButton;
 @property (weak, nonatomic) IBOutlet MDCRaisedButton *cancelButton;
-@property (weak, nonatomic) IBOutlet MDCRaisedButton *viewLocationButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userDetailsLabel;
@@ -100,10 +99,6 @@
                                                    toButton:self.deleteButton];
     [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
                                                    toButton:self.cancelButton];
-    [MDCContainedButtonColorThemer applySemanticColorScheme:colorScheme
-                                                   toButton:self.viewLocationButton];
-    self.viewLocationButton.backgroundColor = colorScheme.secondaryColor;
-    self.viewLocationButton.tintColor = colorScheme.onSecondaryColor;
 }
 
 - (void)configureInitialView {

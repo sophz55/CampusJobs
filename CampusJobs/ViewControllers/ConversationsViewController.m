@@ -27,6 +27,7 @@
 @property (strong, nonatomic) MDCAppBar *appBar;
 @property (weak, nonatomic) IBOutlet UIView *noConversationsView;
 @property (weak, nonatomic) IBOutlet UILabel *noConversationsLabel;
+@property (strong, nonatomic) UIBarButtonItem *editButton;
 
 @end
 
@@ -69,6 +70,10 @@
     [self addChildViewController:_appBar.headerViewController];
     [self.appBar addSubviewsToParent];
     [Format formatAppBar:self.appBar withTitle:@"MESSAGES"];
+    
+    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"EDIT" style:UIBarButtonItemStylePlain target:self action:@selector(didTapEditButton:)];
+    [Format formatBarButton:self.editButton];
+    self.navigationItem.leftBarButtonItem = self.editButton;
 }
 
 //automatically style status bar
@@ -149,6 +154,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.conversations.count;
+}
+
+- (IBAction)didTapEditButton:(id)sender {
 }
 
 #pragma mark - Navigation
