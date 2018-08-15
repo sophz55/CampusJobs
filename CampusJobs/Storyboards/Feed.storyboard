@@ -177,30 +177,6 @@
             </objects>
             <point key="canvasLocation" x="1288" y="3237"/>
         </scene>
-        <!--Map Details View Controller-->
-        <scene sceneID="gRA-lh-EK6">
-            <objects>
-                <viewController id="B9a-ex-4vP" customClass="MapDetailsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Q4v-AS-70k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tzd-Gx-G4c">
-                                <rect key="frame" x="0.0" y="75" width="375" height="623"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="HbJ-E3-7pw"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="Tzd-Gx-G4c" id="u6V-U5-bn7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zc1-Gx-gNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2834" y="3153"/>
-        </scene>
         <!--Post Details View Controller-->
         <scene sceneID="tvl-Ml-l1v">
             <objects>

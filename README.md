@@ -1,33 +1,41 @@
 # CampusJobs
 
-Students often find a need for short-term jobs or favors that are too small to post to a job network. With this app, they can post these odd jobs to the So What network, and additionally make some money from picking up jobs that others have posted.
+SEIZE is a peer-to-peer platform that connects college students in order to complete small tasks for one another in exchange for money while meeting others along the way. With the ease of SEIZE, university students can discover fast and prompt responses to their specified needs.
 
-Required
+CONTRIBUTORS:
+SEIZE was originally created as a project for the Facebook University summer internship program. Created by Sophia Zheng, Sophia Khezri, and Somto Nweke.
 
-- [x] User should be able to log in
-- [x] User should be able to create an account 
-- [x] User should see a “Nearby Postings” feed
-- [x] User should be able to click into postings detail view
-- [x] User should be able to message other users
-- [x] User should be able to view all chats with other users
-- [x] User should be able to create a job posting with description
-- [ ] SN User should be able to click into other users' profiles
-- [ ] SN User should be able to configure profile - image, email, phone, address, etc.
-- [ ] SN User should be able to add pictures to their posting
-- [ ] SN User should be able to search postings via search bar
-- [x] SZ User should be able to bid prices
-- [x] SZ User should be able to accept prices
-- [x] SZ User should be able to indicate when job is done
-- [x] SZ User should be able to add credit card
-- [x] SZ User can edit posts
-- [x] SZ User can delete posts
-- [ ] SK User should be able to specify map radius
-- [ ] SK User should be able to see a “Your Postings” feed
-- [X] SK User should be able to add a location to new posts
+FEATURES:
 
-Optional
+Account creation/maintanence
+- [x] User can create an account
+- [x] User can log in
+- [x] User can configure profile - image, email, username, name, phone, address, etc.
+- [x] User can specify a desired radius for the nearby postings feed
+- [x] User can add/edit credit or debit card info
 
-- [ ] SK User should be able to see map view of all nearby jobs
+Job seeking side
+- [x] User can see a feed with postings within a specified radius
+- [x] User can click into postings to see a detailed view
+- [x] User can message a given post's author
+- [x] User can search postings by title and author's username
+
+Job requesting side
+- [x] User can create a job posting with title and description
+- [x] User can add a location to a job posting (current location or pinned on map)
+- [x] User can see a feed with their past postings
+- [x] User can click into their postings to see a detailed view and edit or delete their post
+
+Messaging features
+- [x] User can see all chats, which are specific to the other user and the job that is being discussed
+- [x] User can suggest and accept prices
+- [x] User can cancel a job that is in progress
+- [x] User can mark a job as completed (if author of post, since the author is the one who pays)
+
+Features to come
+- [ ] User should be able to add pictures to their posting
+- [ ] User should be able to click into other users' profiles
+- [ ] User should be able to see map view of all nearby jobs
 - [ ] User should be able to give star ratings after job is done
 - [ ] User should be able to reset password
 - [ ] User should be able to sign up with facebook

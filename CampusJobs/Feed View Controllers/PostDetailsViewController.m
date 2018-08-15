@@ -22,7 +22,6 @@
 
 #import "ConversationDetailViewController.h"
 #import "Conversation.h"
-#import "MapDetailsViewController.h"
 #import "ComposeNewPostViewController.h"
 
 @interface PostDetailsViewController () <ComposePostDelegate, ConversationDetailDelegate, AlertDelegate> {
