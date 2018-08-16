@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
-#import "ParseUI.h"
+#import "Parse/PFImageView.h"
 
 @interface NearbyPostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postTitleLabel;

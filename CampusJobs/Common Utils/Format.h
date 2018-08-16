@@ -11,7 +11,7 @@
 #import <MaterialComponents/MaterialButtons.h>
 #import <MaterialComponents/MaterialTextFields.h>
 #import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
+#import <Parse/PFImageView.h>
 
 @interface Format : NSObject
 

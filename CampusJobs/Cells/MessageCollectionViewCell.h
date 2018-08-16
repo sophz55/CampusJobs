@@ -10,7 +10,7 @@
 #import "Message.h"
 #import "Conversation.h"
 #import <MaterialComponents/MaterialButtons.h>
-#import <ParseUI/ParseUI.h>
+#import <Parse/PFImageView.h>
 
 @protocol MessageCollectionViewCellDelegate
 - (void)reloadData;

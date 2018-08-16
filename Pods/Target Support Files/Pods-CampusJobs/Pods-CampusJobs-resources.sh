@@ -114,9 +114,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_reorder.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_settings.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/ParseUI.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle"
@@ -141,9 +139,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_reorder.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialIcons_ic_settings.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj"
-  install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/ParseUI.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

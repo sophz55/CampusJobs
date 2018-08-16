@@ -9,7 +9,7 @@
 #import "JobCompletedViewController.h"
 #import <RateView/RateView.h>
 #import <MaterialComponents/MaterialAppBar.h>
-#import <ParseUI/ParseUI.h>
+#import <Parse/PFImageView.h>
 #import "Colors.h"
 #import "Format.h"
 #import "NSDate+DateTools.h"

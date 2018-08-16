@@ -445,9 +445,8 @@ PODS:
     - Parse/Core (= 1.17.1)
   - Parse/Core (1.17.1):
     - Bolts/Tasks (~> 1.9)
-  - ParseUI (1.2.0):
-    - Bolts/Tasks (~> 1.3)
-    - Parse (~> 1.9)
+  - Parse/UI (1.17.1):
+    - Parse/Core
   - RateView (1.2)
 
 DEPENDENCIES:
@@ -456,7 +455,7 @@ DEPENDENCIES:
   - Masonry
   - MaterialComponents
   - Parse
-  - ParseUI
+  - Parse/UI
   - RateView
 
 SPEC REPOS:
@@ -472,7 +471,6 @@ SPEC REPOS:
     - MotionInterchange
     - MotionTransitioning
     - Parse
-    - ParseUI
     - RateView
 
 SPEC CHECKSUMS:
@@ -487,9 +485,8 @@ SPEC CHECKSUMS:
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
-  ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
   RateView: d4d12e9bb76dc23a77a56f4e5c5fb530a3f3f998
 
-PODFILE CHECKSUM: 278a5c55affe219c48afbe65c50532c2a89a2120
+PODFILE CHECKSUM: 6637e61ecf105fe8e72759cf90321af903f72bed
 
 COCOAPODS: 1.5.3

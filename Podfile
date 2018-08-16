@@ -7,7 +7,7 @@ target 'CampusJobs' do
 
   # Pods for CampusJobs
   pod 'Parse'
-  pod 'ParseUI'
+  pod 'Parse/UI'
   pod 'ChameleonFramework'
   pod 'MaterialComponents'
   pod 'DateTools'

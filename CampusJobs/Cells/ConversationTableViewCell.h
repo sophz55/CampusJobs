@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
+#import <Parse/PFImageView.h>
 #import "Conversation.h"
 #import <MaterialComponents/MaterialButtons.h>
 

@@ -7,8 +7,8 @@
 //
 
 #import "MainProfileViewController.h"
-#import "Parse.h"
-#import "ParseUI.h"
+#import "Parse/Parse.h"
+#import "Parse/PFImageView.h"
 #import "Colors.h"
 #import "Utils.h"
 #import "StringConstants.h"
